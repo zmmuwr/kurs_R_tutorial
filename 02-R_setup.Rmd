@@ -1,0 +1,65 @@
+
+```{r, echo=FALSE}
+fortunes::fortune(78)
+```
+
+# Skąd ściągnąć R
+
+
+* Postawowe środowisko R najlepiej ściągnąć bezpośrednio ze strony [R project](http://www.r-project.org/)
+* Polecam również ściągnąć [R Studio](http://www.rstudio.com/), które bardzo ułatwia pracę z R
+* Podstawowe pakiety zostaną zainstalowane razem z R, kolejne można pobrać bezpośrednio przez R Studio (zakładka Packages), bardziej bioinformatyczne pakiety znajdują się na stronie [bioconductor](http://www.bioconductor.org/),
+wiele pakietów można też pobrac bezpośrednio ze strony Github korzystając z pakietu devtools.
+
+```{r, echo=FALSE}
+fortunes::fortune(198)
+```
+
+
+## Pomoc
+
+
+* Pomoc do funkcji można otworzyć bezpośrednio w R wpisując: ` ? nazwa_funkcji ` albo naciskając F1 podczas wpisywania nazwy funkcji, jednak opisy często są dość enigmatyczne i zakładają już pewne zrozumienie tematu
+* Odpowiedzi na konkretne pytania najlepiej szukać w internecie wpisując po prostu: "How do sth R", najczęściej pojawiająca się strona to [Stack Overflow](http://stackoverflow.com/)
+* Ciekawe pomysły i tutoriale pojawiają się też na stronie [R-bloggers](http://www.r-bloggers.com/)
+* Interaktywny kurs R można też znaleźć na stronie [datacamp](https://www.datacamp.com), ale obecnie tylko pierwsze lekcje każdego kursu są darmowe
+* Pomoc do [ggplot2](http://docs.ggplot2.org/current/)
+* Polecam też książkę Przemysława Biecka "Przewodnik po pakiecie R", jedna z niewielu jakie są po polsku, pierwsze rozdziały można bezpłatnie pobrać ze strony [autora](http://www.biecek.pl/)
+* [Introduction to R for Biologists](https://melbournebioinformatics.github.io/r-intro-biologists/intro_r_biologists.html#R_for_Biologists_course)
+* [How to make any plot in ggplot2?](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+* [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
+* [R Graphics Cookbook, 2nd edition](https://r-graphics.org/index.html)
+* No i oczywiście ja chętnie pomogę :)
+
+```{r, echo=FALSE}
+fortunes::fortune(350)
+```
+
+
+## Packages
+
+
+Żeby użyć funkcję z danego pakietu, który nie należy do podstawowych należy go najpierw zainstalować (Install w zakładce Packages), a potem załadować.
+(funkcje `library(nazwa)` albo `require(nazwa)`). Można też włączać pakiety w zakładce Packages.
+
+Dobrze jest ładować tylko te pakiety, które są faktycznie potrzebne - nie przeciążamy pamięci i niektóre nazwy funkcji mogą się powtarzać w różnych pakietach.
+
+Jeżeli ładowanie całego pakietu jest niepotrzebne albo prowadzi do konflktów można odwołać się do konkretnej funckji przy pomocy :: np. `readxl::read_excel()`. 
+
+Każdy pakiet zawiera podstawowy opis funkcji, niektóre posiadają bardziej rozbudowane przykłady analiz jakie można przy ich pomocy wykonać - vignette. Jeżeli chcemy sprawdzić które pakiety zawierają winietki można to zrobić funkcją `browseVignettes`. 
+
+### Lista pakietów, które pojawiają się w książce (uwaga może być niekompletna)
+
+Przed rozpoczęciem należy mieć zainstalowane następujące pakiety: ggplot2, tidyr, knitr, dplyr, readr, readxl oraz najlepiej posiadać najnowszą wersję R (4.1.0 - "Camp Pontanezen") i R Studio (przynajmniej 1.4). 
+
+Pozostałe pakiety można pobrać tylko jeśli będą potrzebne.
+
+Inne pakiety jakie pojawiają się to: w części dotyczącej wykresów: car, likert, gplots, VennDiagram, corrplot, hexbin, aplpack, GGally, ggthemes, ggthemr i w części dotyczącej statystyki i obróbki danych: car, MASS, nortest, modeest, moments, agricolae, drc, broom.
+
+## R Studio
+
+Jest to obecnie najpopularniejszy dostępny edytor R, pozwalający na tworzenie projektów, pisanie i zarządzanie skryptami, pozwalający na łatwy dostęp do historii wpisywanych komend i tworzonych wykresów. Został zintegrowany z wieloma przydatnymi pakietami np. knitr, który pozwala tworzenie raportów w języku markdown, latex, prezentacji multimedialnych itp. 
+
+R Studio pozwala również na założenie projektu do konkretnego zadania, wszystkie pliki tworzone w trakcie pracy (wykresy, tabele, skrypty) zostaną umieszczone w folderze przypisanym do projektu. Jeżeli nasze dane wejściowe umieścimy w tym samym miejscu nie będzie konieczne podawanie całej ścieżki dostępu przy wczytywaniu pliku. Wykorzystanie projektów ułtwia uporządkowanie pracy. Każdy projekt można też poddać kontroli wersji przy pomocy Git i Github bezpośrednio z Rstudio. Więcej informacji na ten temat można znaleźć w [Happy Git with R](https://happygitwithr.com/).
+
+Cały Tutorial to zbiór skryptów napisanych w markdown, które zostały połączone w książkę dzięki pakietowi R bookdown. Wszystkie przykłady można skopiować albo przepisać do własnych skryptów R. Trzeba jedynie pamiętać o wcześniejszym załadowaniu odpowiednich pakietów i ewentualnie danych. Samodzielne wpisywanie nazw funkcji przyśpiesza proces zapamiętywania, a korzystając z autouzpełniania trzeba tak naprawdę pamiętać 2-3 pierwsze litery :)

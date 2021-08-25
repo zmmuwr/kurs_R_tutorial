@@ -1,0 +1,1097 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Kurs R - Tutorial},
+  pdfauthor={Agnieszka Strzałka},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Kurs R - Tutorial}
+\author{Agnieszka Strzałka}
+\date{2021-08-25}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{wstux119p}{%
+\chapter{Wstęp}\label{wstux119p}}
+
+Książka jest dodatkiem do kursu R i ma stanowić zbiór przykładów, które mogą zostać wykorzystane podczas pisania własnych skryptów R. Materiały będą na bieżąco aktualizowane tak aby wszystkie przedstawione przykłady były możliwe do odtworzenia.
+
+Większość przedstawionych przykładów będzie się opierać na funkcjach zawartych w pakietach tidyverse, które tworzą spójną całość obejmującą wczytanie i analizę danych oraz ich wizualizację. Chociaż wiele z przedstawionych zadań może być wykonane korzystając z podstawowych funkcji R uważam, że nauczenie się od razu korzystania z pakietów tidyverse za bardziej korzystne gdyż zawarte w nich funkcje są często łatwiejsze i bardziej intuicyjne w stosowaniu, szczególnie gdy ktoś nie ma dużego doświadczenia w programowaniu ;)
+
+\begin{verbatim}
+## 
+## R is the lingua franca of statistical research. Work in all other languages
+## should be discouraged.
+##    -- Jan de Leeuw (as quoted by Matt Pocernich on R-help)
+##       JSM 2003, San Francisco (August 2003)
+\end{verbatim}
+
+\hypertarget{skux105d-ux15bciux105gnux105ux107-r}{%
+\chapter{Skąd ściągnąć R}\label{skux105d-ux15bciux105gnux105ux107-r}}
+
+\begin{itemize}
+\tightlist
+\item
+  Postawowe środowisko R najlepiej ściągnąć bezpośrednio ze strony \href{http://www.r-project.org/}{R project}
+\item
+  Polecam również ściągnąć \href{http://www.rstudio.com/}{R Studio}, które bardzo ułatwia pracę z R
+\item
+  Podstawowe pakiety zostaną zainstalowane razem z R, kolejne można pobrać bezpośrednio przez R Studio (zakładka Packages), bardziej bioinformatyczne pakiety znajdują się na stronie \href{http://www.bioconductor.org/}{bioconductor},
+  wiele pakietów można też pobrac bezpośrednio ze strony Github korzystając z pakietu devtools.
+\end{itemize}
+
+\begin{verbatim}
+## 
+## Friends don't let friends use Excel for statistics!
+##    -- Jonathan D. Cryer (about problems with using Microsoft Excel for
+##       statistics)
+##       JSM 2001, Atlanta (August 2001)
+\end{verbatim}
+
+\hypertarget{pomoc}{%
+\section{Pomoc}\label{pomoc}}
+
+\begin{itemize}
+\tightlist
+\item
+  Pomoc do funkcji można otworzyć bezpośrednio w R wpisując: \texttt{?\ nazwa\_funkcji} albo naciskając F1 podczas wpisywania nazwy funkcji, jednak opisy często są dość enigmatyczne i zakładają już pewne zrozumienie tematu
+\item
+  Odpowiedzi na konkretne pytania najlepiej szukać w internecie wpisując po prostu: ``How do sth R'', najczęściej pojawiająca się strona to \href{http://stackoverflow.com/}{Stack Overflow}
+\item
+  Ciekawe pomysły i tutoriale pojawiają się też na stronie \href{http://www.r-bloggers.com/}{R-bloggers}
+\item
+  Interaktywny kurs R można też znaleźć na stronie \href{https://www.datacamp.com}{datacamp}, ale obecnie tylko pierwsze lekcje każdego kursu są darmowe
+\item
+  Pomoc do \href{http://docs.ggplot2.org/current/}{ggplot2}
+\item
+  Polecam też książkę Przemysława Biecka ``Przewodnik po pakiecie R'', jedna z niewielu jakie są po polsku, pierwsze rozdziały można bezpłatnie pobrać ze strony \href{http://www.biecek.pl/}{autora}
+\item
+  \href{https://melbournebioinformatics.github.io/r-intro-biologists/intro_r_biologists.html\#R_for_Biologists_course}{Introduction to R for Biologists}
+\item
+  \href{http://r-statistics.co/ggplot2-Tutorial-With-R.html}{How to make any plot in ggplot2?}
+\item
+  \href{https://clauswilke.com/dataviz/index.html}{Fundamentals of Data Visualization}
+\item
+  \href{https://r-graphics.org/index.html}{R Graphics Cookbook, 2nd edition}
+\item
+  No i oczywiście ja chętnie pomogę :)
+\end{itemize}
+
+\begin{verbatim}
+## 
+## You need to get the hang of reading the online help. The information required
+## is actually there in ?dotchart --- it's just tersely and obscurely expressed. A
+## certain degree of optimism is required. You need to ***believe*** that the
+## information is there; then ask yourself "What could they possibly mean by what
+## they have written that would tell me what I need to know?".
+##    -- Rolf Turner (on reading the help pages)
+##       R-help (June 2013)
+\end{verbatim}
+
+\hypertarget{packages}{%
+\section{Packages}\label{packages}}
+
+Żeby użyć funkcję z danego pakietu, który nie należy do podstawowych należy go najpierw zainstalować (Install w zakładce Packages), a potem załadować.
+(funkcje \texttt{library(nazwa)} albo \texttt{require(nazwa)}). Można też włączać pakiety w zakładce Packages.
+
+Dobrze jest ładować tylko te pakiety, które są faktycznie potrzebne - nie przeciążamy pamięci i niektóre nazwy funkcji mogą się powtarzać w różnych pakietach.
+
+Jeżeli ładowanie całego pakietu jest niepotrzebne albo prowadzi do konflktów można odwołać się do konkretnej funckji przy pomocy :: np. \texttt{readxl::read\_excel()}.
+
+Każdy pakiet zawiera podstawowy opis funkcji, niektóre posiadają bardziej rozbudowane przykłady analiz jakie można przy ich pomocy wykonać - vignette. Jeżeli chcemy sprawdzić które pakiety zawierają winietki można to zrobić funkcją \texttt{browseVignettes}.
+
+\hypertarget{lista-pakietuxf3w-ktuxf3re-pojawiajux105-siux119-w-ksiux105ux17cce-uwaga-moux17ce-byux107-niekompletna}{%
+\subsection{Lista pakietów, które pojawiają się w książce (uwaga może być niekompletna)}\label{lista-pakietuxf3w-ktuxf3re-pojawiajux105-siux119-w-ksiux105ux17cce-uwaga-moux17ce-byux107-niekompletna}}
+
+Przed rozpoczęciem należy mieć zainstalowane następujące pakiety: ggplot2, tidyr, knitr, dplyr, readr, readxl oraz najlepiej posiadać najnowszą wersję R (4.1.0 - ``Camp Pontanezen'') i R Studio (przynajmniej 1.4).
+
+Pozostałe pakiety można pobrać tylko jeśli będą potrzebne.
+
+Inne pakiety jakie pojawiają się to: w części dotyczącej wykresów: car, likert, gplots, VennDiagram, corrplot, hexbin, aplpack, GGally, ggthemes, ggthemr i w części dotyczącej statystyki i obróbki danych: car, MASS, nortest, modeest, moments, agricolae, drc, broom.
+
+\hypertarget{r-studio}{%
+\section{R Studio}\label{r-studio}}
+
+Jest to obecnie najpopularniejszy dostępny edytor R, pozwalający na tworzenie projektów, pisanie i zarządzanie skryptami, pozwalający na łatwy dostęp do historii wpisywanych komend i tworzonych wykresów. Został zintegrowany z wieloma przydatnymi pakietami np. knitr, który pozwala tworzenie raportów w języku markdown, latex, prezentacji multimedialnych itp.
+
+R Studio pozwala również na założenie projektu do konkretnego zadania, wszystkie pliki tworzone w trakcie pracy (wykresy, tabele, skrypty) zostaną umieszczone w folderze przypisanym do projektu. Jeżeli nasze dane wejściowe umieścimy w tym samym miejscu nie będzie konieczne podawanie całej ścieżki dostępu przy wczytywaniu pliku. Wykorzystanie projektów ułtwia uporządkowanie pracy. Każdy projekt można też poddać kontroli wersji przy pomocy Git i Github bezpośrednio z Rstudio. Więcej informacji na ten temat można znaleźć w \href{https://happygitwithr.com/}{Happy Git with R}.
+
+Cały Tutorial to zbiór skryptów napisanych w markdown, które zostały połączone w książkę dzięki pakietowi R bookdown. Wszystkie przykłady można skopiować albo przepisać do własnych skryptów R. Trzeba jedynie pamiętać o wcześniejszym załadowaniu odpowiednich pakietów i ewentualnie danych. Samodzielne wpisywanie nazw funkcji przyśpiesza proces zapamiętywania, a korzystając z autouzpełniania trzeba tak naprawdę pamiętać 2-3 pierwsze litery :)
+
+\hypertarget{dane}{%
+\chapter{Dane}\label{dane}}
+
+\hypertarget{wczytanie-danych}{%
+\section{Wczytanie danych}\label{wczytanie-danych}}
+
+Dane najłatwiej wczytać z plików .txt lub .csv. Można również z plików .xlsx lub .xls ale często trwa to dłużej i może wymagać zainstalowanych innych pakietów/programów.
+
+W każdym przypadku niezbędne jest podanie ścieżki dostępu do pliku. Jeżeli znajduje się on folderze projektu to wystarczy jego nazwa. Dobrą praktyka jest przechowywanie danych w osobnym katalogu w obrębie projektu - wtedy ścieżka może wyglądać np. data/dane\_1.txt. Jeżeli plik z danymi jest przechowywany gdzie indziej konieczne jest podanie pełnej ścieżki dostępu, ale można w tym wypadku korzystać z autouzupełniania klawiszem Tab.
+
+\hypertarget{wczytanie-danych-z-plikuxf3w-tekstowych}{%
+\subsection{Wczytanie danych z plików tekstowych}\label{wczytanie-danych-z-plikuxf3w-tekstowych}}
+
+R Studio posiada funkcję Import Dataset (zakładka Environment), która pozwala na wczytanie danych wraz z wyborem podstawowych opcji jak separator, separator dziesiętny, obecność nagłówków. Opcja ta obejmuje podstawowe funkcje R oraz pakiety readr i readxl będące częścią tidyverse. Na początek jest łatwiej korzystać z opcji Load Dataset, ponieważ po jej użyciu zostaje również wygenerowany odpowiedni kod R, który można wkleić do własnych skryptów tak aby te same lub podobne dane wczytać już bez problemu następnym razem.
+
+Można również wczytać dane wpisując komendę (wygodne przy pisaniu skryptów) \texttt{read.table} albo \texttt{read.csv}.
+Argumenty: file określa nam plik, który wczytujemy, header - nagłówki, sep - separator np. ``/t'' to tabulator, dec - separator dziesiętny (domyślnie kropka), quote - obecność "". W przypadku nagłówków kolumn wpisanie \texttt{header=TRUE} spowoduje, że pierwszy wiersz naszej tabeli zostanie potraktowany jako tytuły kolumn, \texttt{header=FALSE} oznacza domyślne nazwy kolumn - V1, V2, \ldots{}
+
+W pakiecie readr znajdują się analogiczne funckje:
+* read\_delim - do plików tekstowych, funckja spróbuje zgadnąć jak rozdzielone są kolumny, można podać argumentem delim
+* read\_csv i read\_csv2 - do plików csv, odpowiednio do danych wykorzystujących kropki i przecinki jako separatory dziesiętne
+* read\_tsv i read\_table - do plików gdzie kolumny są rodzielone przy pomocy tab.
+
+Wczytane dane będą widoczne w zakładce Environment. Kliknięcie na nazwę tabeli spowoduje otwarcie widoku danych podobnego do arkusza kalkulacyjnego. Można w nim dane sortować i filtrować, ale nie edytować.
+
+Pierwsze albo ostanie wiersze można zobaczyć używając funkcji \texttt{head} albo \texttt{tail}. Strukturę danych pokaże funkcja \texttt{str}, a podstawowe informacje \texttt{summary}. Dobrze jest po wczytaniu danych sprawdzić czy wyglądają faktycznie tak jak miały ;)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dane1 }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\AttributeTok{file =} \StringTok{"data/dane1.txt"}\NormalTok{, }\AttributeTok{header=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{quote=}\StringTok{"}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(dane1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     pomiar Szczep warunki
+## 1 3.389738      A       1
+## 2 5.992065      A       1
+## 3 4.464553      A       1
+## 4 4.546082      A       1
+## 5 6.521751      A       1
+## 6 5.713088      A       1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(dane1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1800 obs. of  3 variables:
+##  $ pomiar : num  3.39 5.99 4.46 4.55 6.52 ...
+##  $ Szczep : chr  "A" "A" "A" "A" ...
+##  $ warunki: int  1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(dane1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      pomiar          Szczep             warunki   
+##  Min.   : 1.434   Length:1800        Min.   :1.0  
+##  1st Qu.: 4.450   Class :character   1st Qu.:1.0  
+##  Median : 5.478   Mode  :character   Median :1.5  
+##  Mean   : 5.846                      Mean   :1.5  
+##  3rd Qu.: 6.743                      3rd Qu.:2.0  
+##  Max.   :27.953                      Max.   :2.0
+\end{verbatim}
+
+\hypertarget{wczytanie-danych-z-plikuxf3w-excel}{%
+\subsection{Wczytanie danych z plików excel}\label{wczytanie-danych-z-plikuxf3w-excel}}
+
+Do wczytania danych z plików xlsx można wykorzystać funkcję read\_excel z pakietu readxl. Przy pracy z excelem należy jednak pamiętać żeby wczytywane dane nie zawierały formuł albo połączonych komórek oraz, że funkcja wczyta dane zawarte tylko w jednym arkuszu (sheet), ale można wybrać z której przy pomocy argumentu sheet.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\NormalTok{data\_excel }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{\textquotesingle{}data/test.xlsx\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{data\_excel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 16 x 3
+##        A     B     C
+##    <dbl> <dbl> <dbl>
+##  1     1     2     3
+##  2     1     3     4
+##  3     1     4     5
+##  4     1     5     6
+##  5     1     6     7
+##  6     1     7     8
+##  7     1     8     9
+##  8     1     9    10
+##  9     1    10    11
+## 10     1    11    12
+## 11     1    12    13
+## 12     1    13    14
+## 13     1    14    15
+## 14     1    15    16
+## 15     1    16    17
+## 16     1    17    18
+\end{verbatim}
+
+\hypertarget{zapisanie-danych}{%
+\section{Zapisanie danych}\label{zapisanie-danych}}
+
+Zapisać tabelę danych można korzystając z funkcji \texttt{write.table}, wystarczy określić, co chcemy zapisać i nazwę pliku wyjściowego. Możemy zapisywać pliki w formacie np. txt, csv. Jeżeli nie określimy ścieżki dostępu plik zostanie zapisany w folderze projektu.
+
+Można również dopisywać dane do istniejącego pliku ustawiając parametr \texttt{append\ =\ TRUE}. Domyślnie ten argument jest zawsze ustawiony jako \texttt{append\ =\ FALSE} i jeżeli w nazwie pliku podamy istniejący plik to \textbf{zostanie on nadpisany bez ostrzeżenia}.
+
+Można też dane zapisać w formacie rds. Można je potem otworzyć tylko w R, ale można w takim formacie zapisać każdy obiekt R, nie tylko tabele. Do zapisania danych służy funkcja saveRDS, a do wczytanie readRDS.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{write.table}\NormalTok{(dane1, }\StringTok{"data/dane4.txt"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{podstawowe-typy-danych-w-r}{%
+\section{Podstawowe typy danych w R}\label{podstawowe-typy-danych-w-r}}
+
+W R dane do zmiennej przypisujemy korzystając ze strzałki ;) \texttt{\textless{}-} albo \texttt{-\textgreater{}}. Można też użyć \texttt{=}
+
+Do najbardziej podstawowych typów danych należą: typ liczbowy, znakowy, logiczny i czynnikowy (o tym później). Typ danych można sprawdzić funkcją \texttt{class}
+
+Najczęściej wykorzystywane rodzaje danych to wektor i ramka danych. Pozostałe to m.in. macierz i lista. W R można również pisać własne funkcje.
+
+\hypertarget{wektor-vector}{%
+\subsection{Wektor (vector)}\label{wektor-vector}}
+
+Wektor to ciąg elementów tego samego typu np. liczbowy, znakowy. W R nawet pojedyncza cyfra jest wektorem. Wektor można stworzyć korzystając z funkcji:
+
+\begin{itemize}
+\item
+  \texttt{c}. Sekwencję liczb można zapisać jako \texttt{1:10} - utworzy wektor liczb od 1 do 10.
+\item
+  Przy bardziej skomplikowanych sekwencjach można użyć funkcji \texttt{seq}, ustawiamy start, koniec i co ile ma być kolejny element
+\item
+  funkcję \texttt{rep}, podajemy jakie elementy mają zostać powtórzone i ile razy. \texttt{each} - powtarzanie każdego elementu, \texttt{times} - powtarzanie całego wektora.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 5 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"V"}\NormalTok{)}
+\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "A" "B" "V"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{15}
+\NormalTok{c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{by=}\DecValTok{10}\NormalTok{)}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  10  20  30  40  50  60  70  80  90 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{times=}\DecValTok{3}\NormalTok{)}
+\NormalTok{e}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 1 2 3 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{e }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\AttributeTok{each=}\DecValTok{3}\NormalTok{)}
+\NormalTok{e}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 1 1 2 2 2 3 3 3
+\end{verbatim}
+
+Do poszczególnych elementów wektora można się odwołać stosując nawiasy: \texttt{wektor{[}x{]}}, gdzie x to numer elementu. Można się odwołać do kilku elementów jednocześnie np. \texttt{wektor{[}1:3{]}}, \texttt{wektor{[}c(2,4){]}}. Numeracja rozpoczyna się od 1. Elementy wektora mogą również mieć swoje nazwy i wtedy można je także wykorzystać do wyświetlania danych.
+
+Ilość elementów wektora podaje funkcja \texttt{length}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{a[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{( }\StringTok{"jeden"} \OtherTok{=} \DecValTok{1}\NormalTok{, }\StringTok{"dwa"} \OtherTok{=} \DecValTok{2}\NormalTok{, }\StringTok{"trzy"} \OtherTok{=} \DecValTok{3}\NormalTok{)}
+\NormalTok{b[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## dwa 
+##   2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b[}\StringTok{"dwa"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## dwa 
+##   2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+Na wektorach można wykonywać wszystkie operacje matematyczne. Przykładowo jeżeli dodamy do siebie dwa wektory to zawsze pierwszy element zostanie dodany do pierwszego elementu z drugiego wektora itd.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{+} \DecValTok{11}\SpecialCharTok{:}\DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 12 14 16 18 20 22 24 26 28 30
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{*} \DecValTok{11}\SpecialCharTok{:}\DecValTok{20}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  11  24  39  56  75  96 119 144 171 200
+\end{verbatim}
+
+\hypertarget{ramka-danych-data-frame}{%
+\subsection{Ramka danych (data frame)}\label{ramka-danych-data-frame}}
+
+Ramka danych to po prostu kilka wektorów ułożonych w tabelę. Wektory mogą być różnego typu, powinny być tej samej długości. Jeżeli mają różną długość można uzupełnić brakujące elementy stosując NA - brak danych
+
+Skoro każda kolumna ramki danych jest wektorem to można stosować na nich te same operacje matematyczne np. dodawać albo dzielić.
+
+Ramkę danych tworzymy przy użyciu funkcji \texttt{data.frame}
+
+Jeżeli chcemy coś zmienić w ramkę danych używamy \texttt{as.data.frame}
+
+Podstawowe informacje o ramce danych
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Funkcja & Opis \\
+\midrule
+\endhead
+\texttt{nrow} & liczba wierszy \\
+\texttt{ncol} & liczba kolumn \\
+\texttt{colnames} & nazwy kolumn \\
+\texttt{rownames} & nazwy wierszy \\
+\texttt{dim} & wymiary \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{a=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\AttributeTok{b=}\FunctionTok{rep}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\DecValTok{5}\NormalTok{), }\AttributeTok{c=}\FunctionTok{c}\NormalTok{(T,T,T,F,}\ConstantTok{NA}\NormalTok{))}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   a b     c
+## 1 1 A  TRUE
+## 2 2 A  TRUE
+## 3 3 A  TRUE
+## 4 4 A FALSE
+## 5 5 A    NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c"
+\end{verbatim}
+
+Do elementów ramki danych również można się odwołać przy pomocy nawiasów: \texttt{ramka{[}x,y{]}}, gdzie x to numer wiersza, a y numer kolumny. Jeżeli podamy jedynie numer kolumny otrzymamy wszystkie jej elementy.
+
+Innym sposobem jest wykorzystanie nazw kolumn i \$ np \texttt{ramka\$kolumna\_1}. W ten sposób można łatwo dodać nowe kolumny do ramki danych.
+
+Podobnie możemy usuwać kolumny i wiersze z ramki np. \texttt{ramka\textless{}-ramka{[},-1{]}} usunie pierwszą kolumnę.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ramka }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{kol1=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{), }\AttributeTok{kol2=}\FunctionTok{c}\NormalTok{(}\DecValTok{11}\SpecialCharTok{:}\DecValTok{20}\NormalTok{))}
+
+\NormalTok{ramka}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    kol1 kol2
+## 1     1   11
+## 2     2   12
+## 3     3   13
+## 4     4   14
+## 5     5   15
+## 6     6   16
+## 7     7   17
+## 8     8   18
+## 9     9   19
+## 10   10   20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ramka}\SpecialCharTok{$}\NormalTok{kol\_3 }\OtherTok{\textless{}{-}}\NormalTok{ ramka}\SpecialCharTok{$}\NormalTok{kol1 }\SpecialCharTok{+}\NormalTok{ ramka}\SpecialCharTok{$}\NormalTok{kol2}
+
+\NormalTok{ramka}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    kol1 kol2 kol_3
+## 1     1   11    12
+## 2     2   12    14
+## 3     3   13    16
+## 4     4   14    18
+## 5     5   15    20
+## 6     6   16    22
+## 7     7   17    24
+## 8     8   18    26
+## 9     9   19    28
+## 10   10   20    30
+\end{verbatim}
+
+Funkcje zawarte w pakietach tidyverse (w tym read\_delim i inne) często zamiast zwykłej ramki danych używają ulepszonej struktury zwanej tibble. W codziennym użytkowaniu nie ma między nimi wielu różnic. Tibble są bezpieczniejsze od zwykłych data.frame, ponieważ nigdy nie zmieniają typów danych w kolumnach. Może się jednak czasem zdarzyć że funkcje starszych pakietów nie będą akceptować tibble zamiast data.frame (można łatwo zmienić przy pomocy \texttt{as.data.frame}.
+
+\hypertarget{matryca-matrix}{%
+\subsection{Matryca (matrix)}\label{matryca-matrix}}
+
+Matryca jest trochę podobna do ramki danych, ale może zawierać tylko jeden typ danych np. liczbowe. Może mieć więcej wymiarów niż dwa. Tworzymy funkcją \texttt{matrix}, zmiana istniejących danych na matrycę - \texttt{as.matrix}.
+
+Indeksowanie z matrycach działa tak samo jak w ramkach danych - \texttt{{[}wiersz,\ kolumna{]}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    0    0    0    0    0
+## [2,]    0    0    0    0    0
+## [3,]    0    0    0    0    0
+## [4,]    0    0    0    0    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{15}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    4    7   10   13
+## [2,]    2    5    8   11   14
+## [3,]    3    6    9   12   15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\hypertarget{lista-list}{%
+\subsection{Lista (list)}\label{lista-list}}
+
+Lista to taki rozbudowany wektor ;) i najbardziej elastyczny typ danych w R. Każdy element listy może być innego rodzaju, mieć inną długość, można stworzyć listę, której elementami będzie np. ramka danych, wektor, wykres i nawet inna lista.
+
+Listę tworzymy funkcją \texttt{list}, podobnie jak w wektorze każdy element może mieć swoją nazwę. Wiele funkcji jako swój wynik zwraca listę, więc często przydaje się wiedza jak dostać się do poszczególnych elementów.
+
+Funkcją \texttt{str} możemy wyświetlić podsumowanie wszystkich elementów listy.
+
+Do poszczególnych części można dostać się przez nazwy albo indeksowanie {[}{]} albo {[}{[}{]}{]}. Przy zastosowaniu nawiasów {[}{]} uzyskany element nadal będzie częścią listy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lista }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{( }\AttributeTok{ramka =} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{a=}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{), }\AttributeTok{b=}\StringTok{"test"}\NormalTok{), }
+               \AttributeTok{wektor =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{16}\NormalTok{,}\AttributeTok{by=}\DecValTok{3}\NormalTok{), }
+               \AttributeTok{tekst =} \StringTok{"To jest lista"}\NormalTok{ )}
+
+\NormalTok{lista}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $ramka
+##             a    b
+## 1  -2.0531244 test
+## 2   0.7015323 test
+## 3   0.3268519 test
+## 4   1.0487510 test
+## 5   0.3900792 test
+## 6   0.7802174 test
+## 7  -1.1907613 test
+## 8  -0.3541666 test
+## 9   0.1383231 test
+## 10  0.6498310 test
+## 
+## $wektor
+## [1]  1  4  7 10 13 16
+## 
+## $tekst
+## [1] "To jest lista"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(lista)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 3
+##  $ ramka :'data.frame':  10 obs. of  2 variables:
+##   ..$ a: num [1:10] -2.053 0.702 0.327 1.049 0.39 ...
+##   ..$ b: chr [1:10] "test" "test" "test" "test" ...
+##  $ wektor: num [1:6] 1 4 7 10 13 16
+##  $ tekst : chr "To jest lista"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lista}\SpecialCharTok{$}\NormalTok{tekst}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "To jest lista"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lista[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $tekst
+## [1] "To jest lista"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lista[[}\DecValTok{3}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "To jest lista"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# pierwszy element wektora, będącego drugim elementem listy}
+\NormalTok{lista[[}\DecValTok{2}\NormalTok{]][}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\hypertarget{typ-liczbowy-numeric-znakowy-character-logiczny-logical}{%
+\subsection{Typ liczbowy (numeric), znakowy (character), logiczny (logical)}\label{typ-liczbowy-numeric-znakowy-character-logiczny-logical}}
+
+\begin{itemize}
+\tightlist
+\item
+  Typ liczbowy przechowuje liczby całkowite i rzeczywiste. Kropką dziesiętną jest kropka :). Na liczbach można łatwo prowadzić podstawowe działania matematyczne - dodawanie, odejmowanie, mnożenie itp. Takie same operacje możemy prowadzić na wektorach.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{*}\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\NormalTok{A}\SpecialCharTok{*}\NormalTok{B}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2  8 18
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Typ znakowy zawiera napisy umieszczone pomiędzy "" albo '\,'. Napisy można wyświetleć np. funkcją \texttt{cat}, możemy wymusić pisanie kolejnego elementu w nowej linii poprzez \texttt{"\textbackslash{}n"}. Sklejanie np. tekstu i liczb można wykonać funkcją \texttt{paste}.
+\end{itemize}
+
+Do pracy z typem znakowym można wykorzystać pakiet \href{https://stringr.tidyverse.org/}{stringr}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{" To jest napis "}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] " To jest napis "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"coś"}\NormalTok{, }\StringTok{"tam"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## coś tam
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{" coś"}\NormalTok{,}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}\StringTok{"tam"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  coś 
+##  tam
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{1}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Wynik to"}\NormalTok{, a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Wynik to 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Wynik równa się"}\NormalTok{, a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Wynik równa się 1"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Typ logiczny przechowuje tylko wartości: TRUE (T) i FALSE (F) oraz NA (brak danych). Nazwy TRUE i FALSE są w R zastrzeżone, ale T i F już nie. Dlatego lepiej używać pełnych nazw, bo może się zdarzyć, że do T albo F zostanie przypisana jakaś zmienna.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wektor }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{wektor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE  TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(wektor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Mode   FALSE    TRUE 
+## logical       1       2
+\end{verbatim}
+
+\hypertarget{typ-czynnikowy-factor}{%
+\subsection{Typ czynnikowy (factor)}\label{typ-czynnikowy-factor}}
+
+Służy do przechowywania wartości występujących w kilku kategoriach np. płeć, wykształcenie itp. Podczas wczytywania danych R z wykorzystaniem podstawowych funckji, ale nie z pakietu readr, automatycznie zamieni kolumny zawierające tekst na typ czynnikowy, chyba że zaznaczymy opcję \texttt{stringAsFactors=FALSE}.
+
+Typ czynnikowy jest przydatny podczas robienia wykresów, gdy chcemy pogrupować dane pod względem jakiejś kategorii. Również legendy (kolejność elementów) są tworzone w oparciu o poziomy czynnika. Może się zdarzyć, że kolejność wybrana przez R (często alfabetyczna) nie będzie odpowiednia. Można łatwo przestawić poziomy korzystając z funkcji \texttt{factor}. W tej samej funkcji argument labels pozwala na zmianę nazw kolejnych poziomów.
+
+Jeżeli chcemy zmienić kolejność elementów na wykresie np. boxplotów, słupków najlepiej zrobić to zmieniając poziomy faktora w danych.
+
+Poziomy factor można wyświetlić przy pomocy funkcji \texttt{levels}.
+
+Do pracy z typem czynnikowym można wykorzystać pakiet \href{https://forcats.tidyverse.org/}{forcats} będący częścią tidyverse.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{faktor }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"A"}\NormalTok{, }\StringTok{"A"}\NormalTok{,}\StringTok{"C"}\NormalTok{))}
+
+\NormalTok{faktor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] A B C A A C
+## Levels: A B C
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(faktor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Factor w/ 3 levels "A","B","C": 1 2 3 1 1 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(faktor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "A" "B" "C"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(faktor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## A B C 
+## 3 1 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Zmiana poziomów}
+
+\NormalTok{faktor2 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(faktor, }\AttributeTok{levels=}\FunctionTok{c}\NormalTok{(}\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"A"}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"BB"}\NormalTok{, }\StringTok{"CC"}\NormalTok{, }\StringTok{"AA"}\NormalTok{))}
+\NormalTok{faktor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] AA BB CC AA AA CC
+## Levels: BB CC AA
+\end{verbatim}
+
+\hypertarget{funkcje}{%
+\subsection{Funkcje}\label{funkcje}}
+
+Większość operacji na danych w R wykonujemy za pomocą funkcji. Pakiety są to właściwie zbiory funkcji, często dotyczących jednego konkretnego zagadnienia.
+
+Każda funkcja zawiera przynajmniej jeden argument, który jest niezbędny do jej działania. Nazwy wszystkich argumentóœ możemy sprawdzić korzystając z pomocy. Często nie jest konieczne podanie wartości wszystkich argumentów, gdyż mogą mieć ustawione wartości domyślne.
+
+Jeżeli podajemy wartości argumentóœ możemy je wpisywać do funkcji kolejno (tak jak są wypisane w pomocy) albo korzystając z nazw. Jeżeli nie pamiętamy wszystkich nazw można sobie pomóc przy pomocy klawisza Tab :) Kolejne podawane argumenty należy rozdzielać przecinkami np. \texttt{funkcja(a=1,\ b=2,\ c="model")}. Do argumentu możemy też podać wektor wartości korzystając z \texttt{c} np. \texttt{funkcja(a=c(1,2,5))}
+
+Np. funkcja licząca średnią to \texttt{mean}. Zawiera trzy argumenty:
+
+\begin{itemize}
+\item
+  x - oznacza obiekt, z którego ma być policzona średnia
+\item
+  trim (domyślnie 0) oznacza część obserwacji, która ma zostać przycięta z każdej strony x
+\item
+  na.rm (domyślnie FALSE) - czy mają być brane pod uwagę wartości NA.
+\end{itemize}
+
+\texttt{?mean}
+
+\texttt{mean\ \{base\}\ \ R\ Documentation}
+
+\texttt{Arithmetic\ Mean}
+
+\texttt{Description}
+
+\texttt{Generic\ function\ for\ the\ (trimmed)\ arithmetic\ mean.}
+
+\texttt{Usage}
+
+\texttt{mean(x,\ ...)}
+
+\texttt{\#\#\ Default\ S3\ method:}
+\texttt{mean(x,\ trim\ =\ 0,\ na.rm\ =\ FALSE,\ ...)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wek }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+
+\FunctionTok{mean}\NormalTok{(wek)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\AttributeTok{x=}\NormalTok{wek)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\AttributeTok{x=}\NormalTok{wek, }\AttributeTok{trim=}\FloatTok{0.2}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.333333
+\end{verbatim}
+
+W R możliwe jest pisanie własnych funkcji. Nie jest to trudne, a pozwala na uniknięcie wielokrotnego powtarzanie tego samego kodu. Dużo łatwiej jesy zmienić/poprawić jedną funkcję niż dwadzieścia razy wklejone te same 10 linijek kodu :)
+
+Poniżej krótki przykład tworzenia funkcji. Więcej informacji można znaleźć np. w książce \href{https://r4ds.had.co.nz/functions.html}{R for Data Science}.
+
+Załóżmy że chemy napisać funckję która wczyta dane z pliku txt i doda do tego pliki nową kolumnę będącą sumą dwóch pierwszych.
+
+Kod potrzebny żeby to wykonać:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{\textquotesingle{}data/test\_funkcja.txt\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{nowa\_kolumna }\OtherTok{\textless{}{-}}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{+}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
+A teraz funckja która wykonuje te same czynności. Nazwa funkcji jest dowolna, chociaż lepiej jest nie nadpisywać już istniejących funkcji, a jej nazwa powinna opisywać to co funkcja będzie robić. W nawiasach () należy podać nazwy argumentów z ewentualnymi wartościami domyślnymi, a w nawiadach \{\} kod który ma zostać wykonany. Na końcu funkcji warto użyć return() - determinuje jaki wynik zwróci funkcja.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dodaj\_kolumne }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(file)\{}
+  
+\NormalTok{  data }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(file)}
+  
+\NormalTok{  data}\SpecialCharTok{$}\NormalTok{nowa\_kolumna }\OtherTok{\textless{}{-}}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{+}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{y}
+  
+  \FunctionTok{return}\NormalTok{(data)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Każdą funkcję po napisaniu należy sprawdzić
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dodaj\_kolumne}\NormalTok{(}\StringTok{\textquotesingle{}data/test\_funkcja.txt\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     x  y nowa_kolumna
+## 1   1 11           12
+## 2   2 12           14
+## 3   3 13           16
+## 4   4 14           18
+## 5   5 15           20
+## 6   6 16           22
+## 7   7 17           24
+## 8   8 18           26
+## 9   9 19           28
+## 10 10 20           30
+\end{verbatim}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

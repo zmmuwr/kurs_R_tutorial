@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Dane | Kurs R - Tutorial</title>
+  <meta name="description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Dane | Kurs R - Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Dane | Kurs R - Tutorial" />
+  
+  <meta name="twitter:description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  
+
+<meta name="author" content="Agnieszka Strzałka" />
+
+
+<meta name="date" content="2021-08-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="skąd-ściągnąć-r.html"/>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pomoc do kursu R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Wstęp</a></li>
+<li class="chapter" data-level="2" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html"><i class="fa fa-check"></i><b>2</b> Skąd ściągnąć R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#pomoc"><i class="fa fa-check"></i><b>2.1</b> Pomoc</a></li>
+<li class="chapter" data-level="2.2" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#packages"><i class="fa fa-check"></i><b>2.2</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#lista-pakietów-które-pojawiają-się-w-książce-uwaga-może-być-niekompletna"><i class="fa fa-check"></i><b>2.2.1</b> Lista pakietów, które pojawiają się w książce (uwaga może być niekompletna)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#r-studio"><i class="fa fa-check"></i><b>2.3</b> R Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dane.html"><a href="dane.html"><i class="fa fa-check"></i><b>3</b> Dane</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dane.html"><a href="dane.html#wczytanie-danych"><i class="fa fa-check"></i><b>3.1</b> Wczytanie danych</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="dane.html"><a href="dane.html#wczytanie-danych-z-plików-tekstowych"><i class="fa fa-check"></i><b>3.1.1</b> Wczytanie danych z plików tekstowych</a></li>
+<li class="chapter" data-level="3.1.2" data-path="dane.html"><a href="dane.html#wczytanie-danych-z-plików-excel"><i class="fa fa-check"></i><b>3.1.2</b> Wczytanie danych z plików excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dane.html"><a href="dane.html#zapisanie-danych"><i class="fa fa-check"></i><b>3.2</b> Zapisanie danych</a></li>
+<li class="chapter" data-level="3.3" data-path="dane.html"><a href="dane.html#podstawowe-typy-danych-w-r"><i class="fa fa-check"></i><b>3.3</b> Podstawowe typy danych w R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="dane.html"><a href="dane.html#wektor-vector"><i class="fa fa-check"></i><b>3.3.1</b> Wektor (vector)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dane.html"><a href="dane.html#ramka-danych-data-frame"><i class="fa fa-check"></i><b>3.3.2</b> Ramka danych (data frame)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dane.html"><a href="dane.html#matryca-matrix"><i class="fa fa-check"></i><b>3.3.3</b> Matryca (matrix)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dane.html"><a href="dane.html#lista-list"><i class="fa fa-check"></i><b>3.3.4</b> Lista (list)</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dane.html"><a href="dane.html#typ-liczbowy-numeric-znakowy-character-logiczny-logical"><i class="fa fa-check"></i><b>3.3.5</b> Typ liczbowy (numeric), znakowy (character), logiczny (logical)</a></li>
+<li class="chapter" data-level="3.3.6" data-path="dane.html"><a href="dane.html#typ-czynnikowy-factor"><i class="fa fa-check"></i><b>3.3.6</b> Typ czynnikowy (factor)</a></li>
+<li class="chapter" data-level="3.3.7" data-path="dane.html"><a href="dane.html#funkcje"><i class="fa fa-check"></i><b>3.3.7</b> Funkcje</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Kurs R - Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dane" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Dane</h1>
+<div id="wczytanie-danych" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Wczytanie danych</h2>
+<p>Dane najłatwiej wczytać z plików .txt lub .csv. Można również z plików .xlsx lub .xls ale często trwa to dłużej i może wymagać zainstalowanych innych pakietów/programów.</p>
+<p>W każdym przypadku niezbędne jest podanie ścieżki dostępu do pliku. Jeżeli znajduje się on folderze projektu to wystarczy jego nazwa. Dobrą praktyka jest przechowywanie danych w osobnym katalogu w obrębie projektu - wtedy ścieżka może wyglądać np. data/dane_1.txt. Jeżeli plik z danymi jest przechowywany gdzie indziej konieczne jest podanie pełnej ścieżki dostępu, ale można w tym wypadku korzystać z autouzupełniania klawiszem Tab.</p>
+<div id="wczytanie-danych-z-plików-tekstowych" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Wczytanie danych z plików tekstowych</h3>
+<p>R Studio posiada funkcję Import Dataset (zakładka Environment), która pozwala na wczytanie danych wraz z wyborem podstawowych opcji jak separator, separator dziesiętny, obecność nagłówków. Opcja ta obejmuje podstawowe funkcje R oraz pakiety readr i readxl będące częścią tidyverse. Na początek jest łatwiej korzystać z opcji Load Dataset, ponieważ po jej użyciu zostaje również wygenerowany odpowiedni kod R, który można wkleić do własnych skryptów tak aby te same lub podobne dane wczytać już bez problemu następnym razem.</p>
+<p>Można również wczytać dane wpisując komendę (wygodne przy pisaniu skryptów) <code>read.table</code> albo <code>read.csv</code>.
+Argumenty: file określa nam plik, który wczytujemy, header - nagłówki, sep - separator np. “/t” to tabulator, dec - separator dziesiętny (domyślnie kropka), quote - obecność "". W przypadku nagłówków kolumn wpisanie <code>header=TRUE</code> spowoduje, że pierwszy wiersz naszej tabeli zostanie potraktowany jako tytuły kolumn, <code>header=FALSE</code> oznacza domyślne nazwy kolumn - V1, V2, …</p>
+<p>W pakiecie readr znajdują się analogiczne funckje:
+* read_delim - do plików tekstowych, funckja spróbuje zgadnąć jak rozdzielone są kolumny, można podać argumentem delim
+* read_csv i read_csv2 - do plików csv, odpowiednio do danych wykorzystujących kropki i przecinki jako separatory dziesiętne
+* read_tsv i read_table - do plików gdzie kolumny są rodzielone przy pomocy tab.</p>
+<p>Wczytane dane będą widoczne w zakładce Environment. Kliknięcie na nazwę tabeli spowoduje otwarcie widoku danych podobnego do arkusza kalkulacyjnego. Można w nim dane sortować i filtrować, ale nie edytować.</p>
+<p>Pierwsze albo ostanie wiersze można zobaczyć używając funkcji <code>head</code> albo <code>tail</code>. Strukturę danych pokaże funkcja <code>str</code>, a podstawowe informacje <code>summary</code>. Dobrze jest po wczytaniu danych sprawdzić czy wyglądają faktycznie tak jak miały ;)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="dane.html#cb4-1" aria-hidden="true" tabindex="-1"></a>dane1 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;data/dane1.txt&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">quote=</span><span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">&quot;</span>)</span>
+<span id="cb4-2"><a href="dane.html#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="dane.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dane1)</span></code></pre></div>
+<pre><code>##     pomiar Szczep warunki
+## 1 3.389738      A       1
+## 2 5.992065      A       1
+## 3 4.464553      A       1
+## 4 4.546082      A       1
+## 5 6.521751      A       1
+## 6 5.713088      A       1</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="dane.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dane1)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    1800 obs. of  3 variables:
+##  $ pomiar : num  3.39 5.99 4.46 4.55 6.52 ...
+##  $ Szczep : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+##  $ warunki: int  1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="dane.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dane1)</span></code></pre></div>
+<pre><code>##      pomiar          Szczep             warunki   
+##  Min.   : 1.434   Length:1800        Min.   :1.0  
+##  1st Qu.: 4.450   Class :character   1st Qu.:1.0  
+##  Median : 5.478   Mode  :character   Median :1.5  
+##  Mean   : 5.846                      Mean   :1.5  
+##  3rd Qu.: 6.743                      3rd Qu.:2.0  
+##  Max.   :27.953                      Max.   :2.0</code></pre>
+</div>
+<div id="wczytanie-danych-z-plików-excel" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Wczytanie danych z plików excel</h3>
+<p>Do wczytania danych z plików xlsx można wykorzystać funkcję read_excel z pakietu readxl. Przy pracy z excelem należy jednak pamiętać żeby wczytywane dane nie zawierały formuł albo połączonych komórek oraz, że funkcja wczyta dane zawarte tylko w jednym arkuszu (sheet), ale można wybrać z której przy pomocy argumentu sheet.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="dane.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-2"><a href="dane.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="dane.html#cb10-3" aria-hidden="true" tabindex="-1"></a>data_excel <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&#39;data/test.xlsx&#39;</span>)</span>
+<span id="cb10-4"><a href="dane.html#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="dane.html#cb10-5" aria-hidden="true" tabindex="-1"></a>data_excel</span></code></pre></div>
+<pre><code>## # A tibble: 16 × 3
+##        A     B     C
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1     2     3
+##  2     1     3     4
+##  3     1     4     5
+##  4     1     5     6
+##  5     1     6     7
+##  6     1     7     8
+##  7     1     8     9
+##  8     1     9    10
+##  9     1    10    11
+## 10     1    11    12
+## 11     1    12    13
+## 12     1    13    14
+## 13     1    14    15
+## 14     1    15    16
+## 15     1    16    17
+## 16     1    17    18</code></pre>
+</div>
+</div>
+<div id="zapisanie-danych" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Zapisanie danych</h2>
+<p>Zapisać tabelę danych można korzystając z funkcji <code>write.table</code>, wystarczy określić, co chcemy zapisać i nazwę pliku wyjściowego. Możemy zapisywać pliki w formacie np. txt, csv. Jeżeli nie określimy ścieżki dostępu plik zostanie zapisany w folderze projektu.</p>
+<p>Można również dopisywać dane do istniejącego pliku ustawiając parametr <code>append = TRUE</code>. Domyślnie ten argument jest zawsze ustawiony jako <code>append = FALSE</code> i jeżeli w nazwie pliku podamy istniejący plik to <strong>zostanie on nadpisany bez ostrzeżenia</strong>.</p>
+<p>Można też dane zapisać w formacie rds. Można je potem otworzyć tylko w R, ale można w takim formacie zapisać każdy obiekt R, nie tylko tabele. Do zapisania danych służy funkcja saveRDS, a do wczytanie readRDS.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="dane.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(dane1, <span class="st">&quot;data/dane4.txt&quot;</span>)</span></code></pre></div>
+
+</div>
+<div id="podstawowe-typy-danych-w-r" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Podstawowe typy danych w R</h2>
+<p>W R dane do zmiennej przypisujemy korzystając ze strzałki ;) <code>&lt;-</code> albo <code>-&gt;</code>. Można też użyć <code>=</code></p>
+<p>Do najbardziej podstawowych typów danych należą: typ liczbowy, znakowy, logiczny i czynnikowy (o tym później). Typ danych można sprawdzić funkcją <code>class</code></p>
+<p>Najczęściej wykorzystywane rodzaje danych to wektor i ramka danych. Pozostałe to m.in. macierz i lista. W R można również pisać własne funkcje.</p>
+<div id="wektor-vector" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Wektor (vector)</h3>
+<p>Wektor to ciąg elementów tego samego typu np. liczbowy, znakowy. W R nawet pojedyncza cyfra jest wektorem. Wektor można stworzyć korzystając z funkcji:</p>
+<ul>
+<li><p><code>c</code>. Sekwencję liczb można zapisać jako <code>1:10</code> - utworzy wektor liczb od 1 do 10.</p></li>
+<li><p>Przy bardziej skomplikowanych sekwencjach można użyć funkcji <code>seq</code>, ustawiamy start, koniec i co ile ma być kolejny element</p></li>
+<li><p>funkcję <code>rep</code>, podajemy jakie elementy mają zostać powtórzone i ile razy. <code>each</code> - powtarzanie każdego elementu, <code>times</code> - powtarzanie całego wektora.</p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="dane.html#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">8</span>)</span>
+<span id="cb13-2"><a href="dane.html#cb13-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 1 2 5 8</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="dane.html#cb15-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;V&quot;</span>)</span>
+<span id="cb15-2"><a href="dane.html#cb15-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;V&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="dane.html#cb17-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb17-2"><a href="dane.html#cb17-2" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="dane.html#cb19-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="at">by=</span><span class="dv">10</span>)</span>
+<span id="cb19-2"><a href="dane.html#cb19-2" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<pre><code>##  [1]  10  20  30  40  50  60  70  80  90 100</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="dane.html#cb21-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">times=</span><span class="dv">3</span>)</span>
+<span id="cb21-2"><a href="dane.html#cb21-2" aria-hidden="true" tabindex="-1"></a>e</span></code></pre></div>
+<pre><code>## [1] 1 2 3 1 2 3 1 2 3</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="dane.html#cb23-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">each=</span><span class="dv">3</span>)</span>
+<span id="cb23-2"><a href="dane.html#cb23-2" aria-hidden="true" tabindex="-1"></a>e</span></code></pre></div>
+<pre><code>## [1] 1 1 1 2 2 2 3 3 3</code></pre>
+<p>Do poszczególnych elementów wektora można się odwołać stosując nawiasy: <code>wektor[x]</code>, gdzie x to numer elementu. Można się odwołać do kilku elementów jednocześnie np. <code>wektor[1:3]</code>, <code>wektor[c(2,4)]</code>. Numeracja rozpoczyna się od 1. Elementy wektora mogą również mieć swoje nazwy i wtedy można je także wykorzystać do wyświetlania danych.</p>
+<p>Ilość elementów wektora podaje funkcja <code>length</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="dane.html#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb25-2"><a href="dane.html#cb25-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="dane.html#cb27-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&quot;jeden&quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;dwa&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;trzy&quot;</span> <span class="ot">=</span> <span class="dv">3</span>)</span>
+<span id="cb27-2"><a href="dane.html#cb27-2" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## dwa 
+##   2</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="dane.html#cb29-1" aria-hidden="true" tabindex="-1"></a>b[<span class="st">&quot;dwa&quot;</span>]</span></code></pre></div>
+<pre><code>## dwa 
+##   2</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="dane.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(a)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Na wektorach można wykonywać wszystkie operacje matematyczne. Przykładowo jeżeli dodamy do siebie dwa wektory to zawsze pierwszy element zostanie dodany do pierwszego elementu z drugiego wektora itd.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="dane.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span></span></code></pre></div>
+<pre><code>##  [1] 12 14 16 18 20 22 24 26 28 30</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="dane.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">*</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span></span></code></pre></div>
+<pre><code>##  [1]  11  24  39  56  75  96 119 144 171 200</code></pre>
+</div>
+<div id="ramka-danych-data-frame" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Ramka danych (data frame)</h3>
+<p>Ramka danych to po prostu kilka wektorów ułożonych w tabelę. Wektory mogą być różnego typu, powinny być tej samej długości. Jeżeli mają różną długość można uzupełnić brakujące elementy stosując NA - brak danych</p>
+<p>Skoro każda kolumna ramki danych jest wektorem to można stosować na nich te same operacje matematyczne np. dodawać albo dzielić.</p>
+<p>Ramkę danych tworzymy przy użyciu funkcji <code>data.frame</code></p>
+<p>Jeżeli chcemy coś zmienić w ramkę danych używamy <code>as.data.frame</code></p>
+<p>Podstawowe informacje o ramce danych</p>
+<table>
+<thead>
+<tr class="header">
+<th>Funkcja</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>nrow</code></td>
+<td>liczba wierszy</td>
+</tr>
+<tr class="even">
+<td><code>ncol</code></td>
+<td>liczba kolumn</td>
+</tr>
+<tr class="odd">
+<td><code>colnames</code></td>
+<td>nazwy kolumn</td>
+</tr>
+<tr class="even">
+<td><code>rownames</code></td>
+<td>nazwy wierszy</td>
+</tr>
+<tr class="odd">
+<td><code>dim</code></td>
+<td>wymiary</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="dane.html#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">b=</span><span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>,<span class="dv">5</span>), <span class="at">c=</span><span class="fu">c</span>(T,T,T,F,<span class="cn">NA</span>))</span>
+<span id="cb37-2"><a href="dane.html#cb37-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##   a b     c
+## 1 1 A  TRUE
+## 2 2 A  TRUE
+## 3 3 A  TRUE
+## 4 4 A FALSE
+## 5 5 A    NA</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="dane.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<p>Do elementów ramki danych również można się odwołać przy pomocy nawiasów: <code>ramka[x,y]</code>, gdzie x to numer wiersza, a y numer kolumny. Jeżeli podamy jedynie numer kolumny otrzymamy wszystkie jej elementy.</p>
+<p>Innym sposobem jest wykorzystanie nazw kolumn i $ np <code>ramka$kolumna_1</code>. W ten sposób można łatwo dodać nowe kolumny do ramki danych.</p>
+<p>Podobnie możemy usuwać kolumny i wiersze z ramki np. <code>ramka&lt;-ramka[,-1]</code> usunie pierwszą kolumnę.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="dane.html#cb41-1" aria-hidden="true" tabindex="-1"></a>ramka <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">kol1=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">kol2=</span><span class="fu">c</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>))</span>
+<span id="cb41-2"><a href="dane.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="dane.html#cb41-3" aria-hidden="true" tabindex="-1"></a>ramka</span></code></pre></div>
+<pre><code>##    kol1 kol2
+## 1     1   11
+## 2     2   12
+## 3     3   13
+## 4     4   14
+## 5     5   15
+## 6     6   16
+## 7     7   17
+## 8     8   18
+## 9     9   19
+## 10   10   20</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="dane.html#cb43-1" aria-hidden="true" tabindex="-1"></a>ramka<span class="sc">$</span>kol_3 <span class="ot">&lt;-</span> ramka<span class="sc">$</span>kol1 <span class="sc">+</span> ramka<span class="sc">$</span>kol2</span>
+<span id="cb43-2"><a href="dane.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="dane.html#cb43-3" aria-hidden="true" tabindex="-1"></a>ramka</span></code></pre></div>
+<pre><code>##    kol1 kol2 kol_3
+## 1     1   11    12
+## 2     2   12    14
+## 3     3   13    16
+## 4     4   14    18
+## 5     5   15    20
+## 6     6   16    22
+## 7     7   17    24
+## 8     8   18    26
+## 9     9   19    28
+## 10   10   20    30</code></pre>
+<p>Funkcje zawarte w pakietach tidyverse (w tym read_delim i inne) często zamiast zwykłej ramki danych używają ulepszonej struktury zwanej tibble. W codziennym użytkowaniu nie ma między nimi wielu różnic. Tibble są bezpieczniejsze od zwykłych data.frame, ponieważ nigdy nie zmieniają typów danych w kolumnach. Może się jednak czasem zdarzyć że funkcje starszych pakietów nie będą akceptować tibble zamiast data.frame (można łatwo zmienić przy pomocy <code>as.data.frame</code>.</p>
+</div>
+<div id="matryca-matrix" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Matryca (matrix)</h3>
+<p>Matryca jest trochę podobna do ramki danych, ale może zawierać tylko jeden typ danych np. liczbowe. Może mieć więcej wymiarów niż dwa. Tworzymy funkcją <code>matrix</code>, zmiana istniejących danych na matrycę - <code>as.matrix</code>.</p>
+<p>Indeksowanie z matrycach działa tak samo jak w ramkach danych - <code>[wiersz, kolumna]</code>.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="dane.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    0    0    0    0    0
+## [2,]    0    0    0    0    0
+## [3,]    0    0    0    0    0
+## [4,]    0    0    0    0    0</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="dane.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    4    7   10   13
+## [2,]    2    5    8   11   14
+## [3,]    3    6    9   12   15</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dane.html#cb49-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">3</span>,<span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="dane.html#cb51-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+</div>
+<div id="lista-list" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Lista (list)</h3>
+<p>Lista to taki rozbudowany wektor ;) i najbardziej elastyczny typ danych w R. Każdy element listy może być innego rodzaju, mieć inną długość, można stworzyć listę, której elementami będzie np. ramka danych, wektor, wykres i nawet inna lista.</p>
+<p>Listę tworzymy funkcją <code>list</code>, podobnie jak w wektorze każdy element może mieć swoją nazwę. Wiele funkcji jako swój wynik zwraca listę, więc często przydaje się wiedza jak dostać się do poszczególnych elementów.</p>
+<p>Funkcją <code>str</code> możemy wyświetlić podsumowanie wszystkich elementów listy.</p>
+<p>Do poszczególnych części można dostać się przez nazwy albo indeksowanie [] albo [[]]. Przy zastosowaniu nawiasów [] uzyskany element nadal będzie częścią listy.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="dane.html#cb53-1" aria-hidden="true" tabindex="-1"></a>lista <span class="ot">&lt;-</span> <span class="fu">list</span>( <span class="at">ramka =</span> <span class="fu">data.frame</span>(<span class="at">a=</span><span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">b=</span><span class="st">&quot;test&quot;</span>), </span>
+<span id="cb53-2"><a href="dane.html#cb53-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">wektor =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">16</span>,<span class="at">by=</span><span class="dv">3</span>), </span>
+<span id="cb53-3"><a href="dane.html#cb53-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">tekst =</span> <span class="st">&quot;To jest lista&quot;</span> )</span>
+<span id="cb53-4"><a href="dane.html#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="dane.html#cb53-5" aria-hidden="true" tabindex="-1"></a>lista</span></code></pre></div>
+<pre><code>## $ramka
+##             a    b
+## 1  -0.2634111 test
+## 2   0.9643785 test
+## 3  -0.8781956 test
+## 4   0.5410458 test
+## 5   1.1336143 test
+## 6   0.5098421 test
+## 7   0.4621269 test
+## 8   0.6484423 test
+## 9   0.3449289 test
+## 10 -1.4917289 test
+## 
+## $wektor
+## [1]  1  4  7 10 13 16
+## 
+## $tekst
+## [1] &quot;To jest lista&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="dane.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(lista)</span></code></pre></div>
+<pre><code>## List of 3
+##  $ ramka :&#39;data.frame&#39;:  10 obs. of  2 variables:
+##   ..$ a: num [1:10] -0.263 0.964 -0.878 0.541 1.134 ...
+##   ..$ b: chr [1:10] &quot;test&quot; &quot;test&quot; &quot;test&quot; &quot;test&quot; ...
+##  $ wektor: num [1:6] 1 4 7 10 13 16
+##  $ tekst : chr &quot;To jest lista&quot;</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="dane.html#cb57-1" aria-hidden="true" tabindex="-1"></a>lista<span class="sc">$</span>tekst</span></code></pre></div>
+<pre><code>## [1] &quot;To jest lista&quot;</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="dane.html#cb59-1" aria-hidden="true" tabindex="-1"></a>lista[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## $tekst
+## [1] &quot;To jest lista&quot;</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="dane.html#cb61-1" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">3</span>]]</span></code></pre></div>
+<pre><code>## [1] &quot;To jest lista&quot;</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="dane.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pierwszy element wektora, będącego drugim elementem listy</span></span>
+<span id="cb63-2"><a href="dane.html#cb63-2" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">2</span>]][<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="typ-liczbowy-numeric-znakowy-character-logiczny-logical" class="section level3" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Typ liczbowy (numeric), znakowy (character), logiczny (logical)</h3>
+<ul>
+<li>Typ liczbowy przechowuje liczby całkowite i rzeczywiste. Kropką dziesiętną jest kropka :). Na liczbach można łatwo prowadzić podstawowe działania matematyczne - dodawanie, odejmowanie, mnożenie itp. Takie same operacje możemy prowadzić na wektorach.</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="dane.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="dane.html#cb67-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
+<span id="cb67-2"><a href="dane.html#cb67-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb67-3"><a href="dane.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="dane.html#cb67-4" aria-hidden="true" tabindex="-1"></a>A<span class="sc">*</span>B</span></code></pre></div>
+<pre><code>## [1]  2  8 18</code></pre>
+<ul>
+<li>Typ znakowy zawiera napisy umieszczone pomiędzy "" albo ’’. Napisy można wyświetleć np. funkcją <code>cat</code>, możemy wymusić pisanie kolejnego elementu w nowej linii poprzez <code>"\n"</code>. Sklejanie np. tekstu i liczb można wykonać funkcją <code>paste</code>.</li>
+</ul>
+<p>Do pracy z typem znakowym można wykorzystać pakiet <a href="https://stringr.tidyverse.org/">stringr</a>.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="dane.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; To jest napis &quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot; To jest napis &quot;</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="dane.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;coś&quot;</span>, <span class="st">&quot;tam&quot;</span>)</span></code></pre></div>
+<pre><code>## coś tam</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="dane.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot; coś&quot;</span>,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,<span class="st">&quot;tam&quot;</span>)</span></code></pre></div>
+<pre><code>##  coś 
+##  tam</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="dane.html#cb75-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb75-2"><a href="dane.html#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="dane.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Wynik to&quot;</span>, a)</span></code></pre></div>
+<pre><code>## Wynik to 1</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="dane.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Wynik równa się&quot;</span>, a)</span></code></pre></div>
+<pre><code>## [1] &quot;Wynik równa się 1&quot;</code></pre>
+<ul>
+<li>Typ logiczny przechowuje tylko wartości: TRUE (T) i FALSE (F) oraz NA (brak danych). Nazwy TRUE i FALSE są w R zastrzeżone, ale T i F już nie. Dlatego lepiej używać pełnych nazw, bo może się zdarzyć, że do T albo F zostanie przypisana jakaś zmienna.</li>
+</ul>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="dane.html#cb79-1" aria-hidden="true" tabindex="-1"></a>wektor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb79-2"><a href="dane.html#cb79-2" aria-hidden="true" tabindex="-1"></a>wektor</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="dane.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wektor)</span></code></pre></div>
+<pre><code>##    Mode   FALSE    TRUE 
+## logical       1       2</code></pre>
+</div>
+<div id="typ-czynnikowy-factor" class="section level3" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Typ czynnikowy (factor)</h3>
+<p>Służy do przechowywania wartości występujących w kilku kategoriach np. płeć, wykształcenie itp. Podczas wczytywania danych R z wykorzystaniem podstawowych funckji, ale nie z pakietu readr, automatycznie zamieni kolumny zawierające tekst na typ czynnikowy, chyba że zaznaczymy opcję <code>stringAsFactors=FALSE</code>.</p>
+<p>Typ czynnikowy jest przydatny podczas robienia wykresów, gdy chcemy pogrupować dane pod względem jakiejś kategorii. Również legendy (kolejność elementów) są tworzone w oparciu o poziomy czynnika. Może się zdarzyć, że kolejność wybrana przez R (często alfabetyczna) nie będzie odpowiednia. Można łatwo przestawić poziomy korzystając z funkcji <code>factor</code>. W tej samej funkcji argument labels pozwala na zmianę nazw kolejnych poziomów.</p>
+<p>Jeżeli chcemy zmienić kolejność elementów na wykresie np. boxplotów, słupków najlepiej zrobić to zmieniając poziomy faktora w danych.</p>
+<p>Poziomy factor można wyświetlić przy pomocy funkcji <code>levels</code>.</p>
+<p>Do pracy z typem czynnikowym można wykorzystać pakiet <a href="https://forcats.tidyverse.org/">forcats</a> będący częścią tidyverse.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="dane.html#cb83-1" aria-hidden="true" tabindex="-1"></a>faktor <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;A&quot;</span>,<span class="st">&quot;C&quot;</span>))</span>
+<span id="cb83-2"><a href="dane.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="dane.html#cb83-3" aria-hidden="true" tabindex="-1"></a>faktor</span></code></pre></div>
+<pre><code>## [1] A B C A A C
+## Levels: A B C</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="dane.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(faktor)</span></code></pre></div>
+<pre><code>##  Factor w/ 3 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;: 1 2 3 1 1 3</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="dane.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(faktor)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="dane.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(faktor)</span></code></pre></div>
+<pre><code>## A B C 
+## 3 1 2</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="dane.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zmiana poziomów</span></span>
+<span id="cb91-2"><a href="dane.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="dane.html#cb91-3" aria-hidden="true" tabindex="-1"></a>faktor2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(faktor, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;BB&quot;</span>, <span class="st">&quot;CC&quot;</span>, <span class="st">&quot;AA&quot;</span>))</span>
+<span id="cb91-4"><a href="dane.html#cb91-4" aria-hidden="true" tabindex="-1"></a>faktor2</span></code></pre></div>
+<pre><code>## [1] AA BB CC AA AA CC
+## Levels: BB CC AA</code></pre>
+</div>
+<div id="funkcje" class="section level3" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Funkcje</h3>
+<p>Większość operacji na danych w R wykonujemy za pomocą funkcji. Pakiety są to właściwie zbiory funkcji, często dotyczących jednego konkretnego zagadnienia.</p>
+<p>Każda funkcja zawiera przynajmniej jeden argument, który jest niezbędny do jej działania. Nazwy wszystkich argumentóœ możemy sprawdzić korzystając z pomocy. Często nie jest konieczne podanie wartości wszystkich argumentów, gdyż mogą mieć ustawione wartości domyślne.</p>
+<p>Jeżeli podajemy wartości argumentóœ możemy je wpisywać do funkcji kolejno (tak jak są wypisane w pomocy) albo korzystając z nazw. Jeżeli nie pamiętamy wszystkich nazw można sobie pomóc przy pomocy klawisza Tab :) Kolejne podawane argumenty należy rozdzielać przecinkami np. <code>funkcja(a=1, b=2, c="model")</code>. Do argumentu możemy też podać wektor wartości korzystając z <code>c</code> np. <code>funkcja(a=c(1,2,5))</code></p>
+<p>Np. funkcja licząca średnią to <code>mean</code>. Zawiera trzy argumenty:</p>
+<ul>
+<li><p>x - oznacza obiekt, z którego ma być policzona średnia</p></li>
+<li><p>trim (domyślnie 0) oznacza część obserwacji, która ma zostać przycięta z każdej strony x</p></li>
+<li><p>na.rm (domyślnie FALSE) - czy mają być brane pod uwagę wartości NA.</p></li>
+</ul>
+<p><code>?mean</code></p>
+<p><code>mean {base}  R Documentation</code></p>
+<p><code>Arithmetic Mean</code></p>
+<p><code>Description</code></p>
+<p><code>Generic function for the (trimmed) arithmetic mean.</code></p>
+<p><code>Usage</code></p>
+<p><code>mean(x, ...)</code></p>
+<p><code>## Default S3 method:</code>
+<code>mean(x, trim = 0, na.rm = FALSE, ...)</code></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="dane.html#cb93-1" aria-hidden="true" tabindex="-1"></a>wek <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">2</span>,<span class="dv">4</span>)</span>
+<span id="cb93-2"><a href="dane.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="dane.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(wek)</span></code></pre></div>
+<pre><code>## [1] 4.7</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="dane.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x=</span>wek)</span></code></pre></div>
+<pre><code>## [1] 4.7</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="dane.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x=</span>wek, <span class="at">trim=</span><span class="fl">0.2</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 4.333333</code></pre>
+<p>W R możliwe jest pisanie własnych funkcji. Nie jest to trudne, a pozwala na uniknięcie wielokrotnego powtarzanie tego samego kodu. Dużo łatwiej jesy zmienić/poprawić jedną funkcję niż dwadzieścia razy wklejone te same 10 linijek kodu :)</p>
+<p>Poniżej krótki przykład tworzenia funkcji. Więcej informacji można znaleźć np. w książce <a href="https://r4ds.had.co.nz/functions.html">R for Data Science</a>.</p>
+<p>Załóżmy że chemy napisać funckję która wczyta dane z pliku txt i doda do tego pliki nową kolumnę będącą sumą dwóch pierwszych.</p>
+<p>Kod potrzebny żeby to wykonać:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dane.html#cb99-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/test_funkcja.txt&#39;</span>)</span>
+<span id="cb99-2"><a href="dane.html#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-3"><a href="dane.html#cb99-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>nowa_kolumna <span class="ot">&lt;-</span> data<span class="sc">$</span>x <span class="sc">+</span> data<span class="sc">$</span>y</span></code></pre></div>
+<p>A teraz funckja która wykonuje te same czynności. Nazwa funkcji jest dowolna, chociaż lepiej jest nie nadpisywać już istniejących funkcji, a jej nazwa powinna opisywać to co funkcja będzie robić. W nawiasach () należy podać nazwy argumentów z ewentualnymi wartościami domyślnymi, a w nawiadach {} kod który ma zostać wykonany. Na końcu funkcji warto użyć return() - determinuje jaki wynik zwróci funkcja.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="dane.html#cb100-1" aria-hidden="true" tabindex="-1"></a>dodaj_kolumne <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
+<span id="cb100-2"><a href="dane.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb100-3"><a href="dane.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(file)</span>
+<span id="cb100-4"><a href="dane.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb100-5"><a href="dane.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>nowa_kolumna <span class="ot">&lt;-</span> data<span class="sc">$</span>x <span class="sc">+</span> data<span class="sc">$</span>y</span>
+<span id="cb100-6"><a href="dane.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb100-7"><a href="dane.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb100-8"><a href="dane.html#cb100-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Każdą funkcję po napisaniu należy sprawdzić</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dane.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dodaj_kolumne</span>(<span class="st">&#39;data/test_funkcja.txt&#39;</span>)</span></code></pre></div>
+<pre><code>##     x  y nowa_kolumna
+## 1   1 11           12
+## 2   2 12           14
+## 3   3 13           16
+## 4   4 14           18
+## 5   5 15           20
+## 6   6 16           22
+## 7   7 17           24
+## 8   8 18           26
+## 9   9 19           28
+## 10 10 20           30</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="skąd-ściągnąć-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-Load_data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

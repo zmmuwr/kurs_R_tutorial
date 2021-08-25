@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Hello bookdown | 02-R_setup</title>
+  <meta name="description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Hello bookdown | 02-R_setup" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Hello bookdown | 02-R_setup" />
+  
+  <meta name="twitter:description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  
+
+<meta name="author" content="Agnieszka Strzałka" />
+
+
+<meta name="date" content="2021-08-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pomoc do kursu R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Wstęp</a></li>
+<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="hello-bookdown.html"><a href="hello-bookdown.html#pomoc"><i class="fa fa-check"></i><b>2.2</b> Pomoc</a></li>
+<li class="chapter" data-level="2.3" data-path="hello-bookdown.html"><a href="hello-bookdown.html#packages"><i class="fa fa-check"></i><b>2.3</b> Packages</a></li>
+<li class="chapter" data-level="2.4" data-path="hello-bookdown.html"><a href="hello-bookdown.html#r-studio"><i class="fa fa-check"></i><b>2.4</b> R Studio</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">02-R_setup</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hello-bookdown" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Hello bookdown</h1>
+<p>All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (<code>#</code>) per .Rmd file.</p>
+<div id="a-section" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> A section</h2>
+<p>All chapter sections start with a second-level (<code>##</code>) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.</p>
+<div id="an-unnumbered-section" class="section level3 unnumbered">
+<h3>An unnumbered section</h3>
+<p>Chapters and sections are numbered by default. To un-number a heading, add a <code>{.unnumbered}</code> or the shorter <code>{-}</code> at the end of the heading, like in this section.</p>
+
+<p>#Skąd ściągnąć R</p>
+<ul>
+<li>Postawowe środowisko R najlepiej ściągnąć bezpośrednio ze strony <a href="http://www.r-project.org/">R project</a></li>
+<li>Polecam również ściągnąć <a href="http://www.rstudio.com/">R Studio</a>, które bardzo ułatwia pracę z R</li>
+<li>Podstawowe pakiety zostaną zainstalowane razem z R, kolejne można pobrać bezpośrednio przez R Studio (zakładka Packages), bardziej biologiczne pakiety znajdują się na stronie <a href="http://www.bioconductor.org/">bioconductor</a></li>
+</ul>
+<pre><code>## 
+## Friends don&#39;t let friends use Excel for statistics!
+##    -- Jonathan D. Cryer (about problems with using Microsoft Excel for
+##       statistics)
+##       JSM 2001, Atlanta (August 2001)</code></pre>
+</div>
+</div>
+<div id="pomoc" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Pomoc</h2>
+<ul>
+<li>Pomoc do funkcji można otworzyć bezpośrednio w R wpisując: <code>? nazwa_funkcji</code>, jednak opisy często są dość enigmatyczne i zakładają już pewne zrozumienie tematu</li>
+<li>Odpowiedzi na konkretne pytania najlepiej szukać w internecie wpisując po prostu: “How do sth R,” najczęściej pojawiająca się strona to <a href="http://stackoverflow.com/">Stack Overflow</a></li>
+<li>Ciekawe pomysły i tutoriale pojawiają się też na stronie <a href="http://www.r-bloggers.com/">R-bloggers</a></li>
+<li>Interaktywny kurs R można też znaleźć na stronie <a href="https://www.datacamp.com">datacamp</a></li>
+<li>Pomoc do <a href="http://docs.ggplot2.org/current/">ggplot2</a></li>
+<li>Zawsze polecam też książkę Przemysława Biecka “Przewodnik po pakiecie R,” jedna z niewielu jakie są po polsku, pierwsze rozdziały można bezpłatnie pobrać ze strony <a href="http://www.biecek.pl/">autora</a></li>
+<li>No i oczywiście ja chętnie pomogę :)</li>
+</ul>
+<pre><code>## 
+## You need to get the hang of reading the online help. The information required
+## is actually there in ?dotchart --- it&#39;s just tersely and obscurely expressed. A
+## certain degree of optimism is required. You need to ***believe*** that the
+## information is there; then ask yourself &quot;What could they possibly mean by what
+## they have written that would tell me what I need to know?&quot;.
+##    -- Rolf Turner (on reading the help pages)
+##       R-help (June 2013)</code></pre>
+</div>
+<div id="packages" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Packages</h2>
+<p>Żeby użyć funkcję z danego pakietu, który nie należy do podstawowych należy go najpierw zainstalować (Install w zakładce Packages), a potem załadować.
+(funkcje <code>library(nazwa)</code> albo <code>require(nazwa)</code>). Można też włączać pakiety w zakładce Packages.</p>
+<p>Dobrze jest ładować tylko te pakiety, które są faktycznie potrzebne - nie przeciążamy pamięci i niektóre nazwy funkcji mogą się powtarzać w różnych pakietach.</p>
+<p>Każdy pakiet zawiera podstawowy opis funkcji, niektóre posiadają bardziej rozbudowane przykłady analiz jakie można przy ich pomocy wykonać - vignette. Jeżeli chcemy sprawdzić które pakiety zawierają winietki można to zrobić funkcją <code>browseVignettes</code>.</p>
+<p>Przed rozpoczęciem należy mieć zainstalowane następujące pakiety: ggplot2, tidyr, knitr, dplyr, readr, readxl oraz najlepiej posiadać najnowszą wersję R (4.1.0 - “Camp Pontanezen”) i R Studio (przynajmniej 1.4).</p>
+<p>Inne pakiety jakie pojawiają się to: w części dotyczącej wykresów: car, likert, gplots, VennDiagram, corrplot, hexbin, aplpack, GGally, ggthemes, ggthemr i w części dotyczącej statystyki i obróbki danych: car, MASS, nortest, modeest, moments, agricolae, drc, broom, tidyr.</p>
+</div>
+<div id="r-studio" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> R Studio</h2>
+<p>Jest to obecnie najpopularniejszy dostępny edytor R, pozwalający na tworzenie projektów, pisanie i zarządzanie skryptami, pozwalający na łatwy dostęp do historii wpisywanych komend i tworzonych wykresów. Został zintegrowany z wieloma przydatnymi pakietami np. knitr, który pozwala tworzenie raportów w języku markdown, latex, prezentacji multimedialnych itp.</p>
+<p>Plik tutorial.rmd to skrypt napisany w markdown, można go otworzyć bezpośrednio w R Studio i wykonywać zawarte w nim polecenia albo przepisując do konsoli poniżej albo naciskając ctrl+enter. Samodzielne wpisywanie nazw funkcji przyśpiesza proces zapamiętywania, a korzystając z autuuzpełniania trzeba tak naprawdę pamiętać 2-3 pierwsze litery :)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

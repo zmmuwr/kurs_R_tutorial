@@ -1,0 +1,304 @@
+## Podstawowe typy danych w R
+
+W R dane do zmiennej przypisujemy korzystając ze strzałki ;) ` <- ` albo ` -> `. Można też użyć `=`
+
+Do najbardziej podstawowych typów danych należą: typ liczbowy, znakowy, logiczny i czynnikowy (o tym później). Typ danych można sprawdzić funkcją `class`
+
+Najczęściej wykorzystywane rodzaje danych to wektor i ramka danych. Pozostałe to m.in. macierz i lista. W R można również pisać własne funkcje.
+
+### Wektor (vector)
+
+Wektor to ciąg elementów tego samego typu np. liczbowy, znakowy. W R nawet pojedyncza cyfra jest wektorem. Wektor można stworzyć korzystając z funkcji:
+
+* `c`. Sekwencję liczb można zapisać jako `1:10` - utworzy wektor liczb od 1 do 10. 
+
+* Przy bardziej skomplikowanych sekwencjach można użyć funkcji `seq`, ustawiamy start, koniec i co ile ma być kolejny element
+
+* funkcję `rep`, podajemy jakie elementy mają zostać powtórzone i ile razy. `each` - powtarzanie każdego elementu, `times` - powtarzanie całego wektora.
+
+
+```{r}
+a <- c(1,2,5,8)
+a
+b <- c("A", "B", "V")
+b
+c <- 1:15
+c
+d <- seq(10, 100, by=10)
+d
+e <- rep(c(1,2,3), times=3)
+e
+e <- rep(c(1,2,3), each=3)
+e
+
+```
+
+Do poszczególnych elementów wektora można się odwołać stosując nawiasy: `wektor[x]`, gdzie x to numer elementu. Można się odwołać do kilku elementów jednocześnie np. `wektor[1:3]`, `wektor[c(2,4)]`. Numeracja rozpoczyna się od 1. Elementy wektora mogą również mieć swoje nazwy i wtedy można je także wykorzystać do wyświetlania danych.
+
+Ilość elementów wektora podaje funkcja `length`.
+
+```{r}
+
+a <- c(1:5)
+a[2]
+
+b <- c( "jeden" = 1, "dwa" = 2, "trzy" = 3)
+b[2]
+b["dwa"]
+
+length(a)
+
+```
+
+Na wektorach można wykonywać wszystkie operacje matematyczne. Przykładowo jeżeli dodamy do siebie dwa wektory to zawsze pierwszy element zostanie dodany do pierwszego elementu z drugiego wektora itd. 
+
+```{r}
+
+1:10 + 11:20
+
+1:10 * 11:20
+
+```
+
+
+### Ramka danych (data frame)
+
+Ramka danych to po prostu kilka wektorów ułożonych w tabelę. Wektory mogą być różnego typu, powinny być tej samej długości. Jeżeli mają różną długość można uzupełnić brakujące elementy stosując NA - brak danych
+
+Skoro każda kolumna ramki danych jest wektorem to można stosować na nich te same operacje matematyczne np. dodawać albo dzielić.
+
+Ramkę danych tworzymy przy użyciu funkcji `data.frame`
+
+Jeżeli chcemy coś zmienić w ramkę danych używamy `as.data.frame`
+
+Podstawowe informacje o ramce danych
+
+Funkcja | Opis
+---|---
+`nrow` | liczba wierszy
+`ncol` | liczba kolumn
+`colnames` | nazwy kolumn
+`rownames` | nazwy wierszy
+`dim` | wymiary 
+
+```{r}
+
+x <- data.frame(a=1:5, b=rep("A",5), c=c(T,T,T,F,NA))
+x
+
+colnames(x)
+```
+
+Do elementów ramki danych również można się odwołać przy pomocy nawiasów: `ramka[x,y]`, gdzie x to numer wiersza, a y numer kolumny. Jeżeli podamy jedynie numer kolumny otrzymamy wszystkie jej elementy.
+
+Innym sposobem jest wykorzystanie nazw kolumn i $ np `ramka$kolumna_1`. W ten sposób można łatwo dodać nowe kolumny do ramki danych.
+
+Podobnie możemy usuwać kolumny i wiersze z ramki np. `ramka<-ramka[,-1]` usunie pierwszą kolumnę.
+
+```{r}
+
+ramka <- data.frame(kol1=c(1:10), kol2=c(11:20))
+
+ramka
+
+ramka$kol_3 <- ramka$kol1 + ramka$kol2
+
+ramka
+```
+
+Funkcje zawarte w pakietach tidyverse (w tym read_delim i inne) często zamiast zwykłej ramki danych używają ulepszonej struktury zwanej tibble. W codziennym użytkowaniu nie ma między nimi wielu różnic. Tibble są bezpieczniejsze od zwykłych data.frame, ponieważ nigdy nie zmieniają typów danych w kolumnach. Może się jednak czasem zdarzyć że funkcje starszych pakietów nie będą akceptować tibble zamiast data.frame (można łatwo zmienić przy pomocy `as.data.frame`. 
+
+
+### Matryca (matrix)
+
+Matryca jest trochę podobna do ramki danych, ale może zawierać tylko jeden typ danych np. liczbowe. Może mieć więcej wymiarów niż dwa. Tworzymy funkcją `matrix`, zmiana istniejących danych na matrycę - `as.matrix`.
+
+Indeksowanie z matrycach działa tak samo jak w ramkach danych - `[wiersz, kolumna]`.
+
+```{r}
+
+matrix(0, 4, 5)
+matrix(1:15, 3, 5)
+
+(x <- matrix(1:9, 3,3))
+x[1,3]
+
+```
+
+### Lista (list)
+
+Lista to taki rozbudowany wektor ;) i najbardziej elastyczny typ danych w R. Każdy element listy może być innego rodzaju, mieć inną długość, można stworzyć listę, której elementami będzie np. ramka danych, wektor, wykres i nawet inna lista.
+
+Listę tworzymy funkcją `list`, podobnie jak w wektorze każdy element może mieć swoją nazwę. Wiele funkcji jako swój wynik zwraca listę, więc często przydaje się wiedza jak dostać się do poszczególnych elementów.
+
+Funkcją `str` możemy wyświetlić podsumowanie wszystkich elementów listy.
+
+Do poszczególnych części można dostać się przez nazwy albo indeksowanie [] albo [[]]. Przy zastosowaniu nawiasów [] uzyskany element nadal będzie częścią listy.
+
+```{r}
+
+lista <- list( ramka = data.frame(a=rnorm(10), b="test"), 
+               wektor = seq(1,16,by=3), 
+               tekst = "To jest lista" )
+
+lista
+str(lista)
+
+lista$tekst
+
+lista[3]
+lista[[3]]
+
+# pierwszy element wektora, będącego drugim elementem listy
+lista[[2]][1]
+```
+
+### Typ liczbowy (numeric), znakowy (character), logiczny (logical)
+
+* Typ liczbowy przechowuje liczby całkowite i rzeczywiste. Kropką dziesiętną jest kropka :). Na liczbach można łatwo prowadzić podstawowe działania matematyczne - dodawanie, odejmowanie, mnożenie itp. Takie same operacje możemy prowadzić na wektorach.
+
+```{r}
+2*4
+
+A <- c(2,4,6)
+B <- c(1,2,3)
+
+A*B
+
+```
+
+* Typ znakowy zawiera napisy umieszczone pomiędzy "" albo ''. Napisy można wyświetleć np. funkcją `cat`, możemy wymusić pisanie kolejnego elementu w nowej linii poprzez `"\n"`. Sklejanie np. tekstu i liczb można wykonać funkcją `paste`. 
+
+Do pracy z typem znakowym można wykorzystać pakiet [stringr](https://stringr.tidyverse.org/).
+
+```{r}
+
+" To jest napis "
+
+cat("coś", "tam")
+cat(" coś","\n","tam")
+
+a <- 1
+
+cat("Wynik to", a)
+
+paste("Wynik równa się", a)
+
+
+```
+
+* Typ logiczny przechowuje tylko wartości: TRUE (T) i FALSE (F) oraz NA (brak danych). Nazwy TRUE i FALSE są w R zastrzeżone, ale T i F już nie. Dlatego lepiej używać pełnych nazw, bo może się zdarzyć, że do T albo F zostanie przypisana jakaś zmienna.
+
+```{r}
+
+wektor <- c(TRUE, FALSE, TRUE)
+wektor
+summary(wektor)
+
+```
+
+
+### Typ czynnikowy (factor)
+
+Służy do przechowywania wartości występujących w kilku kategoriach np. płeć, wykształcenie itp. Podczas wczytywania danych R z wykorzystaniem podstawowych funckji, ale nie z pakietu readr, automatycznie zamieni kolumny zawierające tekst na typ czynnikowy, chyba że zaznaczymy opcję `stringAsFactors=FALSE`. 
+
+Typ czynnikowy jest przydatny podczas robienia wykresów, gdy chcemy pogrupować dane pod względem jakiejś kategorii. Również legendy (kolejność elementów) są tworzone w oparciu o poziomy czynnika. Może się zdarzyć, że kolejność wybrana przez R (często alfabetyczna) nie będzie odpowiednia. Można łatwo przestawić poziomy korzystając z funkcji `factor`. W tej samej funkcji argument labels pozwala na zmianę nazw kolejnych poziomów.
+
+Jeżeli chcemy zmienić kolejność elementów na wykresie np. boxplotów, słupków najlepiej zrobić to zmieniając poziomy faktora w danych.
+
+Poziomy factor można wyświetlić przy pomocy funkcji `levels`.
+
+Do pracy z typem czynnikowym można wykorzystać pakiet [forcats](https://forcats.tidyverse.org/) będący częścią tidyverse.
+
+```{r}
+
+faktor <- factor(c("A", "B", "C", "A", "A","C"))
+
+faktor
+str(faktor)
+levels(faktor)
+summary(faktor)
+
+# Zmiana poziomów
+
+faktor2 <- factor(faktor, levels=c("B", "C", "A"), labels = c("BB", "CC", "AA"))
+faktor2
+```
+
+### Funkcje
+
+Większość operacji na danych w R wykonujemy za pomocą funkcji. Pakiety są to właściwie zbiory funkcji, często dotyczących jednego konkretnego zagadnienia.
+
+Każda funkcja zawiera przynajmniej jeden argument, który jest niezbędny do jej działania. Nazwy wszystkich argumentóœ możemy sprawdzić korzystając z pomocy. Często nie jest konieczne podanie wartości wszystkich argumentów, gdyż mogą mieć ustawione wartości domyślne.
+
+Jeżeli podajemy wartości argumentóœ możemy je wpisywać do funkcji kolejno (tak jak są wypisane w pomocy) albo korzystając z nazw. Jeżeli nie pamiętamy wszystkich nazw można sobie pomóc przy pomocy klawisza Tab :) Kolejne podawane argumenty należy rozdzielać przecinkami np. `funkcja(a=1, b=2, c="model")`. Do argumentu możemy też podać wektor wartości korzystając z `c` np. `funkcja(a=c(1,2,5))`
+
+Np. funkcja licząca średnią to `mean`. Zawiera trzy argumenty: 
+
+* x - oznacza obiekt, z którego ma być policzona średnia 
+
+* trim (domyślnie 0) oznacza część obserwacji, która ma zostać przycięta z każdej strony x 
+
+* na.rm (domyślnie FALSE) - czy mają być brane pod uwagę wartości NA.
+
+`?mean`
+
+`mean {base}  R Documentation`
+
+`Arithmetic Mean`
+
+`Description`
+
+`Generic function for the (trimmed) arithmetic mean.`
+
+`Usage`
+
+`mean(x, ...)`
+
+`## Default S3 method:`
+`mean(x, trim = 0, na.rm = FALSE, ...)`
+
+```{r}
+wek <- c(1,5,9,2,7,3,5,9,2,4)
+
+mean(wek)
+mean(x=wek)
+mean(x=wek, trim=0.2, na.rm=TRUE)
+
+```
+
+W R możliwe jest pisanie własnych funkcji. Nie jest to trudne, a pozwala na uniknięcie wielokrotnego powtarzanie tego samego kodu. Dużo łatwiej jesy zmienić/poprawić jedną funkcję niż dwadzieścia razy wklejone te same 10 linijek kodu :)
+
+Poniżej krótki przykład tworzenia funkcji. Więcej informacji można znaleźć np. w książce [R for Data Science](https://r4ds.had.co.nz/functions.html).
+
+Załóżmy że chemy napisać funckję która wczyta dane z pliku txt i doda do tego pliki nową kolumnę będącą sumą dwóch pierwszych.
+
+Kod potrzebny żeby to wykonać:
+
+```{r}
+data <- read.table('data/test_funkcja.txt')
+
+data$nowa_kolumna <- data$x + data$y
+
+```
+
+A teraz funckja która wykonuje te same czynności. Nazwa funkcji jest dowolna, chociaż lepiej jest nie nadpisywać już istniejących funkcji, a jej nazwa powinna opisywać to co funkcja będzie robić. W nawiasach () należy podać nazwy argumentów z ewentualnymi wartościami domyślnymi, a w nawiadach {} kod który ma zostać wykonany. Na końcu funkcji warto użyć return() - determinuje jaki wynik zwróci funkcja.
+
+```{r}
+dodaj_kolumne <- function(file){
+  
+  data <- read.table(file)
+  
+  data$nowa_kolumna <- data$x + data$y
+  
+  return(data)
+}
+```
+
+Każdą funkcję po napisaniu należy sprawdzić
+
+```{r}
+dodaj_kolumne('data/test_funkcja.txt')
+```
+
+

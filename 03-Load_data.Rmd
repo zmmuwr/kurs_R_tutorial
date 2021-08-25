@@ -1,0 +1,63 @@
+# Dane
+
+
+## Wczytanie danych
+
+Dane najłatwiej wczytać z plików .txt lub .csv. Można również z plików .xlsx lub .xls ale często trwa to dłużej i może wymagać zainstalowanych innych pakietów/programów.
+
+W każdym przypadku niezbędne jest podanie ścieżki dostępu do pliku. Jeżeli znajduje się on folderze projektu to wystarczy jego nazwa. Dobrą praktyka jest przechowywanie danych w osobnym katalogu w obrębie projektu - wtedy ścieżka może wyglądać np. data/dane_1.txt. Jeżeli plik z danymi jest przechowywany gdzie indziej konieczne jest podanie pełnej ścieżki dostępu, ale można w tym wypadku korzystać z autouzupełniania klawiszem Tab.
+
+### Wczytanie danych z plików tekstowych
+
+R Studio posiada funkcję Import Dataset (zakładka Environment), która pozwala na wczytanie danych wraz z wyborem podstawowych opcji jak separator, separator dziesiętny, obecność nagłówków. Opcja ta obejmuje podstawowe funkcje R oraz pakiety readr i readxl będące częścią tidyverse. Na początek jest łatwiej korzystać z opcji Load Dataset, ponieważ po jej użyciu zostaje również wygenerowany odpowiedni kod R, który można wkleić do własnych skryptów tak aby te same lub podobne dane wczytać już bez problemu następnym razem.
+
+Można również wczytać dane wpisując komendę (wygodne przy pisaniu skryptów) `read.table` albo `read.csv`.
+Argumenty: file określa nam plik, który wczytujemy, header - nagłówki, sep - separator np. "/t" to tabulator, dec - separator dziesiętny (domyślnie kropka), quote - obecność "". W przypadku nagłówków kolumn wpisanie `header=TRUE` spowoduje, że pierwszy wiersz naszej tabeli zostanie potraktowany jako tytuły kolumn, `header=FALSE` oznacza domyślne nazwy kolumn - V1, V2, ...
+
+W pakiecie readr znajdują się analogiczne funckje: 
+* read_delim - do plików tekstowych, funckja spróbuje zgadnąć jak rozdzielone są kolumny, można podać argumentem delim
+* read_csv i read_csv2 - do plików csv, odpowiednio do danych wykorzystujących kropki i przecinki jako separatory dziesiętne
+* read_tsv i read_table - do plików gdzie kolumny są rodzielone przy pomocy tab.
+
+Wczytane dane będą widoczne w zakładce Environment. Kliknięcie na nazwę tabeli spowoduje otwarcie widoku danych podobnego do arkusza kalkulacyjnego. Można w nim dane sortować i filtrować, ale nie edytować. 
+
+Pierwsze albo ostanie wiersze można zobaczyć używając funkcji `head` albo `tail`. Strukturę danych pokaże funkcja `str`, a podstawowe informacje `summary`. Dobrze jest po wczytaniu danych sprawdzić czy wyglądają faktycznie tak jak miały ;)
+
+```{r}
+
+dane1 <- read.table(file = "data/dane1.txt", header=TRUE, quote="\"")
+
+head(dane1)
+str(dane1)
+summary(dane1)
+
+```
+
+### Wczytanie danych z plików excel
+
+Do wczytania danych z plików xlsx można wykorzystać funkcję read_excel z pakietu readxl. Przy pracy z excelem należy jednak pamiętać żeby wczytywane dane nie zawierały formuł albo połączonych komórek oraz, że funkcja wczyta dane zawarte tylko w jednym arkuszu (sheet), ale można wybrać z której przy pomocy argumentu sheet.  
+
+```{r}
+library(readxl)
+
+data_excel <- read_excel('data/test.xlsx')
+
+data_excel
+```
+
+
+## Zapisanie danych
+
+Zapisać tabelę danych można korzystając z funkcji `write.table`, wystarczy określić, co chcemy zapisać i nazwę pliku wyjściowego. Możemy zapisywać pliki w formacie np. txt, csv. Jeżeli nie określimy ścieżki dostępu plik zostanie zapisany w folderze projektu.
+
+Można również dopisywać dane do istniejącego pliku ustawiając parametr `append = TRUE`. Domyślnie ten argument jest zawsze ustawiony jako `append = FALSE` i jeżeli w nazwie pliku podamy istniejący plik to **zostanie on nadpisany bez ostrzeżenia**. 
+
+Można też dane zapisać w formacie rds. Można je potem otworzyć tylko w R, ale można w takim formacie zapisać każdy obiekt R, nie tylko tabele. Do zapisania danych służy funkcja saveRDS, a do wczytanie readRDS.
+
+```{r}
+
+write.table(dane1, "data/dane4.txt")
+
+```
+
+
