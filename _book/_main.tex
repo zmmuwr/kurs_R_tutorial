@@ -702,17 +702,17 @@ Do poszczególnych części można dostać się przez nazwy albo indeksowanie {[
 
 \begin{verbatim}
 ## $ramka
-##              a    b
-## 1   0.34463532 test
-## 2   0.05200946 test
-## 3   1.15809489 test
-## 4  -1.50140830 test
-## 5  -1.56323482 test
-## 6  -1.18813964 test
-## 7  -2.05674156 test
-## 8  -1.56002519 test
-## 9   0.69512998 test
-## 10 -0.31774708 test
+##             a    b
+## 1  -2.7192481 test
+## 2  -0.5176780 test
+## 3   0.3904498 test
+## 4   0.9131793 test
+## 5   0.7992258 test
+## 6   0.6804571 test
+## 7   0.5792843 test
+## 8   0.8817937 test
+## 9  -0.1207742 test
+## 10  1.4378562 test
 ## 
 ## $wektor
 ## [1]  1  4  7 10 13 16
@@ -730,7 +730,7 @@ Do poszczególnych części można dostać się przez nazwy albo indeksowanie {[
 \begin{verbatim}
 ## List of 3
 ##  $ ramka :'data.frame':  10 obs. of  2 variables:
-##   ..$ a: num [1:10] 0.345 0.052 1.158 -1.501 -1.563 ...
+##   ..$ a: num [1:10] -2.719 -0.518 0.39 0.913 0.799 ...
 ##   ..$ b: chr [1:10] "test" "test" "test" "test" ...
 ##  $ wektor: num [1:6] 1 4 7 10 13 16
 ##  $ tekst : chr "To jest lista"
@@ -1264,8 +1264,8 @@ Dane 3 to wzrost dwóch szczepów w trzech powtórzeniach w czasie 1-100.
 
 Dane tego typu możemy przedstawić jako wykres np. liniowy, punktowy, ribbon (liniowy z zaznaczonym błędem, przedziałem ufności itp.).
 
-\hypertarget{wykresy-jednowymiarowe---histogram-boxplot-i-inne}{%
-\section{Wykresy jednowymiarowe - histogram, boxplot i inne}\label{wykresy-jednowymiarowe---histogram-boxplot-i-inne}}
+\hypertarget{histogram-boxplot-i-inne}{%
+\section{Histogram, boxplot i inne}\label{histogram-boxplot-i-inne}}
 
 \hypertarget{histogram-i-density}{%
 \subsection{Histogram i density}\label{histogram-i-density}}
@@ -3027,8 +3027,8 @@ Nasze dane mogą też zawierać wysokości słupków. W takim wypadku należy u�
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
 
-\hypertarget{ux15brednia-mediana-itp-na-wykresie}{%
-\section{Średnia, mediana itp na wykresie}\label{ux15brednia-mediana-itp-na-wykresie}}
+\hypertarget{ux15brednia-mediana-itp.-na-wykresie}{%
+\section{Średnia, mediana itp. na wykresie}\label{ux15brednia-mediana-itp.-na-wykresie}}
 
 \hypertarget{stat_summary}{%
 \subsection{Stat\_summary}\label{stat_summary}}
@@ -6421,6 +6421,2422 @@ Tworzenie macierzy korelacji jest opisane w dalszej części z wykorzystaniem pa
 \end{Shaded}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-64-2.pdf}
+
+\hypertarget{wykresy---pakiet-podstawowy}{%
+\chapter{Wykresy - pakiet podstawowy}\label{wykresy---pakiet-podstawowy}}
+
+W pakiecie podstawowym każdy typ wykresu jest rysowany przy pomocy innej funkcji. Różne funkcje mogą wymagać innego typu danych do działania. Wspólne są natomiast parametry dotyczące wyświetlania i wyglądu wykresu.
+
+Często, żeby uzyskać właściwy wygląd osi, legendy musimy ją dodać samodzielnie przy pomocy funkcji \texttt{legend} lub \texttt{axis}.
+
+Funkcje pakietu podstawowego przydają się najbardziej, gdy trzeba coś szybko sprawdzić, gdyż wymagają mniej pisania niż analogiczne funkcje ggplot2. Jednakże przygotowanie ładnego wykresu korzystając tylko z pakietu podstawowego jest żmudne.
+
+\hypertarget{histogram---hist}{%
+\section{Histogram - hist}\label{histogram---hist}}
+
+Histogram rysujemy funkcją \texttt{hist}. Należy podać wektor zawierający wartości, które mają zostać zliczone. Najważniejszym parametrem histogramu jest \texttt{breaks}, do którego można podać ilość słupków albo wektor przedziałów. \texttt{freq\ =\ TRUE} ozancza że na osi Y znajdą się zliczenie elementów w przydziałach, \texttt{FALSE} oznacza gęstości. Parametry \texttt{ylim} i \texttt{xlim} służą do zmiany startu i zakończenia osi.
+
+Przy pomocy tej funkcji nie jest możliwe narysowanie histogramu z więcej niż jednego wektora. Możemy na niego nałożyć krzywą oznaczającą gęstość przy pomocy \texttt{lines(density(x))}. Możemy także nie rysować wykresu, ale otrzymać jego liczbową reprezentację używając \texttt{plot=FALSE}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(dane1\_1}\SpecialCharTok{$}\NormalTok{pomiar)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(dane1\_1}\SpecialCharTok{$}\NormalTok{pomiar, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{breaks =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightgreen"}\NormalTok{, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{))}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(dane1\_1}\SpecialCharTok{$}\NormalTok{pomiar), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# liczbowy opis histogramu {-} przedziały zliczenia, gęstości itd.}
+\FunctionTok{hist}\NormalTok{(dane1\_1}\SpecialCharTok{$}\NormalTok{pomiar, }\AttributeTok{plot=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $breaks
+##  [1] 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5
+## 
+## $counts
+##  [1]  6 16 22 49 59 59 39 26 22  2
+## 
+## $density
+##  [1] 0.04000000 0.10666667 0.14666667 0.32666667 0.39333333 0.39333333
+##  [7] 0.26000000 0.17333333 0.14666667 0.01333333
+## 
+## $mids
+##  [1] 2.75 3.25 3.75 4.25 4.75 5.25 5.75 6.25 6.75 7.25
+## 
+## $xname
+## [1] "dane1_1$pomiar"
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,"class")
+## [1] "histogram"
+\end{verbatim}
+
+\hypertarget{wykres-rozrzutu---plot}{%
+\section{Wykres rozrzutu - plot}\label{wykres-rozrzutu---plot}}
+
+Wykres punktowy albo liniowy możemy otrzymać funkcją \texttt{plot}. Podajemy dwa wektory oznaczające współrzędne na osiach X i Y. Możemy określić typ wykresu \texttt{type}:
+
+\begin{itemize}
+\item
+  p - punkty
+\item
+  l - linia
+\item
+  o - punkty i linia
+\item
+  s, S - schodki
+\item
+  h - linie trochę jak histogram
+\item
+  n - brak
+\end{itemize}
+
+Linię trendu możemy dodać wykorzystując funkcje \texttt{lm} i \texttt{abline} (dla zależności liniowych) albo \texttt{lines}, \texttt{lm} i \texttt{predict} (nieliniowe).
+
+Używając \texttt{summary} i \texttt{lm} możemy wyświetlić wszystkie informacje dotyczące dopasowania.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+
+\FunctionTok{plot}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(x,y, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#posortowane, losowe liczby z rozkładu jednostajnego}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{20}\NormalTok{))}\SpecialCharTok{*}\DecValTok{2}
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{20}\NormalTok{))}\SpecialCharTok{*}\DecValTok{2}
+
+\FunctionTok{plot}\NormalTok{(a,b)}
+
+\CommentTok{\# dopasowujemy prostą zależność b od a i rysujemy na wykresie}
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(b}\SpecialCharTok{\textasciitilde{}}\NormalTok{a)}
+\FunctionTok{abline}\NormalTok{(fit, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dane muszą być posortowane żeby działała funkcja lines}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{300}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(x,y)}
+\CommentTok{\# dodajemy liniową linię trendu}
+\FunctionTok{abline}\NormalTok{(}\FunctionTok{lm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\CommentTok{\# albo dopasowujemy wielomian drugiego stopnia}
+\FunctionTok{lines}\NormalTok{(x, }\FunctionTok{predict}\NormalTok{(}\FunctionTok{lm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\FunctionTok{poly}\NormalTok{(x, }\DecValTok{2}\NormalTok{, }\AttributeTok{raw =} \ConstantTok{TRUE}\NormalTok{), }\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x))), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-4.pdf}
+
+Więcej informacji na temat dopasowywania modelu do danych w części dotyczącej statystyki :)
+
+\hypertarget{wykres-pudeux142kowy---boxplot-1}{%
+\section{Wykres pudełkowy - boxplot}\label{wykres-pudeux142kowy---boxplot-1}}
+
+Używamy funkcji \texttt{boxplot}. Możemy podać jeden lub kilka wektorów, które posłużą do rysowania ``pudełek'' albo podobnie jak w ggplot jeden wektor z wartościami i jeden ze zmiennymi je grupującymi. Wcięcia w boxplotach - \texttt{notch=TRUE}, wcięcia oznaczają przedział ufności dla mediany. Jeżeli wcięcia na siebie nie zachodzą to dwie populacje są od siebie najprawdopodobniej istotnie różne. \texttt{names} podpisy pod pudełkami.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Przykładowe dane}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{)}
+
+\FunctionTok{boxplot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(dane1}\SpecialCharTok{$}\NormalTok{pomiar }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dane1}\SpecialCharTok{$}\NormalTok{Szczep)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-2.pdf}
+
+\hypertarget{wykres-sux142upkowy---barplot}{%
+\section{Wykres słupkowy - barplot}\label{wykres-sux142upkowy---barplot}}
+
+Rysowany przy pomocy funkcji \texttt{barplot}. Podajemy wektor albo matrycę wartości oznaczające wysokości słupków. Możemy szybko przygotować takie zliczenia funkcją \texttt{table}. W przypadku więcej niż jednego rodzaju słupków można okreslić czy mają być obok siebie - \texttt{beside=TRUE}, kolory zmieniamy parametrem \texttt{col}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(dane2}\SpecialCharTok{$}\NormalTok{pomiar))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in axis(if (horiz) 2 else 1, at = at.l, labels = names.arg, lty =
+## axis.lty, : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for
+## <c5>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in axis(if (horiz) 2 else 1, at = at.l, labels = names.arg, lty =
+## axis.lty, : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for
+## <bc>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in axis(if (horiz) 2 else 1, at = at.l, labels = names.arg, lty =
+## axis.lty, : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for
+## <c5>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in axis(if (horiz) 2 else 1, at = at.l, labels = names.arg, lty =
+## axis.lty, : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for
+## <bc>
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(dane2}\SpecialCharTok{$}\NormalTok{pomiar, dane2}\SpecialCharTok{$}\NormalTok{Szczep))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(dane2}\SpecialCharTok{$}\NormalTok{pomiar, dane2}\SpecialCharTok{$}\NormalTok{Szczep), }\AttributeTok{beside =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(dane2}\SpecialCharTok{$}\NormalTok{pomiar, dane2}\SpecialCharTok{$}\NormalTok{Szczep), }\AttributeTok{beside =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"coral2"}\NormalTok{, }\StringTok{"green3"}\NormalTok{, }\StringTok{"dodgerblue2"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-4.pdf}
+
+\hypertarget{wykres-mozaikowy---mosaicplot}{%
+\section{Wykres mozaikowy - mosaicplot}\label{wykres-mozaikowy---mosaicplot}}
+
+Na tym wykresie liczebności poszczególnych grup są reprezentowane przez pole powierzchni prostokąta. Można go przygotować nawet dla trzech lub więcej różnych zmiennych wyliczeniowych poprzez użycie funkcji \texttt{table} albo formuły.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# z funckją table}
+
+\FunctionTok{mosaicplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(dane2}\SpecialCharTok{$}\NormalTok{pomiar, dane2}\SpecialCharTok{$}\NormalTok{warunki, dane2}\SpecialCharTok{$}\NormalTok{Szczep), }
+           \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{, }\StringTok{"green3"}\NormalTok{, }\StringTok{"white"}\NormalTok{), }\AttributeTok{ylab =} \StringTok{"Warunki"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Pomiar"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in text.default(x = x.l + (x.r - x.l)/2, y = 1000 - 35 * cex.axis/0.66
+## + : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <c5>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in text.default(x = x.l + (x.r - x.l)/2, y = 1000 - 35 * cex.axis/0.66
+## + : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in text.default(x = x.l + (x.r - x.l)/2, y = 1000 - 35 * cex.axis/0.66
+## + : font metrics unknown for Unicode character U+017c
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# z formułą}
+\FunctionTok{mosaicplot}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{pomiar }\SpecialCharTok{+}\NormalTok{ Szczep }\SpecialCharTok{+}\NormalTok{ warunki, }\AttributeTok{data =}\NormalTok{ dane2, }\AttributeTok{col =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in text.default(x = x.l + (x.r - x.l)/2, y = 1000 - 35 * cex.axis/0.66
+## + : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <c5>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in text.default(x = x.l + (x.r - x.l)/2, y = 1000 - 35 * cex.axis/0.66
+## + : conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in text.default(x = x.l + (x.r - x.l)/2, y = 1000 - 35 * cex.axis/0.66
+## + : font metrics unknown for Unicode character U+017c
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-2.pdf}
+
+\hypertarget{wykres-kwantylowy---qqplot}{%
+\section{Wykres kwantylowy - qqPlot}\label{wykres-kwantylowy---qqplot}}
+
+Dopasowanie danych do rozkładu normalnego można wizualnie sprawdzić przy pomocy wykresu kwantylowego.
+
+Funkcja \texttt{qqPlot} z pakietu car rysuje wykres kwantylowy z zaznaczonymi przedziałami ufności.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: carData
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'car'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     recode
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dane z rozkładu normalnego}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{300}\NormalTok{)}
+\CommentTok{\# Dane z rozkładu lognormalnego}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rlnorm}\NormalTok{(}\DecValTok{300}\NormalTok{)}
+
+\FunctionTok{qqPlot}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-70-1.pdf}
+
+\begin{verbatim}
+## [1] 13 60
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqPlot}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-70-2.pdf}
+
+\begin{verbatim}
+## [1]  75 177
+\end{verbatim}
+
+\hypertarget{diagram-venna}{%
+\section{Diagram venna}\label{diagram-venna}}
+
+Istnieje wiele różnych funkcji generujących diagramy venna. Funkcja \texttt{venn} z pakietu gplots wydaje się być jedną z łatwiejszych. Jej argumentem musi być lista (tworzona funkcją \texttt{list} - każdy kolejny element listy to może być coś innego: wektor, ramka danych, inna lista itp.). W tym wypadku kolejne elementy listy to wektory zawierające wartości zliczane do diagramu.
+
+Trzeba zauważyć, że wielkości obszarów nie odpowiadają liczebności grupy, może być nawet narysowany obszar z liczebnością 0.
+
+Można tworzyć diagramy z maksymalnie 5 grup, ale powyżej trzech stają się one trudne do odczytania, wtedy lepszą opcją jest narysowanie Upset plot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# generowanie zestawów losowych liter}
+\NormalTok{set\_1 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(letters, }\DecValTok{10}\NormalTok{)}
+\NormalTok{set\_2 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(letters, }\DecValTok{10}\NormalTok{)}
+\NormalTok{set\_3 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(letters, }\DecValTok{8}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(gplots)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'gplots'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     lowess
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{venn}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{grupa\_1 =}\NormalTok{ set\_1, }\AttributeTok{grupa\_2 =}\NormalTok{ set\_2, }\AttributeTok{grupa\_3 =}\NormalTok{ set\_3))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
+
+Jeżeli chcielibyśmy mieć kolorowe diagramy należałoby użyć funkcji \texttt{venn.diagram} z pakietu VennDiagram. Ta funkcja stara się nie rysować obszarów, w których nic nie ma, efekt jej pracy jest również ładniejszy ;)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(VennDiagram)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: futile.logger
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'VennDiagram'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:car':
+## 
+##     ellipse
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Do wyświetlenia wymaga najpierw stworzenia obiektu typu grid}
+\FunctionTok{grid.newpage}\NormalTok{()}
+\FunctionTok{grid.draw}\NormalTok{(}\FunctionTok{venn.diagram}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{grupa\_1 =}\NormalTok{ set\_1, }\AttributeTok{grupa\_2 =}\NormalTok{ set\_2, }\AttributeTok{grupa\_3 =}\NormalTok{ set\_3), }
+                       \AttributeTok{fill =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{,}\StringTok{"yellow"}\NormalTok{), }
+                       \AttributeTok{alpha =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{), }
+                       \AttributeTok{filename =} \ConstantTok{NULL}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-1.pdf}
+
+\hypertarget{wykres-korelacji---corrplot}{%
+\section{Wykres korelacji - corrplot}\label{wykres-korelacji---corrplot}}
+
+Jeżeli dane zawierają kilka kolumn z różnymi zmiennymi do szybkiego sprawdzenie korelacji między nimi możemy użyć macierzy korelacji. Z ramki danych można ją wyznaczyć funkcją \texttt{cor}, natomiast wykres takiej macierzy możemy zrobic np. przy użyciu funkcji \texttt{corrplot} z pakietu corrplot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ładujemy dane dotyczące pogody}
+\NormalTok{pogoda }\OtherTok{\textless{}{-}} \FunctionTok{read.delim}\NormalTok{(}\StringTok{"data/pogoda.txt"}\NormalTok{)}
+
+\CommentTok{\# tylko pierwsze cztery kolumny zawierają interesujące informacje}
+\FunctionTok{colnames}\NormalTok{(pogoda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "ozon"         "naswietlenie" "wiatr"        "temperatura"  "miesiac"     
+## [6] "dzien"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pogoda }\OtherTok{\textless{}{-}}\NormalTok{ pogoda[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}
+
+\CommentTok{\# dane zawierają brakujące informacje. Możemy je usunąć przy pomocy funkcji complete.cases}
+\CommentTok{\# zwraca numery wierszy nie zawierających wartości NA}
+\NormalTok{pogoda }\OtherTok{\textless{}{-}}\NormalTok{ pogoda[}\FunctionTok{complete.cases}\NormalTok{(pogoda),]}
+
+\CommentTok{\# przygotowujemy macierz korelacji}
+\NormalTok{macierz }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(pogoda)}
+\NormalTok{macierz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    ozon naswietlenie      wiatr temperatura
+## ozon          1.0000000    0.3483417 -0.6124966   0.6985414
+## naswietlenie  0.3483417    1.0000000 -0.1271835   0.2940876
+## wiatr        -0.6124966   -0.1271835  1.0000000  -0.4971897
+## temperatura   0.6985414    0.2940876 -0.4971897   1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## corrplot 0.90 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{corrplot}\NormalTok{(macierz)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-73-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{corrplot}\NormalTok{(macierz, }\AttributeTok{method =} \StringTok{"ellipse"}\NormalTok{, }\AttributeTok{type =} \StringTok{"lower"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-73-2.pdf}
+
+\hypertarget{clustering---analiza-skupieux144}{%
+\section{Clustering - analiza skupień}\label{clustering---analiza-skupieux144}}
+
+Wykorzystamy funkcję \texttt{kmeans}, która pozwala na grupowanie danych w n-liczbę klasterów. Opiera się na metodzie tzw. klasyfikacji bez nadzoru (unsupervised learning), tak aby uzyskać minimalną wariancję wewnątrz danej grupy.
+
+Słabością tej metody jest to, że dostaniemy tyle grup ile sobie zażyczymy (niekoniecznie naprawdę istniejących), dlatego dobrze jest wypróbować kilka wartości n.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Przygotowujemy dane złożone z dwóch grup}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{1}\NormalTok{),}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+
+\FunctionTok{plot}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-74-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Łączymy w matrycę {-} kmeans działa tylko na matrycach}
+\NormalTok{xy }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(x,y)}
+
+\CommentTok{\# Przeprowadzamy podział na grupy}
+\NormalTok{clu }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(xy, }\AttributeTok{centers=}\DecValTok{2}\NormalTok{)}
+\NormalTok{clu}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## K-means clustering with 2 clusters of sizes 110, 90
+## 
+## Cluster means:
+##           x        y
+## 1 0.9665061 1.039814
+## 2 3.2469251 3.422692
+## 
+## Clustering vector:
+##   [1] 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
+## [112] 2 2 2 2 2 2 2 2 1 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2
+## [149] 2 2 1 2 1 1 1 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 2 1 2 2 2
+## [186] 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2
+## 
+## Within cluster sum of squares by cluster:
+## [1] 201.2877 178.5173
+##  (between_SS / total_SS =  58.6 %)
+## 
+## Available components:
+## 
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+## [6] "betweenss"    "size"         "iter"         "ifault"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# możemy sprawdzić dopasowanie {-} wiemy jakie były grupy}
+
+\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{each=}\DecValTok{100}\NormalTok{)}
+\NormalTok{ok }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(test }\SpecialCharTok{==}\NormalTok{ clu}\SpecialCharTok{$}\NormalTok{cluster)}
+\NormalTok{ok}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rysujemy ponownie wykres pokolorowany według wyznaczonych grup}
+\FunctionTok{plot}\NormalTok{(xy, }\AttributeTok{col=}\NormalTok{clu}\SpecialCharTok{$}\NormalTok{cluster)}
+\CommentTok{\# Dodajemy centra każdej z grup}
+\FunctionTok{points}\NormalTok{(clu}\SpecialCharTok{$}\NormalTok{centers, }\AttributeTok{col=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{, }\AttributeTok{pch=}\DecValTok{8}\NormalTok{, }\AttributeTok{cex=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-74-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Powtarzamy, ale z podziałem na 4 grupy}
+\CommentTok{\# Dane zawierały tylko 2 grupy, ale zostaną podzielone na 4}
+\NormalTok{clu }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(xy, }\AttributeTok{centers=}\DecValTok{4}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(xy, }\AttributeTok{col=}\NormalTok{clu}\SpecialCharTok{$}\NormalTok{cluster)}
+\FunctionTok{points}\NormalTok{(clu}\SpecialCharTok{$}\NormalTok{centers, }\AttributeTok{col=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, }\AttributeTok{pch=}\DecValTok{8}\NormalTok{, }\AttributeTok{cex=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-74-3.pdf}
+
+Możemy także grupować dane według wielu zmiennych jendocześnie używając funkcji \texttt{dist} (redukuje wielowymiarowe dane do dwuwymiarowej macierzy odległości) i \texttt{hclust} (podział na grupy). Należy wybrać metodę grupowania, jedne z popularniejszych to \texttt{ward} i \texttt{complete}.
+
+Wynik można przedstawić jako dendrogram korzystając ze zwykłej funkcji \texttt{plot}. Poszczególne grupy na wykresie zaznaczamy używając \texttt{rect.hclust}, musimy jedynie podać ilość grup.
+
+Wyświetlić grupy możemy za pomocą funkcji \texttt{cutree}, tutaj również niezbędne jest podanie ilości grup.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Wykorzystamy dane spozycie z kursu R, spozycie produktów w różnych krajach }
+\NormalTok{spozycie }\OtherTok{\textless{}{-}} \FunctionTok{read.delim}\NormalTok{(}\StringTok{"data/spozycie.txt"}\NormalTok{, }\AttributeTok{row.names=}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Obliczamy macierz odległości}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(spozycie, }\AttributeTok{method=}\StringTok{"euclidean"}\NormalTok{)}
+
+\CommentTok{\# Grupujemy kraje}
+\NormalTok{CA }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(d, }\AttributeTok{method=}\StringTok{"ward.D2"}\NormalTok{) }
+
+\CommentTok{\# Dendrogram}
+\FunctionTok{plot}\NormalTok{(CA)}
+\FunctionTok{rect.hclust}\NormalTok{(CA, }\AttributeTok{k=}\DecValTok{5}\NormalTok{, }\AttributeTok{border=}\StringTok{"red"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-75-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Podział krajów na 5 grup}
+\NormalTok{grupy }\OtherTok{\textless{}{-}} \FunctionTok{cutree}\NormalTok{(CA, }\AttributeTok{k=}\DecValTok{5}\NormalTok{)}
+\NormalTok{grupy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Albania            Austria           Bulgaria            Croatia 
+##                  1                  2                  3                  3 
+##     Czech_Republic            Denmark            Estonia            Finland 
+##                  3                  4                  3                  2 
+##             France            Germany             Greece            Hungary 
+##                  1                  4                  1                  3 
+##            Iceland            Ireland              Italy             Latvia 
+##                  4                  2                  1                  3 
+##          Lithuania        Netherlands             Norway             Poland 
+##                  3                  2                  4                  3 
+##           Portugal            Romania Russian_Federation           Slovakia 
+##                  5                  1                  3                  3 
+##           Slovenia              Spain             Sweden        Switzerland 
+##                  4                  5                  2                  2 
+##     United_Kingdom 
+##                  4
+\end{verbatim}
+
+\hypertarget{statystyka}{%
+\chapter{Statystyka}\label{statystyka}}
+
+W tej części opieram się w dużej mierze na książce ``Przewodnik po pakiecie R'' P. Biecka oraz na kursie ``Środowisko R od podstaw''. Nie ma ona być wprowadzeniem do statystyki jako takiej, ale jedynie pokazaniem jakie funkcje R można wykorzystać do przeprowadzenie często stosowanych analiz statystycznych.
+
+Przystępne wprowadzenie do statystyki dla biologów znalazłam na stronie dotyczącej badania \emph{C. elegans} - \href{http://www.wormbook.org/chapters/www_statisticalanalysis/statisticalanalysis.html\#sec1}{wormbook.org}. Bardzo mało matematyki i wzorów, za to sporo przykładów, szkoda tylko, że nie ma nic o R ;)
+
+\hypertarget{podstawowe-statystyki-opisowe}{%
+\section{Podstawowe statystyki opisowe}\label{podstawowe-statystyki-opisowe}}
+
+Skrócone podsumowanie danych liczbowych otrzymamy przy użyciu \texttt{summary} - średnia, mediana, wartość min i max, oraz pierwszy i trzeci kwantyl.
+
+Podstawowe funkcje służące do opisu danych to:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Funkcja & Opis & Uwagi \\
+\midrule
+\endhead
+\texttt{mean} & średnia & \\
+\texttt{median} & mediana & \\
+\texttt{sd} & odchylenie standardowe & \\
+\texttt{var} & wariancja & \\
+\texttt{min} & wartość minimalna & \\
+\texttt{max} & wartość maksymalna & \\
+\texttt{range} & zakres danych & \\
+\texttt{IQR} & rozstęp kwartylowy & \\
+\texttt{geometric.mean} & średnia geometryczna & \\
+\texttt{weighted.mean} & średnia ważona & musimy podać wektor wag do każdego elementu \\
+\texttt{kurtosis} & kurtoza & pakiet moments \\
+\texttt{skewness} & skośność & pakiet moments \\
+\texttt{mlv} & moda & pakiet modeest \\
+\texttt{quantile} & wybrane kwantyle & należy podać, które kwantyle mają być policzone \\
+\texttt{mad} & odchylenie medianowe & \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wektor }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\AttributeTok{mean=}\DecValTok{2}\NormalTok{)}
+
+\FunctionTok{mean}\NormalTok{(wektor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.008501
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(wektor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.00913
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{range}\NormalTok{(wektor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.253799  4.865792
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{quantile}\NormalTok{(wektor, }\FunctionTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.75}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      25%      40%      50%      60%      75% 
+## 1.271471 1.725972 2.009130 2.273003 2.737301
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(modeest)}
+\FunctionTok{mlv}\NormalTok{(wektor, }\AttributeTok{method =} \StringTok{\textquotesingle{}shorth\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.868663
+\end{verbatim}
+
+\hypertarget{liczby-pseudolosowe}{%
+\section{Liczby pseudolosowe}\label{liczby-pseudolosowe}}
+
+Podczas pracy w R często przydaje się możliwość szybkiego wygenerowania liczb z danego rozkładu. Można w ten sposób np. przetestować nową funkcję (również własną ;) )
+
+Wszystkie takie funkcje zaczynają się od r, a ich pierwszy argument to ilość liczb jaka ma zostać wygenerowana.
+
+Jeżeli chcemy dwa razy wygenerować takie same liczby należy najpierw ustawić ziarno - \texttt{set.seed}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+Funkcja & opis & parametry \\
+\midrule
+\endhead
+\texttt{runif} & rozkład jednostajny, od 0 do 1 & zmiana wartości \texttt{min} i \texttt{max} rozkładu \\
+\texttt{rnorm} & rozkład normalny, średnia = 0, odchylenie = 1 & zmiana \texttt{mean} i \texttt{sd} \\
+\texttt{rlnorm} & rozkład log-normalny & zmiana \texttt{meanlog} i \texttt{sdlog} \\
+\texttt{rexp} & rozkład wykładniczy & zmiana \texttt{rate} \\
+\texttt{rbinom} & rozkład dwumianowy & ustawiamy wielkość (\texttt{size}) i prawdopodobieństwo (\texttt{prob}) \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{rlnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\NormalTok{c }\OtherTok{\textless{}{-}} \FunctionTok{rexp}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(a, }\AttributeTok{main=}\StringTok{"Normalny"}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(b, }\AttributeTok{main =} \StringTok{"Log{-}Normalny"}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(c, }\AttributeTok{main =} \StringTok{"Wykładniczy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...):
+## conversion failure on 'Wykładniczy' in 'mbcsToSbcs': dot substituted for <c5>
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...):
+## conversion failure on 'Wykładniczy' in 'mbcsToSbcs': dot substituted for <82>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(d, }\AttributeTok{main =} \StringTok{"Jenostajny"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-77-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Możemy też potrzebować wektor losowych wartości z danego zakresu. Służy do tego funckja \texttt{sample}. Pierwszym jej argumentem jest wektor, z którego mają być losowane wartości, drugim ilość elementów do losowania. Można też podać czy losowanie ma być ze zwracaniem (\texttt{replace=TRUE}) i wektor prawdopodobieństwa dla każdego elementu, jeżeli nie mają być takie same. Prawdopodobieństwa muszą sumować się do 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Symulacja 200 rzutów kością}
+
+\NormalTok{kosc }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\DecValTok{200}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(kosc))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Symulacja nieuczciwej kości}
+
+\NormalTok{kosc2 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\DecValTok{200}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{, }\FloatTok{0.2}\NormalTok{, }\FloatTok{0.3}\NormalTok{))}
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(kosc2))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-2.pdf}
+
+\hypertarget{podstawowe-testy-statystyczne}{%
+\section{Podstawowe testy statystyczne}\label{podstawowe-testy-statystyczne}}
+
+\hypertarget{test-t-studenta---weryfikacja-ruxf3wnoux15bci-ux15brednich}{%
+\subsection{Test t-studenta - weryfikacja równości średnich}\label{test-t-studenta---weryfikacja-ruxf3wnoux15bci-ux15brednich}}
+
+Można go wykonać dla jednej lub dwóch prób przy pomocy funkcji \texttt{t.test}. Dane muszą być z rozkładu normalnego, ale domyślnie nie muszą mieć równej wariancji.
+
+Przy teście dla jednej próby należy podać wartość średniej \texttt{mu}, do której ma zostać przyrównana próba (domyślnie wynosi 0).
+
+Przy teście dla dwóch prób możemy również wykonać test dla prób sparowanych - \texttt{paired=TRUE} - sprawdzamy czy różnica między próbami jest różna od 0 np. dane przed i po dodaniu jakiegoś czynnika
+
+Domyślnie wykonywany jest test dwustronny, możemy to zmienić parametrem \texttt{alternative} ustawiając \texttt{"less"} albo \texttt{"greater"}.
+
+Wynik testu podaje nam kilka wartości:
+
+\begin{itemize}
+\item
+  wartość statystyki testowej
+\item
+  ilość stopni swobody
+\item
+  p-value - minimalny poziom istotności dla którego możemy odrzucić hipotezę zerową. Np. p-value równy 0.05 oznacza, że jeżeli odrzucimy hipotezę zerową istnieje 5\% szans, że popełnimy błąd
+\item
+  hipoteza alternatywna
+\item
+  przedział ufności dla wyliczonej średniej albo różnicy między średnimi
+\item
+  średnia z próby
+\end{itemize}
+
+Możemy wyświetlić wszystkie te wartości albo jedynie interesujące nas poprzez znak \$ np. \texttt{t.test(x)\$p.value}. Wynik takiego testu można też przypisać do zmiennej i wykorzystać później.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# test dla jednej próby, porównanie do średnia równej 0}
+\FunctionTok{t.test}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  x
+## t = -0.31224, df = 99, p-value = 0.7555
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  -0.2042882  0.1487354
+## sample estimates:
+##   mean of x 
+## -0.02777643
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  y
+## t = 9.0505, df = 99, p-value = 1.287e-14
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.7738458 1.2084402
+## sample estimates:
+## mean of x 
+##  0.991143
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test dla dwóch prób}
+\FunctionTok{t.test}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  x and y
+## t = -7.2217, df = 190.02, p-value = 1.203e-11
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.2972245 -0.7406144
+## sample estimates:
+##   mean of x   mean of y 
+## -0.02777643  0.99114303
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wynik }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(x,y)}
+\NormalTok{wynik}\SpecialCharTok{$}\NormalTok{p.value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.203272e-11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wynik}\SpecialCharTok{$}\NormalTok{conf.int}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.2972245 -0.7406144
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test t można przeprowadzić dla większej ilości grup przy pomocy pairwise.t.test, }
+\CommentTok{\# wartości p zostaną wtedy dostoswane do wielokrotnego powtarzania testu}
+\FunctionTok{pairwise.t.test}\NormalTok{(dane1}\SpecialCharTok{$}\NormalTok{pomiar, dane1}\SpecialCharTok{$}\NormalTok{Szczep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  dane1$pomiar and dane1$Szczep 
+## 
+##   A      B     
+## B <2e-16 -     
+## C <2e-16 <2e-16
+## 
+## P value adjustment method: holm
+\end{verbatim}
+
+Jeżeli nie wiemy z jakiego rozkładu pochodzą dane możemy wykorzystać test nieparametryczny - test Wilcoxona \texttt{wilcox.test}, też podaje wartość p.
+
+Analogicznie dla \texttt{t.test} istnieje funkcja \texttt{pairwise.wilcox.test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wilcox.test}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  x and y
+## W = 2379, p-value = 1.525e-10
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\hypertarget{test-f---weryfikacja-ruxf3wnoux15bci-wariancji}{%
+\subsection{Test F - weryfikacja równości wariancji}\label{test-f---weryfikacja-ruxf3wnoux15bci-wariancji}}
+
+Podobny w składni do \texttt{t.test}, wykonujemy funkcją \texttt{var.test}. Również zakładamy, że dane pochodzą z rozkładu normalnego. Zastosowanie go dla danych z innych rozkładów może prowadzić do błędnych wniosków.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var.test}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  F test to compare two variances
+## 
+## data:  x and y
+## F = 0.65984, num df = 99, denom df = 99, p-value = 0.0398
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.4439686 0.9806782
+## sample estimates:
+## ratio of variances 
+##          0.6598411
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{sd=}\DecValTok{3}\NormalTok{)}
+
+\FunctionTok{var.test}\NormalTok{(x,z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  F test to compare two variances
+## 
+## data:  x and z
+## F = 0.076738, num df = 99, denom df = 99, p-value < 2.2e-16
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.05163257 0.11405070
+## sample estimates:
+## ratio of variances 
+##         0.07673806
+\end{verbatim}
+
+\hypertarget{testowanie-zgodnoux15bci-z-rozkux142adem-normalnym-i-dopasowywanie-parametruxf3w-rozkux142adu}{%
+\subsection{Testowanie zgodności z rozkładem normalnym i dopasowywanie parametrów rozkładu}\label{testowanie-zgodnoux15bci-z-rozkux142adem-normalnym-i-dopasowywanie-parametruxf3w-rozkux142adu}}
+
+Metoda graficzna to wspomniany już wykres kwantylowy (\texttt{qqPlot}).
+
+Kilka testów, które można wykorzystać znajduje się w pakiecie nortest np. \texttt{shapiro.test}, \texttt{cvm.test}.
+
+Test Shapiro-Wilka należy do bardziej popularnych, liczba obserwacji powinna mieścić się w zakresie od 3 do 5000.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{500}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rlnorm}\NormalTok{(}\DecValTok{500}\NormalTok{, }\AttributeTok{sdlog =} \FloatTok{0.5}\NormalTok{)}
+
+\CommentTok{\# histogram i wykres kwantylowy dla danych x i y}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(x)}
+\FunctionTok{hist}\NormalTok{(y)}
+\FunctionTok{qqPlot}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 205 237
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqPlot}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-82-1.pdf}
+
+\begin{verbatim}
+## [1] 221  99
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\CommentTok{\# test Shapiro{-}Wilka do sprawdzania zgodności z rozkładem normalnym}
+\FunctionTok{shapiro.test}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  x
+## W = 0.99823, p-value = 0.8944
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  y
+## W = 0.9017, p-value < 2.2e-16
+\end{verbatim}
+
+Do sprawdzenie zgodności z zadanym rozkładem możemy wykorzystać test Kołmogorowa-Smirnowa - \texttt{ks.test}. Do funkcji należy podać wektor obserwacji oraz albo drugi wektor obserwacji (sparwdzamy czy pochodzą z takiego samego rozkładu) albo nazwę funkcji obliczającej dystrybuantę rozkładu np. \texttt{pnorm} (normalny), \texttt{plnorm} (log-normalny), \texttt{punif} (jednostajny).
+
+Jeżeli parametry rozkładu różnią się od domyślnych to należy je podać np. \texttt{mean} i \texttt{sd} dla rozkładu normalnego.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+
+\NormalTok{x1 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+
+\NormalTok{x2 }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{)}
+
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rlnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\AttributeTok{sdlog =} \FloatTok{0.5}\NormalTok{)}
+
+\CommentTok{\# Sprawdzamy czy obserwacje mają taki sam rozkład}
+\FunctionTok{ks.test}\NormalTok{(x,x1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  x and x1
+## D = 0.037, p-value = 0.5004
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ks.test}\NormalTok{(x,x2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  x and x2
+## D = 0.671, p-value < 2.2e-16
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ks.test}\NormalTok{(x,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  x and y
+## D = 0.64, p-value < 2.2e-16
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sprawdzamy czy x pochodzi z rozkładu normalnego czy log{-}normalnego}
+\FunctionTok{ks.test}\NormalTok{(x, pnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x
+## D = 0.022326, p-value = 0.7012
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ks.test}\NormalTok{(x, plnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x
+## D = 0.54985, p-value < 2.2e-16
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Jeżeli nie podamy, że średnia x2 równa się 2 otrzymamy błędny wynik}
+\FunctionTok{ks.test}\NormalTok{(x2, pnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x2
+## D = 0.68387, p-value < 2.2e-16
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ks.test}\NormalTok{(x2, pnorm, }\AttributeTok{mean =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x2
+## D = 0.020089, p-value = 0.8144
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Czy y pasuje do rozkładu normalnego czy log{-}normalnego}
+\FunctionTok{ks.test}\NormalTok{(y, pnorm, }\AttributeTok{sd =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  y
+## D = 0.7663, p-value < 2.2e-16
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ks.test}\NormalTok{(y, plnorm, }\AttributeTok{sd =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  y
+## D = 0.02376, p-value = 0.6249
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+Do oszacowania parametrów rozkładu można wykorzystać funkcję \texttt{fitdistr} z pakietu MASS. Podajemy wektor obserwacji oraz funkcję gęstości rozkładu. Rozpoznawane funkcje to np. \texttt{"normal",\ "log-normal",\ "exponential",\ "f",\ "t"} itp.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\AttributeTok{mean=}\DecValTok{20}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.5}\NormalTok{)}
+
+\FunctionTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'MASS'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:patchwork':
+## 
+##     area
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# obliczamy parametry rozkładu normalnego i log{-}normalnego dla danych x}
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{fitdistr}\NormalTok{(x, }\StringTok{"normal"}\NormalTok{)}
+\NormalTok{fit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       mean           sd     
+##   20.02764577    0.51181914 
+##  ( 0.01618514) ( 0.01144462)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit2 }\OtherTok{\textless{}{-}} \FunctionTok{fitdistr}\NormalTok{(x, }\StringTok{"log{-}normal"}\NormalTok{)}
+\NormalTok{fit2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      meanlog         sdlog    
+##   2.9967861138   0.0256138133 
+##  (0.0008099799) (0.0005727423)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# sprawdzamy czy dane x faktycznie pochodzą z rozkładu o parametrach obliczonych wyżej}
+\FunctionTok{ks.test}\NormalTok{(x, pnorm, fit}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{1}\NormalTok{], fit}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x
+## D = 0.013869, p-value = 0.9906
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ks.test}\NormalTok{(x, pnorm, fit2}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{1}\NormalTok{], fit2}\SpecialCharTok{$}\NormalTok{estimate[}\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  x
+## D = 1, p-value < 2.2e-16
+## alternative hypothesis: two-sided
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{rlnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\AttributeTok{sdlog =} \FloatTok{0.4}\NormalTok{)}
+\FunctionTok{fitdistr}\NormalTok{(y, }\StringTok{"log{-}normal"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      meanlog         sdlog    
+##   -0.010771248    0.395992732 
+##  ( 0.012522390) ( 0.008854667)
+\end{verbatim}
+
+\hypertarget{obliczanie-przedziaux142uxf3w-ufnoux15bci-dla-ux15bredniej-i-bux142ux119du-standardowego}{%
+\subsection{Obliczanie przedziałów ufności dla średniej i błędu standardowego}\label{obliczanie-przedziaux142uxf3w-ufnoux15bci-dla-ux15bredniej-i-bux142ux119du-standardowego}}
+
+Błąd standardowy obliczamy ze wzoru: \[SEM= odch/\sqrt{n}\]. Pokazuje estymowane odchylenie pomiędzy prawdziwą średnią populacji, a obliczoną dla próby.
+
+W R nie ma funkcji liczącej błąd standardowy, ale można takie przeliczenie wykonać samemu albo napisać taką funkcję
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{300}\NormalTok{, }\AttributeTok{mean=}\DecValTok{10}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.5}\NormalTok{)}
+
+\FunctionTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.04872
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5133524
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SEM }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(x)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{length}\NormalTok{(x))}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Błąd standardowy wynosi"}\NormalTok{, SEM)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Błąd standardowy wynosi 0.02963841
+\end{verbatim}
+
+Przedział ufności o istotności 0.95 mówi nam, że prawdopodobieństwo znalezienia estymowanego parametru w tym przedziale wynosi 95\%.
+
+Przedział ufności dla rozkładu normalnego przy poziomie istotności 0.95 wyliczamy ze wzoru:
+\[ci= 1.96*odch/\sqrt{n}\]
+\[Średnia +/- ci\]
+
+1.96 to 0.975 kwantyl rozkładu normalnego.
+
+Zamiast 1.96 możemy podstawić wartość wyliczoną z rozkładu t przy pomocy: \texttt{qt(0.975,\ df)}
+
+Przy dużej liczebności próby (ok. 300) wyjdzie na to samo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{120}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean=}\DecValTok{3}\NormalTok{, }\AttributeTok{sd=}\FloatTok{0.75}\NormalTok{)}
+
+\NormalTok{(srednia}\OtherTok{\textless{}{-}}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(x),}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(x),}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.79
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ci }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FloatTok{1.96}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(x)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{length}\NormalTok{(x)),}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{lower }\OtherTok{\textless{}{-}}\NormalTok{ srednia}\SpecialCharTok{{-}}\NormalTok{ci}
+\NormalTok{upper }\OtherTok{\textless{}{-}}\NormalTok{ srednia}\SpecialCharTok{+}\NormalTok{ci}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Średnia x wynosi"}\NormalTok{, srednia, }\StringTok{"w przedziale ufności"}\NormalTok{, lower, upper)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Średnia x wynosi 3.02 w przedziale ufności 2.86 3.18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ci }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(}\FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df=}\NormalTok{(}\FunctionTok{length}\NormalTok{(x)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{))}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(x)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\FunctionTok{length}\NormalTok{(x)),}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{lower }\OtherTok{\textless{}{-}}\NormalTok{ srednia}\SpecialCharTok{{-}}\NormalTok{ci}
+\NormalTok{upper }\OtherTok{\textless{}{-}}\NormalTok{ srednia}\SpecialCharTok{+}\NormalTok{ci}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Średnia x wynosi"}\NormalTok{, srednia, }\StringTok{"w przedziale ufności"}\NormalTok{, lower, upper)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Średnia x wynosi 3.02 w przedziale ufności 2.86 3.18
+\end{verbatim}
+
+Przedział ufności dla średniej można też znaleźć w wyniku \texttt{t.test}.
+
+\hypertarget{testowanie-korelacji}{%
+\subsection{Testowanie korelacji}\label{testowanie-korelacji}}
+
+Wartość korelacji zawiera się pomiędzy -1 a 1. 0 oznacza całkowity brak korelacji. Do 0.7 korelację określamy jako silną.
+
+Korelację obserwacji z dwóch wektorów albo całej macierzy można obliczyć przy pomocy funkcji \texttt{cor}. Domyślnie obliczona zostanie za pomocą metody Pearsona, można to zmienić na metodę Spearmana - \texttt{method="spearman"}. Metoda Spearmana jest mniej wrażliwa na obserwacje odstające.
+
+Jeżeli chcemy poznać szczegóły dotyczące korelacji możemy użyć \texttt{cor.test}. Też można wybrać metodę, podaje również wartość p dla korelacji, przedział ufności, ilość stopni swobodi itp.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{30}\NormalTok{))}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{30}\NormalTok{))}
+
+\FunctionTok{plot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-87-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9866882
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x, y, }\AttributeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor.test}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  x and y
+## t = 32.105, df = 28, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.9719054 0.9937173
+## sample estimates:
+##       cor 
+## 0.9866882
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dodajemy wartość bardzo odstającą :)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x, }\SpecialCharTok{{-}}\DecValTok{100}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(y, }\DecValTok{10}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-87-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wartość korelacji wyliczona metodą spearmana zmienia się dużo mniej}
+\FunctionTok{cor}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.9816699
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x, y, }\AttributeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8125
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wartość odstająca może też dać korelację pearsona tam gdzie jej wcale nie ma}
+\CommentTok{\# ale korelacja spearmana nie zmieni się tak bardzo}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{30}\NormalTok{))}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\DecValTok{30}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-87-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1557759
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x, }\DecValTok{10}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(y, }\DecValTok{10}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-87-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9762845
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(x, y, }\AttributeTok{method=}\StringTok{"spearman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2383065
+\end{verbatim}
+
+\hypertarget{test-chi-kwadrat---zgodnoux15bux107-rozkux142adu-zmiennych-jakoux15bciowych}{%
+\subsection{Test chi-kwadrat - zgodność rozkładu zmiennych jakościowych}\label{test-chi-kwadrat---zgodnoux15bux107-rozkux142adu-zmiennych-jakoux15bciowych}}
+
+Służy do weryfikacji zależności pomiędzy dwiema zmiennymi jakościowymi, funkcja \texttt{chisq.test}. Jako argument najlepiej podstawić macierz kontyngencji wyliczoną funkcją \texttt{table}. Poza wartością p można też sprawdzić wartości oczekiwane - \texttt{wynik\$expected}. Test chi\^{}2 można wykorzystać też dla wiekszych macierzy.
+
+Dla tablic 2x2 można również użyć dokładnego testu Fishera - \texttt{fisher.test}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Wygenerujemy przykładowe dane {-} takie same}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{jeden  =}  \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{),}\DecValTok{200}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{), }
+                \AttributeTok{dwa  =}  \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"grupa1"}\NormalTok{,}\StringTok{"grupa2"}\NormalTok{),}\DecValTok{200}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{))}
+
+\CommentTok{\# różne}
+
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{jeden  =}  \FunctionTok{c}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{),}\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.6}\NormalTok{)),}
+                            \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{),}\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.3}\NormalTok{))),}
+                \AttributeTok{dwa  =}  \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"grupa1"}\NormalTok{,}\StringTok{"grupa2"}\NormalTok{),}\AttributeTok{each =} \DecValTok{100}\NormalTok{))}
+
+\NormalTok{(tabela\_x }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      dwa
+## jeden grupa1 grupa2
+##     A     45     50
+##     B     52     53
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(tabela\_y }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      dwa
+## jeden grupa1 grupa2
+##     A     40     77
+##     B     60     23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(tabela\_x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  tabela_x
+## X-squared = 0.02654, df = 1, p-value = 0.8706
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{chisq.test}\NormalTok{(tabela\_y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  tabela_y
+## X-squared = 26.691, df = 1, p-value = 2.387e-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fisher.test}\NormalTok{(tabela\_x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Fisher's Exact Test for Count Data
+## 
+## data:  tabela_x
+## p-value = 0.7786
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.5068482 1.6595976
+## sample estimates:
+## odds ratio 
+##  0.9177044
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{fisher.test}\NormalTok{(tabela\_y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Fisher's Exact Test for Count Data
+## 
+## data:  tabela_y
+## p-value = 1.675e-07
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.1025177 0.3835088
+## sample estimates:
+## odds ratio 
+##  0.2009083
+\end{verbatim}
+
+Jeżeli chcemy tylko sprawdzić prawdopodobieństwo możemy użyć testu propocji - \texttt{prop.test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykładowo czy 785 sukcesów na 1500 prób jest istotnie różne od p=0.5}
+
+\FunctionTok{prop.test}\NormalTok{(}\DecValTok{785}\NormalTok{, }\DecValTok{1500}\NormalTok{, }\AttributeTok{p =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  785 out of 1500, null probability 0.5
+## X-squared = 3.174, df = 1, p-value = 0.07482
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4976972 0.5488486
+## sample estimates:
+##         p 
+## 0.5233333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# można też wykonać test proporcji dla większej ilości danych {-} pairwise.prop.test}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{190}\NormalTok{,}\DecValTok{475}\NormalTok{,}\DecValTok{350}\NormalTok{,}\DecValTok{65}\NormalTok{)}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{500}\NormalTok{,}\DecValTok{1000}\NormalTok{,}\DecValTok{800}\NormalTok{,}\DecValTok{250}\NormalTok{)}
+
+\FunctionTok{pairwise.prop.test}\NormalTok{(x, n, }\AttributeTok{p.adjust.method =} \StringTok{"bonferroni"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pairwise comparisons using Pairwise comparison of proportions 
+## 
+## data:  x out of n 
+## 
+##   1      2       3      
+## 2 0.0035 -       -      
+## 3 0.2803 0.7427  -      
+## 4 0.0086 7.8e-09 4.8e-06
+## 
+## P value adjustment method: bonferroni
+\end{verbatim}
+
+\hypertarget{modelowanie---czyli-jak-dopasowaux107-liniux119-trendu}{%
+\section{Modelowanie - czyli jak dopasować linię trendu}\label{modelowanie---czyli-jak-dopasowaux107-liniux119-trendu}}
+
+Zależność pomiędzy dwiema zmiennymi ilościowymi najłatwiej przedstawić na wykresie rozrzutu. Kolejnym krokiem może być próba dopasowania do danych jakiegoś modelu np. liniowego, ale może być też bardziej złożony np. model wzrostu logistycznego, Michaelisa-Menten itp.
+
+\hypertarget{regresja-liniowa}{%
+\subsection{Regresja liniowa}\label{regresja-liniowa}}
+
+Najbardziej popularną funkcją w R do wyznaczania modeli liniowych jest \texttt{lm}. Wymaga jedynie podania formuły opisującej modelowaną przez nas zależność i ramki danych.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Jako przykład wykorzystamy zbiór danych R dotyczący wzrostu drzewek pomarańczowych}
+
+\NormalTok{orange }\OtherTok{\textless{}{-}}\NormalTok{ Orange}
+
+\FunctionTok{head}\NormalTok{(orange, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Grouped Data: circumference ~ age | Tree
+##   Tree age circumference
+## 1    1 118            30
+## 2    1 484            58
+## 3    1 664            87
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wykres obwodu drzewa od wieku}
+
+\FunctionTok{plot}\NormalTok{(orange}\SpecialCharTok{$}\NormalTok{age, orange}\SpecialCharTok{$}\NormalTok{circumference)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+Formuły zapisujemy korzystając z \textasciitilde{} , np.:
+* zależność y od x: y\textasciitilde x,
+* zależność y od x i z: y \textasciitilde{} x + z,
+* zależność y od x, z i interakcji pomiędzy x i z: y \textasciitilde{} x + z + x:z albo y \textasciitilde{} x * z
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(circumference}\SpecialCharTok{\textasciitilde{}}\NormalTok{age, }\AttributeTok{data =}\NormalTok{ orange)}
+
+\NormalTok{fit}\SpecialCharTok{$}\NormalTok{coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept)         age 
+##  17.3996502   0.1067703
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = circumference ~ age, data = orange)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -46.310 -14.946  -0.076  19.697  45.111 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 17.399650   8.622660   2.018   0.0518 .  
+## age          0.106770   0.008277  12.900 1.93e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 23.74 on 33 degrees of freedom
+## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
+## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(orange}\SpecialCharTok{$}\NormalTok{age, orange}\SpecialCharTok{$}\NormalTok{circumference)}
+\FunctionTok{abline}\NormalTok{(fit, }\AttributeTok{col =} \StringTok{"green3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+Jeżeli chcemy jedynie wyznaczyć równanie funkcji liniowej - y = ax + b, wystarczy sprawdzić współczynniki dopasowanego modelu - coefficients. Intercept oznacza miejsce przecięcia z osią Y - współczynnik b, a age to wartość przez którą należy pomnożyć wiek drzewa żeby uzyskać jego obwód.
+
+Można powiedzić że według naszego modelu każdego roku obwód drzewa zwiększa się o wartość 0.107 mm.
+
+Funkcja \texttt{summary} pozwala zobaczyć wszystkie istotne informacje dotyczące naszego modelu.
+
+Pierwsza linijka podsumowania zawiera powtórzenie formuły jaką podaliśmy w funkcji.
+
+Następnie mamy podsumowanie wartości residuals - reszt. Są to różnice pomiedzy faktycznymi wartościami a wyznaczonymi ze wzoru. Model jest dobierany tak żeby suma kwadratów reszt była jak najmniejsza.
+
+Potem mamy tabelę z wymienionymi wszystkimi współczynnikami modelu. Istotna jest ostatnia kolumna zawierająca wartość p, wartość powyżej 0.05 sugeruje że dana zmienna nie jest istotna dla modelu i można ją z niego usunąć.
+
+Na końcu otrzymujemy jeszcze kilka wartości oceniających dobrany model jako całość. Znajoma powinna być wartość R-squared. Przyjmuje ona wartości z zakresu od 0 do 1 i oznacza procent wariancji obecnej w danych jaka może być wyjaśniona przy pomocy danego modelu. Może być przydatna przy ocenie który z kilku modeli wybrać do opisu naszych danych. Wartość adjusted R squared uwzględnia również ilość zmiennych jakie podaliśmy w formule.
+
+\hypertarget{zmienne-jakoux15bciowe-w-modelu}{%
+\subsection{Zmienne jakościowe w modelu}\label{zmienne-jakoux15bciowe-w-modelu}}
+
+W modelu możemy uwzględniać również zmienne jakościowe, muszą one jednak zostać zakodowane - zmienione w dane liczbowe. Funkcja \texttt{lm} domyślnie uznaje pierwszy poziom zmiennej za referencyjny, kolejne poziomy bedą się do niego odnosić.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# zbiór danych dotyczący wzrostu kurzcaków w zależności od rodzaju karmy}
+
+\NormalTok{chick }\OtherTok{\textless{}{-}}\NormalTok{ ChickWeight}
+
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(weight }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Time }\SpecialCharTok{+}\NormalTok{ Diet, }\AttributeTok{data =}\NormalTok{ chick))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = weight ~ Time + Diet, data = chick)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -136.851  -17.151   -2.595   15.033  141.816 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  10.9244     3.3607   3.251  0.00122 ** 
+## Time          8.7505     0.2218  39.451  < 2e-16 ***
+## Diet2        16.1661     4.0858   3.957 8.56e-05 ***
+## Diet3        36.4994     4.0858   8.933  < 2e-16 ***
+## Diet4        30.2335     4.1075   7.361 6.39e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 35.99 on 573 degrees of freedom
+## Multiple R-squared:  0.7453, Adjusted R-squared:  0.7435 
+## F-statistic: 419.2 on 4 and 573 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(chick, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Time, }\AttributeTok{y =}\NormalTok{ weight))}
+
+\NormalTok{p }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{stat\_smooth}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Diet), }\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+Wartości przy przy kolejnych typach karmy - Diet2, Diet3, Diet4, pokazują o ile średnio różnią się wartości wyznaczone dla nich od poziomu referencyjnego czyli Diet1. To znaczy, że kurczaki karmione karmą nr 2 są o 16.17 g cięższe od kurczaków karmionych karmą nr 1.
+
+\hypertarget{pakiet-drc---dose-response-models}{%
+\subsection{Pakiet drc - dose response models}\label{pakiet-drc---dose-response-models}}
+
+Pakiet drc zawiera szereg funkcji ułatwiających dopasowywanie do danych wiele modeli popularnych w biologii np. wzrost logistyczny, rozpad eksponencjalny, Michaelisa-Menten i inne.
+
+Podstawową funkcja to \texttt{drm}, w której podajemmy formułę, podobnie jak w funkcji \texttt{lm} oraz koniecznie funkcję startową, która ma zostać użyta do poszukiwania modelu. Funkcje o kolejnych numerach różnią się ilością parametrów, które są uznawane za stałe np. MM.2 zakłada że przy x = 0, y też jest równe 0.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Model & Funkcja startowa \\
+\midrule
+\endhead
+Logistyczny & LL.2, LL.3, LL.4, LL.5 \\
+Michaelisa-Menten & MM.2, MM.3 \\
+Eksponencjalny & EXD.2, EXD.3 \\
+\bottomrule
+\end{longtable}
+
+Wykres razem z dopasowaniem można uzyskać dzięki standardowej funkcji \texttt{plot}. Można również porównać kilka modeli podając wektor ze zmienną dzielącą dane na poziomy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(drc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 'drc' has been loaded.
+\end{verbatim}
+
+\begin{verbatim}
+## Please cite R and 'drc' if used for a publication,
+\end{verbatim}
+
+\begin{verbatim}
+## for references type 'citation()' and 'citation('drc')'.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'drc'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     gaussian, getInitial
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykładowe dane}
+
+\NormalTok{dane }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{stezenie  =} \FunctionTok{c}\NormalTok{( }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.2}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.5}\NormalTok{), }
+                   \AttributeTok{predkosc =} \FunctionTok{c}\NormalTok{( }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{0.9}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.02}\NormalTok{, }\FloatTok{1.09}\NormalTok{, }\FloatTok{1.15}\NormalTok{, }\FloatTok{1.23}\NormalTok{))}
+
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{drm}\NormalTok{(predkosc}\SpecialCharTok{\textasciitilde{}}\NormalTok{stezenie, }\AttributeTok{data =}\NormalTok{ dane, }\AttributeTok{fct =} \FunctionTok{MM.2}\NormalTok{())}
+
+\CommentTok{\# d to prędkośc maksymalna, e to Km}
+\CommentTok{\# w podsumowaniu dostajemy błąd standardowy i wartość p}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model fitted: Michaelis-Menten (2 parms)
+## 
+## Parameter estimates:
+## 
+##               Estimate Std. Error t-value   p-value    
+## d:(Intercept) 1.540562   0.082354 18.7066 3.098e-07 ***
+## e:(Intercept) 0.321284   0.047915  6.7053 0.0002761 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error:
+## 
+##  0.05833157 (7 degrees of freedom)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{log=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykładowe dane do porównania np. dwóch enzymów}
+\NormalTok{dane1 }\OtherTok{\textless{}{-}}\NormalTok{ dane}
+\NormalTok{dane1}\SpecialCharTok{$}\NormalTok{predkosc }\OtherTok{\textless{}{-}}\NormalTok{ dane1}\SpecialCharTok{$}\NormalTok{predkosc}\SpecialCharTok{/}\DecValTok{2}
+\NormalTok{dane }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(dane, dane1)}
+\NormalTok{dane}\SpecialCharTok{$}\NormalTok{poziom }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{), }\AttributeTok{each =} \DecValTok{9}\NormalTok{)}
+
+\CommentTok{\# model z dodanym podziałem na poziomy, możemy też nazwać oznaczane parametry}
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{drm}\NormalTok{(predkosc}\SpecialCharTok{\textasciitilde{}}\NormalTok{stezenie, poziom, }\AttributeTok{data =}\NormalTok{ dane, }\AttributeTok{fct =} \FunctionTok{MM.2}\NormalTok{(}\AttributeTok{names =} \FunctionTok{c}\NormalTok{(}\AttributeTok{d =} \StringTok{"Vmax"}\NormalTok{, }\AttributeTok{e =} \StringTok{"Km"}\NormalTok{)))}
+
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model fitted: Michaelis-Menten (2 parms)
+## 
+## Parameter estimates:
+## 
+##        Estimate Std. Error t-value   p-value    
+## Vmax:A 1.540560   0.065106 23.6622 1.089e-12 ***
+## Vmax:B 0.770280   0.065106 11.8311 1.122e-08 ***
+## Km:A   0.321282   0.037880  8.4816 6.889e-07 ***
+## Km:B   0.321282   0.075759  4.2408 0.0008227 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error:
+## 
+##  0.04611515 (14 degrees of freedom)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{log=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Podobnie wygląda dopasowywanie funkcji logistycznej}
+\CommentTok{\# Korzystamy z przykładowych danych z pakietu drc dla wpływu herbicydów na tylakoidy}
+
+\NormalTok{spinach.m1 }\OtherTok{\textless{}{-}} \FunctionTok{drm}\NormalTok{(SLOPE}\SpecialCharTok{\textasciitilde{}}\NormalTok{DOSE, CURVE, }\AttributeTok{data =}\NormalTok{ spinach, }\AttributeTok{fct =} \FunctionTok{LL.4}\NormalTok{())}
+
+\FunctionTok{summary}\NormalTok{(spinach.m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Model fitted: Log-logistic (ED50 as parameter) (4 parms)
+## 
+## Parameter estimates:
+## 
+##       Estimate Std. Error t-value   p-value    
+## b:1  0.5195192  0.0763600  6.8036 1.347e-09 ***
+## b:2  0.8007959  0.2256794  3.5484 0.0006340 ***
+## b:3  0.6819134  0.1285568  5.3044 8.838e-07 ***
+## b:4  1.8448094  0.1663521 11.0898 < 2.2e-16 ***
+## b:5  1.6507576  0.1758293  9.3884 8.857e-15 ***
+## c:1 -0.0165952  0.1078254 -0.1539 0.8780472    
+## c:2  0.1325890  0.0471932  2.8095 0.0061561 ** 
+## c:3  0.1464061  0.0604288  2.4228 0.0175253 *  
+## c:4  0.0795516  0.0394596  2.0160 0.0469555 *  
+## c:5 -0.0090656  0.0443536 -0.2044 0.8385337    
+## d:1  1.8795534  0.0423710 44.3594 < 2.2e-16 ***
+## d:2  0.9460003  0.0422667 22.3817 < 2.2e-16 ***
+## d:3  1.0903215  0.0405604 26.8814 < 2.2e-16 ***
+## d:4  2.1535780  0.0281853 76.4079 < 2.2e-16 ***
+## d:5  1.8062825  0.0292460 61.7616 < 2.2e-16 ***
+## e:1  1.7949548  0.4782321  3.7533 0.0003183 ***
+## e:2  0.9455299  0.2494933  3.7898 0.0002809 ***
+## e:3  1.3730228  0.4526848  3.0331 0.0032100 ** 
+## e:4  0.1973263  0.0101895 19.3657 < 2.2e-16 ***
+## e:5  0.2107935  0.0138248 15.2475 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error:
+## 
+##  0.0735284 (85 degrees of freedom)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(spinach.m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-3.pdf}
+
+Możliwości tego pakietu sa dużo większe niż przedstawione powyżej. Autorzy przygotowali bardzo dobrą instrukcję użytkowania swojego pakietu razem ze szczegółowymi przykładami użycia wszystkich funkcji. Można ją znaleźć na stronie \href{http://www.bioassay.dk/}{Biossay}.
+
+\hypertarget{analiza-anova}{%
+\section{Analiza ANOVA}\label{analiza-anova}}
+
+Test ANOVA zakłada, że nasze dane pochodzą z rozkładu normalnego, mają takie same wariancje i są niezależne.
+
+Jeżeli nasze dane nie spełniają wymogu normalności można albo dane znormalizować (np logarytm) albo zastosować test nieparametryczny np. test Kruskala\_Wallisa albo test Friedmana.
+
+Analizę wariancji można podzielić na jedno- i wieloczynnikową. Dane powinny zawierać wektor wartości (ilościowy), które można pogrupować wobec jednej lub więcej zmiennych jakościowych.
+
+ANOVA w R można przeprowadzić na kilka sposobów, do popularnych należą funkcje \texttt{anova} i \texttt{aov}, które różnią się sposobem wywołania i prezentacji wyników.
+
+Aby stwierdzić które średnie w naszym zbiorze danych różnią się można przeprowadzić tzw. testy post hoc np. test HSD Tukeya - \texttt{TukeyHSD}, \texttt{HSD.test} (pakiet agricolae).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykładowe dane z rozkładu normalnego, różniące się średnią}
+
+\NormalTok{dane }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{200}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{200}\NormalTok{,}\FloatTok{1.3}\NormalTok{), }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{200}\NormalTok{, }\DecValTok{1}\NormalTok{)), }
+                   \AttributeTok{y =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{,}\StringTok{"C"}\NormalTok{), }\AttributeTok{each =} \DecValTok{200}\NormalTok{))}
+
+\CommentTok{\# ANOVA przy pomocy funkcji aov, konieczne użycie summary dla wyświetlenia wyniku}
+
+\NormalTok{model2 }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(x}\SpecialCharTok{\textasciitilde{}}\NormalTok{y, }\AttributeTok{data =}\NormalTok{ dane)}
+\FunctionTok{summary}\NormalTok{(model2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value   Pr(>F)    
+## y             2   21.4  10.721   10.47 3.38e-05 ***
+## Residuals   597  611.0   1.023                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test Tukeya}
+\CommentTok{\# Otrzymujemy wartość p dla każdej pary czynników i różnicę z przedziałem ufności}
+
+\FunctionTok{TukeyHSD}\NormalTok{(model2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = x ~ y, data = dane)
+## 
+## $y
+##           diff         lwr         upr     p adj
+## B-A  0.3082657  0.07056901  0.54596248 0.0068072
+## C-A -0.1451069 -0.38280364  0.09258983 0.3238938
+## C-B -0.4533726 -0.69106938 -0.21567591 0.0000264
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wynik testu Tukeya można pokazać na wykresie}
+
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{TukeyHSD}\NormalTok{(model2))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Analiza dwuczynnikowa}
+\CommentTok{\# Dodajemy nową kolumnę do danych zawierającą losowy czynnik z {-} nie powinien wpływać na średnią}
+\NormalTok{dane }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(dane, }\AttributeTok{z =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"d"}\NormalTok{, }\StringTok{"e"}\NormalTok{, }\StringTok{"f"}\NormalTok{), }\DecValTok{600}\NormalTok{, }\AttributeTok{replace =}\NormalTok{ T))}
+
+\NormalTok{model3 }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\FunctionTok{lm}\NormalTok{(x}\SpecialCharTok{\textasciitilde{}}\NormalTok{y }\SpecialCharTok{+}\NormalTok{ z, }\AttributeTok{data =}\NormalTok{ dane))}
+\FunctionTok{summary}\NormalTok{(model3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value   Pr(>F)    
+## y             2   21.4  10.721  10.472 3.39e-05 ***
+## z             2    1.9   0.939   0.917      0.4    
+## Residuals   595  609.1   1.024                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TukeyHSD}\NormalTok{(model3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = lm(x ~ y + z, data = dane))
+## 
+## $y
+##           diff         lwr         upr     p adj
+## B-A  0.3082657  0.07053406  0.54599743 0.0068173
+## C-A -0.1451069 -0.38283858  0.09262478 0.3239967
+## C-B -0.4533726 -0.69110433 -0.21564097 0.0000265
+## 
+## $z
+##            diff        lwr       upr     p adj
+## e-d -0.13293759 -0.3733960 0.1075208 0.3962997
+## f-d -0.02981066 -0.2634909 0.2038696 0.9516867
+## f-e  0.10312693 -0.1367823 0.3430362 0.5708251
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# z analizą interakcji między y i z}
+
+\NormalTok{model4 }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\FunctionTok{lm}\NormalTok{(x}\SpecialCharTok{\textasciitilde{}}\NormalTok{y }\SpecialCharTok{+}\NormalTok{ z }\SpecialCharTok{+}\NormalTok{ y}\SpecialCharTok{:}\NormalTok{z, }\AttributeTok{data =}\NormalTok{ dane))}
+\FunctionTok{summary}\NormalTok{(model4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value   Pr(>F)    
+## y             2   21.4  10.721  10.416 3.58e-05 ***
+## z             2    1.9   0.939   0.912    0.402    
+## y:z           4    0.8   0.201   0.196    0.941    
+## Residuals   591  608.3   1.029                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TukeyHSD}\NormalTok{(model4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = lm(x ~ y + z + y:z, data = dane))
+## 
+## $y
+##           diff         lwr        upr     p adj
+## B-A  0.3082657  0.06988454  0.5466470 0.0070013
+## C-A -0.1451069 -0.38348811  0.0932743 0.3259704
+## C-B -0.4533726 -0.69175385 -0.2149914 0.0000281
+## 
+## $z
+##            diff        lwr       upr     p adj
+## e-d -0.13293759 -0.3740530 0.1081778 0.3982824
+## f-d -0.02981066 -0.2641293 0.2045080 0.9519415
+## f-e  0.10312693 -0.1374378 0.3436917 0.5725553
+## 
+## $`y:z`
+##                diff         lwr          upr     p adj
+## B:d-A:d  0.29169835 -0.23720856  0.820605261 0.7359430
+## C:d-A:d -0.24652931 -0.79887024  0.305811617 0.9016398
+## A:e-A:d -0.17273824 -0.73220104  0.386724559 0.9890591
+## B:e-A:d  0.09317859 -0.45691785  0.643275023 0.9998503
+## C:e-A:d -0.26587624 -0.82052453  0.288772062 0.8590070
+## A:f-A:d -0.10214693 -0.63626789  0.431974033 0.9996283
+## B:f-A:d  0.26382737 -0.29319391  0.820848659 0.8670527
+## C:f-A:d -0.19632774 -0.72523465  0.332579172 0.9651189
+## C:d-B:d -0.53822766 -1.07803023  0.001574904 0.0513479
+## A:e-B:d -0.46443659 -1.01152427  0.082651091 0.1712732
+## B:e-B:d -0.19851977 -0.73602549  0.338985955 0.9661548
+## C:e-B:d -0.55757459 -1.09973789 -0.015411287 0.0383710
+## A:f-B:d -0.39384528 -0.91498971  0.127299145 0.3123801
+## B:f-B:d -0.02787098 -0.57246167  0.516719714 1.0000000
+## C:f-B:d -0.48802609 -1.00382530  0.027773125 0.0802806
+## A:e-C:d  0.07379107 -0.49598337  0.643565517 0.9999808
+## B:e-C:d  0.33970790 -0.22087250  0.900288297 0.6232939
+## C:e-C:d -0.01934692 -0.58439473  0.545700887 1.0000000
+## A:f-C:d  0.14438238 -0.40052999  0.689294758 0.9961077
+## B:f-C:d  0.51035669 -0.05702062  1.077733991 0.1173507
+## C:f-C:d  0.05020158 -0.48960099  0.590004144 0.9999986
+## B:e-A:e  0.26591682 -0.30168207  0.833515718 0.8740549
+## C:e-A:e -0.09313800 -0.66514949  0.478873496 0.9998889
+## A:f-A:e  0.07059131 -0.48153876  0.622721382 0.9999826
+## B:f-A:e  0.43656561 -0.13774713  1.010878355 0.3044797
+## C:f-A:e -0.02358950 -0.57067718  0.523498185 1.0000000
+## C:e-B:e -0.35905482 -0.92190881  0.203799170 0.5537669
+## A:f-B:e -0.19532552 -0.73796267  0.347311642 0.9710370
+## B:f-B:e  0.17064879 -0.39454374  0.735841316 0.9905600
+## C:f-B:e -0.28950632 -0.82701204  0.247999398 0.7605828
+## A:f-C:e  0.16372931 -0.38352176  0.710980372 0.9911155
+## B:f-C:e  0.52970361 -0.03992016  1.099327379 0.0919220
+## C:f-C:e  0.06954850 -0.47261480  0.611711800 0.9999822
+## B:f-A:f  0.36597430 -0.18368169  0.915630292 0.4929824
+## C:f-A:f -0.09418081 -0.61532523  0.426963619 0.9997563
+## C:f-B:f -0.46015511 -1.00474580  0.084435582 0.1761651
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test nieparametryczny Kruskala{-}Wallisa z pakietu podstawowego}
+\NormalTok{wynik }\OtherTok{\textless{}{-}} \FunctionTok{kruskal.test}\NormalTok{(dane}\SpecialCharTok{$}\NormalTok{x,dane}\SpecialCharTok{$}\NormalTok{y)}
+\NormalTok{wynik}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  dane$x and dane$y
+## Kruskal-Wallis chi-squared = 18.758, df = 2, p-value = 8.448e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# albo z pakietu agricolae {-} pokazuje nie tylko czy coś się różni, ale również które grupy}
+
+\NormalTok{wynik }\OtherTok{\textless{}{-}}\NormalTok{ agricolae}\SpecialCharTok{::}\FunctionTok{kruskal}\NormalTok{(dane}\SpecialCharTok{$}\NormalTok{x,dane}\SpecialCharTok{$}\NormalTok{y)}
+\NormalTok{wynik}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $statistics
+##      Chisq Df      p.chisq  t.value      MSD
+##   18.75789  2 8.448412e-05 1.963946 33.56365
+## 
+## $parameters
+##             test p.ajusted name.t ntr alpha
+##   Kruskal-Wallis      none dane$y   3  0.05
+## 
+## $means
+##      dane.x    rank       std   r        Min      Max       Q25       Q50
+## A 1.0811121 291.955 1.0485256 200 -2.0832352 3.923038 0.4085795 1.1321930
+## B 1.3893779 341.575 0.9788305 200 -0.9459343 3.808629 0.7090154 1.3669592
+## C 0.9360052 267.970 1.0064069 200 -1.5606246 3.654266 0.2692844 0.8887481
+##        Q75
+## A 1.611796
+## B 1.988996
+## C 1.655163
+## 
+## $comparison
+## NULL
+## 
+## $groups
+##    dane$x groups
+## B 341.575      a
+## A 291.955      b
+## C 267.970      b
+## 
+## attr(,"class")
+## [1] "group"
+\end{verbatim}
+
+\hypertarget{miscellaneous}{%
+\chapter{Miscellaneous}\label{miscellaneous}}
+
+\begin{itemize}
+\item
+  Pakiet beepr pozwala na generowanie dźwięków - funkcja \texttt{beep} :) Dostępnych jest 10 różnych, można również podać własny plik .wav. Może się przydać jeżeli uruchamiamy w R jakiś dłuższy proces i chcemy wiedzieć kiedy się skończy.
+\item
+  Pakiet fortunes zawiera zbiór cytatów na temat R, funkcja \texttt{fortune}
+\item
+  Cytowanie R - dla całego R - wpisujemy \texttt{citation()}, dla poszczególnych pakietów \texttt{citation("nazwa\_pakietu")}, podaje też cytowanie w formacie latex.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{citation}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## To cite R in publications use:
+## 
+##   R Core Team (2021). R: A language and environment for statistical
+##   computing. R Foundation for Statistical Computing, Vienna, Austria.
+##   URL https://www.R-project.org/.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Manual{,
+##     title = {R: A Language and Environment for Statistical Computing},
+##     author = {{R Core Team}},
+##     organization = {R Foundation for Statistical Computing},
+##     address = {Vienna, Austria},
+##     year = {2021},
+##     url = {https://www.R-project.org/},
+##   }
+## 
+## We have invested a lot of time and effort in creating R, please cite it
+## when using it for data analysis. See also 'citation("pkgname")' for
+## citing R packages.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{citation}\NormalTok{(}\StringTok{\textquotesingle{}ggplot2\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## To cite ggplot2 in publications, please use:
+## 
+##   H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+##   Springer-Verlag New York, 2016.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Book{,
+##     author = {Hadley Wickham},
+##     title = {ggplot2: Elegant Graphics for Data Analysis},
+##     publisher = {Springer-Verlag New York},
+##     year = {2016},
+##     isbn = {978-3-319-24277-4},
+##     url = {https://ggplot2.tidyverse.org},
+##   }
+\end{verbatim}
 
   \bibliography{book.bib,packages.bib}
 
