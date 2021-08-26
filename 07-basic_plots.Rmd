@@ -1,0 +1,261 @@
+# Wykresy - pakiet podstawowy
+
+W pakiecie podstawowym każdy typ wykresu jest rysowany przy pomocy innej funkcji. Różne funkcje mogą wymagać innego typu danych do działania. Wspólne są natomiast parametry dotyczące wyświetlania i wyglądu wykresu.
+
+Często, żeby uzyskać właściwy wygląd osi, legendy musimy ją dodać samodzielnie przy pomocy funkcji `legend` lub `axis`.
+
+Funkcje pakietu podstawowego przydają się najbardziej, gdy trzeba coś szybko sprawdzić, gdyż wymagają mniej pisania niż analogiczne funkcje ggplot2. Jednakże przygotowanie ładnego wykresu korzystając tylko z pakietu podstawowego jest żmudne.
+
+## Histogram - hist
+
+Histogram rysujemy funkcją `hist`. Należy podać wektor zawierający wartości, które mają zostać zliczone. Najważniejszym parametrem histogramu jest `breaks`, do którego można podać ilość słupków albo wektor przedziałów. `freq = TRUE` ozancza że na osi Y znajdą się zliczenie elementów w przydziałach, `FALSE` oznacza gęstości. Parametry `ylim` i `xlim` służą do zmiany startu i zakończenia osi. 
+
+Przy pomocy tej funkcji nie jest możliwe narysowanie histogramu z więcej niż jednego wektora. Możemy na niego nałożyć krzywą oznaczającą gęstość przy pomocy `lines(density(x))`. Możemy także nie rysować wykresu, ale otrzymać jego liczbową reprezentację używając `plot=FALSE`.
+
+```{r}
+
+hist(dane1_1$pomiar)
+hist(dane1_1$pomiar, freq = FALSE, breaks = 20, col = "lightgreen", xlim = c(2,8))
+lines(density(dane1_1$pomiar), col="red")
+
+# liczbowy opis histogramu - przedziały zliczenia, gęstości itd.
+hist(dane1_1$pomiar, plot=FALSE)
+```
+
+## Wykres rozrzutu - plot
+
+Wykres punktowy albo liniowy możemy otrzymać funkcją `plot`. Podajemy dwa wektory oznaczające współrzędne na osiach X i Y. Możemy określić typ wykresu `type`:
+
+* p - punkty
+
+* l - linia
+
+* o - punkty i linia
+
+* s, S - schodki
+
+* h - linie trochę jak histogram
+
+* n - brak
+
+Linię trendu możemy dodać wykorzystując funkcje `lm` i `abline` (dla zależności liniowych) albo `lines`, `lm` i `predict` (nieliniowe). 
+
+Używając `summary` i `lm` możemy wyświetlić wszystkie informacje dotyczące dopasowania.
+
+```{r}
+
+x <- sort(rnorm(10))
+y <- sort(rnorm(10))
+
+plot(x,y)
+plot(x,y, type = "l")
+
+#posortowane, losowe liczby z rozkładu jednostajnego
+a <- sort(runif(20))*2
+b <- sort(runif(20))*2
+
+plot(a,b)
+
+# dopasowujemy prostą zależność b od a i rysujemy na wykresie
+fit <- lm(b~a)
+abline(fit, col = 'red')
+
+# dane muszą być posortowane żeby działała funkcja lines
+set.seed(100)
+x <- sort(rnorm(20))
+set.seed(300)
+y <- sort(rnorm(20))
+plot(x,y)
+# dodajemy liniową linię trendu
+abline(lm(y~x), col = "red")
+# albo dopasowujemy wielomian drugiego stopnia
+lines(x, predict(lm(y~poly(x, 2, raw = TRUE), data.frame(x = x))), col = "blue")
+
+```
+
+Więcej informacji na temat dopasowywania modelu do danych w części dotyczącej statystyki :)
+
+## Wykres pudełkowy - boxplot
+
+Używamy funkcji `boxplot`. Możemy podać jeden lub kilka wektorów, które posłużą do rysowania "pudełek" albo podobnie jak w ggplot jeden wektor z wartościami i jeden ze zmiennymi je grupującymi. Wcięcia w boxplotach - `notch=TRUE`, wcięcia oznaczają przedział ufności dla mediany. Jeżeli wcięcia na siebie nie zachodzą to dwie populacje są od siebie najprawdopodobniej istotnie różne. `names` podpisy pod pudełkami.
+
+```{r}
+# Przykładowe dane
+
+x <- rnorm(100)
+y <- rnorm(100, mean = 2)
+
+boxplot(x, y)
+
+boxplot(dane1$pomiar ~ dane1$Szczep)
+```
+
+## Wykres słupkowy - barplot
+
+Rysowany przy pomocy funkcji `barplot`. Podajemy wektor albo matrycę wartości oznaczające wysokości słupków. Możemy szybko przygotować takie zliczenia funkcją `table`. W przypadku więcej niż jednego rodzaju słupków można okreslić czy mają być obok siebie - `beside=TRUE`, kolory zmieniamy parametrem `col`.
+
+```{r}
+
+barplot(table(dane2$pomiar))
+barplot(table(dane2$pomiar, dane2$Szczep))
+barplot(table(dane2$pomiar, dane2$Szczep), beside = TRUE)
+barplot(table(dane2$pomiar, dane2$Szczep), beside = TRUE, col = c("coral2", "green3", "dodgerblue2"))
+
+```
+
+
+## Wykres mozaikowy - mosaicplot
+
+Na tym wykresie liczebności poszczególnych grup są reprezentowane przez pole powierzchni prostokąta. Można go przygotować nawet dla trzech lub więcej różnych zmiennych wyliczeniowych poprzez użycie funkcji `table` albo formuły.
+
+```{r, fig.height=6, fig.width=6}
+# z funckją table
+
+mosaicplot(table(dane2$pomiar, dane2$warunki, dane2$Szczep), 
+           col = c("orange", "green3", "white"), ylab = "Warunki", xlab = "Pomiar")
+
+# z formułą
+mosaicplot(~pomiar + Szczep + warunki, data = dane2, col = TRUE)
+
+
+```
+
+## Wykres kwantylowy - qqPlot
+
+Dopasowanie danych do rozkładu normalnego można wizualnie sprawdzić przy pomocy wykresu kwantylowego.
+
+Funkcja `qqPlot` z pakietu car rysuje wykres kwantylowy z zaznaczonymi przedziałami ufności.
+
+```{r}
+library(car)
+
+# Dane z rozkładu normalnego
+x <- rnorm(300)
+# Dane z rozkładu lognormalnego
+y <- rlnorm(300)
+
+qqPlot(x)
+qqPlot(y)
+
+```
+
+## Diagram venna
+
+Istnieje wiele różnych funkcji generujących diagramy venna. Funkcja `venn` z pakietu gplots wydaje się być jedną z łatwiejszych. Jej argumentem musi być lista (tworzona funkcją `list` - każdy kolejny element listy to może być coś innego: wektor, ramka danych, inna lista itp.). W tym wypadku kolejne elementy listy to wektory zawierające wartości zliczane do diagramu. 
+
+Trzeba zauważyć, że wielkości obszarów nie odpowiadają liczebności grupy, może być nawet narysowany obszar z liczebnością 0.
+
+Można tworzyć diagramy z maksymalnie 5 grup, ale powyżej trzech stają się one trudne do odczytania, wtedy lepszą opcją jest narysowanie Upset plot
+
+```{r}
+
+# generowanie zestawów losowych liter
+set_1 <- sample(letters, 10)
+set_2 <- sample(letters, 10)
+set_3 <- sample(letters, 8)
+library(gplots)
+venn(list(grupa_1 = set_1, grupa_2 = set_2, grupa_3 = set_3))
+
+```
+
+Jeżeli chcielibyśmy mieć kolorowe diagramy należałoby użyć funkcji `venn.diagram` z pakietu VennDiagram. Ta funkcja stara się nie rysować obszarów, w których nic nie ma, efekt jej pracy jest również ładniejszy ;)
+
+```{r}
+library(VennDiagram)
+
+# Do wyświetlenia wymaga najpierw stworzenia obiektu typu grid
+grid.newpage()
+grid.draw(venn.diagram(list(grupa_1 = set_1, grupa_2 = set_2, grupa_3 = set_3), 
+                       fill = c("red", "green","yellow"), 
+                       alpha = c(0.5,0.5,0.5), 
+                       filename = NULL))
+
+```
+
+## Wykres korelacji - corrplot
+
+Jeżeli dane zawierają kilka kolumn z różnymi zmiennymi do szybkiego sprawdzenie korelacji między nimi możemy użyć macierzy korelacji. Z ramki danych można ją wyznaczyć funkcją `cor`, natomiast wykres takiej macierzy możemy zrobic np. przy użyciu funkcji `corrplot` z pakietu corrplot.
+
+```{r}
+# ładujemy dane dotyczące pogody
+pogoda <- read.delim("data/pogoda.txt")
+
+# tylko pierwsze cztery kolumny zawierają interesujące informacje
+colnames(pogoda)
+pogoda <- pogoda[,1:4]
+
+# dane zawierają brakujące informacje. Możemy je usunąć przy pomocy funkcji complete.cases
+# zwraca numery wierszy nie zawierających wartości NA
+pogoda <- pogoda[complete.cases(pogoda),]
+
+# przygotowujemy macierz korelacji
+macierz <- cor(pogoda)
+macierz
+
+library(corrplot)
+corrplot(macierz)
+corrplot(macierz, method = "ellipse", type = "lower")
+```
+
+## Clustering - analiza skupień
+
+Wykorzystamy funkcję `kmeans`, która pozwala na grupowanie danych w n-liczbę klasterów. Opiera się na metodzie tzw. klasyfikacji bez nadzoru (unsupervised learning), tak aby uzyskać minimalną wariancję wewnątrz danej grupy. 
+
+Słabością tej metody jest to, że dostaniemy tyle grup ile sobie zażyczymy (niekoniecznie naprawdę istniejących), dlatego dobrze jest wypróbować kilka wartości n.
+
+```{r}
+# Przygotowujemy dane złożone z dwóch grup
+x <- c(rnorm(100,1),rnorm(100,3))
+y <- c(rnorm(100,1),rnorm(100,3))
+
+plot(x,y)
+
+# Łączymy w matrycę - kmeans działa tylko na matrycach
+xy <- cbind(x,y)
+
+# Przeprowadzamy podział na grupy
+clu <- kmeans(xy, centers=2)
+clu
+
+# możemy sprawdzić dopasowanie - wiemy jakie były grupy
+
+test <- rep(c(2,1), each=100)
+ok <- sum(test == clu$cluster)
+ok/length(test)
+
+# Rysujemy ponownie wykres pokolorowany według wyznaczonych grup
+plot(xy, col=clu$cluster)
+# Dodajemy centra każdej z grup
+points(clu$centers, col=1:2, pch=8, cex=2)
+
+# Powtarzamy, ale z podziałem na 4 grupy
+# Dane zawierały tylko 2 grupy, ale zostaną podzielone na 4
+clu <- kmeans(xy, centers=4)
+plot(xy, col=clu$cluster)
+points(clu$centers, col=1:4, pch=8, cex=2)
+```
+
+Możemy także grupować dane według wielu zmiennych jendocześnie używając funkcji `dist` (redukuje wielowymiarowe dane do dwuwymiarowej macierzy odległości) i `hclust` (podział na grupy). Należy wybrać metodę grupowania, jedne z popularniejszych to `ward` i `complete`.
+
+Wynik można przedstawić jako dendrogram korzystając ze zwykłej funkcji `plot`. Poszczególne grupy na wykresie zaznaczamy używając `rect.hclust`, musimy jedynie podać ilość grup.
+
+Wyświetlić grupy możemy za pomocą funkcji `cutree`, tutaj również niezbędne jest podanie ilości grup.
+
+```{r, fig.height=7, fig.width=8}
+# Wykorzystamy dane spozycie z kursu R, spozycie produktów w różnych krajach 
+spozycie <- read.delim("data/spozycie.txt", row.names=1)
+
+# Obliczamy macierz odległości
+d <- dist(spozycie, method="euclidean")
+
+# Grupujemy kraje
+CA <- hclust(d, method="ward.D2") 
+
+# Dendrogram
+plot(CA)
+rect.hclust(CA, k=5, border="red") 
+
+# Podział krajów na 5 grup
+grupy <- cutree(CA, k=5)
+grupy
+```

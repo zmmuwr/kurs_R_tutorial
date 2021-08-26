@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Analiza i transformacja danych | Kurs R - Tutorial</title>
+  <meta name="description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Analiza i transformacja danych | Kurs R - Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Analiza i transformacja danych | Kurs R - Tutorial" />
+  
+  <meta name="twitter:description" content="Pomoc do kursu R - zawiera przykłady użycia języka R do analizy i wizualizacji danych głównie przy użyciu pakietów tidyverse" />
+  
+
+<meta name="author" content="Agnieszka Strzałka" />
+
+
+<meta name="date" content="2021-08-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dane.html"/>
+<link rel="next" href="wykresy---pakiet-ggplot2.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pomoc do kursu R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Wstęp</a></li>
+<li class="chapter" data-level="2" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html"><i class="fa fa-check"></i><b>2</b> Skąd ściągnąć R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#pomoc"><i class="fa fa-check"></i><b>2.1</b> Pomoc</a></li>
+<li class="chapter" data-level="2.2" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#packages"><i class="fa fa-check"></i><b>2.2</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#lista-pakietów-które-pojawiają-się-w-książce-uwaga-może-być-niekompletna"><i class="fa fa-check"></i><b>2.2.1</b> Lista pakietów, które pojawiają się w książce (uwaga może być niekompletna)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="skąd-ściągnąć-r.html"><a href="skąd-ściągnąć-r.html#r-studio"><i class="fa fa-check"></i><b>2.3</b> R Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dane.html"><a href="dane.html"><i class="fa fa-check"></i><b>3</b> Dane</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dane.html"><a href="dane.html#wczytanie-danych"><i class="fa fa-check"></i><b>3.1</b> Wczytanie danych</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="dane.html"><a href="dane.html#wczytanie-danych-z-plików-tekstowych"><i class="fa fa-check"></i><b>3.1.1</b> Wczytanie danych z plików tekstowych</a></li>
+<li class="chapter" data-level="3.1.2" data-path="dane.html"><a href="dane.html#wczytanie-danych-z-plików-excel"><i class="fa fa-check"></i><b>3.1.2</b> Wczytanie danych z plików excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="dane.html"><a href="dane.html#zapisanie-danych"><i class="fa fa-check"></i><b>3.2</b> Zapisanie danych</a></li>
+<li class="chapter" data-level="3.3" data-path="dane.html"><a href="dane.html#podstawowe-typy-danych-w-r"><i class="fa fa-check"></i><b>3.3</b> Podstawowe typy danych w R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="dane.html"><a href="dane.html#wektor-vector"><i class="fa fa-check"></i><b>3.3.1</b> Wektor (vector)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dane.html"><a href="dane.html#ramka-danych-data-frame"><i class="fa fa-check"></i><b>3.3.2</b> Ramka danych (data frame)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dane.html"><a href="dane.html#matryca-matrix"><i class="fa fa-check"></i><b>3.3.3</b> Matryca (matrix)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dane.html"><a href="dane.html#lista-list"><i class="fa fa-check"></i><b>3.3.4</b> Lista (list)</a></li>
+<li class="chapter" data-level="3.3.5" data-path="dane.html"><a href="dane.html#typ-liczbowy-numeric-znakowy-character-logiczny-logical"><i class="fa fa-check"></i><b>3.3.5</b> Typ liczbowy (numeric), znakowy (character), logiczny (logical)</a></li>
+<li class="chapter" data-level="3.3.6" data-path="dane.html"><a href="dane.html#typ-czynnikowy-factor"><i class="fa fa-check"></i><b>3.3.6</b> Typ czynnikowy (factor)</a></li>
+<li class="chapter" data-level="3.3.7" data-path="dane.html"><a href="dane.html#funkcje"><i class="fa fa-check"></i><b>3.3.7</b> Funkcje</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html"><i class="fa fa-check"></i><b>4</b> Analiza i transformacja danych</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#format-uporządkowany-wąski"><i class="fa fa-check"></i><b>4.1</b> Format uporządkowany (wąski)</a></li>
+<li class="chapter" data-level="4.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#pipes-potoki"><i class="fa fa-check"></i><b>4.2</b> Pipes (potoki)</a></li>
+<li class="chapter" data-level="4.3" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#sortowanie"><i class="fa fa-check"></i><b>4.3</b> Sortowanie</a></li>
+<li class="chapter" data-level="4.4" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#filtrowanie"><i class="fa fa-check"></i><b>4.4</b> Filtrowanie</a></li>
+<li class="chapter" data-level="4.5" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#grupowanie-i-obliczanie-nowych-zmiennych"><i class="fa fa-check"></i><b>4.5</b> Grupowanie i obliczanie nowych zmiennych</a></li>
+<li class="chapter" data-level="4.6" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#łączenie-tabel"><i class="fa fa-check"></i><b>4.6</b> Łączenie tabel</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Wykresy - pakiet ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#używane-dane"><i class="fa fa-check"></i><b>5.1</b> Używane dane</a></li>
+<li class="chapter" data-level="5.2" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#histogram-boxplot-i-inne"><i class="fa fa-check"></i><b>5.2</b> Histogram, boxplot i inne</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#histogram-i-density"><i class="fa fa-check"></i><b>5.2.1</b> Histogram i density</a></li>
+<li class="chapter" data-level="5.2.2" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#wykres-pudełkowy---boxplot"><i class="fa fa-check"></i><b>5.2.2</b> Wykres pudełkowy - boxplot</a></li>
+<li class="chapter" data-level="5.2.3" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#wykres-skrzypcowy"><i class="fa fa-check"></i><b>5.2.3</b> Wykres skrzypcowy</a></li>
+<li class="chapter" data-level="5.2.4" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#dodanie-wszystkich-obserwacji-do-boxplotviolin"><i class="fa fa-check"></i><b>5.2.4</b> Dodanie wszystkich obserwacji do boxplot/violin</a></li>
+<li class="chapter" data-level="5.2.5" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#dotplot"><i class="fa fa-check"></i><b>5.2.5</b> Dotplot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#barplot---wykres-słupkowy"><i class="fa fa-check"></i><b>5.3</b> Barplot - wykres słupkowy</a></li>
+<li class="chapter" data-level="5.4" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#średnia-mediana-itp.-na-wykresie"><i class="fa fa-check"></i><b>5.4</b> Średnia, mediana itp. na wykresie</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#stat_summary"><i class="fa fa-check"></i><b>5.4.1</b> Stat_summary</a></li>
+<li class="chapter" data-level="5.4.2" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#summary-z-użyciem-dplyr"><i class="fa fa-check"></i><b>5.4.2</b> Summary z użyciem dplyr</a></li>
+<li class="chapter" data-level="5.4.3" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#słupki-błędów"><i class="fa fa-check"></i><b>5.4.3</b> Słupki błędów</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#wykres-punktowy-i-liniowy"><i class="fa fa-check"></i><b>5.5</b> Wykres punktowy i liniowy</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#dopasowanie-linii-trendu-do-wykresu-punktowego"><i class="fa fa-check"></i><b>5.5.1</b> Dopasowanie linii trendu do wykresu punktowego</a></li>
+<li class="chapter" data-level="5.5.2" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#jak-poradzić-sobie-z-nadmiarem-punktów-na-wykresie-overplotting"><i class="fa fa-check"></i><b>5.5.2</b> Jak poradzić sobie z nadmiarem punktów na wykresie (overplotting)?</a></li>
+<li class="chapter" data-level="5.5.3" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#wykres-wstążka-ribbon"><i class="fa fa-check"></i><b>5.5.3</b> Wykres wstążka (ribbon)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#kolory-osie-panele"><i class="fa fa-check"></i><b>5.6</b> Kolory, osie, panele</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#porównywanie---fill-color-shape"><i class="fa fa-check"></i><b>5.6.1</b> Porównywanie - fill, color, shape</a></li>
+<li class="chapter" data-level="5.6.2" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#zmiana-skali-kolorów"><i class="fa fa-check"></i><b>5.6.2</b> Zmiana skali kolorów</a></li>
+<li class="chapter" data-level="5.6.3" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#podział-wykresu-na-panele"><i class="fa fa-check"></i><b>5.6.3</b> Podział wykresu na panele</a></li>
+<li class="chapter" data-level="5.6.4" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#zmiana-skali-osi-obracanie-wykresu"><i class="fa fa-check"></i><b>5.6.4</b> Zmiana skali, osi, obracanie wykresu</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#motyw-theme"><i class="fa fa-check"></i><b>5.7</b> Motyw (theme)</a></li>
+<li class="chapter" data-level="5.8" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#różne"><i class="fa fa-check"></i><b>5.8</b> Różne</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#łączenie-wykresów"><i class="fa fa-check"></i><b>5.8.1</b> Łączenie wykresów</a></li>
+<li class="chapter" data-level="5.8.2" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#ten-sam-wykres-różne-dane"><i class="fa fa-check"></i><b>5.8.2</b> Ten sam wykres różne dane</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#rozszeżenia-ggplot2"><i class="fa fa-check"></i><b>5.9</b> Rozszeżenia ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html#pakiet-ggally"><i class="fa fa-check"></i><b>5.9.1</b> Pakiet GGally</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html"><i class="fa fa-check"></i><b>6</b> Wykresy - pakiet podstawowy</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#histogram---hist"><i class="fa fa-check"></i><b>6.1</b> Histogram - hist</a></li>
+<li class="chapter" data-level="6.2" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#wykres-rozrzutu---plot"><i class="fa fa-check"></i><b>6.2</b> Wykres rozrzutu - plot</a></li>
+<li class="chapter" data-level="6.3" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#wykres-pudełkowy---boxplot-1"><i class="fa fa-check"></i><b>6.3</b> Wykres pudełkowy - boxplot</a></li>
+<li class="chapter" data-level="6.4" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#wykres-słupkowy---barplot"><i class="fa fa-check"></i><b>6.4</b> Wykres słupkowy - barplot</a></li>
+<li class="chapter" data-level="6.5" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#wykres-mozaikowy---mosaicplot"><i class="fa fa-check"></i><b>6.5</b> Wykres mozaikowy - mosaicplot</a></li>
+<li class="chapter" data-level="6.6" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#wykres-kwantylowy---qqplot"><i class="fa fa-check"></i><b>6.6</b> Wykres kwantylowy - qqPlot</a></li>
+<li class="chapter" data-level="6.7" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#diagram-venna"><i class="fa fa-check"></i><b>6.7</b> Diagram venna</a></li>
+<li class="chapter" data-level="6.8" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#wykres-korelacji---corrplot"><i class="fa fa-check"></i><b>6.8</b> Wykres korelacji - corrplot</a></li>
+<li class="chapter" data-level="6.9" data-path="wykresy---pakiet-podstawowy.html"><a href="wykresy---pakiet-podstawowy.html#clustering---analiza-skupień"><i class="fa fa-check"></i><b>6.9</b> Clustering - analiza skupień</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statystyka.html"><a href="statystyka.html"><i class="fa fa-check"></i><b>7</b> Statystyka</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statystyka.html"><a href="statystyka.html#podstawowe-statystyki-opisowe"><i class="fa fa-check"></i><b>7.1</b> Podstawowe statystyki opisowe</a></li>
+<li class="chapter" data-level="7.2" data-path="statystyka.html"><a href="statystyka.html#liczby-pseudolosowe"><i class="fa fa-check"></i><b>7.2</b> Liczby pseudolosowe</a></li>
+<li class="chapter" data-level="7.3" data-path="statystyka.html"><a href="statystyka.html#podstawowe-testy-statystyczne"><i class="fa fa-check"></i><b>7.3</b> Podstawowe testy statystyczne</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="statystyka.html"><a href="statystyka.html#test-t-studenta---weryfikacja-równości-średnich"><i class="fa fa-check"></i><b>7.3.1</b> Test t-studenta - weryfikacja równości średnich</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statystyka.html"><a href="statystyka.html#test-f---weryfikacja-równości-wariancji"><i class="fa fa-check"></i><b>7.3.2</b> Test F - weryfikacja równości wariancji</a></li>
+<li class="chapter" data-level="7.3.3" data-path="statystyka.html"><a href="statystyka.html#testowanie-zgodności-z-rozkładem-normalnym-i-dopasowywanie-parametrów-rozkładu"><i class="fa fa-check"></i><b>7.3.3</b> Testowanie zgodności z rozkładem normalnym i dopasowywanie parametrów rozkładu</a></li>
+<li class="chapter" data-level="7.3.4" data-path="statystyka.html"><a href="statystyka.html#obliczanie-przedziałów-ufności-dla-średniej-i-błędu-standardowego"><i class="fa fa-check"></i><b>7.3.4</b> Obliczanie przedziałów ufności dla średniej i błędu standardowego</a></li>
+<li class="chapter" data-level="7.3.5" data-path="statystyka.html"><a href="statystyka.html#testowanie-korelacji"><i class="fa fa-check"></i><b>7.3.5</b> Testowanie korelacji</a></li>
+<li class="chapter" data-level="7.3.6" data-path="statystyka.html"><a href="statystyka.html#test-chi-kwadrat---zgodność-rozkładu-zmiennych-jakościowych"><i class="fa fa-check"></i><b>7.3.6</b> Test chi-kwadrat - zgodność rozkładu zmiennych jakościowych</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statystyka.html"><a href="statystyka.html#modelowanie---czyli-jak-dopasować-linię-trendu"><i class="fa fa-check"></i><b>7.4</b> Modelowanie - czyli jak dopasować linię trendu</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="statystyka.html"><a href="statystyka.html#regresja-liniowa"><i class="fa fa-check"></i><b>7.4.1</b> Regresja liniowa</a></li>
+<li class="chapter" data-level="7.4.2" data-path="statystyka.html"><a href="statystyka.html#zmienne-jakościowe-w-modelu"><i class="fa fa-check"></i><b>7.4.2</b> Zmienne jakościowe w modelu</a></li>
+<li class="chapter" data-level="7.4.3" data-path="statystyka.html"><a href="statystyka.html#pakiet-drc---dose-response-models"><i class="fa fa-check"></i><b>7.4.3</b> Pakiet drc - dose response models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="statystyka.html"><a href="statystyka.html#analiza-anova"><i class="fa fa-check"></i><b>7.5</b> Analiza ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>8</b> Miscellaneous</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Kurs R - Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analiza-i-transformacja-danych" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Analiza i transformacja danych</h1>
+<p>W tym rozdziale zostaną przedstawione metody transformacji danych wykorzystujące tidyverse, a konkretnie pakiety dplyr i tidyr. Większość z przedstawionych operacji może być też przeprowadzona przy pomocy funkcji pakietu podstawowego albo pakietu data.table, który jest szczególnie dedykowany do bardzo dużych zbiorów danych.</p>
+<p>Typowa praca z danymi w R zwykle obejmuje kilka podstawowych zadań:
+* zmiana formatu na uporządkowany - pakiet tidyr - <code>pivot_longer</code>, <code>pivot_wider</code>
+* sortowanie - <code>arrange</code>, <code>relocate</code>
+* filtrowanie - <code>filter</code>, <code>select</code>, <code>distinct</code>, <code>slice_*</code>
+* podział na grupy - <code>group_by</code>
+* obliczanie nowych zmiennych - <code>mutate</code>, <code>select</code>
+* łączenie tabel - <code>*_join</code>, <code>bind_rows</code>, <code>bind_cols</code></p>
+<div id="format-uporządkowany-wąski" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Format uporządkowany (wąski)</h2>
+<p>Żeby wykorzystać pełnię możliwości pakietów dplyr i ggplot2 format danych powinien zostać zmieniony na uporządkowany (ang. tidy albo long). Brzmi to może skomplikowanie, ale sprowadza sie do dwóch prostych zasad:
+1. Każda zmienna znajduje się w osobnej kolumnie np. długość, waga, szczep, rok itp.
+2. Każdy przypadek znajduje się w osobnym rzędzie np. komórka, osoba, białko itp.</p>
+<p>Przykład danych nieuporządkowanych (szerokie) - każda kolumna to pomiar długości dla innego szczepu</p>
+<table>
+<thead>
+<tr class="header">
+<th>szczep_1</th>
+<th>szczep_2</th>
+<th>szczep_3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>10</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>15</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>11</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Te same dane, ale uporządkowane (wąskie)</p>
+<table>
+<thead>
+<tr class="header">
+<th>szczep</th>
+<th>dlugosc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>szczep_1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>szczep_1</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>szczep_1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>szczep_2</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>szczep_2</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>szczep_2</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>szczep_3</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>szczep_3</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>szczep_3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Pakiet tidyr zawiera dwie funkcje, które pozwalają na łatwy przejście pomiędzy danymi szerokimi a wąskimi: <code>pivot_wider</code>, <code>pivot_longer</code>.</p>
+<p>Argumenty pivot_longer()
+* data - podstawowy - ramka danych którą chcemy zmienić
+* cols - które kolumny będą zmieniane: mamy różne opcje: everything() - wszystkie kolumny, c(‘nazwa_1,’ ‘nazwa_2’) - podajemy nazwy kolumn po przecinku, !nazwa_3 - po ! podajemy nazwę kolumny która ma pozostać niezmieniona. Jeżeli kolumny do zmiany mają wspólny początek nazwy możemy użyć starts_with(‘wspólna_część’)
+* names_to - nazwa kolumny w której znajdą się poprzednia nazwy kolumn
+* values_to - nazwa kolumny, w której znajdą się wartości</p>
+<p>Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykłej ramki danych.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="analiza-i-transformacja-danych.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb103-2"><a href="analiza-i-transformacja-danych.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="analiza-i-transformacja-danych.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zmiana wszystkich kolumn - najprostszy przypadek</span></span>
+<span id="cb107-2"><a href="analiza-i-transformacja-danych.html#cb107-2" aria-hidden="true" tabindex="-1"></a>mock_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">B =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">C =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
+<span id="cb107-3"><a href="analiza-i-transformacja-danych.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data)</span></code></pre></div>
+<pre><code>##            A          B          C
+## 1  0.8111202  1.7341408  0.4351375
+## 2  0.9907834 -0.2782344  0.8326764
+## 3  1.3338628  1.6295152 -0.5144840
+## 4 -1.3370631 -1.8658124 -0.8525272
+## 5  1.0188060  0.9268686  0.1491219
+## 6  0.8458837 -2.2613700  0.7260623</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="analiza-i-transformacja-danych.html#cb109-1" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(mock_data, <span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&#39;key&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;value&#39;</span>)</span>
+<span id="cb109-2"><a href="analiza-i-transformacja-danych.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data_long)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   key    value
+##   &lt;chr&gt;  &lt;dbl&gt;
+## 1 A      0.811
+## 2 B      1.73 
+## 3 C      0.435
+## 4 A      0.991
+## 5 B     -0.278
+## 6 C      0.833</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="analiza-i-transformacja-danych.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i z powrotem</span></span>
+<span id="cb111-2"><a href="analiza-i-transformacja-danych.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## Warning: Values are not uniquely identified; output will contain list-cols.
+## * Use `values_fn = list` to suppress this warning.
+## * Use `values_fn = length` to identify where the duplicates arise
+## * Use `values_fn = {summary_fun}` to summarise duplicates</code></pre>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c(A, B, C)`</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##        A      B      C
+##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1  0.811  1.73   0.435
+## 2  0.991 -0.278  0.833
+## 3  1.33   1.63  -0.514
+## 4 -1.34  -1.87  -0.853
+## 5  1.02   0.927  0.149
+## 6  0.846 -2.26   0.726</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analiza-i-transformacja-danych.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zmiana tylko częsci kolumn - argumencie cols można podać numery kolumn, nazwy albo </span></span>
+<span id="cb115-2"><a href="analiza-i-transformacja-danych.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="co"># użyć funkcji pomocniczych dplyr np. starts_with()</span></span>
+<span id="cb115-3"><a href="analiza-i-transformacja-danych.html#cb115-3" aria-hidden="true" tabindex="-1"></a>mock_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">B =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">C =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb115-4"><a href="analiza-i-transformacja-danych.html#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data)</span></code></pre></div>
+<pre><code>##             A          B           C id
+## 1 -0.43548869  0.7026625 -0.06405672  1
+## 2 -1.92565485 -0.1712687 -2.69976692  2
+## 3  0.74487478  0.2667103  1.13306211  3
+## 4  2.20424400  0.7323596  0.76111278  4
+## 5  0.03989914 -1.5549796  1.27247571  5
+## 6  0.57688673 -1.6458554 -1.17549673  6</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analiza-i-transformacja-danych.html#cb117-1" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(mock_data, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">names_to =</span> <span class="st">&#39;key&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;value&#39;</span>)</span>
+<span id="cb117-2"><a href="analiza-i-transformacja-danych.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data_long)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##      id key     value
+##   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1     1 A     -0.435 
+## 2     1 B      0.703 
+## 3     1 C     -0.0641
+## 4     2 A     -1.93  
+## 5     2 B     -0.171 
+## 6     2 C     -2.70</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="analiza-i-transformacja-danych.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i z powrotem</span></span>
+<span id="cb119-2"><a href="analiza-i-transformacja-danych.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##      id       A      B       C
+##   &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1 -0.435   0.703 -0.0641
+## 2     2 -1.93   -0.171 -2.70  
+## 3     3  0.745   0.267  1.13  
+## 4     4  2.20    0.732  0.761 
+## 5     5  0.0399 -1.55   1.27  
+## 6     6  0.577  -1.65  -1.18</code></pre>
+</div>
+<div id="pipes-potoki" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Pipes (potoki)</h2>
+<p>W R funkcje można łączyć w potoki przy pomocy operatora %&gt;% (pakiet magrittr) albo |&gt; (w podstawowym R od wersji 4.1.0).</p>
+<p>Pipes można rozumieć jako zestaw instrukcji dla R, które zostaną wykonane po kolei. Kolejne funkcje połączone są %&gt;%, co sprawia że wynik pierwszej funkcji jest przekazywany do następnej, zawsze jako pierwszy argument i tak dalej aż do końca potoku. Zaletą takiego podejścia jest brak konieczności tworzenia zmiennych pośrednich oraz większa czytelność kodu.</p>
+<p>Na podstawie przykładu powyżej</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="analiza-i-transformacja-danych.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pipes</span></span>
+<span id="cb121-2"><a href="analiza-i-transformacja-danych.html#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="analiza-i-transformacja-danych.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c()`</code></pre>
+<pre><code>## # A tibble: 3 × 4
+##      id      A      B       C
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1 -0.435  0.703 -0.0641
+## 2     2 -1.93  -0.171 -2.70  
+## 3     3  0.745  0.267  1.13</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="analiza-i-transformacja-danych.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zmienne pośrednie</span></span>
+<span id="cb124-2"><a href="analiza-i-transformacja-danych.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="analiza-i-transformacja-danych.html#cb124-3" aria-hidden="true" tabindex="-1"></a>zmienna_1 <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) </span>
+<span id="cb124-4"><a href="analiza-i-transformacja-danych.html#cb124-4" aria-hidden="true" tabindex="-1"></a>zmienna_2 <span class="ot">&lt;-</span> <span class="fu">unnest</span>(zmienna_1)</span></code></pre></div>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c()`</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="analiza-i-transformacja-danych.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zmienna_2, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##      id      A      B       C
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1 -0.435  0.703 -0.0641
+## 2     2 -1.93  -0.171 -2.70  
+## 3     3  0.745  0.267  1.13</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analiza-i-transformacja-danych.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># funkcja w funkcji - nieczytelny kod</span></span>
+<span id="cb128-2"><a href="analiza-i-transformacja-danych.html#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-3"><a href="analiza-i-transformacja-danych.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">unnest</span>(<span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value)), <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Warning: `cols` is now required when using unnest().
+## Please use `cols = c()`</code></pre>
+<pre><code>## # A tibble: 3 × 4
+##      id      A      B       C
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1 -0.435  0.703 -0.0641
+## 2     2 -1.93  -0.171 -2.70  
+## 3     3  0.745  0.267  1.13</code></pre>
+<p>Wszystkie funkcje zawarte w pakietach tidyverse są dostosowane do pracy w potokach - pierwszym argumentem zawsze jest ramka danych. Może się jednak zdarzyć przy korzystaniu np. ze starszych pakietów, że ramka danych nie znajdzie się w pierwszym argumencie funkcji. Wtedy można użyć notacji z . albo zastosować tradycyjny zapis.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="analiza-i-transformacja-danych.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wykorzystanie . do określenia gdzie ma zostać wpisany wynik funkcji znajdującje się po lewej stronie</span></span>
+<span id="cb131-2"><a href="analiza-i-transformacja-danych.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lm dopasowuje model liniowy do danych, więcej na ten temat w rodziale statystyka</span></span>
+<span id="cb131-3"><a href="analiza-i-transformacja-danych.html#cb131-3" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> value <span class="sc">~</span> key, <span class="at">data =</span> .)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = value ~ key, data = .)
+## 
+## Coefficients:
+## (Intercept)         keyB         keyC  
+##      0.1102      -0.2866      -0.2158</code></pre>
+<p>Końcowy wynik potoku można przypisać do nowej zmiennej na początku korzystając ze strzałki &lt;- albo na końcu -&gt;</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="analiza-i-transformacja-danych.html#cb133-1" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> value <span class="sc">~</span> key, <span class="at">data =</span> .) <span class="ot">-&gt;</span> wynik</span>
+<span id="cb133-2"><a href="analiza-i-transformacja-danych.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wynik)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = value ~ key, data = .)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.92909 -0.73347 -0.03426  0.81716  2.92610 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   0.1102     0.1080   1.021   0.3083  
+## keyB         -0.2866     0.1527  -1.876   0.0616 .
+## keyC         -0.2158     0.1527  -1.413   0.1588  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.08 on 297 degrees of freedom
+## Multiple R-squared:  0.0127, Adjusted R-squared:  0.006053 
+## F-statistic:  1.91 on 2 and 297 DF,  p-value: 0.1498</code></pre>
+</div>
+<div id="sortowanie" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Sortowanie</h2>
+<p>Do sortowania danych można użyć funkcji <code>arrange()</code>. Jako argumenty wystarczy podać nazwy kolumn według których dane mają być posortowane. Domyślnie sortuje rosnąco. Jeżeli dana kolumna ma być posortowana malejąco należy dodać do jej nazwy <code>desc()</code>.</p>
+<p>Natomiast do zmiany położenia kolumn w danych służy funkcja <code>select</code> lub <code>relocate</code>. <code>select</code> pozwala też na usunięcie kolumn, jako argumenty trzeba po prostu podać nazwy kolumn w takiej kolejności jak chcemy żeby znalazły się wynikach. W przypadku <code>relocate</code> kolumny nigdy nie zostaną usunięte z danych, można kontrolować pozycję przenoszonej kolumny przy pomocy argumentów <code>.after</code> i <code>.before</code>.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="analiza-i-transformacja-danych.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb135-2"><a href="analiza-i-transformacja-danych.html#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="analiza-i-transformacja-danych.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sortowanie po jednej zmiennej</span></span>
+<span id="cb135-4"><a href="analiza-i-transformacja-danych.html#cb135-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(body_mass_g)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species   island    bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Chinstrap Dream               46.9          16.6              192        2700
+##  2 Adelie    Biscoe              36.5          16.6              181        2850
+##  3 Adelie    Biscoe              36.4          17.1              184        2850
+##  4 Adelie    Biscoe              34.5          18.1              187        2900
+##  5 Adelie    Dream               33.1          16.1              178        2900
+##  6 Adelie    Torgersen           38.6          17                188        2900
+##  7 Chinstrap Dream               43.2          16.6              187        2900
+##  8 Adelie    Biscoe              37.9          18.6              193        2925
+##  9 Adelie    Dream               37.5          18.9              179        2975
+## 10 Adelie    Dream               37            16.9              185        3000
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="analiza-i-transformacja-danych.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wiele zmiennych</span></span>
+<span id="cb137-2"><a href="analiza-i-transformacja-danych.html#cb137-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(species, <span class="fu">desc</span>(island), bill_length_mm)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           33.5          19                 190        3600
+##  2 Adelie  Torgersen           34.1          18.1               193        3475
+##  3 Adelie  Torgersen           34.4          18.4               184        3325
+##  4 Adelie  Torgersen           34.6          21.1               198        4400
+##  5 Adelie  Torgersen           34.6          17.2               189        3200
+##  6 Adelie  Torgersen           35.1          19.4               193        4200
+##  7 Adelie  Torgersen           35.2          15.9               186        3050
+##  8 Adelie  Torgersen           35.5          17.5               190        3700
+##  9 Adelie  Torgersen           35.7          17                 189        3350
+## 10 Adelie  Torgersen           35.9          16.6               190        3050
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="analiza-i-transformacja-danych.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład relocate</span></span>
+<span id="cb139-2"><a href="analiza-i-transformacja-danych.html#cb139-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(year, <span class="at">.after =</span> island)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species island     year bill_length_mm bill_depth_mm flipper_length_mm
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+##  1 Adelie  Torgersen  2007           39.1          18.7               181
+##  2 Adelie  Torgersen  2007           39.5          17.4               186
+##  3 Adelie  Torgersen  2007           40.3          18                 195
+##  4 Adelie  Torgersen  2007           NA            NA                  NA
+##  5 Adelie  Torgersen  2007           36.7          19.3               193
+##  6 Adelie  Torgersen  2007           39.3          20.6               190
+##  7 Adelie  Torgersen  2007           38.9          17.8               181
+##  8 Adelie  Torgersen  2007           39.2          19.6               195
+##  9 Adelie  Torgersen  2007           34.1          18.1               193
+## 10 Adelie  Torgersen  2007           42            20.2               190
+## # … with 334 more rows, and 2 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="analiza-i-transformacja-danych.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przenoszenie kilku zmiennych naraz z wykorzystaniem starts_with</span></span>
+<span id="cb141-2"><a href="analiza-i-transformacja-danych.html#cb141-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">relocate</span>(<span class="fu">starts_with</span>(<span class="st">&#39;bill&#39;</span>), <span class="at">.after =</span> body_mass_g)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species island    flipper_length_mm body_mass_g bill_length_mm bill_depth_mm
+##    &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;       &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Adelie  Torgersen               181        3750           39.1          18.7
+##  2 Adelie  Torgersen               186        3800           39.5          17.4
+##  3 Adelie  Torgersen               195        3250           40.3          18  
+##  4 Adelie  Torgersen                NA          NA           NA            NA  
+##  5 Adelie  Torgersen               193        3450           36.7          19.3
+##  6 Adelie  Torgersen               190        3650           39.3          20.6
+##  7 Adelie  Torgersen               181        3625           38.9          17.8
+##  8 Adelie  Torgersen               195        4675           39.2          19.6
+##  9 Adelie  Torgersen               193        3475           34.1          18.1
+## 10 Adelie  Torgersen               190        4250           42            20.2
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="analiza-i-transformacja-danych.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to samo ale z select - więcej pisania ;)</span></span>
+<span id="cb143-2"><a href="analiza-i-transformacja-danych.html#cb143-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">select</span>(species, island, flipper_length_mm, body_mass_g, bill_length_mm, bill_depth_mm, sex, year)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species island    flipper_length_mm body_mass_g bill_length_mm bill_depth_mm
+##    &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;       &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Adelie  Torgersen               181        3750           39.1          18.7
+##  2 Adelie  Torgersen               186        3800           39.5          17.4
+##  3 Adelie  Torgersen               195        3250           40.3          18  
+##  4 Adelie  Torgersen                NA          NA           NA            NA  
+##  5 Adelie  Torgersen               193        3450           36.7          19.3
+##  6 Adelie  Torgersen               190        3650           39.3          20.6
+##  7 Adelie  Torgersen               181        3625           38.9          17.8
+##  8 Adelie  Torgersen               195        4675           39.2          19.6
+##  9 Adelie  Torgersen               193        3475           34.1          18.1
+## 10 Adelie  Torgersen               190        4250           42            20.2
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+<div id="filtrowanie" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Filtrowanie</h2>
+<p>Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji <code>filter</code>, <code>distinct</code> i <code>select</code>.</p>
+<p><code>filter</code> pozwala na wybranie wierszy spełniających konkretne warunki. Do wpisywania warunków konieczna jest znajomość wyrażeń logicznych w R:
+* <code>==</code> równy
+* <code>!=</code> nie równy
+* <code>&lt;</code> mniejszy
+* <code>&lt;=</code> mniejszy równy
+* <code>&gt;</code> większy
+* <code>&gt;=</code> większy równy
+* <code>&amp;</code> i
+* <code>|</code> lub
+* <code>%in%</code> znajduje się w zbiorze danych (wektor)</p>
+</div>
+<div id="grupowanie-i-obliczanie-nowych-zmiennych" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Grupowanie i obliczanie nowych zmiennych</h2>
+</div>
+<div id="łączenie-tabel" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Łączenie tabel</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dane.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="wykresy---pakiet-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-data_analysis_dplyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

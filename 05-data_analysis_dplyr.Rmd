@@ -1,0 +1,169 @@
+# Analiza i transformacja danych
+
+W tym rozdziale zostaną przedstawione metody transformacji danych wykorzystujące tidyverse, a konkretnie pakiety dplyr i tidyr. Większość z przedstawionych operacji może być też przeprowadzona przy pomocy funkcji pakietu podstawowego albo pakietu data.table, który jest szczególnie dedykowany do bardzo dużych zbiorów danych.
+
+Typowa praca z danymi w R zwykle obejmuje kilka podstawowych zadań:
+* zmiana formatu na uporządkowany - pakiet tidyr - `pivot_longer`, `pivot_wider`
+* sortowanie  - `arrange`, `relocate`
+* filtrowanie  - `filter`, `select`, `distinct`, `slice_*`
+* podział na grupy - `group_by`
+* obliczanie nowych zmiennych - `mutate`, `select`
+* łączenie tabel - `*_join`, `bind_rows`, `bind_cols`
+
+## Format uporządkowany (wąski)
+
+Żeby wykorzystać pełnię możliwości pakietów dplyr i ggplot2 format danych powinien zostać zmieniony na uporządkowany (ang. tidy albo long). Brzmi to może skomplikowanie, ale sprowadza sie do dwóch prostych zasad:
+1. Każda zmienna znajduje się w osobnej kolumnie np. długość, waga, szczep, rok itp.
+2. Każdy przypadek znajduje się w osobnym rzędzie np. komórka, osoba, białko itp.
+
+Przykład danych nieuporządkowanych (szerokie) - każda kolumna to pomiar długości dla innego szczepu
+
+| szczep_1 | szczep_2 | szczep_3 |
+|----------|----------|----------|
+| 1        | 10       | 2        |
+| 3        | 15       | 4        |
+| 2        | 11       | 5        |
+
+Te same dane, ale uporządkowane (wąskie)
+
+| szczep   | dlugosc |
+|----------|---------|
+| szczep_1 | 1       |
+| szczep_1 | 3       |
+| szczep_1 | 2       |
+| szczep_2 | 10      |
+| szczep_2 | 15      |
+| szczep_2 | 11      |
+| szczep_3 | 2       |
+| szczep_3 | 4       |
+| szczep_3 | 5       |
+
+Pakiet tidyr zawiera dwie funkcje, które pozwalają na łatwy przejście pomiędzy danymi szerokimi a wąskimi: `pivot_wider`, `pivot_longer`.
+
+Argumenty pivot_longer()
+* data - podstawowy - ramka danych którą chcemy zmienić
+* cols - które kolumny będą zmieniane: mamy różne opcje: everything() - wszystkie kolumny, c('nazwa_1', 'nazwa_2') - podajemy nazwy kolumn po przecinku, !nazwa_3 - po ! podajemy nazwę kolumny która ma pozostać niezmieniona. Jeżeli kolumny do zmiany mają wspólny początek nazwy możemy użyć starts_with('wspólna_część')
+* names_to - nazwa kolumny w której znajdą się poprzednia nazwy kolumn
+* values_to - nazwa kolumny, w której znajdą się wartości
+
+Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykłej ramki danych.
+
+```{r}
+
+library(tidyr)
+library(dplyr)
+
+# zmiana wszystkich kolumn - najprostszy przypadek
+mock_data <- data.frame(A = rnorm(100), B = rnorm(100), C = rnorm(100))
+head(mock_data)
+
+mock_data_long <- pivot_longer(mock_data, cols = everything(), names_to = 'key', values_to = 'value')
+head(mock_data_long)
+
+# i z powrotem
+pivot_wider(mock_data_long, names_from = key, values_from = value) %>% unnest() %>% head()
+
+# zmiana tylko częsci kolumn - argumencie cols można podać numery kolumn, nazwy albo 
+# użyć funkcji pomocniczych dplyr np. starts_with()
+mock_data <- data.frame(A = rnorm(100), B = rnorm(100), C = rnorm(100), id = 1:100)
+head(mock_data)
+
+mock_data_long <- pivot_longer(mock_data, cols = 1:3, names_to = 'key', values_to = 'value')
+head(mock_data_long)
+
+# i z powrotem
+pivot_wider(mock_data_long, names_from = key, values_from = value) %>% head()
+
+```
+
+
+## Pipes (potoki)
+
+W R funkcje można łączyć w potoki przy pomocy operatora %>% (pakiet magrittr) albo |> (w podstawowym R od wersji 4.1.0).
+
+Pipes można rozumieć jako zestaw instrukcji dla R, które zostaną wykonane po kolei. Kolejne funkcje połączone są %>%, co sprawia że wynik pierwszej funkcji jest przekazywany do następnej, zawsze jako pierwszy argument i tak dalej aż do końca potoku. Zaletą takiego podejścia jest brak konieczności tworzenia zmiennych pośrednich oraz większa czytelność kodu.
+
+Na podstawie przykładu powyżej
+
+```{r}
+# pipes
+
+pivot_wider(mock_data_long, names_from = key, values_from = value) %>% unnest() %>% head(n = 3)
+
+# zmienne pośrednie
+
+zmienna_1 <- pivot_wider(mock_data_long, names_from = key, values_from = value) 
+zmienna_2 <- unnest(zmienna_1)
+head(zmienna_2, n = 3)
+
+# funkcja w funkcji - nieczytelny kod
+
+head(unnest(pivot_wider(mock_data_long, names_from = key, values_from = value)), n = 3)
+```
+Wszystkie funkcje zawarte w pakietach tidyverse są dostosowane do pracy w potokach - pierwszym argumentem zawsze jest ramka danych. Może się jednak zdarzyć przy korzystaniu np. ze starszych pakietów, że ramka danych nie znajdzie się w pierwszym argumencie funkcji. Wtedy można użyć notacji z . albo zastosować tradycyjny zapis.
+
+```{r}
+
+# wykorzystanie . do określenia gdzie ma zostać wpisany wynik funkcji znajdującje się po lewej stronie
+# lm dopasowuje model liniowy do danych, więcej na ten temat w rodziale statystyka
+mock_data_long %>% lm(formula = value ~ key, data = .)
+```
+
+Końcowy wynik potoku można przypisać do nowej zmiennej na początku korzystając ze strzałki <- albo na końcu ->
+
+```{r}
+
+mock_data_long %>% lm(formula = value ~ key, data = .) -> wynik
+summary(wynik)
+
+```
+
+## Sortowanie
+
+Do sortowania danych można użyć funkcji `arrange()`. Jako argumenty wystarczy podać nazwy kolumn według których dane mają być posortowane. Domyślnie sortuje rosnąco. Jeżeli dana kolumna ma być posortowana malejąco należy dodać do jej nazwy `desc()`.
+
+Natomiast do zmiany położenia kolumn w danych służy funkcja `select` lub `relocate`. `select` pozwala też na usunięcie kolumn, jako argumenty trzeba po prostu podać nazwy kolumn w takiej kolejności jak chcemy żeby znalazły się wynikach. W przypadku `relocate` kolumny nigdy nie zostaną usunięte z danych, można kontrolować pozycję przenoszonej kolumny przy pomocy argumentów `.after` i `.before`.
+
+```{r}
+library(palmerpenguins)
+
+# sortowanie po jednej zmiennej
+penguins %>% arrange(body_mass_g)
+
+# wiele zmiennych
+penguins %>% arrange(species, desc(island), bill_length_mm)
+
+# przykład relocate
+penguins %>% relocate(year, .after = island)
+
+# przenoszenie kilku zmiennych naraz z wykorzystaniem starts_with
+penguins %>% relocate(starts_with('bill'), .after = body_mass_g)
+
+# to samo ale z select - więcej pisania ;)
+penguins %>% select(species, island, flipper_length_mm, body_mass_g, bill_length_mm, bill_depth_mm, sex, year)
+```
+
+
+## Filtrowanie
+
+Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji `filter`, `distinct` i `select`.
+
+`filter` pozwala na wybranie wierszy spełniających konkretne warunki. Do wpisywania warunków konieczna jest znajomość wyrażeń logicznych w R:
+* `==` równy
+* `!=` nie równy
+* `<`  mniejszy
+* `<=` mniejszy równy
+* `>`  większy
+* `>=` większy równy
+* `&`  i
+* `|`  lub
+* `%in%` znajduje się w zbiorze danych (wektor)
+
+## Grupowanie i obliczanie nowych zmiennych
+
+
+
+## Łączenie tabel
+
+
+

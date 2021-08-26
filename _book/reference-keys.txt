@@ -17,6 +17,13 @@ lista-list
 typ-liczbowy-numeric-znakowy-character-logiczny-logical
 typ-czynnikowy-factor
 funkcje
+analiza-i-transformacja-danych
+format-uporządkowany-wąski
+pipes-potoki
+sortowanie
+filtrowanie
+grupowanie-i-obliczanie-nowych-zmiennych
+łączenie-tabel
 wykresy---pakiet-ggplot2
 używane-dane
 histogram-boxplot-i-inne
