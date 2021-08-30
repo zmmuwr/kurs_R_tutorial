@@ -24,7 +24,7 @@
 <meta name="author" content="Agnieszka Strzałka" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,23 +381,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb107-2"><a href="analiza-i-transformacja-danych.html#cb107-2" aria-hidden="true" tabindex="-1"></a>mock_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">B =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">C =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>))</span>
 <span id="cb107-3"><a href="analiza-i-transformacja-danych.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data)</span></code></pre></div>
 <pre><code>##            A          B          C
-## 1  0.8111202  1.7341408  0.4351375
-## 2  0.9907834 -0.2782344  0.8326764
-## 3  1.3338628  1.6295152 -0.5144840
-## 4 -1.3370631 -1.8658124 -0.8525272
-## 5  1.0188060  0.9268686  0.1491219
-## 6  0.8458837 -2.2613700  0.7260623</code></pre>
+## 1 -1.9253865  0.9384206 -1.2754825
+## 2 -0.3097715  0.8792462  1.3438799
+## 3 -1.7869277 -0.8623875 -0.3378177
+## 4 -0.3274623  0.1014223 -1.5603807
+## 5  0.2832457 -0.7557189 -0.2082170
+## 6 -0.1851464  0.8574634 -0.9259275</code></pre>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="analiza-i-transformacja-danych.html#cb109-1" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(mock_data, <span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&#39;key&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;value&#39;</span>)</span>
 <span id="cb109-2"><a href="analiza-i-transformacja-danych.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data_long)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   key    value
 ##   &lt;chr&gt;  &lt;dbl&gt;
-## 1 A      0.811
-## 2 B      1.73 
-## 3 C      0.435
-## 4 A      0.991
-## 5 B     -0.278
-## 6 C      0.833</code></pre>
+## 1 A     -1.93 
+## 2 B      0.938
+## 3 C     -1.28 
+## 4 A     -0.310
+## 5 B      0.879
+## 6 C      1.34</code></pre>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="analiza-i-transformacja-danych.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i z powrotem</span></span>
 <span id="cb111-2"><a href="analiza-i-transformacja-danych.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## Warning: Values are not uniquely identified; output will contain list-cols.
@@ -409,45 +409,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 6 × 3
 ##        A      B      C
 ##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1  0.811  1.73   0.435
-## 2  0.991 -0.278  0.833
-## 3  1.33   1.63  -0.514
-## 4 -1.34  -1.87  -0.853
-## 5  1.02   0.927  0.149
-## 6  0.846 -2.26   0.726</code></pre>
+## 1 -1.93   0.938 -1.28 
+## 2 -0.310  0.879  1.34 
+## 3 -1.79  -0.862 -0.338
+## 4 -0.327  0.101 -1.56 
+## 5  0.283 -0.756 -0.208
+## 6 -0.185  0.857 -0.926</code></pre>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="analiza-i-transformacja-danych.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zmiana tylko częsci kolumn - argumencie cols można podać numery kolumn, nazwy albo </span></span>
 <span id="cb115-2"><a href="analiza-i-transformacja-danych.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="co"># użyć funkcji pomocniczych dplyr np. starts_with()</span></span>
 <span id="cb115-3"><a href="analiza-i-transformacja-danych.html#cb115-3" aria-hidden="true" tabindex="-1"></a>mock_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">B =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">C =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
 <span id="cb115-4"><a href="analiza-i-transformacja-danych.html#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data)</span></code></pre></div>
-<pre><code>##             A          B           C id
-## 1 -0.43548869  0.7026625 -0.06405672  1
-## 2 -1.92565485 -0.1712687 -2.69976692  2
-## 3  0.74487478  0.2667103  1.13306211  3
-## 4  2.20424400  0.7323596  0.76111278  4
-## 5  0.03989914 -1.5549796  1.27247571  5
-## 6  0.57688673 -1.6458554 -1.17549673  6</code></pre>
+<pre><code>##             A          B             C id
+## 1 -0.81097922 -0.5591041  0.2276615187  1
+## 2 -1.93052568  0.9315119  0.0458679047  2
+## 3  0.76224863 -0.5964077  0.0875130503  3
+## 4  0.07097432  1.2933894  0.8103638296  4
+## 5  1.77204725 -0.3455193 -0.3219783950  5
+## 6 -0.40527091  0.5516613 -0.0009736571  6</code></pre>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="analiza-i-transformacja-danych.html#cb117-1" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(mock_data, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">names_to =</span> <span class="st">&#39;key&#39;</span>, <span class="at">values_to =</span> <span class="st">&#39;value&#39;</span>)</span>
 <span id="cb117-2"><a href="analiza-i-transformacja-danych.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mock_data_long)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##      id key     value
 ##   &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;
-## 1     1 A     -0.435 
-## 2     1 B      0.703 
-## 3     1 C     -0.0641
+## 1     1 A     -0.811 
+## 2     1 B     -0.559 
+## 3     1 C      0.228 
 ## 4     2 A     -1.93  
-## 5     2 B     -0.171 
-## 6     2 C     -2.70</code></pre>
+## 5     2 B      0.932 
+## 6     2 C      0.0459</code></pre>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="analiza-i-transformacja-danych.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i z powrotem</span></span>
 <span id="cb119-2"><a href="analiza-i-transformacja-danych.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
-##      id       A      B       C
-##   &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1     1 -0.435   0.703 -0.0641
-## 2     2 -1.93   -0.171 -2.70  
-## 3     3  0.745   0.267  1.13  
-## 4     4  2.20    0.732  0.761 
-## 5     5  0.0399 -1.55   1.27  
-## 6     6  0.577  -1.65  -1.18</code></pre>
+##      id       A      B         C
+##   &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+## 1     1 -0.811  -0.559  0.228   
+## 2     2 -1.93    0.932  0.0459  
+## 3     3  0.762  -0.596  0.0875  
+## 4     4  0.0710  1.29   0.810   
+## 5     5  1.77   -0.346 -0.322   
+## 6     6 -0.405   0.552 -0.000974</code></pre>
 </div>
 <div id="pipes-potoki" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Pipes (potoki)</h2>
@@ -460,11 +460,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c()`</code></pre>
 <pre><code>## # A tibble: 3 × 4
-##      id      A      B       C
-##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1     1 -0.435  0.703 -0.0641
-## 2     2 -1.93  -0.171 -2.70  
-## 3     3  0.745  0.267  1.13</code></pre>
+##      id      A      B      C
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1 -0.811 -0.559 0.228 
+## 2     2 -1.93   0.932 0.0459
+## 3     3  0.762 -0.596 0.0875</code></pre>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="analiza-i-transformacja-danych.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zmienne pośrednie</span></span>
 <span id="cb124-2"><a href="analiza-i-transformacja-danych.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb124-3"><a href="analiza-i-transformacja-danych.html#cb124-3" aria-hidden="true" tabindex="-1"></a>zmienna_1 <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value) </span>
@@ -473,22 +473,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Please use `cols = c()`</code></pre>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="analiza-i-transformacja-danych.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zmienna_2, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
-##      id      A      B       C
-##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1     1 -0.435  0.703 -0.0641
-## 2     2 -1.93  -0.171 -2.70  
-## 3     3  0.745  0.267  1.13</code></pre>
+##      id      A      B      C
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1 -0.811 -0.559 0.228 
+## 2     2 -1.93   0.932 0.0459
+## 3     3  0.762 -0.596 0.0875</code></pre>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analiza-i-transformacja-danych.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># funkcja w funkcji - nieczytelny kod</span></span>
 <span id="cb128-2"><a href="analiza-i-transformacja-danych.html#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb128-3"><a href="analiza-i-transformacja-danych.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">unnest</span>(<span class="fu">pivot_wider</span>(mock_data_long, <span class="at">names_from =</span> key, <span class="at">values_from =</span> value)), <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Warning: `cols` is now required when using unnest().
 ## Please use `cols = c()`</code></pre>
 <pre><code>## # A tibble: 3 × 4
-##      id      A      B       C
-##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1     1 -0.435  0.703 -0.0641
-## 2     2 -1.93  -0.171 -2.70  
-## 3     3  0.745  0.267  1.13</code></pre>
+##      id      A      B      C
+##   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1 -0.811 -0.559 0.228 
+## 2     2 -1.93   0.932 0.0459
+## 3     3  0.762 -0.596 0.0875</code></pre>
 <p>Wszystkie funkcje zawarte w pakietach tidyverse są dostosowane do pracy w potokach - pierwszym argumentem zawsze jest ramka danych. Może się jednak zdarzyć przy korzystaniu np. ze starszych pakietów, że ramka danych nie znajdzie się w pierwszym argumencie funkcji. Wtedy można użyć notacji z . albo zastosować tradycyjny zapis.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="analiza-i-transformacja-danych.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wykorzystanie . do określenia gdzie ma zostać wpisany wynik funkcji znajdującje się po lewej stronie</span></span>
 <span id="cb131-2"><a href="analiza-i-transformacja-danych.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="co"># lm dopasowuje model liniowy do danych, więcej na ten temat w rodziale statystyka</span></span>
@@ -499,7 +499,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Coefficients:
 ## (Intercept)         keyB         keyC  
-##      0.1102      -0.2866      -0.2158</code></pre>
+##    0.081042    -0.072308     0.002584</code></pre>
 <p>Końcowy wynik potoku można przypisać do nowej zmiennej na początku korzystając ze strzałki &lt;- albo na końcu -&gt;</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="analiza-i-transformacja-danych.html#cb133-1" aria-hidden="true" tabindex="-1"></a>mock_data_long <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> value <span class="sc">~</span> key, <span class="at">data =</span> .) <span class="ot">-&gt;</span> wynik</span>
 <span id="cb133-2"><a href="analiza-i-transformacja-danych.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wynik)</span></code></pre></div>
@@ -509,19 +509,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.92909 -0.73347 -0.03426  0.81716  2.92610 
+## -2.34732 -0.67128 -0.02383  0.65961  2.84088 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)   0.1102     0.1080   1.021   0.3083  
-## keyB         -0.2866     0.1527  -1.876   0.0616 .
-## keyC         -0.2158     0.1527  -1.413   0.1588  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  0.081042   0.096194   0.842    0.400
+## keyB        -0.072308   0.136039  -0.532    0.595
+## keyC         0.002584   0.136039   0.019    0.985
 ## 
-## Residual standard error: 1.08 on 297 degrees of freedom
-## Multiple R-squared:  0.0127, Adjusted R-squared:  0.006053 
-## F-statistic:  1.91 on 2 and 297 DF,  p-value: 0.1498</code></pre>
+## Residual standard error: 0.9619 on 297 degrees of freedom
+## Multiple R-squared:  0.001314,   Adjusted R-squared:  -0.005412 
+## F-statistic: 0.1953 on 2 and 297 DF,  p-value: 0.8227</code></pre>
 </div>
 <div id="sortowanie" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Sortowanie</h2>
@@ -609,10 +607,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Adelie  Torgersen               193        3475           34.1          18.1
 ## 10 Adelie  Torgersen               190        4250           42            20.2
 ## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="analiza-i-transformacja-danych.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># albo tak</span></span>
+<span id="cb145-2"><a href="analiza-i-transformacja-danych.html#cb145-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&#39;bill&#39;</span>), <span class="fu">everything</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    bill_length_mm bill_depth_mm species island    flipper_length_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt; &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;       &lt;int&gt;
+##  1           39.1          18.7 Adelie  Torgersen               181        3750
+##  2           39.5          17.4 Adelie  Torgersen               186        3800
+##  3           40.3          18   Adelie  Torgersen               195        3250
+##  4           NA            NA   Adelie  Torgersen                NA          NA
+##  5           36.7          19.3 Adelie  Torgersen               193        3450
+##  6           39.3          20.6 Adelie  Torgersen               190        3650
+##  7           38.9          17.8 Adelie  Torgersen               181        3625
+##  8           39.2          19.6 Adelie  Torgersen               195        4675
+##  9           34.1          18.1 Adelie  Torgersen               193        3475
+## 10           42            20.2 Adelie  Torgersen               190        4250
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 <div id="filtrowanie" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Filtrowanie</h2>
-<p>Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji <code>filter</code>, <code>distinct</code> i <code>select</code>.</p>
+<p>Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji <code>filter</code>, <code>distinct</code>, <code>select</code> i <code>slice_*</code>.</p>
 <p><code>filter</code> pozwala na wybranie wierszy spełniających konkretne warunki. Do wpisywania warunków konieczna jest znajomość wyrażeń logicznych w R:
 * <code>==</code> równy
 * <code>!=</code> nie równy
@@ -623,12 +637,495 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 * <code>&amp;</code> i
 * <code>|</code> lub
 * <code>%in%</code> znajduje się w zbiorze danych (wektor)</p>
+<p><code>select</code> można wybrać kolejne kolumny wpisując ich nawy albo korzystając z funkcji pomocniczych np. <code>starts_with</code>.</p>
+<p><code>distinct</code> pozwala na pozostawienie jedynie unikalnych kombinacji zmiennych. Jako argumenty należy podac jedynie nazwy kolumn. Domyślnie usunie wszystkie pozostałe kolumny, ale można je zostawić wgumentem .keep. Przydatna funkcja np. do usuwania duplikatów z danych.</p>
+<p>Natomiast do usunięcia z danych wszystkich wierszy w których pojawia się wartość NA można użyć funkcji <code>drop_na</code>.</p>
+<p>Do wybrania jedynie fragmentu danych można też użyć funkcji <code>slice</code>. W najprostszej postaci można wybrać dane po numerach wierszy podobnie jak w indeksowaniu ramki danych przy pomocy []. Dodatkowe funkcje umożliwiają większą kontrolę: <code>slice_head</code> albo <code>slice_tail</code> wybierają z danych odpowiednio pierwsze i ostatnie wiersze, liczba kontrolowana argumentem n. Natomiast <code>slice_sample</code> wybierze z danych losowe wiersze, liczba określona argumentem n, działa analogicznie do funkcji <code>sample</code>.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="analiza-i-transformacja-danych.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter - tylko Adelie z wyspy Torgersen</span></span>
+<span id="cb147-2"><a href="analiza-i-transformacja-danych.html#cb147-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&#39;Adelie&#39;</span>, island <span class="sc">==</span> <span class="st">&#39;Torgersen&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 52 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 42 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="analiza-i-transformacja-danych.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter - tylko pingwiny cięższe niż 4000 i płeć male</span></span>
+<span id="cb149-2"><a href="analiza-i-transformacja-danych.html#cb149-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(body_mass_g <span class="sc">&gt;=</span> <span class="dv">4000</span>, sex <span class="sc">==</span> <span class="st">&#39;male&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 114 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.2          19.6               195        4675
+##  2 Adelie  Torgersen           34.6          21.1               198        4400
+##  3 Adelie  Torgersen           42.5          20.7               197        4500
+##  4 Adelie  Torgersen           46            21.5               194        4200
+##  5 Adelie  Dream               39.2          21.1               196        4150
+##  6 Adelie  Dream               39.8          19.1               184        4650
+##  7 Adelie  Dream               44.1          19.7               196        4400
+##  8 Adelie  Dream               39.6          18.8               190        4600
+##  9 Adelie  Dream               42.3          21.2               191        4150
+## 10 Adelie  Biscoe              40.1          18.9               188        4300
+## # … with 104 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="analiza-i-transformacja-danych.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># distinct - obecne w anych kombinacja species, island, sex</span></span>
+<span id="cb151-2"><a href="analiza-i-transformacja-danych.html#cb151-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(species, island, sex)</span></code></pre></div>
+<pre><code>## # A tibble: 13 × 3
+##    species   island    sex   
+##    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; 
+##  1 Adelie    Torgersen male  
+##  2 Adelie    Torgersen female
+##  3 Adelie    Torgersen &lt;NA&gt;  
+##  4 Adelie    Biscoe    female
+##  5 Adelie    Biscoe    male  
+##  6 Adelie    Dream     female
+##  7 Adelie    Dream     male  
+##  8 Adelie    Dream     &lt;NA&gt;  
+##  9 Gentoo    Biscoe    female
+## 10 Gentoo    Biscoe    male  
+## 11 Gentoo    Biscoe    &lt;NA&gt;  
+## 12 Chinstrap Dream     female
+## 13 Chinstrap Dream     male</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="analiza-i-transformacja-danych.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usuwanie NA i potem distinct</span></span>
+<span id="cb153-2"><a href="analiza-i-transformacja-danych.html#cb153-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(species, island, sex)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 3
+##    species   island    sex   
+##    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; 
+##  1 Adelie    Torgersen male  
+##  2 Adelie    Torgersen female
+##  3 Adelie    Biscoe    female
+##  4 Adelie    Biscoe    male  
+##  5 Adelie    Dream     female
+##  6 Adelie    Dream     male  
+##  7 Gentoo    Biscoe    female
+##  8 Gentoo    Biscoe    male  
+##  9 Chinstrap Dream     female
+## 10 Chinstrap Dream     male</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="analiza-i-transformacja-danych.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do wyświetlenia wszystkich możliwych kombinacji zmiennych można użyć funkcji expand albo complete</span></span>
+<span id="cb155-2"><a href="analiza-i-transformacja-danych.html#cb155-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(species, island, sex) <span class="sc">%&gt;%</span> <span class="fu">expand</span>(species, island)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 2
+##   species   island   
+##   &lt;fct&gt;     &lt;fct&gt;    
+## 1 Adelie    Biscoe   
+## 2 Adelie    Dream    
+## 3 Adelie    Torgersen
+## 4 Chinstrap Biscoe   
+## 5 Chinstrap Dream    
+## 6 Chinstrap Torgersen
+## 7 Gentoo    Biscoe   
+## 8 Gentoo    Dream    
+## 9 Gentoo    Torgersen</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="analiza-i-transformacja-danych.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># możliwe kombinacje + uzupełni NA w innych kolumnach tam gdzie brakuje danych</span></span>
+<span id="cb157-2"><a href="analiza-i-transformacja-danych.html#cb157-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(species, island, sex) <span class="sc">%&gt;%</span> <span class="fu">complete</span>(species, island) </span></code></pre></div>
+<pre><code>## # A tibble: 14 × 3
+##    species   island    sex   
+##    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; 
+##  1 Adelie    Biscoe    female
+##  2 Adelie    Biscoe    male  
+##  3 Adelie    Dream     female
+##  4 Adelie    Dream     male  
+##  5 Adelie    Torgersen male  
+##  6 Adelie    Torgersen female
+##  7 Chinstrap Biscoe    &lt;NA&gt;  
+##  8 Chinstrap Dream     female
+##  9 Chinstrap Dream     male  
+## 10 Chinstrap Torgersen &lt;NA&gt;  
+## 11 Gentoo    Biscoe    female
+## 12 Gentoo    Biscoe    male  
+## 13 Gentoo    Dream     &lt;NA&gt;  
+## 14 Gentoo    Torgersen &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="analiza-i-transformacja-danych.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wybrane wiersze od 3 do 8</span></span>
+<span id="cb159-2"><a href="analiza-i-transformacja-danych.html#cb159-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           40.3          18                195        3250 fema…
+## 2 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 3 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 4 Adelie  Torge…           39.3          20.6              190        3650 male 
+## 5 Adelie  Torge…           38.9          17.8              181        3625 fema…
+## 6 Adelie  Torge…           39.2          19.6              195        4675 male 
+## # … with 1 more variable: year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="analiza-i-transformacja-danych.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pierwsze 10 wierszy </span></span>
+<span id="cb161-2"><a href="analiza-i-transformacja-danych.html#cb161-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="analiza-i-transformacja-danych.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 losowych wierszy</span></span>
+<span id="cb163-2"><a href="analiza-i-transformacja-danych.html#cb163-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Chinst… Dream            46.1          18.2              178        3250 fema…
+## 2 Gentoo  Biscoe           42.9          13.1              215        5000 fema…
+## 3 Gentoo  Biscoe           47.2          13.7              214        4925 fema…
+## 4 Gentoo  Biscoe           46.3          15.8              215        5050 male 
+## 5 Gentoo  Biscoe           50            15.3              220        5550 male 
+## # … with 1 more variable: year &lt;int&gt;</code></pre>
 </div>
 <div id="grupowanie-i-obliczanie-nowych-zmiennych" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Grupowanie i obliczanie nowych zmiennych</h2>
+<p>Jedną z najbardziej przydatnych funkcji pakietu dplyr jest <code>group_by</code>, która pozwala na wydzielenie grup w danych przed wykonaniem następnych funkcji. Argumentami <code>group_by</code> są kolejne nazwy kolumn rozdzielone przecinkami. <code>group_by</code> w żaden sposób nie zmienia danych w tabeli, jej efektem jest tylko dodanie do tabeli informacji o tym, w której kolumnie znajduje się zmienna. Grupy z danych można usunąć przy pomocy funkcji <code>ungroup</code> albo nadpisać nowym <code>group_by</code>.</p>
+<p>Dodanie grup do danych sprawia, że wszystkie kolejne funkcje będą wykonywane na fragmentach oryginalnej tabeli. Dzięki temu można np. obliczyć średnią dla każdej grupy, odfiltrować z każdej grupy tylko wartości maksymalne, wyświetlić tylko 3 wiersze z każdej grupy, dopasować model do każdej grupy osobno itd.</p>
+<p><code>group_by</code> można łączyć z dwiema funkcjami, które służą do dodawania nowych zmiennych do tabeli - <code>summarise</code> i <code>mutate</code>, ale przydaje się również przy filtrowaniu albo sortowaniu danych.</p>
+<p><code>mutate</code> pozwala na dodanie nowych kolumn na końcu ramki danych, ale nie usuwa poprzednich kolumn. Jako argumenty w <code>mutate</code> należy podać nazwę nowej kolumny = sposób policzenia nowej kolumny.</p>
+<p>Szczególnie przydatna jest funkcja <code>ifelse</code>, która pozwala na przygotowanie nowej zmiennej na podstawie warunku logicznego. Zawsze posiada ona trzy argumenty. Pierwszy to warunek logiczny np. kolumna == 5, drugi to wartość, która ma zostać podana w wypadku spełnienia warunku, trzeci to wartość, która ma zostać podana gry warunek nie będzie spełniony. W wypadku gdy potrzebne jest więcej niż dwie opcje można użyć funkcji <code>case_when</code></p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="analiza-i-transformacja-danych.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># operacje matematyczne na kolumnach</span></span>
+<span id="cb165-2"><a href="analiza-i-transformacja-danych.html#cb165-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">st_bill =</span> bill_length_mm<span class="sc">/</span>bill_depth_mm)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;,
+## #   st_bill &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="analiza-i-transformacja-danych.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wartość maksymalna i obliczanie procentów</span></span>
+<span id="cb167-2"><a href="analiza-i-transformacja-danych.html#cb167-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">max_bill_depth =</span> <span class="fu">max</span>(bill_depth_mm),</span>
+<span id="cb167-3"><a href="analiza-i-transformacja-danych.html#cb167-3" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">procent =</span> bill_depth_mm<span class="sc">/</span>max_bill_depth) <span class="sc">%&gt;%</span></span>
+<span id="cb167-4"><a href="analiza-i-transformacja-danych.html#cb167-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(procent, max_bill_depth, <span class="at">.after =</span> island)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 10
+## # Groups:   species, sex [8]
+##    species island    procent max_bill_depth bill_length_mm bill_depth_mm
+##    &lt;fct&gt;   &lt;fct&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Adelie  Torgersen   0.870           21.5           39.1          18.7
+##  2 Adelie  Torgersen   0.841           20.7           39.5          17.4
+##  3 Adelie  Torgersen   0.870           20.7           40.3          18  
+##  4 Adelie  Torgersen  NA               NA             NA            NA  
+##  5 Adelie  Torgersen   0.932           20.7           36.7          19.3
+##  6 Adelie  Torgersen   0.958           21.5           39.3          20.6
+##  7 Adelie  Torgersen   0.860           20.7           38.9          17.8
+##  8 Adelie  Torgersen   0.912           21.5           39.2          19.6
+##  9 Adelie  Torgersen  NA               NA             34.1          18.1
+## 10 Adelie  Torgersen  NA               NA             42            20.2
+## # … with 334 more rows, and 4 more variables: flipper_length_mm &lt;int&gt;,
+## #   body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="analiza-i-transformacja-danych.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zastosowanie funkcji ifelse</span></span>
+<span id="cb169-2"><a href="analiza-i-transformacja-danych.html#cb169-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">czy_jest_plec =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex), <span class="st">&#39;tak&#39;</span>, <span class="st">&#39;nie&#39;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;,
+## #   czy_jest_plec &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="analiza-i-transformacja-danych.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zastosowanie case_when</span></span>
+<span id="cb171-2"><a href="analiza-i-transformacja-danych.html#cb171-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">wielkosc =</span> <span class="fu">case_when</span>(body_mass_g <span class="sc">&lt;=</span> <span class="dv">3000</span> <span class="sc">~</span> <span class="st">&#39;mały&#39;</span>,</span>
+<span id="cb171-3"><a href="analiza-i-transformacja-danych.html#cb171-3" aria-hidden="true" tabindex="-1"></a>                                                                    body_mass_g <span class="sc">&gt;</span> <span class="dv">3000</span> <span class="sc">&amp;</span> body_mass_g <span class="sc">&lt;</span> <span class="dv">4000</span> <span class="sc">~</span> <span class="st">&#39;średni&#39;</span>,</span>
+<span id="cb171-4"><a href="analiza-i-transformacja-danych.html#cb171-4" aria-hidden="true" tabindex="-1"></a>                                                                    body_mass_g <span class="sc">&gt;=</span> <span class="dv">4000</span> <span class="sc">~</span> <span class="st">&#39;duży&#39;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;,
+## #   wielkosc &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="analiza-i-transformacja-danych.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normaliazacja danych przy pomocy scale</span></span>
+<span id="cb173-2"><a href="analiza-i-transformacja-danych.html#cb173-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">nor_body_mass =</span> <span class="fu">scale</span>(body_mass_g))</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;,
+## #   nor_body_mass &lt;dbl[,1]&gt;</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="analiza-i-transformacja-danych.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># średnia ruchoma  - konieczny pakiet zoo</span></span>
+<span id="cb175-2"><a href="analiza-i-transformacja-danych.html#cb175-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, island, sex) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(species, island, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb175-3"><a href="analiza-i-transformacja-danych.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean =</span> zoo<span class="sc">::</span><span class="fu">rollmean</span>(body_mass_g,</span>
+<span id="cb175-4"><a href="analiza-i-transformacja-danych.html#cb175-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">k =</span> <span class="dv">3</span>, <span class="co"># szerokość okna do średniej ruchomej</span></span>
+<span id="cb175-5"><a href="analiza-i-transformacja-danych.html#cb175-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">fill =</span> <span class="cn">NA</span>)) <span class="co"># czym uzupełnić brakujące wartości</span></span></code></pre></div>
+<pre><code>## # A tibble: 344 × 9
+## # Groups:   species, island, sex [13]
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Biscoe           37.8          18.3               174        3400
+##  2 Adelie  Biscoe           35.9          19.2               189        3800
+##  3 Adelie  Biscoe           35.3          18.9               187        3800
+##  4 Adelie  Biscoe           40.5          17.9               187        3200
+##  5 Adelie  Biscoe           37.9          18.6               172        3150
+##  6 Adelie  Biscoe           39.6          17.7               186        3500
+##  7 Adelie  Biscoe           35            17.9               190        3450
+##  8 Adelie  Biscoe           34.5          18.1               187        2900
+##  9 Adelie  Biscoe           39            17.5               186        3550
+## 10 Adelie  Biscoe           36.5          16.6               181        2850
+## # … with 334 more rows, and 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, mean &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="analiza-i-transformacja-danych.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by + slice_head + arrange - dwa pierwsze wiersze z każdej grupy, posortowane po masie ciała</span></span>
+<span id="cb177-2"><a href="analiza-i-transformacja-danych.html#cb177-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g)) <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+## # Groups:   species [3]
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Biscoe           43.2          19                197        4775 male 
+## 2 Adelie  Biscoe           41            20                203        4725 male 
+## 3 Chinst… Dream            52            20.7              210        4800 male 
+## 4 Chinst… Dream            52.8          20                205        4550 male 
+## 5 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 6 Gentoo  Biscoe           59.6          17                230        6050 male 
+## # … with 1 more variable: year &lt;int&gt;</code></pre>
+<p><code>summarise</code> tworzy nową tabelę, która będzie zawierała jedynie zmienne grupujące i nowo utworzone zmienne. Jeżeli dane nie są podzielone na żadne grupy to wynikiem <code>summarise</code> będzie tabela posiadająca tylko jeden wiersz.</p>
+<p>Jeżeli potrzebne jest zastosowanie tej samej funkcji dla większej liczby kolumn np. <code>mean</code> można wykorzystać funkcję <code>across</code>.</p>
+<p>Zliczenie elementów można przeprowadzić wykorzystując funkcje pomocniczą <code>n</code> albo <code>count</code></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="analiza-i-transformacja-danych.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obliczanie średniej</span></span>
+<span id="cb179-2"><a href="analiza-i-transformacja-danych.html#cb179-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="analiza-i-transformacja-danych.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;species&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   species [3]
+##   species   sex    mean_mass
+##   &lt;fct&gt;     &lt;fct&gt;      &lt;dbl&gt;
+## 1 Adelie    female     3369.
+## 2 Adelie    male       4043.
+## 3 Chinstrap female     3527.
+## 4 Chinstrap male       3939.
+## 5 Gentoo    female     4680.
+## 6 Gentoo    male       5485.</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="analiza-i-transformacja-danych.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># średnia dla wszystkich zmiennych liczbowych</span></span>
+<span id="cb182-2"><a href="analiza-i-transformacja-danych.html#cb182-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
+<span id="cb182-3"><a href="analiza-i-transformacja-danych.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), <span class="co"># wybieramy tylko kolumny spełniajace warunke is.numeric</span></span>
+<span id="cb182-4"><a href="analiza-i-transformacja-danych.html#cb182-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.fns =</span> <span class="fu">c</span>(<span class="at">srednia =</span> mean, <span class="at">odch =</span> sd))) <span class="co"># lista funkcji - można każdą nazwać żeby w tabeli z wynikami były opisane</span></span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;species&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 6 × 12
+## # Groups:   species [3]
+##   species   sex    bill_length_mm_srednia bill_length_mm_odch bill_depth_mm_sre…
+##   &lt;fct&gt;     &lt;fct&gt;                   &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;
+## 1 Adelie    female                   37.3                2.03               17.6
+## 2 Adelie    male                     40.4                2.28               19.1
+## 3 Chinstrap female                   46.6                3.11               17.6
+## 4 Chinstrap male                     51.1                1.56               19.3
+## 5 Gentoo    female                   45.6                2.05               14.2
+## 6 Gentoo    male                     49.5                2.72               15.7
+## # … with 7 more variables: bill_depth_mm_odch &lt;dbl&gt;,
+## #   flipper_length_mm_srednia &lt;dbl&gt;, flipper_length_mm_odch &lt;dbl&gt;,
+## #   body_mass_g_srednia &lt;dbl&gt;, body_mass_g_odch &lt;dbl&gt;, year_srednia &lt;dbl&gt;,
+## #   year_odch &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="analiza-i-transformacja-danych.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zliczanie z n()</span></span>
+<span id="cb185-2"><a href="analiza-i-transformacja-danych.html#cb185-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
+<span id="cb185-3"><a href="analiza-i-transformacja-danych.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;species&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   species [3]
+##   species   sex        n
+##   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;
+## 1 Adelie    female    73
+## 2 Adelie    male      73
+## 3 Chinstrap female    34
+## 4 Chinstrap male      34
+## 5 Gentoo    female    58
+## 6 Gentoo    male      61</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="analiza-i-transformacja-danych.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zliczanie z count() - można pominąć group_by</span></span>
+<span id="cb188-2"><a href="analiza-i-transformacja-danych.html#cb188-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span></span>
+<span id="cb188-3"><a href="analiza-i-transformacja-danych.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, sex)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   species   sex        n
+##   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;
+## 1 Adelie    female    73
+## 2 Adelie    male      73
+## 3 Chinstrap female    34
+## 4 Chinstrap male      34
+## 5 Gentoo    female    58
+## 6 Gentoo    male      61</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="analiza-i-transformacja-danych.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># połączenie z mutate</span></span>
+<span id="cb190-2"><a href="analiza-i-transformacja-danych.html#cb190-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">%&gt;%</span> </span>
+<span id="cb190-3"><a href="analiza-i-transformacja-danych.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb190-4"><a href="analiza-i-transformacja-danych.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb190-5"><a href="analiza-i-transformacja-danych.html#cb190-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">procent =</span> n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+## # Groups:   species [3]
+##   species   sex        n procent
+##   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt;
+## 1 Adelie    female    73   0.5  
+## 2 Adelie    male      73   0.5  
+## 3 Chinstrap female    34   0.5  
+## 4 Chinstrap male      34   0.5  
+## 5 Gentoo    female    58   0.487
+## 6 Gentoo    male      61   0.513</code></pre>
+<p>Szczególnym przypadkiem funkcji tworzących nowe zmienne są <code>separate</code> i <code>unite</code> z pakietu tidyr. Ich działanie jest przeciwstawne i pozwalają odpowiednio na złączenie i rozłączenie zmiennych przy pomocy separatora np. _ albo .</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="analiza-i-transformacja-danych.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unite - domyślnie usuwa wejściowe kolumny, ale można je zostawić przy pomocy argumentu remove</span></span>
+<span id="cb192-2"><a href="analiza-i-transformacja-danych.html#cb192-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">unite</span>(<span class="at">col =</span> nowa_kolumn, species, sex, <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 7
+##    nowa_kolumn   island    bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;chr&gt;         &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Adelie_male   Torgersen           39.1          18.7              181        3750
+##  2 Adelie_female Torgersen           39.5          17.4              186        3800
+##  3 Adelie_female Torgersen           40.3          18                195        3250
+##  4 Adelie_NA     Torgersen           NA            NA                 NA          NA
+##  5 Adelie_female Torgersen           36.7          19.3              193        3450
+##  6 Adelie_male   Torgersen           39.3          20.6              190        3650
+##  7 Adelie_female Torgersen           38.9          17.8              181        3625
+##  8 Adelie_male   Torgersen           39.2          19.6              195        4675
+##  9 Adelie_NA     Torgersen           34.1          18.1              193        3475
+## 10 Adelie_NA     Torgersen           42            20.2              190        4250
+## # … with 334 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="analiza-i-transformacja-danych.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separate - również można wejściową kolumnę zostawić przy pomocy argumentu remove</span></span>
+<span id="cb194-2"><a href="analiza-i-transformacja-danych.html#cb194-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">unite</span>(<span class="at">col =</span> nowa_kolumna, species, sex, <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb194-3"><a href="analiza-i-transformacja-danych.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> nowa_kolumna, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&#39;gatunek&#39;</span>, <span class="st">&#39;plec&#39;</span>), <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    gatunek plec   island    bill_length_mm bill_depth_mm flipper_length_mm
+##    &lt;chr&gt;   &lt;chr&gt;  &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+##  1 Adelie  male   Torgersen           39.1          18.7               181
+##  2 Adelie  female Torgersen           39.5          17.4               186
+##  3 Adelie  female Torgersen           40.3          18                 195
+##  4 Adelie  NA     Torgersen           NA            NA                  NA
+##  5 Adelie  female Torgersen           36.7          19.3               193
+##  6 Adelie  male   Torgersen           39.3          20.6               190
+##  7 Adelie  female Torgersen           38.9          17.8               181
+##  8 Adelie  male   Torgersen           39.2          19.6               195
+##  9 Adelie  NA     Torgersen           34.1          18.1               193
+## 10 Adelie  NA     Torgersen           42            20.2               190
+## # … with 334 more rows, and 2 more variables: body_mass_g &lt;int&gt;, year &lt;int&gt;</code></pre>
 </div>
 <div id="łączenie-tabel" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Łączenie tabel</h2>
+<p>Do łączenia tabel w R można wykorzystać dwa typy funkcji: <code>bind_*</code> i <code>*_join</code>.</p>
+<p>Funkcje <code>bind_cols</code> i <code>bind_rows</code> służą do sklejania tabel ze sobą odpowiednio według kolumn (jedna obok drugiej) i wierszy (jedna pod drugą). Są szczególnie przydatne w sytuacjach gdy dane wejściowe do analizy znajdują się w kilku różnych plikach, których struktura jest taka sama (układ kolumn itp.).</p>
+<p>Do funkcji bind_rows, można dodać argument .id, który doda nową kolumnę do danych, zawierającą nazwy pierwotnych kolumn.</p>
+<p>Druga grupa funkcji - <code>*_join</code> obejmuje funkcje, które łączą dane według pewnego klucza. Za klucz może służyć jedna albo więcej kolumn. Przykładowym kluczem może być np. nazwa genu albo kombinacja szczepu, nr komórki i czasu obserwacji.</p>
+<p>Możliwe zastosowania funkcji <code>_join</code>
+* wzbogacenie tabeli o dodatkowe informacje np. dołączenie do tabeli zawierającej ekspresję genu informacje o ich funkcji, położenia na genomie
+* ponowne połączenie danych rozdzielonych w wyniku analizy np. dołączenie wyniku funkcji summarise do wejściowej tabeli
+* wybranie tabeli tylko wierszy występujących w obu tabelach np. wybór genów o istotnie zmienionej ekspersji z dwóch eksperymentów RNA-seq.</p>
+<p>Dla funkcji <code>*_join</code> kluczowe jest podanie argumentu by, który zidentyfikuje kolumny-klucze. Gdy w obu tabelach kolumny-klucze posiadają takie same nazwy funkcja sama je odnajdzie, w przeciwnym wypadku konieczne jest podanie ich nazw w formacie <code>by = c('kolumna_z_tab_1' = 'kolumna_z_tab_2')</code>.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="analiza-i-transformacja-danych.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład bind_rows</span></span>
+<span id="cb196-2"><a href="analiza-i-transformacja-danych.html#cb196-2" aria-hidden="true" tabindex="-1"></a>data_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">z =</span> <span class="fu">c</span>(<span class="st">&#39;jeden&#39;</span>, <span class="st">&#39;dwa&#39;</span>, <span class="st">&#39;trzy&#39;</span>))</span>
+<span id="cb196-3"><a href="analiza-i-transformacja-danych.html#cb196-3" aria-hidden="true" tabindex="-1"></a>data_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> letters[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">z =</span> <span class="fu">c</span>(<span class="st">&#39;jeden&#39;</span>, <span class="st">&#39;dwa&#39;</span>, <span class="st">&#39;trzy&#39;</span>))</span>
+<span id="cb196-4"><a href="analiza-i-transformacja-danych.html#cb196-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-5"><a href="analiza-i-transformacja-danych.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(data_1, data_2)</span></code></pre></div>
+<pre><code>##   x y     z
+## 1 1 a jeden
+## 2 2 b   dwa
+## 3 3 c  trzy
+## 4 4 j jeden
+## 5 5 k   dwa
+## 6 6 l  trzy</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="analiza-i-transformacja-danych.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z ustawionym .id</span></span>
+<span id="cb198-2"><a href="analiza-i-transformacja-danych.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="at">x =</span> data_1, <span class="at">y =</span> data_2, <span class="at">.id =</span> <span class="st">&#39;id&#39;</span>) <span class="co"># x =  itd. to podane nazwy tabel do kolumny id</span></span></code></pre></div>
+<pre><code>##   id x y     z
+## 1  x 1 a jeden
+## 2  x 2 b   dwa
+## 3  x 3 c  trzy
+## 4  y 4 j jeden
+## 5  y 5 k   dwa
+## 6  y 6 l  trzy</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="analiza-i-transformacja-danych.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład bind_cols</span></span>
+<span id="cb200-2"><a href="analiza-i-transformacja-danych.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(data_1, data_2)</span></code></pre></div>
+<pre><code>## New names:
+## * x -&gt; x...1
+## * y -&gt; y...2
+## * z -&gt; z...3
+## * x -&gt; x...4
+## * y -&gt; y...5
+## * ...</code></pre>
+<pre><code>##   x...1 y...2 z...3 x...4 y...5 z...6
+## 1     1     a jeden     4     j jeden
+## 2     2     b   dwa     5     k   dwa
+## 3     3     c  trzy     6     l  trzy</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="analiza-i-transformacja-danych.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład left_join - do tabeli po lewej dodaje pasujące wiersze z tabeli w nawiasie</span></span>
+<span id="cb203-2"><a href="analiza-i-transformacja-danych.html#cb203-2" aria-hidden="true" tabindex="-1"></a>band_instruments</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   name  plays 
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 John  guitar
+## 2 Paul  bass  
+## 3 Keith guitar</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="analiza-i-transformacja-danych.html#cb205-1" aria-hidden="true" tabindex="-1"></a>band_members</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   name  band   
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 Mick  Stones 
+## 2 John  Beatles
+## 3 Paul  Beatles</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="analiza-i-transformacja-danych.html#cb207-1" aria-hidden="true" tabindex="-1"></a>band_instruments <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(band_members)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   name  plays  band   
+##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+## 1 John  guitar Beatles
+## 2 Paul  bass   Beatles
+## 3 Keith guitar &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="analiza-i-transformacja-danych.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z by</span></span>
+<span id="cb210-2"><a href="analiza-i-transformacja-danych.html#cb210-2" aria-hidden="true" tabindex="-1"></a>band_instruments2 <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(band_members, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;artist&#39;</span> <span class="ot">=</span> <span class="st">&#39;name&#39;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   artist plays  band   
+##   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  
+## 1 John   guitar Beatles
+## 2 Paul   bass   Beatles
+## 3 Keith  guitar &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="analiza-i-transformacja-danych.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład inner_join - zostawia tylko wiersze z tabeli po lewej, które pasują do tabeli w nawiasie</span></span>
+<span id="cb212-2"><a href="analiza-i-transformacja-danych.html#cb212-2" aria-hidden="true" tabindex="-1"></a>band_instruments <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(band_members)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   name  plays  band   
+##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+## 1 John  guitar Beatles
+## 2 Paul  bass   Beatles</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="analiza-i-transformacja-danych.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład full_join - zostawia wszystkie wiersze z obu tabel (uzupełnia brakujące wartości jako NA)</span></span>
+<span id="cb215-2"><a href="analiza-i-transformacja-danych.html#cb215-2" aria-hidden="true" tabindex="-1"></a>band_instruments <span class="sc">%&gt;%</span> <span class="fu">full_join</span>(band_members)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 4 × 3
+##   name  plays  band   
+##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+## 1 John  guitar Beatles
+## 2 Paul  bass   Beatles
+## 3 Keith guitar &lt;NA&gt;   
+## 4 Mick  &lt;NA&gt;   Stones</code></pre>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="analiza-i-transformacja-danych.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykład anti_join - tylko wiersze w tabeli po lewej, które nie mają pary w tabeli w nawiasie</span></span>
+<span id="cb218-2"><a href="analiza-i-transformacja-danych.html#cb218-2" aria-hidden="true" tabindex="-1"></a>band_instruments <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(band_members)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;name&quot;</code></pre>
+<pre><code>## # A tibble: 1 × 2
+##   name  plays 
+##   &lt;chr&gt; &lt;chr&gt; 
+## 1 Keith guitar</code></pre>
 
 </div>
 </div>

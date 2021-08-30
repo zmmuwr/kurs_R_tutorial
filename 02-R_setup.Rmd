@@ -29,6 +29,7 @@ fortunes::fortune(198)
 * [How to make any plot in ggplot2?](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
 * [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)
 * [R Graphics Cookbook, 2nd edition](https://r-graphics.org/index.html)
+* [R for Data Science](https://r4ds.had.co.nz/index.html)
 * No i oczywiście ja chętnie pomogę :)
 
 ```{r, echo=FALSE}

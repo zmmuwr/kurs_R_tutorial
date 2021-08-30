@@ -141,12 +141,15 @@ penguins %>% relocate(starts_with('bill'), .after = body_mass_g)
 
 # to samo ale z select - więcej pisania ;)
 penguins %>% select(species, island, flipper_length_mm, body_mass_g, bill_length_mm, bill_depth_mm, sex, year)
+# albo tak
+penguins %>% select(starts_with('bill'), everything())
+
 ```
 
 
 ## Filtrowanie
 
-Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji `filter`, `distinct` i `select`.
+Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji `filter`, `distinct`, `select` i `slice_*`.
 
 `filter` pozwala na wybranie wierszy spełniających konkretne warunki. Do wpisywania warunków konieczna jest znajomość wyrażeń logicznych w R:
 * `==` równy
@@ -159,11 +162,180 @@ Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funk
 * `|`  lub
 * `%in%` znajduje się w zbiorze danych (wektor)
 
+`select` można wybrać kolejne kolumny wpisując ich nawy albo korzystając z funkcji pomocniczych np. `starts_with`.
+
+`distinct` pozwala na pozostawienie jedynie unikalnych kombinacji zmiennych. Jako argumenty należy podac jedynie nazwy kolumn. Domyślnie usunie wszystkie pozostałe kolumny, ale można je zostawić wgumentem .keep. Przydatna funkcja np. do usuwania duplikatów z danych.
+
+Natomiast do usunięcia z danych wszystkich wierszy w których pojawia się wartość NA można użyć funkcji `drop_na`.
+
+Do wybrania jedynie fragmentu danych można też użyć funkcji `slice`. W najprostszej postaci można wybrać dane po numerach wierszy podobnie jak w indeksowaniu ramki danych przy pomocy []. Dodatkowe funkcje umożliwiają większą kontrolę: `slice_head` albo `slice_tail` wybierają z danych odpowiednio pierwsze i ostatnie wiersze, liczba kontrolowana argumentem n. Natomiast `slice_sample` wybierze z danych losowe wiersze, liczba określona argumentem n, działa analogicznie do funkcji `sample`.
+
+
+```{r}
+# filter - tylko Adelie z wyspy Torgersen
+penguins %>% filter(species == 'Adelie', island == 'Torgersen')
+
+# filter - tylko pingwiny cięższe niż 4000 i płeć male
+penguins %>% filter(body_mass_g >= 4000, sex == 'male')
+
+# distinct - obecne w anych kombinacja species, island, sex
+penguins %>% distinct(species, island, sex)
+
+# usuwanie NA i potem distinct
+penguins %>% drop_na() %>% distinct(species, island, sex)
+
+# do wyświetlenia wszystkich możliwych kombinacji zmiennych można użyć funkcji expand albo complete
+penguins %>% drop_na() %>% distinct(species, island, sex) %>% expand(species, island)
+
+# możliwe kombinacje + uzupełni NA w innych kolumnach tam gdzie brakuje danych
+penguins %>% drop_na() %>% distinct(species, island, sex) %>% complete(species, island) 
+
+# wybrane wiersze od 3 do 8
+penguins %>% slice(3:8)
+
+# pierwsze 10 wierszy 
+penguins %>% slice_head(n = 10)
+
+# 5 losowych wierszy
+penguins %>% slice_sample(n = 5)
+```
+
+
 ## Grupowanie i obliczanie nowych zmiennych
 
+Jedną z najbardziej przydatnych funkcji pakietu dplyr jest `group_by`, która pozwala na wydzielenie grup w danych przed wykonaniem następnych funkcji. Argumentami `group_by` są kolejne nazwy kolumn rozdzielone przecinkami. `group_by` w żaden sposób nie zmienia danych w tabeli, jej efektem jest tylko dodanie do tabeli informacji o tym, w której kolumnie znajduje się zmienna. Grupy z danych można usunąć przy pomocy funkcji `ungroup` albo nadpisać nowym `group_by`.
+
+Dodanie grup do danych sprawia, że wszystkie kolejne funkcje będą wykonywane na fragmentach oryginalnej tabeli. Dzięki temu można np. obliczyć średnią dla każdej grupy, odfiltrować z każdej grupy tylko wartości maksymalne, wyświetlić tylko 3 wiersze z każdej grupy, dopasować model do każdej grupy osobno itd.
+
+`group_by` można łączyć z dwiema funkcjami, które służą do dodawania nowych zmiennych do tabeli - `summarise` i `mutate`, ale przydaje się również przy filtrowaniu albo sortowaniu danych.
+
+`mutate` pozwala na dodanie nowych kolumn na końcu ramki danych, ale nie usuwa poprzednich kolumn. Jako argumenty w `mutate` należy podać nazwę nowej kolumny = sposób policzenia nowej kolumny.
+
+Szczególnie przydatna jest funkcja `ifelse`, która pozwala na przygotowanie nowej zmiennej na podstawie warunku logicznego. Zawsze posiada ona trzy argumenty. Pierwszy to warunek logiczny np. kolumna == 5, drugi to wartość, która ma zostać podana w wypadku spełnienia warunku, trzeci to wartość, która ma zostać podana gry warunek nie będzie spełniony. W wypadku gdy potrzebne jest więcej niż dwie opcje można użyć funkcji `case_when`
+
+```{r}
+# operacje matematyczne na kolumnach
+penguins %>% group_by(species, sex) %>% mutate(st_bill = bill_length_mm/bill_depth_mm)
+
+# wartość maksymalna i obliczanie procentów
+penguins %>% group_by(species, sex) %>% mutate(max_bill_depth = max(bill_depth_mm),
+                                               procent = bill_depth_mm/max_bill_depth) %>%
+  relocate(procent, max_bill_depth, .after = island)
+
+# zastosowanie funkcji ifelse
+penguins %>% group_by(species, sex) %>% mutate(czy_jest_plec = ifelse(!is.na(sex), 'tak', 'nie'))
+
+# zastosowanie case_when
+penguins %>% group_by(species, sex) %>% mutate(wielkosc = case_when(body_mass_g <= 3000 ~ 'mały',
+                                                                    body_mass_g > 3000 & body_mass_g < 4000 ~ 'średni',
+                                                                    body_mass_g >= 4000 ~ 'duży'))
+# normaliazacja danych przy pomocy scale
+penguins %>% group_by(species, sex) %>% mutate(nor_body_mass = scale(body_mass_g))
+
+# średnia ruchoma  - konieczny pakiet zoo
+penguins %>% group_by(species, island, sex) %>% arrange(species, island, sex) %>%
+  mutate(mean = zoo::rollmean(body_mass_g,
+                              k = 3, # szerokość okna do średniej ruchomej
+                              fill = NA)) # czym uzupełnić brakujące wartości
+
+# group_by + slice_head + arrange - dwa pierwsze wiersze z każdej grupy, posortowane po masie ciała
+penguins %>% group_by(species) %>% arrange(desc(body_mass_g)) %>% slice_head(n = 2)
+
+```
+
+`summarise` tworzy nową tabelę, która będzie zawierała jedynie zmienne grupujące i nowo utworzone zmienne. Jeżeli dane nie są podzielone na żadne grupy to wynikiem `summarise` będzie tabela posiadająca tylko jeden wiersz.
+
+Jeżeli potrzebne jest zastosowanie tej samej funkcji dla większej liczby kolumn np. `mean` można wykorzystać funkcję `across`. 
+
+Zliczenie elementów można przeprowadzić wykorzystując funkcje pomocniczą `n` albo `count`
+
+
+```{r}
+# obliczanie średniej
+penguins %>% group_by(species, sex) %>% filter(!is.na(sex)) %>%
+  summarise(mean_mass = mean(body_mass_g))
+
+# średnia dla wszystkich zmiennych liczbowych
+penguins %>% group_by(species, sex) %>% filter(!is.na(sex)) %>%
+  summarise(across(.cols = where(is.numeric), # wybieramy tylko kolumny spełniajace warunke is.numeric
+                   .fns = c(srednia = mean, odch = sd))) # lista funkcji - można każdą nazwać żeby w tabeli z wynikami były opisane
+
+# zliczanie z n()
+penguins %>% group_by(species, sex) %>% filter(!is.na(sex)) %>%
+  summarise(n = n())
+
+# zliczanie z count() - można pominąć group_by
+penguins %>% filter(!is.na(sex)) %>%
+  count(species, sex)
+
+# połączenie z mutate
+penguins %>% filter(!is.na(sex)) %>% 
+  count(species, sex) %>%
+  group_by(species) %>%
+  mutate(procent = n/sum(n))
+
+```
+
+Szczególnym przypadkiem funkcji tworzących nowe zmienne są `separate` i `unite` z pakietu tidyr. Ich działanie jest przeciwstawne i pozwalają odpowiednio na złączenie i rozłączenie zmiennych przy pomocy separatora np. _ albo .
+
+```{r}
+# unite - domyślnie usuwa wejściowe kolumny, ale można je zostawić przy pomocy argumentu remove
+penguins %>% unite(col = nowa_kolumn, species, sex, sep = '_')
+
+# separate - również można wejściową kolumnę zostawić przy pomocy argumentu remove
+penguins %>% unite(col = nowa_kolumna, species, sex, sep = '_') %>%
+  separate(col = nowa_kolumna, into = c('gatunek', 'plec'), sep = '_')
+
+```
 
 
 ## Łączenie tabel
+
+Do łączenia tabel w R można wykorzystać dwa typy funkcji: `bind_*` i `*_join`. 
+
+Funkcje `bind_cols` i `bind_rows` służą do sklejania tabel ze sobą odpowiednio według kolumn (jedna obok drugiej) i wierszy (jedna pod drugą). Są szczególnie przydatne w sytuacjach gdy dane wejściowe do analizy znajdują się w kilku różnych plikach, których struktura jest taka sama (układ kolumn itp.). 
+
+Do funkcji bind_rows, można dodać argument .id, który doda nową kolumnę do danych, zawierającą nazwy pierwotnych kolumn.
+
+Druga grupa funkcji - `*_join` obejmuje funkcje, które łączą dane według pewnego klucza. Za klucz może służyć jedna albo więcej kolumn. Przykładowym kluczem może być np. nazwa genu albo kombinacja szczepu, nr komórki i czasu obserwacji. 
+
+Możliwe zastosowania funkcji `_join`
+* wzbogacenie tabeli o dodatkowe informacje np. dołączenie do tabeli zawierającej ekspresję genu informacje o ich funkcji, położenia na genomie
+* ponowne połączenie danych rozdzielonych w wyniku analizy np. dołączenie wyniku funkcji summarise do wejściowej tabeli
+* wybranie tabeli tylko wierszy występujących w obu tabelach np. wybór genów o istotnie zmienionej ekspersji z dwóch eksperymentów RNA-seq.
+
+Dla funkcji `*_join` kluczowe jest podanie argumentu by, który zidentyfikuje kolumny-klucze. Gdy w obu tabelach kolumny-klucze posiadają takie same nazwy funkcja sama je odnajdzie, w przeciwnym wypadku konieczne jest podanie ich nazw w formacie `by = c('kolumna_z_tab_1' = 'kolumna_z_tab_2')`.
+
+```{r}
+# przykład bind_rows
+data_1 <- data.frame(x = 1:3, y = letters[1:3], z = c('jeden', 'dwa', 'trzy'))
+data_2 <- data.frame(x = 4:6, y = letters[10:12], z = c('jeden', 'dwa', 'trzy'))
+
+bind_rows(data_1, data_2)
+
+# z ustawionym .id
+bind_rows(x = data_1, y = data_2, .id = 'id') # x =  itd. to podane nazwy tabel do kolumny id
+
+# przykład bind_cols
+bind_cols(data_1, data_2)
+
+# przykład left_join - do tabeli po lewej dodaje pasujące wiersze z tabeli w nawiasie
+band_instruments
+band_members
+band_instruments %>% left_join(band_members)
+# z by
+band_instruments2 %>% left_join(band_members, by = c('artist' = 'name'))
+
+# przykład inner_join - zostawia tylko wiersze z tabeli po lewej, które pasują do tabeli w nawiasie
+band_instruments %>% inner_join(band_members)
+
+# przykład full_join - zostawia wszystkie wiersze z obu tabel (uzupełnia brakujące wartości jako NA)
+band_instruments %>% full_join(band_members)
+
+# przykład anti_join - tylko wiersze w tabeli po lewej, które nie mają pary w tabeli w nawiasie
+band_instruments %>% anti_join(band_members)
+
+```
 
 
 

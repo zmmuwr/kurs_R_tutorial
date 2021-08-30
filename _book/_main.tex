@@ -117,7 +117,7 @@
 
 \title{Kurs R - Tutorial}
 \author{Agnieszka Strzałka}
-\date{2021-08-26}
+\date{2021-08-30}
 
 \begin{document}
 \maketitle
@@ -188,6 +188,8 @@ Większość przedstawionych przykładów będzie się opierać na funkcjach zaw
   \href{https://clauswilke.com/dataviz/index.html}{Fundamentals of Data Visualization}
 \item
   \href{https://r-graphics.org/index.html}{R Graphics Cookbook, 2nd edition}
+\item
+  \href{https://r4ds.had.co.nz/index.html}{R for Data Science}
 \item
   No i oczywiście ja chętnie pomogę :)
 \end{itemize}
@@ -703,16 +705,16 @@ Do poszczególnych części można dostać się przez nazwy albo indeksowanie {[
 \begin{verbatim}
 ## $ramka
 ##              a    b
-## 1   0.29860712 test
-## 2  -0.91762901 test
-## 3   0.61966960 test
-## 4   1.57073025 test
-## 5  -0.15456008 test
-## 6  -0.07332816 test
-## 7  -2.22543677 test
-## 8   0.91453150 test
-## 9  -0.34977264 test
-## 10 -2.58741225 test
+## 1  -0.12274013 test
+## 2   0.17811276 test
+## 3   2.88739210 test
+## 4  -0.83828421 test
+## 5   2.57855340 test
+## 6   0.04128665 test
+## 7  -0.29023048 test
+## 8   0.86136183 test
+## 9   1.01707873 test
+## 10 -0.95025927 test
 ## 
 ## $wektor
 ## [1]  1  4  7 10 13 16
@@ -730,7 +732,7 @@ Do poszczególnych części można dostać się przez nazwy albo indeksowanie {[
 \begin{verbatim}
 ## List of 3
 ##  $ ramka :'data.frame':  10 obs. of  2 variables:
-##   ..$ a: num [1:10] 0.299 -0.918 0.62 1.571 -0.155 ...
+##   ..$ a: num [1:10] -0.123 0.178 2.887 -0.838 2.579 ...
 ##   ..$ b: chr [1:10] "test" "test" "test" "test" ...
 ##  $ wektor: num [1:6] 1 4 7 10 13 16
 ##  $ tekst : chr "To jest lista"
@@ -1188,12 +1190,12 @@ Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykł
 
 \begin{verbatim}
 ##            A          B          C
-## 1 -0.7567550  1.2399454 -0.9865593
-## 2 -2.3798640 -1.8959983 -1.8595302
-## 3  0.8667937  1.3658897  0.9883004
-## 4 -0.4650774 -0.5543012 -0.2414149
-## 5 -0.4164829  0.2026130 -0.6114916
-## 6 -0.6320464  0.6980619  1.2801872
+## 1 -0.5902285 -0.4365634  0.8533837
+## 2 -0.6891102 -0.6748281  1.9796110
+## 3 -1.2116127 -1.1314619  0.5709029
+## 4 -1.6097473 -2.2448873 -0.2647332
+## 5 -0.8939539  0.8013055 -0.5198415
+## 6  0.3006322 -1.2884006  1.3492293
 \end{verbatim}
 
 \begin{Shaded}
@@ -1207,12 +1209,12 @@ Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykł
 ## # A tibble: 6 x 2
 ##   key    value
 ##   <chr>  <dbl>
-## 1 A     -0.757
-## 2 B      1.24 
-## 3 C     -0.987
-## 4 A     -2.38 
-## 5 B     -1.90 
-## 6 C     -1.86
+## 1 A     -0.590
+## 2 B     -0.437
+## 3 C      0.853
+## 4 A     -0.689
+## 5 B     -0.675
+## 6 C      1.98
 \end{verbatim}
 
 \begin{Shaded}
@@ -1238,12 +1240,12 @@ Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykł
 ## # A tibble: 6 x 3
 ##        A      B      C
 ##    <dbl>  <dbl>  <dbl>
-## 1 -0.757  1.24  -0.987
-## 2 -2.38  -1.90  -1.86 
-## 3  0.867  1.37   0.988
-## 4 -0.465 -0.554 -0.241
-## 5 -0.416  0.203 -0.611
-## 6 -0.632  0.698  1.28
+## 1 -0.590 -0.437  0.853
+## 2 -0.689 -0.675  1.98 
+## 3 -1.21  -1.13   0.571
+## 4 -1.61  -2.24  -0.265
+## 5 -0.894  0.801 -0.520
+## 6  0.301 -1.29   1.35
 \end{verbatim}
 
 \begin{Shaded}
@@ -1256,13 +1258,13 @@ Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykł
 \end{Shaded}
 
 \begin{verbatim}
-##            A          B          C id
-## 1  1.5382102 -0.1057850 -1.4479625  1
-## 2 -1.0102237  0.1125572 -1.8595662  2
-## 3 -0.9437435  0.2740198 -0.4333998  3
-## 4 -0.4386274  0.3228254  0.6701841  4
-## 5  0.2388293  0.4647441 -1.2744367  5
-## 6 -0.4022776 -1.1372669 -0.8634410  6
+##             A          B          C id
+## 1  1.65911084  1.8971903  0.7568595  1
+## 2  0.04515308 -0.9004976  0.4164839  2
+## 3 -1.94873958 -0.2392061 -0.2048734  3
+## 4  0.26059612  0.1642922 -1.0358310  4
+## 5 -0.08791245  1.0337133 -0.2728874  5
+## 6  0.13902676 -1.3454338  0.3384820  6
 \end{verbatim}
 
 \begin{Shaded}
@@ -1274,14 +1276,14 @@ Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykł
 
 \begin{verbatim}
 ## # A tibble: 6 x 3
-##      id key    value
-##   <int> <chr>  <dbl>
-## 1     1 A      1.54 
-## 2     1 B     -0.106
-## 3     1 C     -1.45 
-## 4     2 A     -1.01 
-## 5     2 B      0.113
-## 6     2 C     -1.86
+##      id key     value
+##   <int> <chr>   <dbl>
+## 1     1 A      1.66  
+## 2     1 B      1.90  
+## 3     1 C      0.757 
+## 4     2 A      0.0452
+## 5     2 B     -0.900 
+## 6     2 C      0.416
 \end{verbatim}
 
 \begin{Shaded}
@@ -1293,14 +1295,14 @@ Warto zwrócić uwagę, że funkcje tidyr zawsze zwracają tibble zamiast zwykł
 
 \begin{verbatim}
 ## # A tibble: 6 x 4
-##      id      A      B      C
-##   <int>  <dbl>  <dbl>  <dbl>
-## 1     1  1.54  -0.106 -1.45 
-## 2     2 -1.01   0.113 -1.86 
-## 3     3 -0.944  0.274 -0.433
-## 4     4 -0.439  0.323  0.670
-## 5     5  0.239  0.465 -1.27 
-## 6     6 -0.402 -1.14  -0.863
+##      id       A      B      C
+##   <int>   <dbl>  <dbl>  <dbl>
+## 1     1  1.66    1.90   0.757
+## 2     2  0.0452 -0.900  0.416
+## 3     3 -1.95   -0.239 -0.205
+## 4     4  0.261   0.164 -1.04 
+## 5     5 -0.0879  1.03  -0.273
+## 6     6  0.139  -1.35   0.338
 \end{verbatim}
 
 \hypertarget{pipes-potoki}{%
@@ -1327,11 +1329,11 @@ Na podstawie przykładu powyżej
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##      id      A      B      C
-##   <int>  <dbl>  <dbl>  <dbl>
-## 1     1  1.54  -0.106 -1.45 
-## 2     2 -1.01   0.113 -1.86 
-## 3     3 -0.944  0.274 -0.433
+##      id       A      B      C
+##   <int>   <dbl>  <dbl>  <dbl>
+## 1     1  1.66    1.90   0.757
+## 2     2  0.0452 -0.900  0.416
+## 3     3 -1.95   -0.239 -0.205
 \end{verbatim}
 
 \begin{Shaded}
@@ -1356,11 +1358,11 @@ Na podstawie przykładu powyżej
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##      id      A      B      C
-##   <int>  <dbl>  <dbl>  <dbl>
-## 1     1  1.54  -0.106 -1.45 
-## 2     2 -1.01   0.113 -1.86 
-## 3     3 -0.944  0.274 -0.433
+##      id       A      B      C
+##   <int>   <dbl>  <dbl>  <dbl>
+## 1     1  1.66    1.90   0.757
+## 2     2  0.0452 -0.900  0.416
+## 3     3 -1.95   -0.239 -0.205
 \end{verbatim}
 
 \begin{Shaded}
@@ -1378,11 +1380,11 @@ Na podstawie przykładu powyżej
 
 \begin{verbatim}
 ## # A tibble: 3 x 4
-##      id      A      B      C
-##   <int>  <dbl>  <dbl>  <dbl>
-## 1     1  1.54  -0.106 -1.45 
-## 2     2 -1.01   0.113 -1.86 
-## 3     3 -0.944  0.274 -0.433
+##      id       A      B      C
+##   <int>   <dbl>  <dbl>  <dbl>
+## 1     1  1.66    1.90   0.757
+## 2     2  0.0452 -0.900  0.416
+## 3     3 -1.95   -0.239 -0.205
 \end{verbatim}
 
 Wszystkie funkcje zawarte w pakietach tidyverse są dostosowane do pracy w potokach - pierwszym argumentem zawsze jest ramka danych. Może się jednak zdarzyć przy korzystaniu np. ze starszych pakietów, że ramka danych nie znajdzie się w pierwszym argumencie funkcji. Wtedy można użyć notacji z . albo zastosować tradycyjny zapis.
@@ -1402,7 +1404,7 @@ Wszystkie funkcje zawarte w pakietach tidyverse są dostosowane do pracy w potok
 ## 
 ## Coefficients:
 ## (Intercept)         keyB         keyC  
-##     -0.2740       0.2470       0.2652
+##    0.075742    -0.154651     0.009398
 \end{verbatim}
 
 Końcowy wynik potoku można przypisać do nowej zmiennej na początku korzystając ze strzałki \textless- albo na końcu -\textgreater{}
@@ -1421,19 +1423,17 @@ Końcowy wynik potoku można przypisać do nowej zmiennej na początku korzystaj
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -3.05961 -0.72938  0.01898  0.68033  2.50381 
+## -3.03631 -0.67356 -0.05183  0.63468  2.74403 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)   
-## (Intercept)  -0.2740     0.1032  -2.654  0.00837 **
-## keyB          0.2470     0.1460   1.692  0.09177 . 
-## keyC          0.2652     0.1460   1.816  0.07035 . 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  0.075742   0.103777   0.730    0.466
+## keyB        -0.154651   0.146763  -1.054    0.293
+## keyC         0.009398   0.146763   0.064    0.949
 ## 
-## Residual standard error: 1.032 on 297 degrees of freedom
-## Multiple R-squared:  0.01367,    Adjusted R-squared:  0.007031 
-## F-statistic: 2.059 on 2 and 297 DF,  p-value: 0.1295
+## Residual standard error: 1.038 on 297 degrees of freedom
+## Multiple R-squared:  0.005278,   Adjusted R-squared:  -0.00142 
+## F-statistic: 0.788 on 2 and 297 DF,  p-value: 0.4557
 \end{verbatim}
 
 \hypertarget{sortowanie}{%
@@ -1565,10 +1565,34 @@ Natomiast do zmiany położenia kolumn w danych służy funkcja \texttt{select} 
 ## # ... with 334 more rows, and 2 more variables: sex <fct>, year <int>
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# albo tak}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{\textquotesingle{}bill\textquotesingle{}}\NormalTok{), }\FunctionTok{everything}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 8
+##    bill_length_mm bill_depth_mm species island    flipper_length_mm body_mass_g
+##             <dbl>         <dbl> <fct>   <fct>                 <int>       <int>
+##  1           39.1          18.7 Adelie  Torgersen               181        3750
+##  2           39.5          17.4 Adelie  Torgersen               186        3800
+##  3           40.3          18   Adelie  Torgersen               195        3250
+##  4           NA            NA   Adelie  Torgersen                NA          NA
+##  5           36.7          19.3 Adelie  Torgersen               193        3450
+##  6           39.3          20.6 Adelie  Torgersen               190        3650
+##  7           38.9          17.8 Adelie  Torgersen               181        3625
+##  8           39.2          19.6 Adelie  Torgersen               195        4675
+##  9           34.1          18.1 Adelie  Torgersen               193        3475
+## 10           42            20.2 Adelie  Torgersen               190        4250
+## # ... with 334 more rows, and 2 more variables: sex <fct>, year <int>
+\end{verbatim}
+
 \hypertarget{filtrowanie}{%
 \section{Filtrowanie}\label{filtrowanie}}
 
-Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji \texttt{filter}, \texttt{distinct} i \texttt{select}.
+Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funkcji \texttt{filter}, \texttt{distinct}, \texttt{select} i \texttt{slice\_*}.
 
 \texttt{filter} pozwala na wybranie wierszy spełniających konkretne warunki. Do wpisywania warunków konieczna jest znajomość wyrażeń logicznych w R:
 * \texttt{==} równy
@@ -1581,11 +1605,802 @@ Do wybrania z tabeli tylko interesującego nas zbioru danych możemy użyć funk
 * \texttt{\textbar{}} lub
 * \texttt{\%in\%} znajduje się w zbiorze danych (wektor)
 
+\texttt{select} można wybrać kolejne kolumny wpisując ich nawy albo korzystając z funkcji pomocniczych np. \texttt{starts\_with}.
+
+\texttt{distinct} pozwala na pozostawienie jedynie unikalnych kombinacji zmiennych. Jako argumenty należy podac jedynie nazwy kolumn. Domyślnie usunie wszystkie pozostałe kolumny, ale można je zostawić wgumentem .keep. Przydatna funkcja np. do usuwania duplikatów z danych.
+
+Natomiast do usunięcia z danych wszystkich wierszy w których pojawia się wartość NA można użyć funkcji \texttt{drop\_na}.
+
+Do wybrania jedynie fragmentu danych można też użyć funkcji \texttt{slice}. W najprostszej postaci można wybrać dane po numerach wierszy podobnie jak w indeksowaniu ramki danych przy pomocy {[}{]}. Dodatkowe funkcje umożliwiają większą kontrolę: \texttt{slice\_head} albo \texttt{slice\_tail} wybierają z danych odpowiednio pierwsze i ostatnie wiersze, liczba kontrolowana argumentem n.~Natomiast \texttt{slice\_sample} wybierze z danych losowe wiersze, liczba określona argumentem n, działa analogicznie do funkcji \texttt{sample}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# filter {-} tylko Adelie z wyspy Torgersen}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(species }\SpecialCharTok{==} \StringTok{\textquotesingle{}Adelie\textquotesingle{}}\NormalTok{, island }\SpecialCharTok{==} \StringTok{\textquotesingle{}Torgersen\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 52 x 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ... with 42 more rows, and 2 more variables: sex <fct>, year <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# filter {-} tylko pingwiny cięższe niż 4000 i płeć male}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(body\_mass\_g }\SpecialCharTok{\textgreater{}=} \DecValTok{4000}\NormalTok{, sex }\SpecialCharTok{==} \StringTok{\textquotesingle{}male\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 114 x 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.2          19.6               195        4675
+##  2 Adelie  Torgersen           34.6          21.1               198        4400
+##  3 Adelie  Torgersen           42.5          20.7               197        4500
+##  4 Adelie  Torgersen           46            21.5               194        4200
+##  5 Adelie  Dream               39.2          21.1               196        4150
+##  6 Adelie  Dream               39.8          19.1               184        4650
+##  7 Adelie  Dream               44.1          19.7               196        4400
+##  8 Adelie  Dream               39.6          18.8               190        4600
+##  9 Adelie  Dream               42.3          21.2               191        4150
+## 10 Adelie  Biscoe              40.1          18.9               188        4300
+## # ... with 104 more rows, and 2 more variables: sex <fct>, year <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# distinct {-} obecne w anych kombinacja species, island, sex}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(species, island, sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 13 x 3
+##    species   island    sex   
+##    <fct>     <fct>     <fct> 
+##  1 Adelie    Torgersen male  
+##  2 Adelie    Torgersen female
+##  3 Adelie    Torgersen <NA>  
+##  4 Adelie    Biscoe    female
+##  5 Adelie    Biscoe    male  
+##  6 Adelie    Dream     female
+##  7 Adelie    Dream     male  
+##  8 Adelie    Dream     <NA>  
+##  9 Gentoo    Biscoe    female
+## 10 Gentoo    Biscoe    male  
+## 11 Gentoo    Biscoe    <NA>  
+## 12 Chinstrap Dream     female
+## 13 Chinstrap Dream     male
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# usuwanie NA i potem distinct}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(species, island, sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 3
+##    species   island    sex   
+##    <fct>     <fct>     <fct> 
+##  1 Adelie    Torgersen male  
+##  2 Adelie    Torgersen female
+##  3 Adelie    Biscoe    female
+##  4 Adelie    Biscoe    male  
+##  5 Adelie    Dream     female
+##  6 Adelie    Dream     male  
+##  7 Gentoo    Biscoe    female
+##  8 Gentoo    Biscoe    male  
+##  9 Chinstrap Dream     female
+## 10 Chinstrap Dream     male
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# do wyświetlenia wszystkich możliwych kombinacji zmiennych można użyć funkcji expand albo complete}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(species, island, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{expand}\NormalTok{(species, island)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 2
+##   species   island   
+##   <fct>     <fct>    
+## 1 Adelie    Biscoe   
+## 2 Adelie    Dream    
+## 3 Adelie    Torgersen
+## 4 Chinstrap Biscoe   
+## 5 Chinstrap Dream    
+## 6 Chinstrap Torgersen
+## 7 Gentoo    Biscoe   
+## 8 Gentoo    Dream    
+## 9 Gentoo    Torgersen
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# możliwe kombinacje + uzupełni NA w innych kolumnach tam gdzie brakuje danych}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(species, island, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{complete}\NormalTok{(species, island) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14 x 3
+##    species   island    sex   
+##    <fct>     <fct>     <fct> 
+##  1 Adelie    Biscoe    female
+##  2 Adelie    Biscoe    male  
+##  3 Adelie    Dream     female
+##  4 Adelie    Dream     male  
+##  5 Adelie    Torgersen male  
+##  6 Adelie    Torgersen female
+##  7 Chinstrap Biscoe    <NA>  
+##  8 Chinstrap Dream     female
+##  9 Chinstrap Dream     male  
+## 10 Chinstrap Torgersen <NA>  
+## 11 Gentoo    Biscoe    female
+## 12 Gentoo    Biscoe    male  
+## 13 Gentoo    Dream     <NA>  
+## 14 Gentoo    Torgersen <NA>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wybrane wiersze od 3 do 8}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{slice}\NormalTok{(}\DecValTok{3}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 8
+##   species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g sex  
+##   <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+## 1 Adelie  Torge~           40.3          18                195        3250 fema~
+## 2 Adelie  Torge~           NA            NA                 NA          NA <NA> 
+## 3 Adelie  Torge~           36.7          19.3              193        3450 fema~
+## 4 Adelie  Torge~           39.3          20.6              190        3650 male 
+## 5 Adelie  Torge~           38.9          17.8              181        3625 fema~
+## 6 Adelie  Torge~           39.2          19.6              195        4675 male 
+## # ... with 1 more variable: year <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# pierwsze 10 wierszy }
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{slice\_head}\NormalTok{(}\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ... with 2 more variables: sex <fct>, year <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 5 losowych wierszy}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{slice\_sample}\NormalTok{(}\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 8
+##   species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g sex  
+##   <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+## 1 Adelie  Dream            36.9          18.6              189        3500 fema~
+## 2 Adelie  Torge~           42.5          20.7              197        4500 male 
+## 3 Adelie  Biscoe           42            19.5              200        4050 male 
+## 4 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 5 Adelie  Torge~           39            17.1              191        3050 fema~
+## # ... with 1 more variable: year <int>
+\end{verbatim}
+
 \hypertarget{grupowanie-i-obliczanie-nowych-zmiennych}{%
 \section{Grupowanie i obliczanie nowych zmiennych}\label{grupowanie-i-obliczanie-nowych-zmiennych}}
 
+Jedną z najbardziej przydatnych funkcji pakietu dplyr jest \texttt{group\_by}, która pozwala na wydzielenie grup w danych przed wykonaniem następnych funkcji. Argumentami \texttt{group\_by} są kolejne nazwy kolumn rozdzielone przecinkami. \texttt{group\_by} w żaden sposób nie zmienia danych w tabeli, jej efektem jest tylko dodanie do tabeli informacji o tym, w której kolumnie znajduje się zmienna. Grupy z danych można usunąć przy pomocy funkcji \texttt{ungroup} albo nadpisać nowym \texttt{group\_by}.
+
+Dodanie grup do danych sprawia, że wszystkie kolejne funkcje będą wykonywane na fragmentach oryginalnej tabeli. Dzięki temu można np. obliczyć średnią dla każdej grupy, odfiltrować z każdej grupy tylko wartości maksymalne, wyświetlić tylko 3 wiersze z każdej grupy, dopasować model do każdej grupy osobno itd.
+
+\texttt{group\_by} można łączyć z dwiema funkcjami, które służą do dodawania nowych zmiennych do tabeli - \texttt{summarise} i \texttt{mutate}, ale przydaje się również przy filtrowaniu albo sortowaniu danych.
+
+\texttt{mutate} pozwala na dodanie nowych kolumn na końcu ramki danych, ale nie usuwa poprzednich kolumn. Jako argumenty w \texttt{mutate} należy podać nazwę nowej kolumny = sposób policzenia nowej kolumny.
+
+Szczególnie przydatna jest funkcja \texttt{ifelse}, która pozwala na przygotowanie nowej zmiennej na podstawie warunku logicznego. Zawsze posiada ona trzy argumenty. Pierwszy to warunek logiczny np. kolumna == 5, drugi to wartość, która ma zostać podana w wypadku spełnienia warunku, trzeci to wartość, która ma zostać podana gry warunek nie będzie spełniony. W wypadku gdy potrzebne jest więcej niż dwie opcje można użyć funkcji \texttt{case\_when}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# operacje matematyczne na kolumnach}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{st\_bill =}\NormalTok{ bill\_length\_mm}\SpecialCharTok{/}\NormalTok{bill\_depth\_mm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ... with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+## #   st_bill <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wartość maksymalna i obliczanie procentów}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{max\_bill\_depth =} \FunctionTok{max}\NormalTok{(bill\_depth\_mm),}
+                                               \AttributeTok{procent =}\NormalTok{ bill\_depth\_mm}\SpecialCharTok{/}\NormalTok{max\_bill\_depth) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{relocate}\NormalTok{(procent, max\_bill\_depth, }\AttributeTok{.after =}\NormalTok{ island)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 10
+## # Groups:   species, sex [8]
+##    species island    procent max_bill_depth bill_length_mm bill_depth_mm
+##    <fct>   <fct>       <dbl>          <dbl>          <dbl>         <dbl>
+##  1 Adelie  Torgersen   0.870           21.5           39.1          18.7
+##  2 Adelie  Torgersen   0.841           20.7           39.5          17.4
+##  3 Adelie  Torgersen   0.870           20.7           40.3          18  
+##  4 Adelie  Torgersen  NA               NA             NA            NA  
+##  5 Adelie  Torgersen   0.932           20.7           36.7          19.3
+##  6 Adelie  Torgersen   0.958           21.5           39.3          20.6
+##  7 Adelie  Torgersen   0.860           20.7           38.9          17.8
+##  8 Adelie  Torgersen   0.912           21.5           39.2          19.6
+##  9 Adelie  Torgersen  NA               NA             34.1          18.1
+## 10 Adelie  Torgersen  NA               NA             42            20.2
+## # ... with 334 more rows, and 4 more variables: flipper_length_mm <int>,
+## #   body_mass_g <int>, sex <fct>, year <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# zastosowanie funkcji ifelse}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{czy\_jest\_plec =} \FunctionTok{ifelse}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sex), }\StringTok{\textquotesingle{}tak\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}nie\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ... with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+## #   czy_jest_plec <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# zastosowanie case\_when}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{wielkosc =} \FunctionTok{case\_when}\NormalTok{(body\_mass\_g }\SpecialCharTok{\textless{}=} \DecValTok{3000} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}mały\textquotesingle{}}\NormalTok{,}
+\NormalTok{                                                                    body\_mass\_g }\SpecialCharTok{\textgreater{}} \DecValTok{3000} \SpecialCharTok{\&}\NormalTok{ body\_mass\_g }\SpecialCharTok{\textless{}} \DecValTok{4000} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}średni\textquotesingle{}}\NormalTok{,}
+\NormalTok{                                                                    body\_mass\_g }\SpecialCharTok{\textgreater{}=} \DecValTok{4000} \SpecialCharTok{\textasciitilde{}} \StringTok{\textquotesingle{}duży\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ... with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+## #   wielkosc <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# normaliazacja danych przy pomocy scale}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{nor\_body\_mass =} \FunctionTok{scale}\NormalTok{(body\_mass\_g))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 9
+## # Groups:   species, sex [8]
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>              <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ... with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+## #   nor_body_mass <dbl[,1]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# średnia ruchoma  {-} konieczny pakiet zoo}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, island, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(species, island, sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ zoo}\SpecialCharTok{::}\FunctionTok{rollmean}\NormalTok{(body\_mass\_g,}
+                              \AttributeTok{k =} \DecValTok{3}\NormalTok{, }\CommentTok{\# szerokość okna do średniej ruchomej}
+                              \AttributeTok{fill =} \ConstantTok{NA}\NormalTok{)) }\CommentTok{\# czym uzupełnić brakujące wartości}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 9
+## # Groups:   species, island, sex [13]
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    <fct>   <fct>           <dbl>         <dbl>             <int>       <int>
+##  1 Adelie  Biscoe           37.8          18.3               174        3400
+##  2 Adelie  Biscoe           35.9          19.2               189        3800
+##  3 Adelie  Biscoe           35.3          18.9               187        3800
+##  4 Adelie  Biscoe           40.5          17.9               187        3200
+##  5 Adelie  Biscoe           37.9          18.6               172        3150
+##  6 Adelie  Biscoe           39.6          17.7               186        3500
+##  7 Adelie  Biscoe           35            17.9               190        3450
+##  8 Adelie  Biscoe           34.5          18.1               187        2900
+##  9 Adelie  Biscoe           39            17.5               186        3550
+## 10 Adelie  Biscoe           36.5          16.6               181        2850
+## # ... with 334 more rows, and 3 more variables: sex <fct>, year <int>,
+## #   mean <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# group\_by + slice\_head + arrange {-} dwa pierwsze wiersze z każdej grupy, posortowane po masie ciała}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(body\_mass\_g)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{slice\_head}\NormalTok{(}\AttributeTok{n =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 8
+## # Groups:   species [3]
+##   species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g sex  
+##   <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+## 1 Adelie  Biscoe           43.2          19                197        4775 male 
+## 2 Adelie  Biscoe           41            20                203        4725 male 
+## 3 Chinst~ Dream            52            20.7              210        4800 male 
+## 4 Chinst~ Dream            52.8          20                205        4550 male 
+## 5 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 6 Gentoo  Biscoe           59.6          17                230        6050 male 
+## # ... with 1 more variable: year <int>
+\end{verbatim}
+
+\texttt{summarise} tworzy nową tabelę, która będzie zawierała jedynie zmienne grupujące i nowo utworzone zmienne. Jeżeli dane nie są podzielone na żadne grupy to wynikiem \texttt{summarise} będzie tabela posiadająca tylko jeden wiersz.
+
+Jeżeli potrzebne jest zastosowanie tej samej funkcji dla większej liczby kolumn np. \texttt{mean} można wykorzystać funkcję \texttt{across}.
+
+Zliczenie elementów można przeprowadzić wykorzystując funkcje pomocniczą \texttt{n} albo \texttt{count}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# obliczanie średniej}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sex)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_mass =} \FunctionTok{mean}\NormalTok{(body\_mass\_g))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'species'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+## # Groups:   species [3]
+##   species   sex    mean_mass
+##   <fct>     <fct>      <dbl>
+## 1 Adelie    female     3369.
+## 2 Adelie    male       4043.
+## 3 Chinstrap female     3527.
+## 4 Chinstrap male       3939.
+## 5 Gentoo    female     4680.
+## 6 Gentoo    male       5485.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# średnia dla wszystkich zmiennych liczbowych}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sex)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\FunctionTok{across}\NormalTok{(}\AttributeTok{.cols =} \FunctionTok{where}\NormalTok{(is.numeric), }\CommentTok{\# wybieramy tylko kolumny spełniajace warunke is.numeric}
+                   \AttributeTok{.fns =} \FunctionTok{c}\NormalTok{(}\AttributeTok{srednia =}\NormalTok{ mean, }\AttributeTok{odch =}\NormalTok{ sd))) }\CommentTok{\# lista funkcji {-} można każdą nazwać żeby w tabeli z wynikami były opisane}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'species'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 6 x 12
+## # Groups:   species [3]
+##   species   sex    bill_length_mm_srednia bill_length_mm_odch bill_depth_mm_sre~
+##   <fct>     <fct>                   <dbl>               <dbl>              <dbl>
+## 1 Adelie    female                   37.3                2.03               17.6
+## 2 Adelie    male                     40.4                2.28               19.1
+## 3 Chinstrap female                   46.6                3.11               17.6
+## 4 Chinstrap male                     51.1                1.56               19.3
+## 5 Gentoo    female                   45.6                2.05               14.2
+## 6 Gentoo    male                     49.5                2.72               15.7
+## # ... with 7 more variables: bill_depth_mm_odch <dbl>,
+## #   flipper_length_mm_srednia <dbl>, flipper_length_mm_odch <dbl>,
+## #   body_mass_g_srednia <dbl>, body_mass_g_odch <dbl>, year_srednia <dbl>,
+## #   year_odch <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# zliczanie z n()}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sex)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'species'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+## # Groups:   species [3]
+##   species   sex        n
+##   <fct>     <fct>  <int>
+## 1 Adelie    female    73
+## 2 Adelie    male      73
+## 3 Chinstrap female    34
+## 4 Chinstrap male      34
+## 5 Gentoo    female    58
+## 6 Gentoo    male      61
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# zliczanie z count() {-} można pominąć group\_by}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sex)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(species, sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   species   sex        n
+##   <fct>     <fct>  <int>
+## 1 Adelie    female    73
+## 2 Adelie    male      73
+## 3 Chinstrap female    34
+## 4 Chinstrap male      34
+## 5 Gentoo    female    58
+## 6 Gentoo    male      61
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# połączenie z mutate}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(sex)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(species, sex) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(species) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{procent =}\NormalTok{ n}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+## # Groups:   species [3]
+##   species   sex        n procent
+##   <fct>     <fct>  <int>   <dbl>
+## 1 Adelie    female    73   0.5  
+## 2 Adelie    male      73   0.5  
+## 3 Chinstrap female    34   0.5  
+## 4 Chinstrap male      34   0.5  
+## 5 Gentoo    female    58   0.487
+## 6 Gentoo    male      61   0.513
+\end{verbatim}
+
+Szczególnym przypadkiem funkcji tworzących nowe zmienne są \texttt{separate} i \texttt{unite} z pakietu tidyr. Ich działanie jest przeciwstawne i pozwalają odpowiednio na złączenie i rozłączenie zmiennych przy pomocy separatora np. \_ albo .
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# unite {-} domyślnie usuwa wejściowe kolumny, ale można je zostawić przy pomocy argumentu remove}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{unite}\NormalTok{(}\AttributeTok{col =}\NormalTok{ nowa\_kolumn, species, sex, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 7
+##    nowa_kolumn   island    bill_length_mm bill_depth_mm flipper_length_~ body_mass_g
+##    <chr>         <fct>              <dbl>         <dbl>            <int>       <int>
+##  1 Adelie_male   Torgersen           39.1          18.7              181        3750
+##  2 Adelie_female Torgersen           39.5          17.4              186        3800
+##  3 Adelie_female Torgersen           40.3          18                195        3250
+##  4 Adelie_NA     Torgersen           NA            NA                 NA          NA
+##  5 Adelie_female Torgersen           36.7          19.3              193        3450
+##  6 Adelie_male   Torgersen           39.3          20.6              190        3650
+##  7 Adelie_female Torgersen           38.9          17.8              181        3625
+##  8 Adelie_male   Torgersen           39.2          19.6              195        4675
+##  9 Adelie_NA     Torgersen           34.1          18.1              193        3475
+## 10 Adelie_NA     Torgersen           42            20.2              190        4250
+## # ... with 334 more rows, and 1 more variable: year <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# separate {-} również można wejściową kolumnę zostawić przy pomocy argumentu remove}
+\NormalTok{penguins }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{unite}\NormalTok{(}\AttributeTok{col =}\NormalTok{ nowa\_kolumna, species, sex, }\AttributeTok{sep =} \StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{separate}\NormalTok{(}\AttributeTok{col =}\NormalTok{ nowa\_kolumna, }\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}gatunek\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}plec\textquotesingle{}}\NormalTok{), }\AttributeTok{sep =} \StringTok{\textquotesingle{}\_\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 344 x 8
+##    gatunek plec   island    bill_length_mm bill_depth_mm flipper_length_mm
+##    <chr>   <chr>  <fct>              <dbl>         <dbl>             <int>
+##  1 Adelie  male   Torgersen           39.1          18.7               181
+##  2 Adelie  female Torgersen           39.5          17.4               186
+##  3 Adelie  female Torgersen           40.3          18                 195
+##  4 Adelie  NA     Torgersen           NA            NA                  NA
+##  5 Adelie  female Torgersen           36.7          19.3               193
+##  6 Adelie  male   Torgersen           39.3          20.6               190
+##  7 Adelie  female Torgersen           38.9          17.8               181
+##  8 Adelie  male   Torgersen           39.2          19.6               195
+##  9 Adelie  NA     Torgersen           34.1          18.1               193
+## 10 Adelie  NA     Torgersen           42            20.2               190
+## # ... with 334 more rows, and 2 more variables: body_mass_g <int>, year <int>
+\end{verbatim}
+
 \hypertarget{ux142ux105czenie-tabel}{%
 \section{Łączenie tabel}\label{ux142ux105czenie-tabel}}
+
+Do łączenia tabel w R można wykorzystać dwa typy funkcji: \texttt{bind\_*} i \texttt{*\_join}.
+
+Funkcje \texttt{bind\_cols} i \texttt{bind\_rows} służą do sklejania tabel ze sobą odpowiednio według kolumn (jedna obok drugiej) i wierszy (jedna pod drugą). Są szczególnie przydatne w sytuacjach gdy dane wejściowe do analizy znajdują się w kilku różnych plikach, których struktura jest taka sama (układ kolumn itp.).
+
+Do funkcji bind\_rows, można dodać argument .id, który doda nową kolumnę do danych, zawierającą nazwy pierwotnych kolumn.
+
+Druga grupa funkcji - \texttt{*\_join} obejmuje funkcje, które łączą dane według pewnego klucza. Za klucz może służyć jedna albo więcej kolumn. Przykładowym kluczem może być np. nazwa genu albo kombinacja szczepu, nr komórki i czasu obserwacji.
+
+Możliwe zastosowania funkcji \texttt{\_join}
+* wzbogacenie tabeli o dodatkowe informacje np. dołączenie do tabeli zawierającej ekspresję genu informacje o ich funkcji, położenia na genomie
+* ponowne połączenie danych rozdzielonych w wyniku analizy np. dołączenie wyniku funkcji summarise do wejściowej tabeli
+* wybranie tabeli tylko wierszy występujących w obu tabelach np. wybór genów o istotnie zmienionej ekspersji z dwóch eksperymentów RNA-seq.
+
+Dla funkcji \texttt{*\_join} kluczowe jest podanie argumentu by, który zidentyfikuje kolumny-klucze. Gdy w obu tabelach kolumny-klucze posiadają takie same nazwy funkcja sama je odnajdzie, w przeciwnym wypadku konieczne jest podanie ich nazw w formacie \texttt{by\ =\ c(\textquotesingle{}kolumna\_z\_tab\_1\textquotesingle{}\ =\ \textquotesingle{}kolumna\_z\_tab\_2\textquotesingle{})}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykład bind\_rows}
+\NormalTok{data\_1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\AttributeTok{y =}\NormalTok{ letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{], }\AttributeTok{z =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}jeden\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}dwa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}trzy\textquotesingle{}}\NormalTok{))}
+\NormalTok{data\_2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{4}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{y =}\NormalTok{ letters[}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{], }\AttributeTok{z =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}jeden\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}dwa\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}trzy\textquotesingle{}}\NormalTok{))}
+
+\FunctionTok{bind\_rows}\NormalTok{(data\_1, data\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   x y     z
+## 1 1 a jeden
+## 2 2 b   dwa
+## 3 3 c  trzy
+## 4 4 j jeden
+## 5 5 k   dwa
+## 6 6 l  trzy
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# z ustawionym .id}
+\FunctionTok{bind\_rows}\NormalTok{(}\AttributeTok{x =}\NormalTok{ data\_1, }\AttributeTok{y =}\NormalTok{ data\_2, }\AttributeTok{.id =} \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{) }\CommentTok{\# x =  itd. to podane nazwy tabel do kolumny id}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id x y     z
+## 1  x 1 a jeden
+## 2  x 2 b   dwa
+## 3  x 3 c  trzy
+## 4  y 4 j jeden
+## 5  y 5 k   dwa
+## 6  y 6 l  trzy
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykład bind\_cols}
+\FunctionTok{bind\_cols}\NormalTok{(data\_1, data\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## * x -> x...1
+## * y -> y...2
+## * z -> z...3
+## * x -> x...4
+## * y -> y...5
+## * ...
+\end{verbatim}
+
+\begin{verbatim}
+##   x...1 y...2 z...3 x...4 y...5 z...6
+## 1     1     a jeden     4     j jeden
+## 2     2     b   dwa     5     k   dwa
+## 3     3     c  trzy     6     l  trzy
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykład left\_join {-} do tabeli po lewej dodaje pasujące wiersze z tabeli w nawiasie}
+\NormalTok{band\_instruments}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   name  plays 
+##   <chr> <chr> 
+## 1 John  guitar
+## 2 Paul  bass  
+## 3 Keith guitar
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{band\_members}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   name  band   
+##   <chr> <chr>  
+## 1 Mick  Stones 
+## 2 John  Beatles
+## 3 Paul  Beatles
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{band\_instruments }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(band\_members)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "name"
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   name  plays  band   
+##   <chr> <chr>  <chr>  
+## 1 John  guitar Beatles
+## 2 Paul  bass   Beatles
+## 3 Keith guitar <NA>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# z by}
+\NormalTok{band\_instruments2 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(band\_members, }\AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}artist\textquotesingle{}} \OtherTok{=} \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   artist plays  band   
+##   <chr>  <chr>  <chr>  
+## 1 John   guitar Beatles
+## 2 Paul   bass   Beatles
+## 3 Keith  guitar <NA>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykład inner\_join {-} zostawia tylko wiersze z tabeli po lewej, które pasują do tabeli w nawiasie}
+\NormalTok{band\_instruments }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(band\_members)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "name"
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   name  plays  band   
+##   <chr> <chr>  <chr>  
+## 1 John  guitar Beatles
+## 2 Paul  bass   Beatles
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykład full\_join {-} zostawia wszystkie wiersze z obu tabel (uzupełnia brakujące wartości jako NA)}
+\NormalTok{band\_instruments }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{full\_join}\NormalTok{(band\_members)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "name"
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   name  plays  band   
+##   <chr> <chr>  <chr>  
+## 1 John  guitar Beatles
+## 2 Paul  bass   Beatles
+## 3 Keith guitar <NA>   
+## 4 Mick  <NA>   Stones
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# przykład anti\_join {-} tylko wiersze w tabeli po lewej, które nie mają pary w tabeli w nawiasie}
+\NormalTok{band\_instruments }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{anti\_join}\NormalTok{(band\_members)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "name"
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   name  plays 
+##   <chr> <chr> 
+## 1 Keith guitar
+\end{verbatim}
 
 \hypertarget{wykresy---pakiet-ggplot2}{%
 \chapter{Wykresy - pakiet ggplot2}\label{wykresy---pakiet-ggplot2}}
@@ -1759,7 +2574,7 @@ Dane tego typu możemy przedstawić jako wykres np. liniowy, punktowy, ribbon (l
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-32-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 Dla histogramu najważniejszy parametr to \texttt{binwidth} określający szerokość ``słupków''.
 
@@ -1773,7 +2588,7 @@ Można też zmienić kolor wypełnienia słupków - \texttt{fill} lub kolor lini
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1782,7 +2597,7 @@ Można też zmienić kolor wypełnienia słupków - \texttt{fill} lub kolor lini
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-33-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1791,7 +2606,7 @@ Można też zmienić kolor wypełnienia słupków - \texttt{fill} lub kolor lini
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-33-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1801,7 +2616,7 @@ Można też zmienić kolor wypełnienia słupków - \texttt{fill} lub kolor lini
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-33-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1812,7 +2627,7 @@ Można też zmienić kolor wypełnienia słupków - \texttt{fill} lub kolor lini
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-33-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-5.pdf}
 
 Histogram możemy łatwo zmienić na \texttt{geom\_density} (gęstość) albo połączyć oba na jednym wykresie (należy pamiętać żeby ujednolicić oś Y - w histogramie ustawić \texttt{y=..density..} albo w density \texttt{y\ =\ ..count..})
 
@@ -1824,7 +2639,7 @@ Wykresy gęstości są dużo czytelniejsze od histogramów przy większej liczbi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1834,7 +2649,7 @@ Wykresy gęstości są dużo czytelniejsze od histogramów przy większej liczbi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-34-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-39-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1844,7 +2659,7 @@ Wykresy gęstości są dużo czytelniejsze od histogramów przy większej liczbi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-34-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-39-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1854,7 +2669,7 @@ Wykresy gęstości są dużo czytelniejsze od histogramów przy większej liczbi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-34-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-39-4.pdf}
 
 \hypertarget{wykres-pudeux142kowy---boxplot}{%
 \subsection{Wykres pudełkowy - boxplot}\label{wykres-pudeux142kowy---boxplot}}
@@ -1871,7 +2686,7 @@ Zamiast histogramu możemy zrobić boxplot, w tym wypadku x to nazwa szczepu, a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-35-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1881,7 +2696,7 @@ Zamiast histogramu możemy zrobić boxplot, w tym wypadku x to nazwa szczepu, a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-35-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-40-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1891,7 +2706,7 @@ Zamiast histogramu możemy zrobić boxplot, w tym wypadku x to nazwa szczepu, a 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-35-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-40-3.pdf}
 
 \hypertarget{wykres-skrzypcowy}{%
 \subsection{Wykres skrzypcowy}\label{wykres-skrzypcowy}}
@@ -1905,7 +2720,7 @@ Odmianą boxplotów są tzw. wykresy skrzypcowe, które pozwalają też na pokaz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1918,7 +2733,7 @@ Odmianą boxplotów są tzw. wykresy skrzypcowe, które pozwalają też na pokaz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-36-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-41-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1927,7 +2742,7 @@ Odmianą boxplotów są tzw. wykresy skrzypcowe, które pozwalają też na pokaz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-36-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-41-3.pdf}
 
 \hypertarget{dodanie-wszystkich-obserwacji-do-boxplotviolin}{%
 \subsection{Dodanie wszystkich obserwacji do boxplot/violin}\label{dodanie-wszystkich-obserwacji-do-boxplotviolin}}
@@ -1947,7 +2762,7 @@ Przy pomocy argumentu alpha można kontrolować przezroczystość punktów - prz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1957,7 +2772,7 @@ Przy pomocy argumentu alpha można kontrolować przezroczystość punktów - prz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-37-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1969,7 +2784,7 @@ Przy pomocy argumentu alpha można kontrolować przezroczystość punktów - prz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-37-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1979,7 +2794,7 @@ Przy pomocy argumentu alpha można kontrolować przezroczystość punktów - prz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-37-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1992,7 +2807,7 @@ Przy pomocy argumentu alpha można kontrolować przezroczystość punktów - prz
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-37-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-5.pdf}
 
 Można też połączyć wszystko w całość korzystając z dodatkowych pakietów ggdist i gghalves, na podstawie strony: \href{https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-with-ggplot2/}{visualizing-distributions-with-raincloud-plots-with-ggplot2}
 
@@ -2023,7 +2838,7 @@ Można też połączyć wszystko w całość korzystając z dodatkowych pakietó
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 \hypertarget{dotplot}{%
 \subsection{Dotplot}\label{dotplot}}
@@ -2045,7 +2860,7 @@ Wykres, na którym obserwacje są zaznaczane jako punkty, może być alternatyw�
 ## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2053,7 +2868,7 @@ Wykres, na którym obserwacje są zaznaczane jako punkty, może być alternatyw�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2068,7 +2883,7 @@ Wykres, na którym obserwacje są zaznaczane jako punkty, może być alternatyw�
 ## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2079,7 +2894,7 @@ Wykres, na którym obserwacje są zaznaczane jako punkty, może być alternatyw�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2090,7 +2905,7 @@ Wykres, na którym obserwacje są zaznaczane jako punkty, może być alternatyw�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2102,7 +2917,7 @@ Wykres, na którym obserwacje są zaznaczane jako punkty, może być alternatyw�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-6.pdf}
 
 \hypertarget{barplot---wykres-sux142upkowy}{%
 \section{Barplot - wykres słupkowy}\label{barplot---wykres-sux142upkowy}}
@@ -2465,7 +3280,7 @@ Domyślnie również wartości NA zostaną wzięte pod uwagę podczas zliczania.
 ## conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2754,7 +3569,7 @@ Domyślnie również wartości NA zostaną wzięte pod uwagę podczas zliczania.
 ## conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-42-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3043,7 +3858,7 @@ Domyślnie również wartości NA zostaną wzięte pod uwagę podczas zliczania.
 ## conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-42-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3333,7 +4148,7 @@ Domyślnie również wartości NA zostaną wzięte pod uwagę podczas zliczania.
 ## conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-42-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-4.pdf}
 
 Przy dużej ilości różnokolorowych słupków wykres może być trudny do odczytania. Można wtedy rozważyć zastosowanie dotchart - czyli wykresu na którym wartości zliczenia są oznaczane przez pojedyncze punkty, a nie przez wysokość słupków. W ggplot2 do zrobienia dotchart możemy użyć \texttt{geom\_point}
 
@@ -3486,7 +4301,7 @@ Przy dużej ilości różnokolorowych słupków wykres może być trudny do odcz
 ## conversion failure on 'Może' in 'mbcsToSbcs': dot substituted for <bc>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 Nasze dane mogą też zawierać wysokości słupków. W takim wypadku należy użyć \texttt{geom\_col}
 
@@ -3499,7 +4314,7 @@ Nasze dane mogą też zawierać wysokości słupków. W takim wypadku należy u�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-44-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 \hypertarget{ux15brednia-mediana-itp.-na-wykresie}{%
 \section{Średnia, mediana itp. na wykresie}\label{ux15brednia-mediana-itp.-na-wykresie}}
@@ -3524,7 +4339,7 @@ W \texttt{stat\_summary} najważniejszym argumentem jest funkcja jaką zastosuje
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3534,7 +4349,7 @@ W \texttt{stat\_summary} najważniejszym argumentem jest funkcja jaką zastosuje
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-45-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-50-2.pdf}
 
 \hypertarget{summary-z-uux17cyciem-dplyr}{%
 \subsection{Summary z użyciem dplyr}\label{summary-z-uux17cyciem-dplyr}}
@@ -3590,7 +4405,7 @@ W pakiecie dplyr pierwszym krokiem jest podział na grupy - \texttt{group\_by} i
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3598,7 +4413,7 @@ W pakiecie dplyr pierwszym krokiem jest podział na grupy - \texttt{group\_by} i
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-46-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3606,7 +4421,7 @@ W pakiecie dplyr pierwszym krokiem jest podział na grupy - \texttt{group\_by} i
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-46-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3617,7 +4432,7 @@ W pakiecie dplyr pierwszym krokiem jest podział na grupy - \texttt{group\_by} i
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-46-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3627,7 +4442,7 @@ W pakiecie dplyr pierwszym krokiem jest podział na grupy - \texttt{group\_by} i
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-46-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-5.pdf}
 
 \hypertarget{sux142upki-bux142ux119duxf3w}{%
 \subsection{Słupki błędów}\label{sux142upki-bux142ux119duxf3w}}
@@ -3679,7 +4494,7 @@ Wartość średnią i ewentualny błąd standardowy albo przedział ufności mo�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3688,7 +4503,7 @@ Wartość średnią i ewentualny błąd standardowy albo przedział ufności mo�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-47-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3698,7 +4513,7 @@ Wartość średnią i ewentualny błąd standardowy albo przedział ufności mo�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-47-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3707,7 +4522,7 @@ Wartość średnią i ewentualny błąd standardowy albo przedział ufności mo�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-47-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3716,7 +4531,7 @@ Wartość średnią i ewentualny błąd standardowy albo przedział ufności mo�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-47-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-5.pdf}
 
 \hypertarget{wykres-punktowy-i-liniowy}{%
 \section{Wykres punktowy i liniowy}\label{wykres-punktowy-i-liniowy}}
@@ -3734,7 +4549,7 @@ Dla \texttt{geom\_point} albo \texttt{geom\_line} konieczne jest w aes podanie x
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3742,7 +4557,7 @@ Dla \texttt{geom\_point} albo \texttt{geom\_line} konieczne jest w aes podanie x
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-48-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-2.pdf}
 
 \hypertarget{dopasowanie-linii-trendu-do-wykresu-punktowego}{%
 \subsection{Dopasowanie linii trendu do wykresu punktowego}\label{dopasowanie-linii-trendu-do-wykresu-punktowego}}
@@ -3760,7 +4575,7 @@ Zamiast rysować linię, możemy dopasować do wyników linię trendu (może by�
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3773,7 +4588,7 @@ Zamiast rysować linię, możemy dopasować do wyników linię trendu (może by�
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-49-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3787,7 +4602,7 @@ Zamiast rysować linię, możemy dopasować do wyników linię trendu (może by�
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-49-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-3.pdf}
 
 Sprawdzenie dopasowania można wykonać funkcją \texttt{lm}. Jej \texttt{summary} podaje wartośc R\^{}2, istotność, parametry wzoru(coefficients).
 
@@ -3830,7 +4645,7 @@ Sprawdzenie dopasowania można wykonać funkcją \texttt{lm}. Jej \texttt{summar
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
 
 Możemy zastosować \texttt{stat\_smooth} dla wszystkich danych.
 
@@ -3847,7 +4662,7 @@ Możemy zastosować \texttt{stat\_smooth} dla wszystkich danych.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3859,7 +4674,7 @@ Możemy zastosować \texttt{stat\_smooth} dla wszystkich danych.
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-51-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-56-2.pdf}
 
 Do przedstawienia takich danych można też użyć boxplot.
 
@@ -3870,7 +4685,7 @@ Do przedstawienia takich danych można też użyć boxplot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
 
 \hypertarget{jak-poradziux107-sobie-z-nadmiarem-punktuxf3w-na-wykresie-overplotting}{%
 \subsection{Jak poradzić sobie z nadmiarem punktów na wykresie (overplotting)?}\label{jak-poradziux107-sobie-z-nadmiarem-punktuxf3w-na-wykresie-overplotting}}
@@ -3894,7 +4709,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3903,7 +4718,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3912,7 +4727,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3921,7 +4736,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3929,7 +4744,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3939,7 +4754,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3948,7 +4763,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3957,7 +4772,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-8.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-8.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3966,7 +4781,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-9.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-9.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3974,7 +4789,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-10.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-10.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3985,7 +4800,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-11.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-11.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3997,7 +4812,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-12.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-12.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4005,7 +4820,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-13.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-13.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4014,7 +4829,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-14.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-14.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4023,7 +4838,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-15.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-15.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4034,7 +4849,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-16.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-16.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4042,7 +4857,7 @@ Dla danych dyskretnych pomóc może wykorzystanie \texttt{position="jitter"}, kt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-17.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-17.pdf}
 
 \hypertarget{wykres-wstux105ux17cka-ribbon}{%
 \subsection{Wykres wstążka (ribbon)}\label{wykres-wstux105ux17cka-ribbon}}
@@ -4075,7 +4890,7 @@ Półprzezroczystą wstążkę uzyskujemy dzięki parametrowi alpha.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-59-1.pdf}
 
 \hypertarget{kolory-osie-panele}{%
 \section{Kolory, osie, panele}\label{kolory-osie-panele}}
@@ -4102,7 +4917,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4111,7 +4926,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4120,7 +4935,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4130,7 +4945,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4147,7 +4962,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4155,7 +4970,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4165,7 +4980,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4174,7 +4989,7 @@ Wybieram dane tylko dla warunków 1.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-8.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-8.pdf}
 
 \hypertarget{zmiana-skali-koloruxf3w}{%
 \subsection{Zmiana skali kolorów}\label{zmiana-skali-koloruxf3w}}
@@ -4196,7 +5011,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4207,7 +5022,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-56-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4217,7 +5032,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4229,7 +5044,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4238,7 +5053,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4249,7 +5064,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4260,7 +5075,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4271,7 +5086,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4280,7 +5095,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4289,7 +5104,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4300,7 +5115,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-8.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-8.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4315,7 +5130,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-9.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-9.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4324,7 +5139,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-10.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-10.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4333,7 +5148,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-11.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-11.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4343,7 +5158,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-12.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-12.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4353,7 +5168,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-13.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-13.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4361,7 +5176,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-14.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-14.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4369,7 +5184,7 @@ Dla danych ilościowych można wybrać: \texttt{scale\_color\_gradient} - gradie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-58-15.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-15.pdf}
 Analogicznie do kolorów można ustawiać skale dotyczące kształtu punktów, stylu linii itp.
 
 \hypertarget{podziaux142-wykresu-na-panele}{%
@@ -4390,7 +5205,7 @@ Dzielimy wykres na części pod względem zmiennej np. Szczepu używając \textt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-59-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4398,7 +5213,7 @@ Dzielimy wykres na części pod względem zmiennej np. Szczepu używając \textt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-59-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-64-2.pdf}
 
 Oba sposoby można ze sobą dowolnie łączyć.
 
@@ -4412,7 +5227,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4420,7 +5235,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4429,7 +5244,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4439,7 +5254,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4448,7 +5263,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4458,7 +5273,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4467,7 +5282,7 @@ Analizujemy dane pod względem szczepu i warunków.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-60-7.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-7.pdf}
 
 \hypertarget{zmiana-skali-osi-obracanie-wykresu}{%
 \subsection{Zmiana skali, osi, obracanie wykresu}\label{zmiana-skali-osi-obracanie-wykresu}}
@@ -4501,7 +5316,7 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji \texttt{coord
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-61-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4912,7 +5727,7 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji \texttt{coord
 ## conversion failure on 'Coś' in 'mbcsToSbcs': dot substituted for <9b>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-61-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5283,7 +6098,7 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji \texttt{coord
 ## conversion failure on 'Coś' in 'mbcsToSbcs': dot substituted for <9b>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-61-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5292,7 +6107,7 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji \texttt{coord
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-61-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5301,7 +6116,7 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji \texttt{coord
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-61-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5313,7 +6128,7 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji \texttt{coord
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-61-6.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-6.pdf}
 
 \hypertarget{motyw-theme}{%
 \section{Motyw (theme)}\label{motyw-theme}}
@@ -5331,7 +6146,7 @@ Tytuł do wykresu możemy dodać korzystając z funkcji \texttt{ggtitle}. Nazwy 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5339,7 +6154,7 @@ Tytuł do wykresu możemy dodać korzystając z funkcji \texttt{ggtitle}. Nazwy 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-62-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5347,7 +6162,7 @@ Tytuł do wykresu możemy dodać korzystając z funkcji \texttt{ggtitle}. Nazwy 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-62-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5355,7 +6170,7 @@ Tytuł do wykresu możemy dodać korzystając z funkcji \texttt{ggtitle}. Nazwy 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-62-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5443,7 +6258,7 @@ Tytuł do wykresu możemy dodać korzystając z funkcji \texttt{ggtitle}. Nazwy 
 ## conversion failure on 'Tytuł' in 'mbcsToSbcs': dot substituted for <82>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-62-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-5.pdf}
 
 Legendę wykresu można modyfikować przy pomocy \texttt{guide\_legend} wewnątrz funkcji \texttt{scale\_fill\_discrete} , \texttt{scale\_colour\_discrete} itp. Dostępne parametry to m.in. title, title.position, label.position, direction, nrow i ncol legendy. Modyfikacje są możliwe też bezpośrednio w funkcji \texttt{theme} albo samodzielnie ustawiając przez \texttt{scale\_color\_manual}.
 
@@ -5455,7 +6270,7 @@ Legendę wykresu można modyfikować przy pomocy \texttt{guide\_legend} wewnątr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
 
 Można również modyfikować osobno każdy element wykresu np. czcionkę, kolor, linie, tło itd. przy pomocy funkcji \texttt{theme}, dużo przykładów znajduję się na \href{http://docs.ggplot2.org/current/theme.html}{stronie}.
 
@@ -5467,7 +6282,7 @@ Można modyfikować jednocześnie wszystkie elementy danego rodzaju np. tekst pr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5556,7 +6371,7 @@ Można modyfikować jednocześnie wszystkie elementy danego rodzaju np. tekst pr
 ## conversion failure on 'Tytuł wykresu' in 'mbcsToSbcs': dot substituted for <82>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-64-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5566,7 +6381,7 @@ Można modyfikować jednocześnie wszystkie elementy danego rodzaju np. tekst pr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-64-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-3.pdf}
 
 Jeżeli chcemy przygotować kilka pasujących do siebie wykresów możemy zapisać swój motyw i potem dodawać go do kolejnych wykresów.
 
@@ -5580,7 +6395,7 @@ Jeżeli chcemy przygotować kilka pasujących do siebie wykresów możemy zapisa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-65-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-70-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5588,7 +6403,7 @@ Jeżeli chcemy przygotować kilka pasujących do siebie wykresów możemy zapisa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-65-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-70-2.pdf}
 
 \hypertarget{ruxf3ux17cne}{%
 \section{Różne}\label{ruxf3ux17cne}}
@@ -5622,7 +6437,7 @@ Dużo łatwiejszym sposobem jest wykorzystanie pakietu patchwork. Pozwala on na 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5630,7 +6445,7 @@ Dużo łatwiejszym sposobem jest wykorzystanie pakietu patchwork. Pozwala on na 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-66-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5638,7 +6453,7 @@ Dużo łatwiejszym sposobem jest wykorzystanie pakietu patchwork. Pozwala on na 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-66-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5646,7 +6461,7 @@ Dużo łatwiejszym sposobem jest wykorzystanie pakietu patchwork. Pozwala on na 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-66-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5678,7 +6493,7 @@ Dużo łatwiejszym sposobem jest wykorzystanie pakietu patchwork. Pozwala on na 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-66-5.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-5.pdf}
 
 \hypertarget{ten-sam-wykres-ruxf3ux17cne-dane}{%
 \subsection{Ten sam wykres różne dane}\label{ten-sam-wykres-ruxf3ux17cne-dane}}
@@ -6061,7 +6876,7 @@ Alternatywą jest też napisanie własnej funkcji przygotowującej konkretny wyk
 ## <82>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-67-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6423,7 +7238,7 @@ Alternatywą jest też napisanie własnej funkcji przygotowującej konkretny wyk
 ## <82>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-67-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6785,7 +7600,7 @@ Alternatywą jest też napisanie własnej funkcji przygotowującej konkretny wyk
 ## <82>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-67-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-3.pdf}
 
 \hypertarget{rozszeux17cenia-ggplot2}{%
 \section{Rozszeżenia ggplot2}\label{rozszeux17cenia-ggplot2}}
@@ -6834,7 +7649,7 @@ Funkcja \texttt{ggpairs} pozwala na szybką analizę danych. Jej argumentem jest
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-73-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6851,7 +7666,7 @@ Funkcja \texttt{ggpairs} pozwala na szybką analizę danych. Jej argumentem jest
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-68-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-73-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6868,7 +7683,7 @@ Funkcja \texttt{ggpairs} pozwala na szybką analizę danych. Jej argumentem jest
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-68-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-73-3.pdf}
 
 \hypertarget{macierz-korelacji}{%
 \subsubsection{Macierz korelacji}\label{macierz-korelacji}}
@@ -6884,7 +7699,7 @@ Tworzenie macierzy korelacji jest opisane w dalszej części z wykorzystaniem pa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-69-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-74-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6894,7 +7709,7 @@ Tworzenie macierzy korelacji jest opisane w dalszej części z wykorzystaniem pa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-69-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-74-2.pdf}
 
 \hypertarget{wykresy---pakiet-podstawowy}{%
 \chapter{Wykresy - pakiet podstawowy}\label{wykresy---pakiet-podstawowy}}
@@ -6918,7 +7733,7 @@ Przy pomocy tej funkcji nie jest możliwe narysowanie histogramu z więcej niż 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-70-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6927,7 +7742,7 @@ Przy pomocy tej funkcji nie jest możliwe narysowanie histogramu z więcej niż 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-70-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-75-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6993,7 +7808,7 @@ Używając \texttt{summary} i \texttt{lm} możemy wyświetlić wszystkie informa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-76-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7001,7 +7816,7 @@ Używając \texttt{summary} i \texttt{lm} możemy wyświetlić wszystkie informa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-71-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-76-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7017,7 +7832,7 @@ Używając \texttt{summary} i \texttt{lm} możemy wyświetlić wszystkie informa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-71-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-76-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7034,7 +7849,7 @@ Używając \texttt{summary} i \texttt{lm} możemy wyświetlić wszystkie informa
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-71-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-76-4.pdf}
 
 Więcej informacji na temat dopasowywania modelu do danych w części dotyczącej statystyki :)
 
@@ -7054,7 +7869,7 @@ Używamy funkcji \texttt{boxplot}. Możemy podać jeden lub kilka wektorów, kt�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-72-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-77-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7062,7 +7877,7 @@ Używamy funkcji \texttt{boxplot}. Możemy podać jeden lub kilka wektorów, kt�
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-72-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-77-2.pdf}
 
 \hypertarget{wykres-sux142upkowy---barplot}{%
 \section{Wykres słupkowy - barplot}\label{wykres-sux142upkowy---barplot}}
@@ -7099,7 +7914,7 @@ Rysowany przy pomocy funkcji \texttt{barplot}. Podajemy wektor albo matrycę war
 ## <bc>
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7107,7 +7922,7 @@ Rysowany przy pomocy funkcji \texttt{barplot}. Podajemy wektor albo matrycę war
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-73-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7115,7 +7930,7 @@ Rysowany przy pomocy funkcji \texttt{barplot}. Podajemy wektor albo matrycę war
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-73-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7123,7 +7938,7 @@ Rysowany przy pomocy funkcji \texttt{barplot}. Podajemy wektor albo matrycę war
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-73-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-4.pdf}
 
 \hypertarget{wykres-mozaikowy---mosaicplot}{%
 \section{Wykres mozaikowy - mosaicplot}\label{wykres-mozaikowy---mosaicplot}}
@@ -7154,7 +7969,7 @@ Na tym wykresie liczebności poszczególnych grup są reprezentowane przez pole 
 ## + : font metrics unknown for Unicode character U+017c
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-74-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-79-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7178,7 +7993,7 @@ Na tym wykresie liczebności poszczególnych grup są reprezentowane przez pole 
 ## + : font metrics unknown for Unicode character U+017c
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-74-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-79-2.pdf}
 
 \hypertarget{wykres-kwantylowy---qqplot}{%
 \section{Wykres kwantylowy - qqPlot}\label{wykres-kwantylowy---qqplot}}
@@ -7219,7 +8034,7 @@ Funkcja \texttt{qqPlot} z pakietu car rysuje wykres kwantylowy z zaznaczonymi pr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-75-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 \begin{verbatim}
 ## [1] 13 60
@@ -7231,7 +8046,7 @@ Funkcja \texttt{qqPlot} z pakietu car rysuje wykres kwantylowy z zaznaczonymi pr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-75-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-80-2.pdf}
 
 \begin{verbatim}
 ## [1]  75 177
@@ -7273,7 +8088,7 @@ Można tworzyć diagramy z maksymalnie 5 grup, ale powyżej trzech stają się o
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-76-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 Jeżeli chcielibyśmy mieć kolorowe diagramy należałoby użyć funkcji \texttt{venn.diagram} z pakietu VennDiagram. Ta funkcja stara się nie rysować obszarów, w których nic nie ma, efekt jej pracy jest również ładniejszy ;)
 
@@ -7309,7 +8124,7 @@ Jeżeli chcielibyśmy mieć kolorowe diagramy należałoby użyć funkcji \textt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-77-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-82-1.pdf}
 
 \hypertarget{wykres-korelacji---corrplot}{%
 \section{Wykres korelacji - corrplot}\label{wykres-korelacji---corrplot}}
@@ -7369,7 +8184,7 @@ Jeżeli dane zawierają kilka kolumn z różnymi zmiennymi do szybkiego sprawdze
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-78-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7377,7 +8192,7 @@ Jeżeli dane zawierają kilka kolumn z różnymi zmiennymi do szybkiego sprawdze
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-78-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-83-2.pdf}
 
 \hypertarget{clustering---analiza-skupieux144}{%
 \section{Clustering - analiza skupień}\label{clustering---analiza-skupieux144}}
@@ -7396,7 +8211,7 @@ Słabością tej metody jest to, że dostaniemy tyle grup ile sobie zażyczymy (
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-84-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7458,7 +8273,7 @@ Słabością tej metody jest to, że dostaniemy tyle grup ile sobie zażyczymy (
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-79-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-84-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7470,7 +8285,7 @@ Słabością tej metody jest to, że dostaniemy tyle grup ile sobie zażyczymy (
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-79-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-84-3.pdf}
 
 Możemy także grupować dane według wielu zmiennych jendocześnie używając funkcji \texttt{dist} (redukuje wielowymiarowe dane do dwuwymiarowej macierzy odległości) i \texttt{hclust} (podział na grupy). Należy wybrać metodę grupowania, jedne z popularniejszych to \texttt{ward} i \texttt{complete}.
 
@@ -7495,7 +8310,7 @@ Wyświetlić grupy możemy za pomocą funkcji \texttt{cutree}, tutaj również n
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-80-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-85-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7680,7 +8495,7 @@ Funkcja & opis & parametry \\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7699,7 +8514,7 @@ Możemy też potrzebować wektor losowych wartości z danego zakresu. Służy do
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-84-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7710,7 +8525,7 @@ Możemy też potrzebować wektor losowych wartości z danego zakresu. Służy do
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-84-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-89-2.pdf}
 
 \hypertarget{podstawowe-testy-statystyczne}{%
 \section{Podstawowe testy statystyczne}\label{podstawowe-testy-statystyczne}}
@@ -7953,7 +8768,7 @@ Test Shapiro-Wilka należy do bardziej popularnych, liczba obserwacji powinna mi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 \begin{verbatim}
 ## [1] 221  99
@@ -8365,7 +9180,7 @@ Jeżeli chcemy poznać szczegóły dotyczące korelacji możemy użyć \texttt{c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8417,7 +9232,7 @@ Jeżeli chcemy poznać szczegóły dotyczące korelacji możemy użyć \texttt{c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-93-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8451,7 +9266,7 @@ Jeżeli chcemy poznać szczegóły dotyczące korelacji możemy użyć \texttt{c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-93-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8471,7 +9286,7 @@ Jeżeli chcemy poznać szczegóły dotyczące korelacji możemy użyć \texttt{c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-93-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8690,7 +9505,7 @@ Najbardziej popularną funkcją w R do wyznaczania modeli liniowych jest \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 Formuły zapisujemy korzystając z \textasciitilde{} , np.:
 * zależność y od x: y\textasciitilde x,
@@ -8744,7 +9559,7 @@ Formuły zapisujemy korzystając z \textasciitilde{} , np.:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-97-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
 
 Jeżeli chcemy jedynie wyznaczyć równanie funkcji liniowej - y = ax + b, wystarczy sprawdzić współczynniki dopasowanego modelu - coefficients. Intercept oznacza miejsce przecięcia z osią Y - współczynnik b, a age to wartość przez którą należy pomnożyć wiek drzewa żeby uzyskać jego obwód.
 
@@ -8811,7 +9626,7 @@ W modelu możemy uwzględniać również zmienne jakościowe, muszą one jednak 
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 Wartości przy przy kolejnych typach karmy - Diet2, Diet3, Diet4, pokazują o ile średnio różnią się wartości wyznaczone dla nich od poziomu referencyjnego czyli Diet1. To znaczy, że kurczaki karmione karmą nr 2 są o 16.17 g cięższe od kurczaków karmionych karmą nr 1.
 
@@ -8903,7 +9718,7 @@ Wykres razem z dopasowaniem można uzyskać dzięki standardowej funkcji \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8945,7 +9760,7 @@ Wykres razem z dopasowaniem można uzyskać dzięki standardowej funkcji \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-99-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8999,7 +9814,7 @@ Wykres razem z dopasowaniem można uzyskać dzięki standardowej funkcji \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-99-3.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-3.pdf}
 
 Możliwości tego pakietu sa dużo większe niż przedstawione powyżej. Autorzy przygotowali bardzo dobrą instrukcję użytkowania swojego pakietu razem ze szczegółowymi przykładami użycia wszystkich funkcji. Można ją znaleźć na stronie \href{http://www.bioassay.dk/}{Biossay}.
 
@@ -9068,7 +9883,7 @@ Aby stwierdzić które średnie w naszym zbiorze danych różnią się można pr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]

@@ -24,7 +24,7 @@
 <meta name="author" content="Agnieszka Strzałka" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2021-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -280,13 +280,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Histogram - hist</h2>
 <p>Histogram rysujemy funkcją <code>hist</code>. Należy podać wektor zawierający wartości, które mają zostać zliczone. Najważniejszym parametrem histogramu jest <code>breaks</code>, do którego można podać ilość słupków albo wektor przedziałów. <code>freq = TRUE</code> ozancza że na osi Y znajdą się zliczenie elementów w przydziałach, <code>FALSE</code> oznacza gęstości. Parametry <code>ylim</code> i <code>xlim</code> służą do zmiany startu i zakończenia osi.</p>
 <p>Przy pomocy tej funkcji nie jest możliwe narysowanie histogramu z więcej niż jednego wektora. Możemy na niego nałożyć krzywą oznaczającą gęstość przy pomocy <code>lines(density(x))</code>. Możemy także nie rysować wykresu, ale otrzymać jego liczbową reprezentację używając <code>plot=FALSE</code>.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="wykresy---pakiet-podstawowy.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dane1_1<span class="sc">$</span>pomiar)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="wykresy---pakiet-podstawowy.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dane1_1<span class="sc">$</span>pomiar, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">8</span>))</span>
-<span id="cb326-2"><a href="wykresy---pakiet-podstawowy.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(dane1_1<span class="sc">$</span>pomiar), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-70-2.png" width="672" /></p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="wykresy---pakiet-podstawowy.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># liczbowy opis histogramu - przedziały zliczenia, gęstości itd.</span></span>
-<span id="cb327-2"><a href="wykresy---pakiet-podstawowy.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dane1_1<span class="sc">$</span>pomiar, <span class="at">plot=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="wykresy---pakiet-podstawowy.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dane1_1<span class="sc">$</span>pomiar)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="wykresy---pakiet-podstawowy.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dane1_1<span class="sc">$</span>pomiar, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">8</span>))</span>
+<span id="cb402-2"><a href="wykresy---pakiet-podstawowy.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(dane1_1<span class="sc">$</span>pomiar), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-2.png" width="672" /></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="wykresy---pakiet-podstawowy.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="co"># liczbowy opis histogramu - przedziały zliczenia, gęstości itd.</span></span>
+<span id="cb403-2"><a href="wykresy---pakiet-podstawowy.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dane1_1<span class="sc">$</span>pomiar, <span class="at">plot=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## $breaks
 ##  [1] 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5
 ## 
@@ -322,94 +322,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Linię trendu możemy dodać wykorzystując funkcje <code>lm</code> i <code>abline</code> (dla zależności liniowych) albo <code>lines</code>, <code>lm</code> i <code>predict</code> (nieliniowe).</p>
 <p>Używając <code>summary</code> i <code>lm</code> możemy wyświetlić wszystkie informacje dotyczące dopasowania.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="wykresy---pakiet-podstawowy.html#cb329-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb329-2"><a href="wykresy---pakiet-podstawowy.html#cb329-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb329-3"><a href="wykresy---pakiet-podstawowy.html#cb329-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb329-4"><a href="wykresy---pakiet-podstawowy.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="wykresy---pakiet-podstawowy.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="wykresy---pakiet-podstawowy.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="co">#posortowane, losowe liczby z rozkładu jednostajnego</span></span>
-<span id="cb331-2"><a href="wykresy---pakiet-podstawowy.html#cb331-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">20</span>))<span class="sc">*</span><span class="dv">2</span></span>
-<span id="cb331-3"><a href="wykresy---pakiet-podstawowy.html#cb331-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">20</span>))<span class="sc">*</span><span class="dv">2</span></span>
-<span id="cb331-4"><a href="wykresy---pakiet-podstawowy.html#cb331-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb331-5"><a href="wykresy---pakiet-podstawowy.html#cb331-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a,b)</span>
-<span id="cb331-6"><a href="wykresy---pakiet-podstawowy.html#cb331-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb331-7"><a href="wykresy---pakiet-podstawowy.html#cb331-7" aria-hidden="true" tabindex="-1"></a><span class="co"># dopasowujemy prostą zależność b od a i rysujemy na wykresie</span></span>
-<span id="cb331-8"><a href="wykresy---pakiet-podstawowy.html#cb331-8" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(b<span class="sc">~</span>a)</span>
-<span id="cb331-9"><a href="wykresy---pakiet-podstawowy.html#cb331-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-71-3.png" width="672" /></p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="wykresy---pakiet-podstawowy.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dane muszą być posortowane żeby działała funkcja lines</span></span>
-<span id="cb332-2"><a href="wykresy---pakiet-podstawowy.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb332-3"><a href="wykresy---pakiet-podstawowy.html#cb332-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>))</span>
-<span id="cb332-4"><a href="wykresy---pakiet-podstawowy.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">300</span>)</span>
-<span id="cb332-5"><a href="wykresy---pakiet-podstawowy.html#cb332-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>))</span>
-<span id="cb332-6"><a href="wykresy---pakiet-podstawowy.html#cb332-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb332-7"><a href="wykresy---pakiet-podstawowy.html#cb332-7" aria-hidden="true" tabindex="-1"></a><span class="co"># dodajemy liniową linię trendu</span></span>
-<span id="cb332-8"><a href="wykresy---pakiet-podstawowy.html#cb332-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb332-9"><a href="wykresy---pakiet-podstawowy.html#cb332-9" aria-hidden="true" tabindex="-1"></a><span class="co"># albo dopasowujemy wielomian drugiego stopnia</span></span>
-<span id="cb332-10"><a href="wykresy---pakiet-podstawowy.html#cb332-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">predict</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="fu">data.frame</span>(<span class="at">x =</span> x))), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-71-4.png" width="672" /></p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="wykresy---pakiet-podstawowy.html#cb405-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
+<span id="cb405-2"><a href="wykresy---pakiet-podstawowy.html#cb405-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
+<span id="cb405-3"><a href="wykresy---pakiet-podstawowy.html#cb405-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-4"><a href="wykresy---pakiet-podstawowy.html#cb405-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="wykresy---pakiet-podstawowy.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-2.png" width="672" /></p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="wykresy---pakiet-podstawowy.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="co">#posortowane, losowe liczby z rozkładu jednostajnego</span></span>
+<span id="cb407-2"><a href="wykresy---pakiet-podstawowy.html#cb407-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">20</span>))<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb407-3"><a href="wykresy---pakiet-podstawowy.html#cb407-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">20</span>))<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb407-4"><a href="wykresy---pakiet-podstawowy.html#cb407-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb407-5"><a href="wykresy---pakiet-podstawowy.html#cb407-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a,b)</span>
+<span id="cb407-6"><a href="wykresy---pakiet-podstawowy.html#cb407-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb407-7"><a href="wykresy---pakiet-podstawowy.html#cb407-7" aria-hidden="true" tabindex="-1"></a><span class="co"># dopasowujemy prostą zależność b od a i rysujemy na wykresie</span></span>
+<span id="cb407-8"><a href="wykresy---pakiet-podstawowy.html#cb407-8" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(b<span class="sc">~</span>a)</span>
+<span id="cb407-9"><a href="wykresy---pakiet-podstawowy.html#cb407-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-3.png" width="672" /></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="wykresy---pakiet-podstawowy.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dane muszą być posortowane żeby działała funkcja lines</span></span>
+<span id="cb408-2"><a href="wykresy---pakiet-podstawowy.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb408-3"><a href="wykresy---pakiet-podstawowy.html#cb408-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>))</span>
+<span id="cb408-4"><a href="wykresy---pakiet-podstawowy.html#cb408-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">300</span>)</span>
+<span id="cb408-5"><a href="wykresy---pakiet-podstawowy.html#cb408-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>))</span>
+<span id="cb408-6"><a href="wykresy---pakiet-podstawowy.html#cb408-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb408-7"><a href="wykresy---pakiet-podstawowy.html#cb408-7" aria-hidden="true" tabindex="-1"></a><span class="co"># dodajemy liniową linię trendu</span></span>
+<span id="cb408-8"><a href="wykresy---pakiet-podstawowy.html#cb408-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb408-9"><a href="wykresy---pakiet-podstawowy.html#cb408-9" aria-hidden="true" tabindex="-1"></a><span class="co"># albo dopasowujemy wielomian drugiego stopnia</span></span>
+<span id="cb408-10"><a href="wykresy---pakiet-podstawowy.html#cb408-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">predict</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">poly</span>(x, <span class="dv">2</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), <span class="fu">data.frame</span>(<span class="at">x =</span> x))), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-4.png" width="672" /></p>
 <p>Więcej informacji na temat dopasowywania modelu do danych w części dotyczącej statystyki :)</p>
 </div>
 <div id="wykres-pudełkowy---boxplot-1" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Wykres pudełkowy - boxplot</h2>
 <p>Używamy funkcji <code>boxplot</code>. Możemy podać jeden lub kilka wektorów, które posłużą do rysowania “pudełek” albo podobnie jak w ggplot jeden wektor z wartościami i jeden ze zmiennymi je grupującymi. Wcięcia w boxplotach - <code>notch=TRUE</code>, wcięcia oznaczają przedział ufności dla mediany. Jeżeli wcięcia na siebie nie zachodzą to dwie populacje są od siebie najprawdopodobniej istotnie różne. <code>names</code> podpisy pod pudełkami.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="wykresy---pakiet-podstawowy.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przykładowe dane</span></span>
-<span id="cb333-2"><a href="wykresy---pakiet-podstawowy.html#cb333-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-3"><a href="wykresy---pakiet-podstawowy.html#cb333-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb333-4"><a href="wykresy---pakiet-podstawowy.html#cb333-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">2</span>)</span>
-<span id="cb333-5"><a href="wykresy---pakiet-podstawowy.html#cb333-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-6"><a href="wykresy---pakiet-podstawowy.html#cb333-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x, y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="wykresy---pakiet-podstawowy.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(dane1<span class="sc">$</span>pomiar <span class="sc">~</span> dane1<span class="sc">$</span>Szczep)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-72-2.png" width="672" /></p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="wykresy---pakiet-podstawowy.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przykładowe dane</span></span>
+<span id="cb409-2"><a href="wykresy---pakiet-podstawowy.html#cb409-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-3"><a href="wykresy---pakiet-podstawowy.html#cb409-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb409-4"><a href="wykresy---pakiet-podstawowy.html#cb409-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">2</span>)</span>
+<span id="cb409-5"><a href="wykresy---pakiet-podstawowy.html#cb409-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-6"><a href="wykresy---pakiet-podstawowy.html#cb409-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x, y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="wykresy---pakiet-podstawowy.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(dane1<span class="sc">$</span>pomiar <span class="sc">~</span> dane1<span class="sc">$</span>Szczep)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-2.png" width="672" /></p>
 </div>
 <div id="wykres-słupkowy---barplot" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Wykres słupkowy - barplot</h2>
 <p>Rysowany przy pomocy funkcji <code>barplot</code>. Podajemy wektor albo matrycę wartości oznaczające wysokości słupków. Możemy szybko przygotować takie zliczenia funkcją <code>table</code>. W przypadku więcej niż jednego rodzaju słupków można okreslić czy mają być obok siebie - <code>beside=TRUE</code>, kolory zmieniamy parametrem <code>col</code>.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="wykresy---pakiet-podstawowy.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="wykresy---pakiet-podstawowy.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>Szczep))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-73-2.png" width="672" /></p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="wykresy---pakiet-podstawowy.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>Szczep), <span class="at">beside =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-73-3.png" width="672" /></p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="wykresy---pakiet-podstawowy.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>Szczep), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;green3&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-73-4.png" width="672" /></p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="wykresy---pakiet-podstawowy.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="wykresy---pakiet-podstawowy.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>Szczep))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-2.png" width="672" /></p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="wykresy---pakiet-podstawowy.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>Szczep), <span class="at">beside =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-3.png" width="672" /></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="wykresy---pakiet-podstawowy.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>Szczep), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;coral2&quot;</span>, <span class="st">&quot;green3&quot;</span>, <span class="st">&quot;dodgerblue2&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-4.png" width="672" /></p>
 </div>
 <div id="wykres-mozaikowy---mosaicplot" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Wykres mozaikowy - mosaicplot</h2>
 <p>Na tym wykresie liczebności poszczególnych grup są reprezentowane przez pole powierzchni prostokąta. Można go przygotować nawet dla trzech lub więcej różnych zmiennych wyliczeniowych poprzez użycie funkcji <code>table</code> albo formuły.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="wykresy---pakiet-podstawowy.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z funckją table</span></span>
-<span id="cb339-2"><a href="wykresy---pakiet-podstawowy.html#cb339-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-3"><a href="wykresy---pakiet-podstawowy.html#cb339-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>warunki, dane2<span class="sc">$</span>Szczep), </span>
-<span id="cb339-4"><a href="wykresy---pakiet-podstawowy.html#cb339-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;green3&quot;</span>, <span class="st">&quot;white&quot;</span>), <span class="at">ylab =</span> <span class="st">&quot;Warunki&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Pomiar&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="576" /></p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="wykresy---pakiet-podstawowy.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z formułą</span></span>
-<span id="cb340-2"><a href="wykresy---pakiet-podstawowy.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="sc">~</span>pomiar <span class="sc">+</span> Szczep <span class="sc">+</span> warunki, <span class="at">data =</span> dane2, <span class="at">col =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-2.png" width="576" /></p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="wykresy---pakiet-podstawowy.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z funckją table</span></span>
+<span id="cb415-2"><a href="wykresy---pakiet-podstawowy.html#cb415-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb415-3"><a href="wykresy---pakiet-podstawowy.html#cb415-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">table</span>(dane2<span class="sc">$</span>pomiar, dane2<span class="sc">$</span>warunki, dane2<span class="sc">$</span>Szczep), </span>
+<span id="cb415-4"><a href="wykresy---pakiet-podstawowy.html#cb415-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;green3&quot;</span>, <span class="st">&quot;white&quot;</span>), <span class="at">ylab =</span> <span class="st">&quot;Warunki&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Pomiar&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="576" /></p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="wykresy---pakiet-podstawowy.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z formułą</span></span>
+<span id="cb416-2"><a href="wykresy---pakiet-podstawowy.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="sc">~</span>pomiar <span class="sc">+</span> Szczep <span class="sc">+</span> warunki, <span class="at">data =</span> dane2, <span class="at">col =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-2.png" width="576" /></p>
 </div>
 <div id="wykres-kwantylowy---qqplot" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Wykres kwantylowy - qqPlot</h2>
 <p>Dopasowanie danych do rozkładu normalnego można wizualnie sprawdzić przy pomocy wykresu kwantylowego.</p>
 <p>Funkcja <code>qqPlot</code> z pakietu car rysuje wykres kwantylowy z zaznaczonymi przedziałami ufności.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="wykresy---pakiet-podstawowy.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="wykresy---pakiet-podstawowy.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
 <pre><code>## Loading required package: carData</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;car&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     recode</code></pre>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="wykresy---pakiet-podstawowy.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane z rozkładu normalnego</span></span>
-<span id="cb345-2"><a href="wykresy---pakiet-podstawowy.html#cb345-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">300</span>)</span>
-<span id="cb345-3"><a href="wykresy---pakiet-podstawowy.html#cb345-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane z rozkładu lognormalnego</span></span>
-<span id="cb345-4"><a href="wykresy---pakiet-podstawowy.html#cb345-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">300</span>)</span>
-<span id="cb345-5"><a href="wykresy---pakiet-podstawowy.html#cb345-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb345-6"><a href="wykresy---pakiet-podstawowy.html#cb345-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(x)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="wykresy---pakiet-podstawowy.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane z rozkładu normalnego</span></span>
+<span id="cb421-2"><a href="wykresy---pakiet-podstawowy.html#cb421-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">300</span>)</span>
+<span id="cb421-3"><a href="wykresy---pakiet-podstawowy.html#cb421-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane z rozkładu lognormalnego</span></span>
+<span id="cb421-4"><a href="wykresy---pakiet-podstawowy.html#cb421-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">300</span>)</span>
+<span id="cb421-5"><a href="wykresy---pakiet-podstawowy.html#cb421-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb421-6"><a href="wykresy---pakiet-podstawowy.html#cb421-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(x)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <pre><code>## [1] 13 60</code></pre>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="wykresy---pakiet-podstawowy.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-75-2.png" width="672" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="wykresy---pakiet-podstawowy.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-2.png" width="672" /></p>
 <pre><code>## [1]  75 177</code></pre>
 </div>
 <div id="diagram-venna" class="section level2" number="6.7">
@@ -417,81 +417,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Istnieje wiele różnych funkcji generujących diagramy venna. Funkcja <code>venn</code> z pakietu gplots wydaje się być jedną z łatwiejszych. Jej argumentem musi być lista (tworzona funkcją <code>list</code> - każdy kolejny element listy to może być coś innego: wektor, ramka danych, inna lista itp.). W tym wypadku kolejne elementy listy to wektory zawierające wartości zliczane do diagramu.</p>
 <p>Trzeba zauważyć, że wielkości obszarów nie odpowiadają liczebności grupy, może być nawet narysowany obszar z liczebnością 0.</p>
 <p>Można tworzyć diagramy z maksymalnie 5 grup, ale powyżej trzech stają się one trudne do odczytania, wtedy lepszą opcją jest narysowanie Upset plot</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="wykresy---pakiet-podstawowy.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generowanie zestawów losowych liter</span></span>
-<span id="cb349-2"><a href="wykresy---pakiet-podstawowy.html#cb349-2" aria-hidden="true" tabindex="-1"></a>set_1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">10</span>)</span>
-<span id="cb349-3"><a href="wykresy---pakiet-podstawowy.html#cb349-3" aria-hidden="true" tabindex="-1"></a>set_2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">10</span>)</span>
-<span id="cb349-4"><a href="wykresy---pakiet-podstawowy.html#cb349-4" aria-hidden="true" tabindex="-1"></a>set_3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">8</span>)</span>
-<span id="cb349-5"><a href="wykresy---pakiet-podstawowy.html#cb349-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="wykresy---pakiet-podstawowy.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generowanie zestawów losowych liter</span></span>
+<span id="cb425-2"><a href="wykresy---pakiet-podstawowy.html#cb425-2" aria-hidden="true" tabindex="-1"></a>set_1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">10</span>)</span>
+<span id="cb425-3"><a href="wykresy---pakiet-podstawowy.html#cb425-3" aria-hidden="true" tabindex="-1"></a>set_2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">10</span>)</span>
+<span id="cb425-4"><a href="wykresy---pakiet-podstawowy.html#cb425-4" aria-hidden="true" tabindex="-1"></a>set_3 <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">8</span>)</span>
+<span id="cb425-5"><a href="wykresy---pakiet-podstawowy.html#cb425-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gplots)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;gplots&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:stats&#39;:
 ## 
 ##     lowess</code></pre>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="wykresy---pakiet-podstawowy.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="fu">list</span>(<span class="at">grupa_1 =</span> set_1, <span class="at">grupa_2 =</span> set_2, <span class="at">grupa_3 =</span> set_3))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="wykresy---pakiet-podstawowy.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">venn</span>(<span class="fu">list</span>(<span class="at">grupa_1 =</span> set_1, <span class="at">grupa_2 =</span> set_2, <span class="at">grupa_3 =</span> set_3))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>Jeżeli chcielibyśmy mieć kolorowe diagramy należałoby użyć funkcji <code>venn.diagram</code> z pakietu VennDiagram. Ta funkcja stara się nie rysować obszarów, w których nic nie ma, efekt jej pracy jest również ładniejszy ;)</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="wykresy---pakiet-podstawowy.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="wykresy---pakiet-podstawowy.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span></code></pre></div>
 <pre><code>## Loading required package: futile.logger</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;VennDiagram&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:car&#39;:
 ## 
 ##     ellipse</code></pre>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="wykresy---pakiet-podstawowy.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do wyświetlenia wymaga najpierw stworzenia obiektu typu grid</span></span>
-<span id="cb357-2"><a href="wykresy---pakiet-podstawowy.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.newpage</span>()</span>
-<span id="cb357-3"><a href="wykresy---pakiet-podstawowy.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.draw</span>(<span class="fu">venn.diagram</span>(<span class="fu">list</span>(<span class="at">grupa_1 =</span> set_1, <span class="at">grupa_2 =</span> set_2, <span class="at">grupa_3 =</span> set_3), </span>
-<span id="cb357-4"><a href="wykresy---pakiet-podstawowy.html#cb357-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>,<span class="st">&quot;yellow&quot;</span>), </span>
-<span id="cb357-5"><a href="wykresy---pakiet-podstawowy.html#cb357-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), </span>
-<span id="cb357-6"><a href="wykresy---pakiet-podstawowy.html#cb357-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="cn">NULL</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="wykresy---pakiet-podstawowy.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do wyświetlenia wymaga najpierw stworzenia obiektu typu grid</span></span>
+<span id="cb433-2"><a href="wykresy---pakiet-podstawowy.html#cb433-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.newpage</span>()</span>
+<span id="cb433-3"><a href="wykresy---pakiet-podstawowy.html#cb433-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.draw</span>(<span class="fu">venn.diagram</span>(<span class="fu">list</span>(<span class="at">grupa_1 =</span> set_1, <span class="at">grupa_2 =</span> set_2, <span class="at">grupa_3 =</span> set_3), </span>
+<span id="cb433-4"><a href="wykresy---pakiet-podstawowy.html#cb433-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>,<span class="st">&quot;yellow&quot;</span>), </span>
+<span id="cb433-5"><a href="wykresy---pakiet-podstawowy.html#cb433-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>), </span>
+<span id="cb433-6"><a href="wykresy---pakiet-podstawowy.html#cb433-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">filename =</span> <span class="cn">NULL</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 </div>
 <div id="wykres-korelacji---corrplot" class="section level2" number="6.8">
 <h2><span class="header-section-number">6.8</span> Wykres korelacji - corrplot</h2>
 <p>Jeżeli dane zawierają kilka kolumn z różnymi zmiennymi do szybkiego sprawdzenie korelacji między nimi możemy użyć macierzy korelacji. Z ramki danych można ją wyznaczyć funkcją <code>cor</code>, natomiast wykres takiej macierzy możemy zrobic np. przy użyciu funkcji <code>corrplot</code> z pakietu corrplot.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="wykresy---pakiet-podstawowy.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ładujemy dane dotyczące pogody</span></span>
-<span id="cb358-2"><a href="wykresy---pakiet-podstawowy.html#cb358-2" aria-hidden="true" tabindex="-1"></a>pogoda <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/pogoda.txt&quot;</span>)</span>
-<span id="cb358-3"><a href="wykresy---pakiet-podstawowy.html#cb358-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-4"><a href="wykresy---pakiet-podstawowy.html#cb358-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tylko pierwsze cztery kolumny zawierają interesujące informacje</span></span>
-<span id="cb358-5"><a href="wykresy---pakiet-podstawowy.html#cb358-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pogoda)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="wykresy---pakiet-podstawowy.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ładujemy dane dotyczące pogody</span></span>
+<span id="cb434-2"><a href="wykresy---pakiet-podstawowy.html#cb434-2" aria-hidden="true" tabindex="-1"></a>pogoda <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/pogoda.txt&quot;</span>)</span>
+<span id="cb434-3"><a href="wykresy---pakiet-podstawowy.html#cb434-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb434-4"><a href="wykresy---pakiet-podstawowy.html#cb434-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tylko pierwsze cztery kolumny zawierają interesujące informacje</span></span>
+<span id="cb434-5"><a href="wykresy---pakiet-podstawowy.html#cb434-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pogoda)</span></code></pre></div>
 <pre><code>## [1] &quot;ozon&quot;         &quot;naswietlenie&quot; &quot;wiatr&quot;        &quot;temperatura&quot;  &quot;miesiac&quot;     
 ## [6] &quot;dzien&quot;</code></pre>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="wykresy---pakiet-podstawowy.html#cb360-1" aria-hidden="true" tabindex="-1"></a>pogoda <span class="ot">&lt;-</span> pogoda[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb360-2"><a href="wykresy---pakiet-podstawowy.html#cb360-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb360-3"><a href="wykresy---pakiet-podstawowy.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dane zawierają brakujące informacje. Możemy je usunąć przy pomocy funkcji complete.cases</span></span>
-<span id="cb360-4"><a href="wykresy---pakiet-podstawowy.html#cb360-4" aria-hidden="true" tabindex="-1"></a><span class="co"># zwraca numery wierszy nie zawierających wartości NA</span></span>
-<span id="cb360-5"><a href="wykresy---pakiet-podstawowy.html#cb360-5" aria-hidden="true" tabindex="-1"></a>pogoda <span class="ot">&lt;-</span> pogoda[<span class="fu">complete.cases</span>(pogoda),]</span>
-<span id="cb360-6"><a href="wykresy---pakiet-podstawowy.html#cb360-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb360-7"><a href="wykresy---pakiet-podstawowy.html#cb360-7" aria-hidden="true" tabindex="-1"></a><span class="co"># przygotowujemy macierz korelacji</span></span>
-<span id="cb360-8"><a href="wykresy---pakiet-podstawowy.html#cb360-8" aria-hidden="true" tabindex="-1"></a>macierz <span class="ot">&lt;-</span> <span class="fu">cor</span>(pogoda)</span>
-<span id="cb360-9"><a href="wykresy---pakiet-podstawowy.html#cb360-9" aria-hidden="true" tabindex="-1"></a>macierz</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="wykresy---pakiet-podstawowy.html#cb436-1" aria-hidden="true" tabindex="-1"></a>pogoda <span class="ot">&lt;-</span> pogoda[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb436-2"><a href="wykresy---pakiet-podstawowy.html#cb436-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb436-3"><a href="wykresy---pakiet-podstawowy.html#cb436-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dane zawierają brakujące informacje. Możemy je usunąć przy pomocy funkcji complete.cases</span></span>
+<span id="cb436-4"><a href="wykresy---pakiet-podstawowy.html#cb436-4" aria-hidden="true" tabindex="-1"></a><span class="co"># zwraca numery wierszy nie zawierających wartości NA</span></span>
+<span id="cb436-5"><a href="wykresy---pakiet-podstawowy.html#cb436-5" aria-hidden="true" tabindex="-1"></a>pogoda <span class="ot">&lt;-</span> pogoda[<span class="fu">complete.cases</span>(pogoda),]</span>
+<span id="cb436-6"><a href="wykresy---pakiet-podstawowy.html#cb436-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb436-7"><a href="wykresy---pakiet-podstawowy.html#cb436-7" aria-hidden="true" tabindex="-1"></a><span class="co"># przygotowujemy macierz korelacji</span></span>
+<span id="cb436-8"><a href="wykresy---pakiet-podstawowy.html#cb436-8" aria-hidden="true" tabindex="-1"></a>macierz <span class="ot">&lt;-</span> <span class="fu">cor</span>(pogoda)</span>
+<span id="cb436-9"><a href="wykresy---pakiet-podstawowy.html#cb436-9" aria-hidden="true" tabindex="-1"></a>macierz</span></code></pre></div>
 <pre><code>##                    ozon naswietlenie      wiatr temperatura
 ## ozon          1.0000000    0.3483417 -0.6124966   0.6985414
 ## naswietlenie  0.3483417    1.0000000 -0.1271835   0.2940876
 ## wiatr        -0.6124966   -0.1271835  1.0000000  -0.4971897
 ## temperatura   0.6985414    0.2940876 -0.4971897   1.0000000</code></pre>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="wykresy---pakiet-podstawowy.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="wykresy---pakiet-podstawowy.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
 <pre><code>## corrplot 0.90 loaded</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="wykresy---pakiet-podstawowy.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(macierz)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="wykresy---pakiet-podstawowy.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(macierz, <span class="at">method =</span> <span class="st">&quot;ellipse&quot;</span>, <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-78-2.png" width="672" /></p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="wykresy---pakiet-podstawowy.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(macierz)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="wykresy---pakiet-podstawowy.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(macierz, <span class="at">method =</span> <span class="st">&quot;ellipse&quot;</span>, <span class="at">type =</span> <span class="st">&quot;lower&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-2.png" width="672" /></p>
 </div>
 <div id="clustering---analiza-skupień" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> Clustering - analiza skupień</h2>
 <p>Wykorzystamy funkcję <code>kmeans</code>, która pozwala na grupowanie danych w n-liczbę klasterów. Opiera się na metodzie tzw. klasyfikacji bez nadzoru (unsupervised learning), tak aby uzyskać minimalną wariancję wewnątrz danej grupy.</p>
 <p>Słabością tej metody jest to, że dostaniemy tyle grup ile sobie zażyczymy (niekoniecznie naprawdę istniejących), dlatego dobrze jest wypróbować kilka wartości n.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="wykresy---pakiet-podstawowy.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przygotowujemy dane złożone z dwóch grup</span></span>
-<span id="cb366-2"><a href="wykresy---pakiet-podstawowy.html#cb366-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">3</span>))</span>
-<span id="cb366-3"><a href="wykresy---pakiet-podstawowy.html#cb366-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">3</span>))</span>
-<span id="cb366-4"><a href="wykresy---pakiet-podstawowy.html#cb366-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb366-5"><a href="wykresy---pakiet-podstawowy.html#cb366-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="wykresy---pakiet-podstawowy.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Łączymy w matrycę - kmeans działa tylko na matrycach</span></span>
-<span id="cb367-2"><a href="wykresy---pakiet-podstawowy.html#cb367-2" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x,y)</span>
-<span id="cb367-3"><a href="wykresy---pakiet-podstawowy.html#cb367-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb367-4"><a href="wykresy---pakiet-podstawowy.html#cb367-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Przeprowadzamy podział na grupy</span></span>
-<span id="cb367-5"><a href="wykresy---pakiet-podstawowy.html#cb367-5" aria-hidden="true" tabindex="-1"></a>clu <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(xy, <span class="at">centers=</span><span class="dv">2</span>)</span>
-<span id="cb367-6"><a href="wykresy---pakiet-podstawowy.html#cb367-6" aria-hidden="true" tabindex="-1"></a>clu</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="wykresy---pakiet-podstawowy.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przygotowujemy dane złożone z dwóch grup</span></span>
+<span id="cb442-2"><a href="wykresy---pakiet-podstawowy.html#cb442-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">3</span>))</span>
+<span id="cb442-3"><a href="wykresy---pakiet-podstawowy.html#cb442-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">1</span>),<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">3</span>))</span>
+<span id="cb442-4"><a href="wykresy---pakiet-podstawowy.html#cb442-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb442-5"><a href="wykresy---pakiet-podstawowy.html#cb442-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="wykresy---pakiet-podstawowy.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Łączymy w matrycę - kmeans działa tylko na matrycach</span></span>
+<span id="cb443-2"><a href="wykresy---pakiet-podstawowy.html#cb443-2" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x,y)</span>
+<span id="cb443-3"><a href="wykresy---pakiet-podstawowy.html#cb443-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb443-4"><a href="wykresy---pakiet-podstawowy.html#cb443-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Przeprowadzamy podział na grupy</span></span>
+<span id="cb443-5"><a href="wykresy---pakiet-podstawowy.html#cb443-5" aria-hidden="true" tabindex="-1"></a>clu <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(xy, <span class="at">centers=</span><span class="dv">2</span>)</span>
+<span id="cb443-6"><a href="wykresy---pakiet-podstawowy.html#cb443-6" aria-hidden="true" tabindex="-1"></a>clu</span></code></pre></div>
 <pre><code>## K-means clustering with 2 clusters of sizes 110, 90
 ## 
 ## Cluster means:
@@ -515,42 +515,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;
 ## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="wykresy---pakiet-podstawowy.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co"># możemy sprawdzić dopasowanie - wiemy jakie były grupy</span></span>
-<span id="cb369-2"><a href="wykresy---pakiet-podstawowy.html#cb369-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb369-3"><a href="wykresy---pakiet-podstawowy.html#cb369-3" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">each=</span><span class="dv">100</span>)</span>
-<span id="cb369-4"><a href="wykresy---pakiet-podstawowy.html#cb369-4" aria-hidden="true" tabindex="-1"></a>ok <span class="ot">&lt;-</span> <span class="fu">sum</span>(test <span class="sc">==</span> clu<span class="sc">$</span>cluster)</span>
-<span id="cb369-5"><a href="wykresy---pakiet-podstawowy.html#cb369-5" aria-hidden="true" tabindex="-1"></a>ok<span class="sc">/</span><span class="fu">length</span>(test)</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="wykresy---pakiet-podstawowy.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="co"># możemy sprawdzić dopasowanie - wiemy jakie były grupy</span></span>
+<span id="cb445-2"><a href="wykresy---pakiet-podstawowy.html#cb445-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb445-3"><a href="wykresy---pakiet-podstawowy.html#cb445-3" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">each=</span><span class="dv">100</span>)</span>
+<span id="cb445-4"><a href="wykresy---pakiet-podstawowy.html#cb445-4" aria-hidden="true" tabindex="-1"></a>ok <span class="ot">&lt;-</span> <span class="fu">sum</span>(test <span class="sc">==</span> clu<span class="sc">$</span>cluster)</span>
+<span id="cb445-5"><a href="wykresy---pakiet-podstawowy.html#cb445-5" aria-hidden="true" tabindex="-1"></a>ok<span class="sc">/</span><span class="fu">length</span>(test)</span></code></pre></div>
 <pre><code>## [1] 0.07</code></pre>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="wykresy---pakiet-podstawowy.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rysujemy ponownie wykres pokolorowany według wyznaczonych grup</span></span>
-<span id="cb371-2"><a href="wykresy---pakiet-podstawowy.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xy, <span class="at">col=</span>clu<span class="sc">$</span>cluster)</span>
-<span id="cb371-3"><a href="wykresy---pakiet-podstawowy.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dodajemy centra każdej z grup</span></span>
-<span id="cb371-4"><a href="wykresy---pakiet-podstawowy.html#cb371-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(clu<span class="sc">$</span>centers, <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">pch=</span><span class="dv">8</span>, <span class="at">cex=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-79-2.png" width="672" /></p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="wykresy---pakiet-podstawowy.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Powtarzamy, ale z podziałem na 4 grupy</span></span>
-<span id="cb372-2"><a href="wykresy---pakiet-podstawowy.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane zawierały tylko 2 grupy, ale zostaną podzielone na 4</span></span>
-<span id="cb372-3"><a href="wykresy---pakiet-podstawowy.html#cb372-3" aria-hidden="true" tabindex="-1"></a>clu <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(xy, <span class="at">centers=</span><span class="dv">4</span>)</span>
-<span id="cb372-4"><a href="wykresy---pakiet-podstawowy.html#cb372-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xy, <span class="at">col=</span>clu<span class="sc">$</span>cluster)</span>
-<span id="cb372-5"><a href="wykresy---pakiet-podstawowy.html#cb372-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(clu<span class="sc">$</span>centers, <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">8</span>, <span class="at">cex=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-79-3.png" width="672" /></p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="wykresy---pakiet-podstawowy.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rysujemy ponownie wykres pokolorowany według wyznaczonych grup</span></span>
+<span id="cb447-2"><a href="wykresy---pakiet-podstawowy.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xy, <span class="at">col=</span>clu<span class="sc">$</span>cluster)</span>
+<span id="cb447-3"><a href="wykresy---pakiet-podstawowy.html#cb447-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dodajemy centra każdej z grup</span></span>
+<span id="cb447-4"><a href="wykresy---pakiet-podstawowy.html#cb447-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(clu<span class="sc">$</span>centers, <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">pch=</span><span class="dv">8</span>, <span class="at">cex=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-2.png" width="672" /></p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="wykresy---pakiet-podstawowy.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Powtarzamy, ale z podziałem na 4 grupy</span></span>
+<span id="cb448-2"><a href="wykresy---pakiet-podstawowy.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Dane zawierały tylko 2 grupy, ale zostaną podzielone na 4</span></span>
+<span id="cb448-3"><a href="wykresy---pakiet-podstawowy.html#cb448-3" aria-hidden="true" tabindex="-1"></a>clu <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(xy, <span class="at">centers=</span><span class="dv">4</span>)</span>
+<span id="cb448-4"><a href="wykresy---pakiet-podstawowy.html#cb448-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xy, <span class="at">col=</span>clu<span class="sc">$</span>cluster)</span>
+<span id="cb448-5"><a href="wykresy---pakiet-podstawowy.html#cb448-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(clu<span class="sc">$</span>centers, <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">8</span>, <span class="at">cex=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-3.png" width="672" /></p>
 <p>Możemy także grupować dane według wielu zmiennych jendocześnie używając funkcji <code>dist</code> (redukuje wielowymiarowe dane do dwuwymiarowej macierzy odległości) i <code>hclust</code> (podział na grupy). Należy wybrać metodę grupowania, jedne z popularniejszych to <code>ward</code> i <code>complete</code>.</p>
 <p>Wynik można przedstawić jako dendrogram korzystając ze zwykłej funkcji <code>plot</code>. Poszczególne grupy na wykresie zaznaczamy używając <code>rect.hclust</code>, musimy jedynie podać ilość grup.</p>
 <p>Wyświetlić grupy możemy za pomocą funkcji <code>cutree</code>, tutaj również niezbędne jest podanie ilości grup.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="wykresy---pakiet-podstawowy.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wykorzystamy dane spozycie z kursu R, spozycie produktów w różnych krajach </span></span>
-<span id="cb373-2"><a href="wykresy---pakiet-podstawowy.html#cb373-2" aria-hidden="true" tabindex="-1"></a>spozycie <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/spozycie.txt&quot;</span>, <span class="at">row.names=</span><span class="dv">1</span>)</span>
-<span id="cb373-3"><a href="wykresy---pakiet-podstawowy.html#cb373-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-4"><a href="wykresy---pakiet-podstawowy.html#cb373-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczamy macierz odległości</span></span>
-<span id="cb373-5"><a href="wykresy---pakiet-podstawowy.html#cb373-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(spozycie, <span class="at">method=</span><span class="st">&quot;euclidean&quot;</span>)</span>
-<span id="cb373-6"><a href="wykresy---pakiet-podstawowy.html#cb373-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-7"><a href="wykresy---pakiet-podstawowy.html#cb373-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupujemy kraje</span></span>
-<span id="cb373-8"><a href="wykresy---pakiet-podstawowy.html#cb373-8" aria-hidden="true" tabindex="-1"></a>CA <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>) </span>
-<span id="cb373-9"><a href="wykresy---pakiet-podstawowy.html#cb373-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb373-10"><a href="wykresy---pakiet-podstawowy.html#cb373-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Dendrogram</span></span>
-<span id="cb373-11"><a href="wykresy---pakiet-podstawowy.html#cb373-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CA)</span>
-<span id="cb373-12"><a href="wykresy---pakiet-podstawowy.html#cb373-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(CA, <span class="at">k=</span><span class="dv">5</span>, <span class="at">border=</span><span class="st">&quot;red&quot;</span>) </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="768" /></p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="wykresy---pakiet-podstawowy.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podział krajów na 5 grup</span></span>
-<span id="cb374-2"><a href="wykresy---pakiet-podstawowy.html#cb374-2" aria-hidden="true" tabindex="-1"></a>grupy <span class="ot">&lt;-</span> <span class="fu">cutree</span>(CA, <span class="at">k=</span><span class="dv">5</span>)</span>
-<span id="cb374-3"><a href="wykresy---pakiet-podstawowy.html#cb374-3" aria-hidden="true" tabindex="-1"></a>grupy</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="wykresy---pakiet-podstawowy.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wykorzystamy dane spozycie z kursu R, spozycie produktów w różnych krajach </span></span>
+<span id="cb449-2"><a href="wykresy---pakiet-podstawowy.html#cb449-2" aria-hidden="true" tabindex="-1"></a>spozycie <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;data/spozycie.txt&quot;</span>, <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb449-3"><a href="wykresy---pakiet-podstawowy.html#cb449-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-4"><a href="wykresy---pakiet-podstawowy.html#cb449-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obliczamy macierz odległości</span></span>
+<span id="cb449-5"><a href="wykresy---pakiet-podstawowy.html#cb449-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dist</span>(spozycie, <span class="at">method=</span><span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb449-6"><a href="wykresy---pakiet-podstawowy.html#cb449-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-7"><a href="wykresy---pakiet-podstawowy.html#cb449-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupujemy kraje</span></span>
+<span id="cb449-8"><a href="wykresy---pakiet-podstawowy.html#cb449-8" aria-hidden="true" tabindex="-1"></a>CA <span class="ot">&lt;-</span> <span class="fu">hclust</span>(d, <span class="at">method=</span><span class="st">&quot;ward.D2&quot;</span>) </span>
+<span id="cb449-9"><a href="wykresy---pakiet-podstawowy.html#cb449-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-10"><a href="wykresy---pakiet-podstawowy.html#cb449-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Dendrogram</span></span>
+<span id="cb449-11"><a href="wykresy---pakiet-podstawowy.html#cb449-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CA)</span>
+<span id="cb449-12"><a href="wykresy---pakiet-podstawowy.html#cb449-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(CA, <span class="at">k=</span><span class="dv">5</span>, <span class="at">border=</span><span class="st">&quot;red&quot;</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="768" /></p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="wykresy---pakiet-podstawowy.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podział krajów na 5 grup</span></span>
+<span id="cb450-2"><a href="wykresy---pakiet-podstawowy.html#cb450-2" aria-hidden="true" tabindex="-1"></a>grupy <span class="ot">&lt;-</span> <span class="fu">cutree</span>(CA, <span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb450-3"><a href="wykresy---pakiet-podstawowy.html#cb450-3" aria-hidden="true" tabindex="-1"></a>grupy</span></code></pre></div>
 <pre><code>##            Albania            Austria           Bulgaria            Croatia 
 ##                  1                  2                  3                  3 
 ##     Czech_Republic            Denmark            Estonia            Finland 
