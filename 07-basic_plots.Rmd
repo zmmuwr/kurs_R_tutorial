@@ -13,13 +13,14 @@ Histogram rysujemy funkcją `hist`. Należy podać wektor zawierający wartości
 Przy pomocy tej funkcji nie jest możliwe narysowanie histogramu z więcej niż jednego wektora. Możemy na niego nałożyć krzywą oznaczającą gęstość przy pomocy `lines(density(x))`. Możemy także nie rysować wykresu, ale otrzymać jego liczbową reprezentację używając `plot=FALSE`.
 
 ```{r}
-
-hist(dane1_1$pomiar)
-hist(dane1_1$pomiar, freq = FALSE, breaks = 20, col = "lightgreen", xlim = c(2,8))
-lines(density(dane1_1$pomiar), col="red")
+library(palmerpenguins)
+penguins <- penguins %>% drop_na()
+hist(penguins$body_mass_g)
+hist(penguins$body_mass_g, freq = FALSE, breaks = 20, col = "lightgreen", xlim = c(3000,5000))
+lines(density(x = penguins$body_mass_g), col="red")
 
 # liczbowy opis histogramu - przedziały zliczenia, gęstości itd.
-hist(dane1_1$pomiar, plot=FALSE)
+hist(penguins$body_mass_g, plot=FALSE)
 ```
 
 ## Wykres rozrzutu - plot
@@ -87,7 +88,7 @@ y <- rnorm(100, mean = 2)
 
 boxplot(x, y)
 
-boxplot(dane1$pomiar ~ dane1$Szczep)
+boxplot(penguins$body_mass_g ~ penguins$species)
 ```
 
 ## Wykres słupkowy - barplot
@@ -96,10 +97,10 @@ Rysowany przy pomocy funkcji `barplot`. Podajemy wektor albo matrycę wartości 
 
 ```{r}
 
-barplot(table(dane2$pomiar))
-barplot(table(dane2$pomiar, dane2$Szczep))
-barplot(table(dane2$pomiar, dane2$Szczep), beside = TRUE)
-barplot(table(dane2$pomiar, dane2$Szczep), beside = TRUE, col = c("coral2", "green3", "dodgerblue2"))
+barplot(table(penguins$species))
+barplot(table(penguins$species, penguins$sex))
+barplot(table(penguins$species, penguins$sex), beside = TRUE)
+barplot(table(penguins$species, penguins$sex), beside = TRUE, col = c("coral2", "green3", "dodgerblue2"))
 
 ```
 
@@ -111,11 +112,11 @@ Na tym wykresie liczebności poszczególnych grup są reprezentowane przez pole 
 ```{r, fig.height=6, fig.width=6}
 # z funckją table
 
-mosaicplot(table(dane2$pomiar, dane2$warunki, dane2$Szczep), 
+mosaicplot(table(penguins$species, penguins$sex, penguins$island), 
            col = c("orange", "green3", "white"), ylab = "Warunki", xlab = "Pomiar")
 
 # z formułą
-mosaicplot(~pomiar + Szczep + warunki, data = dane2, col = TRUE)
+mosaicplot(~species + sex + island, data = penguins, col = TRUE)
 
 
 ```

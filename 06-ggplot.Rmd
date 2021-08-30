@@ -41,51 +41,24 @@ Wykresy ggplot są przypisywane do zmiennych np `p <- ggplot(...)`, zmienna p pr
 
 ## Używane dane
 
-Dane 1 opisują jakąś cechę zmierzoną dla trzech szczepów w dwóch rodzajach warunków.
-
-```{r}
-library(ggplot2) # ładujemy niezbędne pakiety
-library(dplyr)
-
-dane1 <- read.table("data/dane1.txt", header = TRUE, quote = "\"")
-
-head(dane1)
-
-```
-Dane 2 zawierają ten sam zestaw szczepów i warunków, ale tym razem zostały one podzielone na 4 grupy: tak, nie, może i NA (brak danych).
-
-```{r}
-
-dane2 <- read.table("data/dane2.txt", header = TRUE, quote = "\"")
-
-head(dane2)
-summary(dane2)
-
-```
-
-Dane 3 to wzrost dwóch szczepów w trzech powtórzeniach w czasie 1-100.
-
-```{r}
-
-dane3 <- read.table("data/dane3.txt", header = TRUE, quote = "\"")
-
-head(dane3)
-summary(dane3)
-```
-
-Dane tego typu możemy przedstawić jako wykres np. liniowy, punktowy, ribbon (liniowy z zaznaczonym błędem, przedziałem ufności itp.).
+Jako przykładowe dane wykorzystane zostanie tabela penguis dostępna w pakiecie palmerpenguins. Tabela zawiera dane dotyczące 344 pingwinów należących do trzech gatunków, obserwowanych na wyspach archipelagu Palmer.
 
 ## Histogram, boxplot i inne
 
 ### Histogram i density
 
 ```{r}
-
+library(palmerpenguins) # ładowanie pakietu z danymi
+library(ggplot2) # ładowanie pakietu ggplot2
+library(dplyr)
+library(tidyr)
 theme_set(theme_bw()) # żeby wszystkie wykresy miały białe tło, a nie szare - będzie o tym później
+```
 
-dane1_1 <- subset(dane1, Szczep == "A" & warunki == "1")
 
-p <- ggplot(data = dane1_1, aes(x = pomiar))
+```{r}
+# histogram
+p <- ggplot(data = penguins, aes(x = body_mass_g))
 p + geom_histogram()
 
 ```
@@ -98,16 +71,16 @@ Można też zmienić kolor wypełnienia słupków - `fill` lub kolor linii - col
 
 ```{r}
 
-p + geom_histogram(binwidth = 0.5)
+p + geom_histogram(binwidth = 50)
 # Histogram z gęstością na osi Y
-p + geom_histogram(binwidth = 0.5, aes(y = ..density..))
+p + geom_histogram(binwidth = 50, aes(y = ..density..))
 # Histogram z wartością % na osi Y
-p + geom_histogram(binwidth = 0.5, aes(y = ((..count..)/sum(..count..)*100)))
+p + geom_histogram(binwidth = 50, aes(y = ((..count..)/sum(..count..)*100)))
 # Zmiana koloru wypełnienia histogramu
-p + geom_histogram(binwidth = 0.5, aes(y = ..density..), 
+p + geom_histogram(binwidth = 50, aes(y = ..density..), 
                    fill = "lightgreen", color = "black")
 # Dodanie wszystkich obserwacji do wykresu - geom_rug()
-p + geom_histogram(binwidth = 0.5, aes(y = ..density..), 
+p + geom_histogram(binwidth = 50, aes(y = ..density..), 
                    fill = "lightgreen", color = "black")+
   geom_rug()
 
@@ -120,16 +93,16 @@ Wykresy gęstości są dużo czytelniejsze od histogramów przy większej liczbi
 ```{r}
 p + geom_density()
 # Wykres łączący histogram i gęstość
-p + geom_histogram(binwidth = 0.5, aes(y = ..density..))+
+p + geom_histogram(binwidth = 50, aes(y = ..density..))+
   geom_density(color = "red")
 
-# albo tak, ale wtedy trzeba count w density podzielić przez coś - konkretną liczbę lepiej dobrać indywidualnie do każdego wykresu
-p + geom_histogram(binwidth = 0.5)+
-  geom_density(color = "red", aes(y = ..count../2))
+# albo tak, ale wtedy trzeba count w density podzielić lub pomnożyć przez konkretną liczbę, lepiej dobrać indywidualnie do każdego wykresu (dobry początek to ustawiony binwidth)
+p + geom_histogram(binwidth = 50)+
+  geom_density(color = "red", aes(y = ..count..*50))
 
 # Zamiast density można też użyć geom_freqpoly, który da bardziej "kanciasty" wykres
 # Wymaga parametru binwidth tak samo jak histogram
-p + geom_freqpoly(binwidth = 0.5)
+p + geom_freqpoly(binwidth = 50)
 ```
 
 ### Wykres pudełkowy - boxplot
@@ -140,11 +113,11 @@ Zamiast histogramu możemy zrobić boxplot, w tym wypadku x to nazwa szczepu, a 
 
 ```{r}
 # pojedynczy boxplot
-p <- ggplot(data = dane1_1, aes(x = "Szczep A", y = pomiar))
+p <- ggplot(data = penguins, aes(x = "masa", y = body_mass_g))
 p + geom_boxplot()
 
 # boxplot dla każdej kategorii
-p <- ggplot(data = dane1, aes(x = Szczep, y = pomiar))
+p <- ggplot(data = penguins, aes(x = species, y = body_mass_g))
 p + geom_boxplot()
 
 # do boxplota można dodać wcięcia, jeżeli wcięcia dwóch boxplotów na siebie nie zachodzą 
@@ -157,8 +130,8 @@ p + geom_boxplot(notch = TRUE)
 Odmianą boxplotów są tzw. wykresy skrzypcowe, które pozwalają też na pokazanie kształtu rozkładu - pozwala to np. na wykrycie rozkładu, który ma dwa maksima. W ggplot2 można je wygenerować funkcją `geom_violin`.
 
 ```{r}
-p <- ggplot(data=dane1, aes(x = Szczep, y = pomiar))
-p + geom_violin(aes(color = factor(warunki)))
+p <- ggplot(data = penguins, aes(x = species, y = body_mass_g))
+p + geom_violin(aes(color = factor(island)))
 
 # przykładowe dane
 dane <- data.frame(x = c(rnorm(100), rnorm(100, 3), rnorm(100, 1), rnorm(100, 5)), 
@@ -178,32 +151,30 @@ Przy pomocy argumentu alpha można kontrolować przezroczystość punktów - prz
 
 ```{r}
 
-dane1_2 <- dane1 %>% filter(warunki == 1)
-
-# Boxplot dla każdego szczepu
-p <- ggplot(data = dane1_2, aes(x = Szczep, y = pomiar))
-p + geom_boxplot(aes(color = Szczep))+
-  geom_jitter(aes(color = Szczep), alpha = 0.2)
+# Boxplot dla każdego gatunku
+p <- ggplot(data = penguins, aes(x = species, y = body_mass_g))
+p + geom_boxplot(aes(color = species))+
+  geom_jitter(aes(color = species), alpha = 0.2)
 
 # usuwamy punkty pochodzące od boxplota
-p + geom_boxplot(aes(color = Szczep), outlier.alpha = 0)+
-  geom_jitter(aes(color = Szczep), alpha = 0.2)
+p + geom_boxplot(aes(color = species), outlier.alpha = 0)+
+  geom_jitter(aes(color = species), alpha = 0.2)
 
 # beeswarm
 library(ggbeeswarm)
 
-p + geom_boxplot(aes(color = Szczep), outlier.alpha = 0)+
-  geom_beeswarm(aes(color = Szczep), alpha = 0.2)
+p + geom_boxplot(aes(color = species), outlier.alpha = 0)+
+  geom_beeswarm(aes(color = species), alpha = 0.2)
 
 # quasirandom
-p + geom_boxplot(aes(color = Szczep), outlier.alpha = 0)+
-  geom_quasirandom(aes(color = Szczep), alpha = 0.2)
+p + geom_boxplot(aes(color = species), outlier.alpha = 0)+
+  geom_quasirandom(aes(color = species), alpha = 0.2)
 
 # quasirandom + geom_violin
-p <- ggplot(data=dane1, aes(x = Szczep, y = pomiar))
-p + geom_violin(aes(color = factor(warunki)))+
-  geom_quasirandom(aes(color = factor(warunki)), 
-                   dodge.width = 0.9, # pozwala na rodział kolorów na dwie grupy
+p <- ggplot(data=penguins, aes(x = species, y = body_mass_g))
+p + geom_violin(aes(color = factor(island)))+
+  geom_quasirandom(aes(color = factor(island)), 
+                   dodge.width = 0.9, # pozwala na rozdział kolorów na grupy
                    alpha = 0.1)
 
 ```
@@ -211,9 +182,9 @@ p + geom_violin(aes(color = factor(warunki)))+
 Można też połączyć wszystko w całość korzystając z dodatkowych pakietów ggdist i gghalves, na podstawie strony: [visualizing-distributions-with-raincloud-plots-with-ggplot2](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-with-ggplot2/)
 
 ```{r}
-ggplot(dane1_2, aes(x = Szczep, y = pomiar, color = Szczep, fill = Szczep)) + 
+ggplot(penguins, aes(x = species, y = body_mass_g, color = species, fill = species)) + 
   ggdist::stat_halfeye(
-    adjust = .5, 
+    adjust = .75, 
     width = .6, 
     .width = 0, 
     justification = -.2, 
@@ -276,10 +247,11 @@ p + geom_dotplot(aes(y = pomiar, x = kategoria), stackdir = "center", binaxis = 
 Szybkie zliczenie elementów w poszczególnych grupach możemy wykonać stosując funkcję `table`. Wystarczy podać jej kolumnę z danymi oraz kolumny zawierające wektory według których dane mają zostać podzielone na grupy. Wynikiem `table` nie jest ramka danych, więc bez przekształcenia nie można go użyć do przygotowania wykresu ggplot.
 
 ```{r}
+# dla jednej zmiennej
+table(penguins$species)
 
-table(dane2$pomiar)
-
-table(dane2$pomiar, dane2$Szczep, dane2$warunki)
+# dla większej liczby zmiennych
+table(penguins$island, penguins$species, penguins$sex)
 
 ```
 
@@ -287,7 +259,7 @@ Można zauważyć, że funkcja `table`, w przeciwieństwie do `summary` pominę�
 
 ```{r}
 
-table(dane2$pomiar, dane2$Szczep, dane2$warunki, useNA = "ifany")
+table(penguins$island, penguins$species, penguins$sex, useNA = 'ifany')
 
 ```
 
@@ -298,19 +270,19 @@ Domyślnie również wartości NA zostaną wzięte pod uwagę podczas zliczania.
 
 ```{r}
 
-p <- ggplot(data = dane2, aes(x = pomiar, fill = Szczep))
+p <- ggplot(data = penguins, aes(x = island, fill = species))
 # Słupki ustawione obok siebie
-p + geom_bar(position = "dodge") + facet_wrap(~ warunki)
+p + geom_bar(position = "dodge") + facet_wrap(~ sex)
 
 # Wszystkie słupki tej samej wysokości
-p + geom_bar(position = "fill") + facet_wrap(~ warunki)
+p + geom_bar(position = "fill") + facet_wrap(~ sex)
 
 # Szerokość słupków można zmieniać parametrem width
-p + geom_bar(position = "dodge", width = 0.4) + facet_wrap(~ warunki)
+p + geom_bar(position = "dodge", width = 0.4) + facet_wrap(~ sex)
 
 # Wykres bez wartości NA, filter można zrobić też wcześniej albo w obrębie ggplot
-p <- ggplot(dane2 %>% filter(!is.na(pomiar)), aes(x = pomiar, fill = Szczep))
-p + geom_bar(position = "dodge") + facet_wrap(~ warunki)
+p <- ggplot(penguins %>% filter(!is.na(sex)), aes(x = island, fill = species))
+p + geom_bar(position = "dodge") + facet_wrap(~ sex)
 
 ```
 
@@ -319,8 +291,8 @@ Przy dużej ilości różnokolorowych słupków wykres może być trudny do odcz
 ```{r}
 # Ustawiamy stat="bin" - oznacza że ggplot ma zliczyć częstości występowania elementów,
 # a nie narysować każdy z osobna i obracamy wykres - ułatwia odczytanie
-p + geom_point(size=3, stat='count', aes(color=Szczep))+
-  facet_wrap(~warunki)+coord_flip()
+p + geom_point(size=3, stat='count', aes(color=species))+
+  facet_wrap(~sex)+coord_flip()
 
 ```
 
@@ -349,14 +321,14 @@ W `stat_summary` najważniejszym argumentem jest funkcja jaką zastosujemy do po
 
 ```{r}
 
-p <- ggplot(data=dane1, aes(x=Szczep, y=pomiar, color=Szczep))
+p <- ggplot(data = penguins, aes(x = species, y = body_mass_g, color = species))
 # Wykres tylko z wartością średnią
 p + stat_summary(fun = "mean", geom = "point", size = 3)+
-  facet_wrap(~ warunki, ncol = 2)
+  facet_wrap(~ sex, ncol = 2)
 
 # Wykres ze średnią i przedziałem ufności policzonym metodą bootstrap
 p + stat_summary(fun.data = "mean_cl_boot")+
-  facet_wrap(~ warunki, ncol = 2)
+  facet_wrap(~ sex, ncol = 2)
 
 ```
 
@@ -373,16 +345,16 @@ W pakiecie dplyr pierwszym krokiem jest podział na grupy - `group_by` i potem p
 
 library(dplyr)
 
-summ <- dane1 %>% group_by(Szczep, warunki) %>% 
-  summarize(mean = mean(pomiar), odch = sd(pomiar), 
-            blad = odch/sqrt(length(pomiar)),
+summ <- penguins %>% group_by(species, sex) %>% 
+  summarize(mean = mean(body_mass_g), odch = sd(body_mass_g), 
+            blad = odch/sqrt(length(body_mass_g)),
             lower = mean-blad, 
             upper = mean+blad)
 
 summ
 
-p <- ggplot(data = summ, aes(x = Szczep, y = mean, ymin = lower, ymax = upper, 
-                             color = Szczep)) + facet_wrap(~ warunki, ncol = 2)
+p <- ggplot(data = summ, aes(x = species, y = mean, ymin = lower, ymax = upper, 
+                             color = species)) + facet_wrap(~ sex, ncol = 2)
 
 # Wykres ze średnią i błędem standardowym
 p + geom_pointrange()
@@ -390,13 +362,13 @@ p + geom_crossbar(width = 0.5)
 p + geom_errorbar(width = 0.5, color = "black") + geom_point()
 
 # Z wykresem przedstawiającym średnie można postąpić tak samo jak z boxplotem
-p <- ggplot(data = summ, aes(x = Szczep, y = mean, ymin = lower, ymax = upper, 
-                             color=factor(warunki)))
+p <- ggplot(data = summ, aes(x = species, y = mean, ymin = lower, ymax = upper, 
+                             color = sex))
 p + geom_crossbar(width = 0.5, position = "dodge")
 
 # Jeżeli średnie połączymy za pomocą linii otrzymamy wykres interakcji opisany w dalszej części
-p <- ggplot(data = summ, aes(x = Szczep, y = mean, color = factor(warunki)))
-p + geom_point() + geom_line(aes(group = warunki))
+p <- ggplot(data = summ, aes(x = species, y = mean, color = sex))
+p + geom_point() + geom_line(aes(group = sex))
 
 ```
 
@@ -447,15 +419,17 @@ p + geom_point(data = dane, aes(x = key, y = value))+
 
 ## Wykres punktowy i liniowy
 
-Zacznijmy od pojedynczego pomiaru szczepu A z dane3
+Do przedstawienia wykresu liniowego użyjemy zbioru danych ChickWeight, który zawiera wagę kurczaków karmionych różnymi rodzajami karmy
+
+Zacznijmy od pojedynczego kurczaka
 
 Dla `geom_point` albo `geom_line` konieczne jest w aes podanie x i y.
 
 ```{r}
 
-dane3_1 <- filter(dane3, Szczep == "A" , powt == "1")
+chick <- filter(ChickWeight, Chick == "1")
 
-p <- ggplot(data = dane3_1, aes(x = czas, y = pomiar))
+p <- ggplot(data = chick, aes(x = Time, y = weight))
 p + geom_point()
 p + geom_line()
 
@@ -471,7 +445,7 @@ p + geom_point() + stat_smooth()
 # metoda lm - dopasowanie do linii prostej
 p + geom_point() + stat_smooth(method = "lm")
 # metoda lm z podaną formułą
-p + geom_point() + stat_smooth(method = "lm", formula = y~log(x))+
+p + geom_point() + stat_smooth(method = "lm", formula = y~sqrt(x))+
   stat_smooth(method = "lm", color = "red")
 
 ```
@@ -480,11 +454,11 @@ Sprawdzenie dopasowania można wykonać funkcją `lm`. Jej `summary` podaje wart
 
 ```{r}
 
-summary(lm(pomiar~czas, data=dane3_1))
+summary(lm(weight ~ Time, data = chick))
 
 # dodanie tekstu do wykresu np. równanie opisujące linię trendu
 p + geom_point() + stat_smooth(method = "lm", color = "red")+
-  geom_text(data = NULL, x = 50, y = 0.2, label = "y = ax + b", size = 5)
+  geom_text(data = NULL, x = 15, y = 50, label = "y = ax + b", size = 5) # x, y - położenie na wykresie, label - tekst, który ma zostać wpisany
 
 ```
 
@@ -494,17 +468,17 @@ Możemy zastosować `stat_smooth` dla wszystkich danych.
 
 ```{r}
 
-p <- ggplot(data=dane3, aes(x = czas, y = pomiar, color = Szczep))
+p <- ggplot(data = ChickWeight, aes(x = Time, y = weight, color = Diet))
 p + geom_point(size = 0.75) + stat_smooth(method = "lm")
-p + geom_point(size = 0.75) + stat_smooth(method = "lm") + facet_wrap(~Szczep)
+p + geom_point(size = 0.75) + stat_smooth(method = "lm") + facet_wrap(~Diet)
 
 ```
 
 Do przedstawienia takich danych można też użyć boxplot.
 
 ```{r}
-p <- ggplot(data=dane3, aes(x=czas, group = plyr::round_any(czas, 10, floor), y=pomiar))
-p + geom_boxplot()+facet_wrap(~Szczep)
+p <- ggplot(data = ChickWeight, aes(x = Time, group = plyr::round_any(Time, 2, floor), y = weight))
+p + geom_boxplot()+facet_wrap(~Diet)
 ```
 
 
@@ -575,22 +549,23 @@ p + geom_point()+scale_y_log10()+scale_x_log10()
 
 ### Wykres wstążka (ribbon)
 
-Użycie `geom_ribbon` wymaga wstępnego podsumowania danych np. przy użyciu dplyr - analogicznie jak dane1. W tym wypadku zmiennymi, pod względem których będziemy dzielić dane na grupy będą szczep i czas.
+Użycie `geom_ribbon` wymaga wstępnego podsumowania danych np. przy użyciu dplyr. W tym wypadku zmiennymi, pod względem których będziemy dzielić dane na grupy będą Diet i Time
 
 Półprzezroczystą wstążkę uzyskujemy dzięki parametrowi alpha.
 
 ```{r}
 library(dplyr)
 
-summ <- dane3 %>% group_by(Szczep, czas) %>% 
-  summarize(mean = mean(pomiar), 
-            sd = sd(pomiar), 
-            blad = sd/sqrt(length(pomiar)), 
+summ <- ChickWeight %>% group_by(Diet, Time) %>% 
+  summarize(mean = mean(weight), 
+            sd = sd(weight), 
+            blad = sd/sqrt(length(weight)), 
             lower = mean-blad, 
             upper = mean+blad)
 
-p <- ggplot(data = summ, aes(x = czas, y = mean, color = Szczep, fill = Szczep))
-p + geom_line() + geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.25)
+p <- ggplot(data = summ, aes(x = Time, y = mean))
+p + geom_line(aes(color = Diet)) + 
+  geom_ribbon(aes(ymin = lower, ymax = upper, fill = Diet), alpha = 0.25)
 
 ```
 
@@ -600,51 +575,57 @@ p + geom_line() + geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.25)
 
 ### Porównywanie - fill, color, shape
 
-Porównanie kilku szczepów można zrobić w ten sam sposób, wybierając w `aes` - `fill=Szczep` albo `color=Szczep` (w zależności od geomu, fill pasuje do histogram i density, color do density, line, point, boxplot itd.)
+Porównanie kilku szczepów można zrobić w ten sam sposób, wybierając w `aes` - `fill=species` albo `color=species` (w zależności od geomu, fill pasuje do histogram i density, color do density, line, point, boxplot itd.)
 
 W histogramie domyślnie dostaniemy słupki ustawione jeden na drugim, jeżeli chcemy słupki ustawione obok siebie należy ustawić parametr `position="dodge"`.
 
 W przypadku boxplot dla kilku cech można pod x podstawić Szczep - otrzymamy wykres zawierający po jednym boxplocie dla jednego szczepu.
 
-Wybieram dane tylko dla warunków 1.
 
 ```{r}
 
-dane1_2 <- dane1 %>% filter(warunki == 1)
 
-p <- ggplot(data = dane1_2, aes(x = pomiar))
+p <- ggplot(data = penguins, aes(x = body_mass_g))
 # Histogram dla trzech szczepów
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5, 
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75, 
                    position="dodge")
 
 # Gęstość dla trzech szczepów rozróżniona przez color
-p + geom_density(aes(color = Szczep))
+p + geom_density(aes(color = species))
 
 # Gęstość rozróżniona przez fill, półprzezroczystość uzyskujemy parametrem alpha
-p + geom_density(aes(fill = Szczep), alpha = 0.25, size = 0.75)
+p + geom_density(aes(fill = species), alpha = 0.25, size = 0.75)
 
 # Histogramy nałożone na siebie - wymaga ustawienia position = "identity"
-p <- ggplot(data=dane1_2, aes(x = pomiar))
-p + geom_histogram(aes(y = ..density.., fill = Szczep), binwidth = 0.75, alpha = 0.45, position = "identity")
+p <- ggplot(data = penguins, aes(x = body_mass_g))
+p + geom_histogram(aes(y = ..density.., fill = species), binwidth = 75, alpha = 0.45, position = "identity")
 
 # Histogram "back to back" wymaga ustawienia w drugim geom_histogram ujemnego y
-dane1_3 <- dane1 %>% filter(Szczep == "B", warunki == 1)
-p <- ggplot(data = dane1_1, aes(x = pomiar))
-p <- p + geom_histogram(aes(y = ..density.., fill = "dodgerblue3"), binwidth = 0.75)+
-  geom_histogram(data = dane1_3, aes(x = pomiar, y = -..density.., fill = "coral2"),
-                 binwidth = 0.75)+
-  scale_fill_manual(name = "Szczep",
+p <- ggplot(penguins %>% filter(species == 'Gentoo', sex == 'female'), 
+            aes(x = body_mass_g))
+p <- p + geom_histogram(aes(y = ..density.., fill = "dodgerblue3"), binwidth = 75)+
+  geom_histogram(data = penguins %>% filter(species == 'Gentoo', sex == 'male'),
+                 aes(x = body_mass_g, y = -..density.., fill = "coral2"),
+                 binwidth = 75)+
+  scale_fill_manual(name = "sex", # ręcznie ustawiona legenda
                     values = c("coral2" = "coral2", "dodgerblue3" = "dodgerblue3"), 
-                    labels = c("B","A"))
+                    labels = c("male","female"))
 p
 p + coord_flip()
 
-# Boxplot dla każdego szczepu
-p <- ggplot(data = dane1_2, aes(x = Szczep, y = pomiar))
-p + geom_boxplot()
 
-# Boxploty też mogą być kolorowe ;)
-p + geom_boxplot(aes(color = Szczep))
+# shape i linetype
+
+p <- ggplot(penguins, aes(x = body_mass_g, y = bill_length_mm, color = species, shape = species))
+p + geom_point()
+
+
+summ <- ChickWeight %>% group_by(Diet, Time) %>% 
+  summarize(mean = mean(weight))
+
+p <- ggplot(data = summ, aes(x = Time, y = mean))
+p + geom_line(aes(color = Diet, linetype = Diet)) 
+
 ```
 
 
@@ -661,14 +642,14 @@ Dla danych ilościowych można wybrać: `scale_color_gradient` - gradient międz
 # Zmienne jakościowe
 
 # Odcienie szarości
-p <- ggplot(data = dane1_2, aes(x = pomiar))
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_grey()
+p <- ggplot(data = penguins, aes(x = body_mass_g))
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_grey()
 
 # można wybrać początek i koniec skali
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_grey(start = 0.1, end = 0.6)
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_grey(start = 0.1, end = 0.6)
 ```
 
 ```{r, fig.height=10}
@@ -680,51 +661,51 @@ display.brewer.all()
 ```{r}
 # z użyciem ColorBrewer
 
-p <- ggplot(data = dane1_2, aes(x = pomiar))
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_brewer()
+p <- ggplot(data = penguins, aes(x = body_mass_g))
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_brewer()
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_brewer(palette = "Set1")
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_brewer(palette = "Set1")
 
 # z użyciem viridis, argument option przyjmuje wartości od A do H
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_viridis_d(option = 'C')
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_viridis_d(option = 'C')
 
 # zakres palety można modyfikować przy pomocy argumentów begin i end
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_viridis_d(option = 'C', begin = 0.4)
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_viridis_d(option = 'C', begin = 0.4)
 
 
 # skala z użyciem palety HCL - ustawiamy trzy argumenty: h(zakres barw), c(intensywność) i l(jasność)
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_hue(h = c(160,320))
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_hue(h = c(160,320))
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_hue(c = 200)
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_hue(c = 200)
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_hue(l = 85)
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_hue(l = 85)
 
 # skala manualna
 
-p + geom_histogram(aes(fill = Szczep, y = ..density..), binwidth = 0.5)+
-  facet_wrap(~Szczep) + scale_fill_manual(values = c("forestgreen", "dodgerblue", "coral"))
+p + geom_histogram(aes(fill = species, y = ..density..), binwidth = 75)+
+  facet_wrap(~species) + scale_fill_manual(values = c("forestgreen", "dodgerblue", "coral"))
 
 # Zmienne ilościowe
 
 # domyślny gradient
-p <- ggplot(subset(dane1_2, pomiar < 10))
-p  <- p + geom_jitter(aes(x = Szczep, y = pomiar, color = pomiar), size = 3)
+p <- ggplot(penguins)
+p  <- p + geom_jitter(aes(x = species, y = body_mass_g, color = body_mass_g), size = 3)
 
 # dwa kolory
-p + scale_color_gradient(low = "darkgreen", high = "gold")
+p + scale_color_gradient(low = "black", high = "gold")
 
 # trzy kolory - domyślnie założy, że wartość środkowa to zero, jeżeli jest inaczej to trzeba to podać w midpoint
-p + scale_color_gradient2(low = "darkgreen", mid = "coral", high = "gold", midpoint = 6)
+p + scale_color_gradient2(low = "darkgreen", mid = "coral", high = "gold", midpoint = 4500)
 
 # więcej kolorów
 p + scale_color_gradientn(colours = c("green", "red", "yellow", "blue"))
@@ -751,10 +732,10 @@ Dzielimy wykres na części pod względem zmiennej np. Szczepu używając `facet
 `facet_wrap` - stworzy "wstążkę" wykresów, końcową liczbę kolumn/wiersz można ustawić argumentami ncol/nrow. W formule po + można dodawać kolejne zmienne np. ~ zmienna1 + zmienna2
 
 ```{r}
-p <- ggplot(data = dane1_2, aes(x = pomiar))
-p + geom_histogram(aes(y = ..density..), binwidth = 0.5, position = "dodge")+
-  facet_wrap(~Szczep, ncol = 1)
-p + geom_density(aes(color = Szczep)) + facet_wrap(~Szczep, ncol = 1)
+p <- ggplot(data = penguins %>% drop_na(), aes(x = body_mass_g))
+p + geom_histogram(aes(y = ..density..), binwidth = 75, position = "dodge")+
+  facet_wrap(~species, ncol = 1)
+p + geom_density(aes(color = species)) + facet_wrap(~species, ncol = 1)
 ```
 
 Oba sposoby można ze sobą dowolnie łączyć.
@@ -763,27 +744,27 @@ Analizujemy dane pod względem szczepu i warunków.
 
 ```{r}
 
-p <- ggplot(data = dane1, aes(x = pomiar))
-p + geom_histogram(binwidth = 0.5, aes(fill = factor(warunki)), position = "dodge")+
-  facet_wrap(~Szczep, ncol = 1)
-p + geom_density(aes(color = Szczep)) + facet_wrap(~ warunki, ncol = 2)
+p <- ggplot(data = penguins %>% drop_na(), aes(x = body_mass_g))
+p + geom_histogram(binwidth = 75, aes(fill = sex), position = "dodge")+
+  facet_wrap(~species, ncol = 1)
+p + geom_density(aes(color = species)) + facet_wrap(~ sex, ncol = 2)
 
-# Histogram podzielony pod względem szczepu i warunków - facet_grid
-p + geom_histogram(binwidth = 1) + facet_grid(Szczep ~ warunki)
+# Histogram podzielony pod względem speciesu i warunków - facet_grid
+p + geom_histogram(binwidth = 100) + facet_grid(species ~ sex)
 
-# Podobny efekt do facet_frid można osiągnąć stosując facet_wrap z więcej niż jednym warunkiem
-# Kolejne warunki dodaje się znakiem +
-p + geom_histogram(binwidth = 1) + facet_wrap(~Szczep + warunki, ncol = 2)
+# Podobny efekt do facet_frid można osiągnąć stosując facet_wrap z więcej niż jednym sexem
+# Kolejne sex dodaje się znakiem +
+p + geom_histogram(binwidth = 100) + facet_wrap(~species + sex, ncol = 2)
 
 # Osie nie muszą być jednakowe dla wszystkich części
-p + geom_histogram(binwidth = 1) + facet_grid(Szczep ~ warunki, scales = "free")
+p + geom_histogram(binwidth = 100) + facet_grid(species ~ sex, scales = "free")
 
 # Dzielić na części dzięki facet można każdy typ wykresu
-p <- ggplot(data = dane1, aes(x = Szczep, y = pomiar))
-p + geom_boxplot(aes(color = Szczep)) + facet_wrap(~ warunki)
+p <- ggplot(data = penguins %>% drop_na(), aes(x = species, y = body_mass_g))
+p + geom_boxplot(aes(color = species)) + facet_wrap(~ sex)
 
 # Boxploty można również rozmiescić według jednego czynnika, a pokolorować według drugiego
-p + geom_boxplot(aes(color = factor(warunki)))
+p + geom_boxplot(aes(color = sex))
 
 ```
 
@@ -809,31 +790,35 @@ Jeżeli chcemy obrócić wykres o 90 stopni możemy użyć funkcji `coord_flip`.
 
 ```{r}
 # Zmiana osi na przykładzie boxplot
-p <- ggplot(data = dane1_2, aes(x = Szczep, y = pomiar))
+p <- ggplot(data = penguins %>% drop_na(), aes(x = species, y = body_mass_g))
 p <- p + geom_boxplot()
 
 # Ustawienie startu i końca osi oraz miejsc podziału
-p + scale_y_continuous(limits = c(0,15), breaks = 0:15)
+p + scale_y_continuous(limits = c(0,5500), breaks = c(1000, 2000, 4000))
+
+# przy pomocy coord_cartesian
+p + coord_cartesian(ylim = c(0, 5500))
+
 
 # Miejsca podziału nie muszą być w równych odstępach i mogą być dowolnie nazwane
-p + scale_y_continuous(limits = c(0,15), breaks = c(1,4,7,15), 
-                       labels = c("mało", "lepiej", "ok", "za dużo"), 
-                       name = "Coś")
+p + scale_y_continuous(breaks = c(2000, 3000, 4000, 5000), 
+                       labels = c("malo", "lepiej", "ok", "za duzo"), 
+                       name = "nazwa")
 # Wykres obrócony
-p + scale_y_continuous(limits = c(0,15), breaks = c(1,4,7,15), 
-                       labels = c("mało", "lepiej", "ok", "za dużo"), 
-                       name="Coś") + coord_flip()
+p + scale_y_continuous(breaks = c(2000, 3000, 4000, 5000), 
+                       labels = c("malo", "lepiej", "ok", "za duzo"), 
+                       name = "nazwa") + coord_flip()
 # Skala logarytmiczna
-p + scale_y_log10(limits = c(1,15), breaks = 1:15)
+p + scale_y_log10()
 
 # Wykres "do góry nogami"
 p + scale_y_reverse()
 
 library(scales)
 # Oś procentowa
-p <- ggplot(data = dane1_1, aes(x = pomiar))
-p + geom_histogram(binwidth = 0.5, aes(y = ((..count..)/sum(..count..))))+
-  scale_y_continuous(labels = percent, name = "Procent komórek")
+p <- ggplot(data = penguins, aes(x = body_mass_g))
+p + geom_histogram(binwidth = 100, aes(y = ((..count..)/sum(..count..))))+
+  scale_y_continuous(labels = percent, name = "Procent")
 
 ```
 
@@ -842,19 +827,19 @@ p + geom_histogram(binwidth = 0.5, aes(y = ((..count..)/sum(..count..))))+
 
 W pakiecie ggplot2 jest dostępnych kilka różnych motywów. Domyślnie ustawiony jest `theme_grey`, inne dostępne to `theme_bw`, `theme_minimal`, `theme_classic`, `theme_linedraw`, `theme_light`. W pakiecie ggthemes znajdują się dodatkowe wersje motywów, nawet (o zgrozo) `theme_excel` ;) Inny pakiet zawierający gotowe motywy to ggthemr - można go pobrać z GitHub.
 
-Tytuł do wykresu możemy dodać korzystając z funkcji `ggtitle`. Nazwy osi też można szybko zmienić przy pomocy `xlab` i `ylab`.
+Tytuł do wykresu możemy dodać korzystając z funkcji `ggtitle`. Nazwy osi też można szybko zmienić przy pomocy `xlab` i `ylab`. Dalsze opisy można dodać korzystając z funkcji `labs` np. tag albo caption.
 
 ```{r}
 
-p <- ggplot(data = dane1, aes(x = pomiar))
-p <- p + geom_histogram(binwidth = 0.5, aes(fill = factor(warunki)), position = "dodge")+
-  facet_wrap(~Szczep, ncol = 1)
+p <- ggplot(data = penguins %>% drop_na(), aes(x = body_mass_g))
+p <- p + geom_histogram(binwidth = 100, aes(fill = sex), position = "dodge")+
+  facet_wrap(~species, ncol = 1)
 p
 p + theme_bw()
 p + theme_classic()
 p + theme_minimal()
 
-p + ggtitle("Tytuł") + xlab("Rodzaj pomiaru")
+p + ggtitle("Pingwiny") + xlab("Waga") + labs(tag = 'a.')
 
 ```
 
@@ -862,7 +847,7 @@ Legendę wykresu można modyfikować przy pomocy `guide_legend` wewnątrz funkcj
 
 ```{r}
 
-p + scale_fill_discrete(guide = guide_legend(title = "Warunki", 
+p + scale_fill_discrete(guide = guide_legend(title = "nazwa", 
                                            title.position = "left", 
                                            label.position = "bottom", ncol = 2))
 
@@ -876,7 +861,7 @@ Można modyfikować jednocześnie wszystkie elementy danego rodzaju np. tekst pr
 
 p + theme(text = element_text(size = 22, face = "italic", color = "darkblue"))
 
-p + ggtitle("Tytuł wykresu")+theme(plot.title = element_text(color = "red", 
+p + ggtitle("Tytul wykresu")+theme(plot.title = element_text(color = "red", 
                                                            face = "bold", size = 30, angle = 350, hjust = 0.2, vjust = 0.8))
 
 p + theme(panel.background = element_rect(fill = "lightyellow"), 
@@ -911,11 +896,11 @@ Dużo łatwiejszym sposobem jest wykorzystanie pakietu patchwork. Pozwala on na 
 
 # Przypisujemy wykresy do zmiennych
 
-p1 <- ggplot(data=dane1, aes(x=pomiar))
-p1 <- p1 + geom_density(aes(color=Szczep))+facet_wrap(~warunki, ncol=2)
+p1 <- ggplot(data = penguins %>% drop_na(), aes(x = body_mass_g))
+p1 <- p1 + geom_density(aes(color = species)) + facet_wrap(~sex, ncol = 2)
 
-p2 <- ggplot(data=summ, aes(x=czas, y=mean, color=Szczep, fill=Szczep))
-p2 <- p2 + geom_line()+geom_ribbon(aes(ymin=lower, ymax=upper),alpha=0.25)
+p2 <- ggplot(data = ChickWeight, aes(x = Time, y = weight, color = Diet))
+p2 <- p2 + geom_point(size = 0.75) + stat_smooth(method = "lm")
 
 p3 <- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
 
@@ -977,8 +962,8 @@ c <- data.frame(x = runif(1000, 0, 5))
 p <- ggplot(data = a, aes(x = x))
 p <- p + geom_histogram(binwidth = 0.25, fill = "blue4", aes(y = (..count../sum(..count..))))+
   scale_y_continuous(labels = percent, name = "Procent")+
-  xlab("Wartość")+
-  ggtitle("Przykładowy rozkład")+
+  xlab("Wartosc")+
+  ggtitle("Przykladowy rozklad")+
   theme(panel.background=element_rect(fill = "white"), text = element_text(size = 14), 
         axis.text = element_text(color = "red4"))
 p
@@ -1008,21 +993,17 @@ Funkcja `ggpairs` pozwala na szybką analizę danych. Jej argumentem jest ramka 
 
 ```{r}
 
-dane <- data.frame(liczb_1 = sort(rnorm(300, 2)), liczb_2 = sort(rlnorm(300, 1, 0.5)),
-                   kategoria_1 = rep(c("A","B","C"), each=100), 
-                   kategoria_2 = sample(c("Tak","Nie"),300, replace=TRUE))
-
 library(GGally)
 
-ggpairs(dane)
+ggpairs(penguins %>% drop_na())
 
 # zmiana rodzaju wykresu np. górny panel pokaże wykres gęstości zamiast korelacji  
 # i kropkowy zamiast boxplota
-ggpairs(dane, upper=list(continuous="density", combo="dot"))
+ggpairs(penguins %>% drop_na(), upper = list(continuous = "density", combo = "dot"))
 
 # wykres pokolorowany według jednej z kategorii
 
-ggpairs(dane, mapping = ggplot2::aes(color=kategoria_1))
+ggpairs(penguins %>% drop_na(), mapping = ggplot2::aes(color = species))
 ```
 
 #### Macierz korelacji
@@ -1031,12 +1012,10 @@ Tworzenie macierzy korelacji jest opisane w dalszej części z wykorzystaniem pa
 
 ```{r}
 
-dane <- data.frame(a=sort(rnorm(100)), b=sort(rnorm(100)), c=rnorm(100), d=rlnorm(100), e=runif(100),
-                   f=sort(runif(100)), g=sort(rexp(100), decreasing=TRUE))
 
-ggcorr(dane)
+ggcorr(penguins)
 
 # z wpisanymi wartościami korelacji
 
-ggcorr(dane, label=TRUE, label_color="black", label_round=2)
+ggcorr(penguins, label=TRUE, label_color="black", label_round = 2)
 ```

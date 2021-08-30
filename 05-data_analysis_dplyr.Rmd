@@ -209,6 +209,8 @@ Dodanie grup do danych sprawia, że wszystkie kolejne funkcje będą wykonywane 
 
 `group_by` można łączyć z dwiema funkcjami, które służą do dodawania nowych zmiennych do tabeli - `summarise` i `mutate`, ale przydaje się również przy filtrowaniu albo sortowaniu danych.
 
+### `mutate`
+
 `mutate` pozwala na dodanie nowych kolumn na końcu ramki danych, ale nie usuwa poprzednich kolumn. Jako argumenty w `mutate` należy podać nazwę nowej kolumny = sposób policzenia nowej kolumny.
 
 Szczególnie przydatna jest funkcja `ifelse`, która pozwala na przygotowanie nowej zmiennej na podstawie warunku logicznego. Zawsze posiada ona trzy argumenty. Pierwszy to warunek logiczny np. kolumna == 5, drugi to wartość, która ma zostać podana w wypadku spełnienia warunku, trzeci to wartość, która ma zostać podana gry warunek nie będzie spełniony. W wypadku gdy potrzebne jest więcej niż dwie opcje można użyć funkcji `case_when`
@@ -238,10 +240,10 @@ penguins %>% group_by(species, island, sex) %>% arrange(species, island, sex) %>
                               k = 3, # szerokość okna do średniej ruchomej
                               fill = NA)) # czym uzupełnić brakujące wartości
 
-# group_by + slice_head + arrange - dwa pierwsze wiersze z każdej grupy, posortowane po masie ciała
-penguins %>% group_by(species) %>% arrange(desc(body_mass_g)) %>% slice_head(n = 2)
 
 ```
+
+### `summarise`
 
 `summarise` tworzy nową tabelę, która będzie zawierała jedynie zmienne grupujące i nowo utworzone zmienne. Jeżeli dane nie są podzielone na żadne grupy to wynikiem `summarise` będzie tabela posiadająca tylko jeden wiersz.
 
@@ -276,6 +278,14 @@ penguins %>% filter(!is.na(sex)) %>%
 
 ```
 
+### inne
+
+```{r}
+# group_by + slice_head + arrange - dwa pierwsze wiersze z każdej grupy, posortowane po masie ciała
+penguins %>% group_by(species) %>% arrange(desc(body_mass_g)) %>% slice_head(n = 2)
+
+```
+
 Szczególnym przypadkiem funkcji tworzących nowe zmienne są `separate` i `unite` z pakietu tidyr. Ich działanie jest przeciwstawne i pozwalają odpowiednio na złączenie i rozłączenie zmiennych przy pomocy separatora np. _ albo .
 
 ```{r}
@@ -293,18 +303,11 @@ penguins %>% unite(col = nowa_kolumna, species, sex, sep = '_') %>%
 
 Do łączenia tabel w R można wykorzystać dwa typy funkcji: `bind_*` i `*_join`. 
 
+### `bind_*`
+
 Funkcje `bind_cols` i `bind_rows` służą do sklejania tabel ze sobą odpowiednio według kolumn (jedna obok drugiej) i wierszy (jedna pod drugą). Są szczególnie przydatne w sytuacjach gdy dane wejściowe do analizy znajdują się w kilku różnych plikach, których struktura jest taka sama (układ kolumn itp.). 
 
 Do funkcji bind_rows, można dodać argument .id, który doda nową kolumnę do danych, zawierającą nazwy pierwotnych kolumn.
-
-Druga grupa funkcji - `*_join` obejmuje funkcje, które łączą dane według pewnego klucza. Za klucz może służyć jedna albo więcej kolumn. Przykładowym kluczem może być np. nazwa genu albo kombinacja szczepu, nr komórki i czasu obserwacji. 
-
-Możliwe zastosowania funkcji `_join`
-* wzbogacenie tabeli o dodatkowe informacje np. dołączenie do tabeli zawierającej ekspresję genu informacje o ich funkcji, położenia na genomie
-* ponowne połączenie danych rozdzielonych w wyniku analizy np. dołączenie wyniku funkcji summarise do wejściowej tabeli
-* wybranie tabeli tylko wierszy występujących w obu tabelach np. wybór genów o istotnie zmienionej ekspersji z dwóch eksperymentów RNA-seq.
-
-Dla funkcji `*_join` kluczowe jest podanie argumentu by, który zidentyfikuje kolumny-klucze. Gdy w obu tabelach kolumny-klucze posiadają takie same nazwy funkcja sama je odnajdzie, w przeciwnym wypadku konieczne jest podanie ich nazw w formacie `by = c('kolumna_z_tab_1' = 'kolumna_z_tab_2')`.
 
 ```{r}
 # przykład bind_rows
@@ -318,7 +321,20 @@ bind_rows(x = data_1, y = data_2, .id = 'id') # x =  itd. to podane nazwy tabel 
 
 # przykład bind_cols
 bind_cols(data_1, data_2)
+```
 
+### `*_join`
+
+Druga grupa funkcji - `*_join` obejmuje funkcje, które łączą dane według pewnego klucza. Za klucz może służyć jedna albo więcej kolumn. Przykładowym kluczem może być np. nazwa genu albo kombinacja szczepu, nr komórki i czasu obserwacji. 
+
+Możliwe zastosowania funkcji `_join`
+* wzbogacenie tabeli o dodatkowe informacje np. dołączenie do tabeli zawierającej ekspresję genu informacje o ich funkcji, położenia na genomie
+* ponowne połączenie danych rozdzielonych w wyniku analizy np. dołączenie wyniku funkcji summarise do wejściowej tabeli
+* wybranie tabeli tylko wierszy występujących w obu tabelach np. wybór genów o istotnie zmienionej ekspersji z dwóch eksperymentów RNA-seq.
+
+Dla funkcji `*_join` kluczowe jest podanie argumentu by, który zidentyfikuje kolumny-klucze. Gdy w obu tabelach kolumny-klucze posiadają takie same nazwy funkcja sama je odnajdzie, w przeciwnym wypadku konieczne jest podanie ich nazw w formacie `by = c('kolumna_z_tab_1' = 'kolumna_z_tab_2')`.
+
+```{r}
 # przykład left_join - do tabeli po lewej dodaje pasujące wiersze z tabeli w nawiasie
 band_instruments
 band_members

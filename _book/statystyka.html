@@ -172,8 +172,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#pipes-potoki"><i class="fa fa-check"></i><b>4.2</b> Pipes (potoki)</a></li>
 <li class="chapter" data-level="4.3" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#sortowanie"><i class="fa fa-check"></i><b>4.3</b> Sortowanie</a></li>
 <li class="chapter" data-level="4.4" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#filtrowanie"><i class="fa fa-check"></i><b>4.4</b> Filtrowanie</a></li>
-<li class="chapter" data-level="4.5" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#grupowanie-i-obliczanie-nowych-zmiennych"><i class="fa fa-check"></i><b>4.5</b> Grupowanie i obliczanie nowych zmiennych</a></li>
-<li class="chapter" data-level="4.6" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#łączenie-tabel"><i class="fa fa-check"></i><b>4.6</b> Łączenie tabel</a></li>
+<li class="chapter" data-level="4.5" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#grupowanie-i-obliczanie-nowych-zmiennych"><i class="fa fa-check"></i><b>4.5</b> Grupowanie i obliczanie nowych zmiennych</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#mutate"><i class="fa fa-check"></i><b>4.5.1</b> <code>mutate</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#summarise"><i class="fa fa-check"></i><b>4.5.2</b> <code>summarise</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#inne"><i class="fa fa-check"></i><b>4.5.3</b> inne</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#łączenie-tabel"><i class="fa fa-check"></i><b>4.6</b> Łączenie tabel</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#bind_"><i class="fa fa-check"></i><b>4.6.1</b> <code>bind_*</code></a></li>
+<li class="chapter" data-level="4.6.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#join"><i class="fa fa-check"></i><b>4.6.2</b> <code>*_join</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Wykresy - pakiet ggplot2</a>
 <ul>
@@ -372,19 +381,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="statystyka.html#cb453-1" aria-hidden="true" tabindex="-1"></a>wektor <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">2</span>)</span>
-<span id="cb453-2"><a href="statystyka.html#cb453-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb453-3"><a href="statystyka.html#cb453-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(wektor)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="statystyka.html#cb514-1" aria-hidden="true" tabindex="-1"></a>wektor <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">2</span>)</span>
+<span id="cb514-2"><a href="statystyka.html#cb514-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb514-3"><a href="statystyka.html#cb514-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(wektor)</span></code></pre></div>
 <pre><code>## [1] 2.008501</code></pre>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="statystyka.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(wektor)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="statystyka.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(wektor)</span></code></pre></div>
 <pre><code>## [1] 2.00913</code></pre>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="statystyka.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(wektor)</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="statystyka.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(wektor)</span></code></pre></div>
 <pre><code>## [1] -1.253799  4.865792</code></pre>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="statystyka.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(wektor, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="statystyka.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(wektor, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>##      25%      40%      50%      60%      75% 
 ## 1.271471 1.725972 2.009130 2.273003 2.737301</code></pre>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="statystyka.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeest)</span>
-<span id="cb461-2"><a href="statystyka.html#cb461-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mlv</span>(wektor, <span class="at">method =</span> <span class="st">&#39;shorth&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="statystyka.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeest)</span>
+<span id="cb522-2"><a href="statystyka.html#cb522-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mlv</span>(wektor, <span class="at">method =</span> <span class="st">&#39;shorth&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] 1.868663</code></pre>
 </div>
 <div id="liczby-pseudolosowe" class="section level2" number="7.2">
@@ -433,28 +442,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="statystyka.html#cb463-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb463-2"><a href="statystyka.html#cb463-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb463-3"><a href="statystyka.html#cb463-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">1000</span>)</span>
-<span id="cb463-4"><a href="statystyka.html#cb463-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>)</span>
-<span id="cb463-5"><a href="statystyka.html#cb463-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb463-6"><a href="statystyka.html#cb463-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb463-7"><a href="statystyka.html#cb463-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(a, <span class="at">main=</span><span class="st">&quot;Normalny&quot;</span>)</span>
-<span id="cb463-8"><a href="statystyka.html#cb463-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(b, <span class="at">main =</span> <span class="st">&quot;Log-Normalny&quot;</span>)</span>
-<span id="cb463-9"><a href="statystyka.html#cb463-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(c, <span class="at">main =</span> <span class="st">&quot;Wykładniczy&quot;</span>)</span>
-<span id="cb463-10"><a href="statystyka.html#cb463-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d, <span class="at">main =</span> <span class="st">&quot;Jenostajny&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="statystyka.html#cb524-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb524-2"><a href="statystyka.html#cb524-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb524-3"><a href="statystyka.html#cb524-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">1000</span>)</span>
+<span id="cb524-4"><a href="statystyka.html#cb524-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>)</span>
+<span id="cb524-5"><a href="statystyka.html#cb524-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb524-6"><a href="statystyka.html#cb524-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb524-7"><a href="statystyka.html#cb524-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(a, <span class="at">main=</span><span class="st">&quot;Normalny&quot;</span>)</span>
+<span id="cb524-8"><a href="statystyka.html#cb524-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(b, <span class="at">main =</span> <span class="st">&quot;Log-Normalny&quot;</span>)</span>
+<span id="cb524-9"><a href="statystyka.html#cb524-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(c, <span class="at">main =</span> <span class="st">&quot;Wykładniczy&quot;</span>)</span>
+<span id="cb524-10"><a href="statystyka.html#cb524-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(d, <span class="at">main =</span> <span class="st">&quot;Jenostajny&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="statystyka.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="statystyka.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <p>Możemy też potrzebować wektor losowych wartości z danego zakresu. Służy do tego funckja <code>sample</code>. Pierwszym jej argumentem jest wektor, z którego mają być losowane wartości, drugim ilość elementów do losowania. Można też podać czy losowanie ma być ze zwracaniem (<code>replace=TRUE</code>) i wektor prawdopodobieństwa dla każdego elementu, jeżeli nie mają być takie same. Prawdopodobieństwa muszą sumować się do 1.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="statystyka.html#cb465-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja 200 rzutów kością</span></span>
-<span id="cb465-2"><a href="statystyka.html#cb465-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb465-3"><a href="statystyka.html#cb465-3" aria-hidden="true" tabindex="-1"></a>kosc <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb465-4"><a href="statystyka.html#cb465-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(kosc))</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="statystyka.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja 200 rzutów kością</span></span>
+<span id="cb526-2"><a href="statystyka.html#cb526-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb526-3"><a href="statystyka.html#cb526-3" aria-hidden="true" tabindex="-1"></a>kosc <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb526-4"><a href="statystyka.html#cb526-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(kosc))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="statystyka.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja nieuczciwej kości</span></span>
-<span id="cb466-2"><a href="statystyka.html#cb466-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb466-3"><a href="statystyka.html#cb466-3" aria-hidden="true" tabindex="-1"></a>kosc2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>))</span>
-<span id="cb466-4"><a href="statystyka.html#cb466-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(kosc2))</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="statystyka.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Symulacja nieuczciwej kości</span></span>
+<span id="cb527-2"><a href="statystyka.html#cb527-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-3"><a href="statystyka.html#cb527-3" aria-hidden="true" tabindex="-1"></a>kosc2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>))</span>
+<span id="cb527-4"><a href="statystyka.html#cb527-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(kosc2))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-89-2.png" width="672" /></p>
 </div>
 <div id="podstawowe-testy-statystyczne" class="section level2" number="7.3">
@@ -475,12 +484,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>średnia z próby</p></li>
 </ul>
 <p>Możemy wyświetlić wszystkie te wartości albo jedynie interesujące nas poprzez znak $ np. <code>t.test(x)$p.value</code>. Wynik takiego testu można też przypisać do zmiennej i wykorzystać później.</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="statystyka.html#cb467-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb467-2"><a href="statystyka.html#cb467-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-3"><a href="statystyka.html#cb467-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">1</span>)</span>
-<span id="cb467-4"><a href="statystyka.html#cb467-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-5"><a href="statystyka.html#cb467-5" aria-hidden="true" tabindex="-1"></a><span class="co"># test dla jednej próby, porównanie do średnia równej 0</span></span>
-<span id="cb467-6"><a href="statystyka.html#cb467-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="statystyka.html#cb528-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb528-2"><a href="statystyka.html#cb528-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb528-3"><a href="statystyka.html#cb528-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">1</span>)</span>
+<span id="cb528-4"><a href="statystyka.html#cb528-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb528-5"><a href="statystyka.html#cb528-5" aria-hidden="true" tabindex="-1"></a><span class="co"># test dla jednej próby, porównanie do średnia równej 0</span></span>
+<span id="cb528-6"><a href="statystyka.html#cb528-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -492,7 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##   mean of x 
 ## -0.02777643</code></pre>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="statystyka.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="statystyka.html#cb530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(y)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -504,8 +513,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  0.991143</code></pre>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="statystyka.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test dla dwóch prób</span></span>
-<span id="cb471-2"><a href="statystyka.html#cb471-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="statystyka.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test dla dwóch prób</span></span>
+<span id="cb532-2"><a href="statystyka.html#cb532-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x,y)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -517,16 +526,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##   mean of x   mean of y 
 ## -0.02777643  0.99114303</code></pre>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="statystyka.html#cb473-1" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x,y)</span>
-<span id="cb473-2"><a href="statystyka.html#cb473-2" aria-hidden="true" tabindex="-1"></a>wynik<span class="sc">$</span>p.value</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="statystyka.html#cb534-1" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x,y)</span>
+<span id="cb534-2"><a href="statystyka.html#cb534-2" aria-hidden="true" tabindex="-1"></a>wynik<span class="sc">$</span>p.value</span></code></pre></div>
 <pre><code>## [1] 1.203272e-11</code></pre>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="statystyka.html#cb475-1" aria-hidden="true" tabindex="-1"></a>wynik<span class="sc">$</span>conf.int</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="statystyka.html#cb536-1" aria-hidden="true" tabindex="-1"></a>wynik<span class="sc">$</span>conf.int</span></code></pre></div>
 <pre><code>## [1] -1.2972245 -0.7406144
 ## attr(,&quot;conf.level&quot;)
 ## [1] 0.95</code></pre>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="statystyka.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test t można przeprowadzić dla większej ilości grup przy pomocy pairwise.t.test, </span></span>
-<span id="cb477-2"><a href="statystyka.html#cb477-2" aria-hidden="true" tabindex="-1"></a><span class="co"># wartości p zostaną wtedy dostoswane do wielokrotnego powtarzania testu</span></span>
-<span id="cb477-3"><a href="statystyka.html#cb477-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(dane1<span class="sc">$</span>pomiar, dane1<span class="sc">$</span>Szczep)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="statystyka.html#cb538-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test t można przeprowadzić dla większej ilości grup przy pomocy pairwise.t.test, </span></span>
+<span id="cb538-2"><a href="statystyka.html#cb538-2" aria-hidden="true" tabindex="-1"></a><span class="co"># wartości p zostaną wtedy dostoswane do wielokrotnego powtarzania testu</span></span>
+<span id="cb538-3"><a href="statystyka.html#cb538-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(dane1<span class="sc">$</span>pomiar, dane1<span class="sc">$</span>Szczep)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -539,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## P value adjustment method: holm</code></pre>
 <p>Jeżeli nie wiemy z jakiego rozkładu pochodzą dane możemy wykorzystać test nieparametryczny - test Wilcoxona <code>wilcox.test</code>, też podaje wartość p.</p>
 <p>Analogicznie dla <code>t.test</code> istnieje funkcja <code>pairwise.wilcox.test</code></p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="statystyka.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="statystyka.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(x,y)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -550,7 +559,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="test-f---weryfikacja-równości-wariancji" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Test F - weryfikacja równości wariancji</h3>
 <p>Podobny w składni do <code>t.test</code>, wykonujemy funkcją <code>var.test</code>. Również zakładamy, że dane pochodzą z rozkładu normalnego. Zastosowanie go dla danych z innych rozkładów może prowadzić do błędnych wniosków.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="statystyka.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="statystyka.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(x,y)</span></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -562,9 +571,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## ratio of variances 
 ##          0.6598411</code></pre>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="statystyka.html#cb483-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd=</span><span class="dv">3</span>)</span>
-<span id="cb483-2"><a href="statystyka.html#cb483-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb483-3"><a href="statystyka.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(x,z)</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="statystyka.html#cb544-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd=</span><span class="dv">3</span>)</span>
+<span id="cb544-2"><a href="statystyka.html#cb544-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb544-3"><a href="statystyka.html#cb544-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(x,z)</span></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -582,28 +591,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Metoda graficzna to wspomniany już wykres kwantylowy (<code>qqPlot</code>).</p>
 <p>Kilka testów, które można wykorzystać znajduje się w pakiecie nortest np. <code>shapiro.test</code>, <code>cvm.test</code>.</p>
 <p>Test Shapiro-Wilka należy do bardziej popularnych, liczba obserwacji powinna mieścić się w zakresie od 3 do 5000.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="statystyka.html#cb485-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
-<span id="cb485-2"><a href="statystyka.html#cb485-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">500</span>, <span class="at">sdlog =</span> <span class="fl">0.5</span>)</span>
-<span id="cb485-3"><a href="statystyka.html#cb485-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb485-4"><a href="statystyka.html#cb485-4" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram i wykres kwantylowy dla danych x i y</span></span>
-<span id="cb485-5"><a href="statystyka.html#cb485-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb485-6"><a href="statystyka.html#cb485-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x)</span>
-<span id="cb485-7"><a href="statystyka.html#cb485-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y)</span>
-<span id="cb485-8"><a href="statystyka.html#cb485-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="statystyka.html#cb546-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
+<span id="cb546-2"><a href="statystyka.html#cb546-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">500</span>, <span class="at">sdlog =</span> <span class="fl">0.5</span>)</span>
+<span id="cb546-3"><a href="statystyka.html#cb546-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb546-4"><a href="statystyka.html#cb546-4" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram i wykres kwantylowy dla danych x i y</span></span>
+<span id="cb546-5"><a href="statystyka.html#cb546-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb546-6"><a href="statystyka.html#cb546-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x)</span>
+<span id="cb546-7"><a href="statystyka.html#cb546-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y)</span>
+<span id="cb546-8"><a href="statystyka.html#cb546-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(x)</span></code></pre></div>
 <pre><code>## [1] 205 237</code></pre>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="statystyka.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="statystyka.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqPlot</span>(y)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <pre><code>## [1] 221  99</code></pre>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="statystyka.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb489-2"><a href="statystyka.html#cb489-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb489-3"><a href="statystyka.html#cb489-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test Shapiro-Wilka do sprawdzania zgodności z rozkładem normalnym</span></span>
-<span id="cb489-4"><a href="statystyka.html#cb489-4" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="statystyka.html#cb550-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb550-2"><a href="statystyka.html#cb550-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb550-3"><a href="statystyka.html#cb550-3" aria-hidden="true" tabindex="-1"></a><span class="co"># test Shapiro-Wilka do sprawdzania zgodności z rozkładem normalnym</span></span>
+<span id="cb550-4"><a href="statystyka.html#cb550-4" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  x
 ## W = 0.99823, p-value = 0.8944</code></pre>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="statystyka.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="statystyka.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(y)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -611,75 +620,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## W = 0.9017, p-value &lt; 2.2e-16</code></pre>
 <p>Do sprawdzenie zgodności z zadanym rozkładem możemy wykorzystać test Kołmogorowa-Smirnowa - <code>ks.test</code>. Do funkcji należy podać wektor obserwacji oraz albo drugi wektor obserwacji (sparwdzamy czy pochodzą z takiego samego rozkładu) albo nazwę funkcji obliczającej dystrybuantę rozkładu np. <code>pnorm</code> (normalny), <code>plnorm</code> (log-normalny), <code>punif</code> (jednostajny).</p>
 <p>Jeżeli parametry rozkładu różnią się od domyślnych to należy je podać np. <code>mean</code> i <code>sd</code> dla rozkładu normalnego.</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="statystyka.html#cb493-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb493-2"><a href="statystyka.html#cb493-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb493-3"><a href="statystyka.html#cb493-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
-<span id="cb493-4"><a href="statystyka.html#cb493-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb493-5"><a href="statystyka.html#cb493-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">2</span>)</span>
-<span id="cb493-6"><a href="statystyka.html#cb493-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb493-7"><a href="statystyka.html#cb493-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">sdlog =</span> <span class="fl">0.5</span>)</span>
-<span id="cb493-8"><a href="statystyka.html#cb493-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb493-9"><a href="statystyka.html#cb493-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sprawdzamy czy obserwacje mają taki sam rozkład</span></span>
-<span id="cb493-10"><a href="statystyka.html#cb493-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,x1)</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="statystyka.html#cb554-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb554-2"><a href="statystyka.html#cb554-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb554-3"><a href="statystyka.html#cb554-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb554-4"><a href="statystyka.html#cb554-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb554-5"><a href="statystyka.html#cb554-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">2</span>)</span>
+<span id="cb554-6"><a href="statystyka.html#cb554-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb554-7"><a href="statystyka.html#cb554-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">sdlog =</span> <span class="fl">0.5</span>)</span>
+<span id="cb554-8"><a href="statystyka.html#cb554-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb554-9"><a href="statystyka.html#cb554-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sprawdzamy czy obserwacje mają taki sam rozkład</span></span>
+<span id="cb554-10"><a href="statystyka.html#cb554-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,x1)</span></code></pre></div>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x and x1
 ## D = 0.037, p-value = 0.5004
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="statystyka.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,x2)</span></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="statystyka.html#cb556-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,x2)</span></code></pre></div>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x and x2
 ## D = 0.671, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="statystyka.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="statystyka.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,y)</span></code></pre></div>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x and y
 ## D = 0.64, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="statystyka.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sprawdzamy czy x pochodzi z rozkładu normalnego czy log-normalnego</span></span>
-<span id="cb499-2"><a href="statystyka.html#cb499-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, pnorm)</span></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="statystyka.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sprawdzamy czy x pochodzi z rozkładu normalnego czy log-normalnego</span></span>
+<span id="cb560-2"><a href="statystyka.html#cb560-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, pnorm)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x
 ## D = 0.022326, p-value = 0.7012
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="statystyka.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, plnorm)</span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="statystyka.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, plnorm)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x
 ## D = 0.54985, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="statystyka.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jeżeli nie podamy, że średnia x2 równa się 2 otrzymamy błędny wynik</span></span>
-<span id="cb503-2"><a href="statystyka.html#cb503-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x2, pnorm)</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="statystyka.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jeżeli nie podamy, że średnia x2 równa się 2 otrzymamy błędny wynik</span></span>
+<span id="cb564-2"><a href="statystyka.html#cb564-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x2, pnorm)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x2
 ## D = 0.68387, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="statystyka.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x2, pnorm, <span class="at">mean =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="statystyka.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x2, pnorm, <span class="at">mean =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x2
 ## D = 0.020089, p-value = 0.8144
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="statystyka.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Czy y pasuje do rozkładu normalnego czy log-normalnego</span></span>
-<span id="cb507-2"><a href="statystyka.html#cb507-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(y, pnorm, <span class="at">sd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="statystyka.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Czy y pasuje do rozkładu normalnego czy log-normalnego</span></span>
+<span id="cb568-2"><a href="statystyka.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(y, pnorm, <span class="at">sd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  y
 ## D = 0.7663, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="statystyka.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(y, plnorm, <span class="at">sd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="statystyka.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(y, plnorm, <span class="at">sd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
@@ -687,9 +696,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## D = 0.02376, p-value = 0.6249
 ## alternative hypothesis: two-sided</code></pre>
 <p>Do oszacowania parametrów rozkładu można wykorzystać funkcję <code>fitdistr</code> z pakietu MASS. Podajemy wektor obserwacji oraz funkcję gęstości rozkładu. Rozpoznawane funkcje to np. <code>"normal", "log-normal", "exponential", "f", "t"</code> itp.</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="statystyka.html#cb511-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">20</span>, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
-<span id="cb511-2"><a href="statystyka.html#cb511-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb511-3"><a href="statystyka.html#cb511-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="statystyka.html#cb572-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">20</span>, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb572-2"><a href="statystyka.html#cb572-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb572-3"><a href="statystyka.html#cb572-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;MASS&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:patchwork&#39;:
@@ -698,34 +707,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     select</code></pre>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="statystyka.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obliczamy parametry rozkładu normalnego i log-normalnego dla danych x</span></span>
-<span id="cb515-2"><a href="statystyka.html#cb515-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(x, <span class="st">&quot;normal&quot;</span>)</span>
-<span id="cb515-3"><a href="statystyka.html#cb515-3" aria-hidden="true" tabindex="-1"></a>fit</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="statystyka.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obliczamy parametry rozkładu normalnego i log-normalnego dla danych x</span></span>
+<span id="cb576-2"><a href="statystyka.html#cb576-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(x, <span class="st">&quot;normal&quot;</span>)</span>
+<span id="cb576-3"><a href="statystyka.html#cb576-3" aria-hidden="true" tabindex="-1"></a>fit</span></code></pre></div>
 <pre><code>##       mean           sd     
 ##   20.02764577    0.51181914 
 ##  ( 0.01618514) ( 0.01144462)</code></pre>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="statystyka.html#cb517-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(x, <span class="st">&quot;log-normal&quot;</span>)</span>
-<span id="cb517-2"><a href="statystyka.html#cb517-2" aria-hidden="true" tabindex="-1"></a>fit2</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="statystyka.html#cb578-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">fitdistr</span>(x, <span class="st">&quot;log-normal&quot;</span>)</span>
+<span id="cb578-2"><a href="statystyka.html#cb578-2" aria-hidden="true" tabindex="-1"></a>fit2</span></code></pre></div>
 <pre><code>##      meanlog         sdlog    
 ##   2.9967861138   0.0256138133 
 ##  (0.0008099799) (0.0005727423)</code></pre>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="statystyka.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sprawdzamy czy dane x faktycznie pochodzą z rozkładu o parametrach obliczonych wyżej</span></span>
-<span id="cb519-2"><a href="statystyka.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, pnorm, fit<span class="sc">$</span>estimate[<span class="dv">1</span>], fit<span class="sc">$</span>estimate[<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="statystyka.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sprawdzamy czy dane x faktycznie pochodzą z rozkładu o parametrach obliczonych wyżej</span></span>
+<span id="cb580-2"><a href="statystyka.html#cb580-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, pnorm, fit<span class="sc">$</span>estimate[<span class="dv">1</span>], fit<span class="sc">$</span>estimate[<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x
 ## D = 0.013869, p-value = 0.9906
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="statystyka.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, pnorm, fit2<span class="sc">$</span>estimate[<span class="dv">1</span>], fit2<span class="sc">$</span>estimate[<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="statystyka.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x, pnorm, fit2<span class="sc">$</span>estimate[<span class="dv">1</span>], fit2<span class="sc">$</span>estimate[<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  x
 ## D = 1, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="statystyka.html#cb523-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">sdlog =</span> <span class="fl">0.4</span>)</span>
-<span id="cb523-2"><a href="statystyka.html#cb523-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fitdistr</span>(y, <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="statystyka.html#cb584-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">1000</span>, <span class="at">sdlog =</span> <span class="fl">0.4</span>)</span>
+<span id="cb584-2"><a href="statystyka.html#cb584-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fitdistr</span>(y, <span class="st">&quot;log-normal&quot;</span>)</span></code></pre></div>
 <pre><code>##      meanlog         sdlog    
 ##   -0.010771248    0.395992732 
 ##  ( 0.012522390) ( 0.008854667)</code></pre>
@@ -734,15 +743,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.3.4</span> Obliczanie przedziałów ufności dla średniej i błędu standardowego</h3>
 <p>Błąd standardowy obliczamy ze wzoru: <span class="math display">\[SEM= odch/\sqrt{n}\]</span>. Pokazuje estymowane odchylenie pomiędzy prawdziwą średnią populacji, a obliczoną dla próby.</p>
 <p>W R nie ma funkcji liczącej błąd standardowy, ale można takie przeliczenie wykonać samemu albo napisać taką funkcję</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="statystyka.html#cb525-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
-<span id="cb525-2"><a href="statystyka.html#cb525-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb525-3"><a href="statystyka.html#cb525-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="statystyka.html#cb586-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean=</span><span class="dv">10</span>, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb586-2"><a href="statystyka.html#cb586-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb586-3"><a href="statystyka.html#cb586-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 10.04872</code></pre>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="statystyka.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="statystyka.html#cb588-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.5133524</code></pre>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="statystyka.html#cb529-1" aria-hidden="true" tabindex="-1"></a>SEM <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
-<span id="cb529-2"><a href="statystyka.html#cb529-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb529-3"><a href="statystyka.html#cb529-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Błąd standardowy wynosi&quot;</span>, SEM)</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="statystyka.html#cb590-1" aria-hidden="true" tabindex="-1"></a>SEM <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
+<span id="cb590-2"><a href="statystyka.html#cb590-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb590-3"><a href="statystyka.html#cb590-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Błąd standardowy wynosi&quot;</span>, SEM)</span></code></pre></div>
 <pre><code>## Błąd standardowy wynosi 0.02963841</code></pre>
 <p>Przedział ufności o istotności 0.95 mówi nam, że prawdopodobieństwo znalezienia estymowanego parametru w tym przedziale wynosi 95%.</p>
 <p>Przedział ufności dla rozkładu normalnego przy poziomie istotności 0.95 wyliczamy ze wzoru:
@@ -751,26 +760,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>1.96 to 0.975 kwantyl rozkładu normalnego.</p>
 <p>Zamiast 1.96 możemy podstawić wartość wyliczoną z rozkładu t przy pomocy: <code>qt(0.975, df)</code></p>
 <p>Przy dużej liczebności próby (ok. 300) wyjdzie na to samo.</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="statystyka.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">120</span>)</span>
-<span id="cb531-2"><a href="statystyka.html#cb531-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">3</span>, <span class="at">sd=</span><span class="fl">0.75</span>)</span>
-<span id="cb531-3"><a href="statystyka.html#cb531-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb531-4"><a href="statystyka.html#cb531-4" aria-hidden="true" tabindex="-1"></a>(srednia<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">mean</span>(x),<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="statystyka.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">120</span>)</span>
+<span id="cb592-2"><a href="statystyka.html#cb592-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">3</span>, <span class="at">sd=</span><span class="fl">0.75</span>)</span>
+<span id="cb592-3"><a href="statystyka.html#cb592-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb592-4"><a href="statystyka.html#cb592-4" aria-hidden="true" tabindex="-1"></a>(srednia<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">mean</span>(x),<span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## [1] 3.02</code></pre>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="statystyka.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sd</span>(x),<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="statystyka.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sd</span>(x),<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.79</code></pre>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="statystyka.html#cb535-1" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">1.96</span><span class="sc">*</span><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)),<span class="dv">2</span>)</span>
-<span id="cb535-2"><a href="statystyka.html#cb535-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb535-3"><a href="statystyka.html#cb535-3" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> srednia<span class="sc">-</span>ci</span>
-<span id="cb535-4"><a href="statystyka.html#cb535-4" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> srednia<span class="sc">+</span>ci</span>
-<span id="cb535-5"><a href="statystyka.html#cb535-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb535-6"><a href="statystyka.html#cb535-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Średnia x wynosi&quot;</span>, srednia, <span class="st">&quot;w przedziale ufności&quot;</span>, lower, upper)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="statystyka.html#cb596-1" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">1.96</span><span class="sc">*</span><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)),<span class="dv">2</span>)</span>
+<span id="cb596-2"><a href="statystyka.html#cb596-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb596-3"><a href="statystyka.html#cb596-3" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> srednia<span class="sc">-</span>ci</span>
+<span id="cb596-4"><a href="statystyka.html#cb596-4" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> srednia<span class="sc">+</span>ci</span>
+<span id="cb596-5"><a href="statystyka.html#cb596-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb596-6"><a href="statystyka.html#cb596-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Średnia x wynosi&quot;</span>, srednia, <span class="st">&quot;w przedziale ufności&quot;</span>, lower, upper)</span></code></pre></div>
 <pre><code>## Średnia x wynosi 3.02 w przedziale ufności 2.86 3.18</code></pre>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="statystyka.html#cb537-1" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df=</span>(<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>))<span class="sc">*</span><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)),<span class="dv">2</span>)</span>
-<span id="cb537-2"><a href="statystyka.html#cb537-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb537-3"><a href="statystyka.html#cb537-3" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> srednia<span class="sc">-</span>ci</span>
-<span id="cb537-4"><a href="statystyka.html#cb537-4" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> srednia<span class="sc">+</span>ci</span>
-<span id="cb537-5"><a href="statystyka.html#cb537-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb537-6"><a href="statystyka.html#cb537-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Średnia x wynosi&quot;</span>, srednia, <span class="st">&quot;w przedziale ufności&quot;</span>, lower, upper)</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="statystyka.html#cb598-1" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df=</span>(<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>))<span class="sc">*</span><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x)),<span class="dv">2</span>)</span>
+<span id="cb598-2"><a href="statystyka.html#cb598-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb598-3"><a href="statystyka.html#cb598-3" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> srednia<span class="sc">-</span>ci</span>
+<span id="cb598-4"><a href="statystyka.html#cb598-4" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> srednia<span class="sc">+</span>ci</span>
+<span id="cb598-5"><a href="statystyka.html#cb598-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb598-6"><a href="statystyka.html#cb598-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Średnia x wynosi&quot;</span>, srednia, <span class="st">&quot;w przedziale ufności&quot;</span>, lower, upper)</span></code></pre></div>
 <pre><code>## Średnia x wynosi 3.02 w przedziale ufności 2.86 3.18</code></pre>
 <p>Przedział ufności dla średniej można też znaleźć w wyniku <code>t.test</code>.</p>
 </div>
@@ -779,16 +788,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Wartość korelacji zawiera się pomiędzy -1 a 1. 0 oznacza całkowity brak korelacji. Do 0.7 korelację określamy jako silną.</p>
 <p>Korelację obserwacji z dwóch wektorów albo całej macierzy można obliczyć przy pomocy funkcji <code>cor</code>. Domyślnie obliczona zostanie za pomocą metody Pearsona, można to zmienić na metodę Spearmana - <code>method="spearman"</code>. Metoda Spearmana jest mniej wrażliwa na obserwacje odstające.</p>
 <p>Jeżeli chcemy poznać szczegóły dotyczące korelacji możemy użyć <code>cor.test</code>. Też można wybrać metodę, podaje również wartość p dla korelacji, przedział ufności, ilość stopni swobodi itp.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="statystyka.html#cb539-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">30</span>))</span>
-<span id="cb539-2"><a href="statystyka.html#cb539-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">30</span>))</span>
-<span id="cb539-3"><a href="statystyka.html#cb539-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb539-4"><a href="statystyka.html#cb539-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="statystyka.html#cb600-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">30</span>))</span>
+<span id="cb600-2"><a href="statystyka.html#cb600-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">30</span>))</span>
+<span id="cb600-3"><a href="statystyka.html#cb600-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb600-4"><a href="statystyka.html#cb600-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="statystyka.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="statystyka.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.9866882</code></pre>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="statystyka.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="statystyka.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="statystyka.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="statystyka.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -800,73 +809,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##       cor 
 ## 0.9866882</code></pre>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="statystyka.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dodajemy wartość bardzo odstającą :)</span></span>
-<span id="cb546-2"><a href="statystyka.html#cb546-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="sc">-</span><span class="dv">100</span>)</span>
-<span id="cb546-3"><a href="statystyka.html#cb546-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="dv">10</span>)</span>
-<span id="cb546-4"><a href="statystyka.html#cb546-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb546-5"><a href="statystyka.html#cb546-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="statystyka.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dodajemy wartość bardzo odstającą :)</span></span>
+<span id="cb607-2"><a href="statystyka.html#cb607-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="sc">-</span><span class="dv">100</span>)</span>
+<span id="cb607-3"><a href="statystyka.html#cb607-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="dv">10</span>)</span>
+<span id="cb607-4"><a href="statystyka.html#cb607-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb607-5"><a href="statystyka.html#cb607-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-98-2.png" width="672" /></p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="statystyka.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wartość korelacji wyliczona metodą spearmana zmienia się dużo mniej</span></span>
-<span id="cb547-2"><a href="statystyka.html#cb547-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="statystyka.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wartość korelacji wyliczona metodą spearmana zmienia się dużo mniej</span></span>
+<span id="cb608-2"><a href="statystyka.html#cb608-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] -0.9816699</code></pre>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="statystyka.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="statystyka.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8125</code></pre>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="statystyka.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wartość odstająca może też dać korelację pearsona tam gdzie jej wcale nie ma</span></span>
-<span id="cb551-2"><a href="statystyka.html#cb551-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ale korelacja spearmana nie zmieni się tak bardzo</span></span>
-<span id="cb551-3"><a href="statystyka.html#cb551-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb551-4"><a href="statystyka.html#cb551-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">30</span>))</span>
-<span id="cb551-5"><a href="statystyka.html#cb551-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">30</span>)</span>
-<span id="cb551-6"><a href="statystyka.html#cb551-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="statystyka.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wartość odstająca może też dać korelację pearsona tam gdzie jej wcale nie ma</span></span>
+<span id="cb612-2"><a href="statystyka.html#cb612-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ale korelacja spearmana nie zmieni się tak bardzo</span></span>
+<span id="cb612-3"><a href="statystyka.html#cb612-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb612-4"><a href="statystyka.html#cb612-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(<span class="dv">30</span>))</span>
+<span id="cb612-5"><a href="statystyka.html#cb612-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">30</span>)</span>
+<span id="cb612-6"><a href="statystyka.html#cb612-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-98-3.png" width="672" /></p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="statystyka.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="statystyka.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.1557759</code></pre>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="statystyka.html#cb554-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">10</span>)</span>
-<span id="cb554-2"><a href="statystyka.html#cb554-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="dv">10</span>)</span>
-<span id="cb554-3"><a href="statystyka.html#cb554-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="statystyka.html#cb615-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">10</span>)</span>
+<span id="cb615-2"><a href="statystyka.html#cb615-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="dv">10</span>)</span>
+<span id="cb615-3"><a href="statystyka.html#cb615-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-98-4.png" width="672" /></p>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="statystyka.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="statystyka.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
 <pre><code>## [1] 0.9762845</code></pre>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="statystyka.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method=</span><span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="statystyka.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method=</span><span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2383065</code></pre>
 </div>
 <div id="test-chi-kwadrat---zgodność-rozkładu-zmiennych-jakościowych" class="section level3" number="7.3.6">
 <h3><span class="header-section-number">7.3.6</span> Test chi-kwadrat - zgodność rozkładu zmiennych jakościowych</h3>
 <p>Służy do weryfikacji zależności pomiędzy dwiema zmiennymi jakościowymi, funkcja <code>chisq.test</code>. Jako argument najlepiej podstawić macierz kontyngencji wyliczoną funkcją <code>table</code>. Poza wartością p można też sprawdzić wartości oczekiwane - <code>wynik$expected</code>. Test chi^2 można wykorzystać też dla wiekszych macierzy.</p>
 <p>Dla tablic 2x2 można również użyć dokładnego testu Fishera - <code>fisher.test</code>.</p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="statystyka.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wygenerujemy przykładowe dane - takie same</span></span>
-<span id="cb559-2"><a href="statystyka.html#cb559-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb559-3"><a href="statystyka.html#cb559-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">jeden  =</span>  <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>),<span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb559-4"><a href="statystyka.html#cb559-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">dwa  =</span>  <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;grupa1&quot;</span>,<span class="st">&quot;grupa2&quot;</span>),<span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb559-5"><a href="statystyka.html#cb559-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb559-6"><a href="statystyka.html#cb559-6" aria-hidden="true" tabindex="-1"></a><span class="co"># różne</span></span>
-<span id="cb559-7"><a href="statystyka.html#cb559-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb559-8"><a href="statystyka.html#cb559-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">jeden  =</span>  <span class="fu">c</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>),<span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.6</span>)),</span>
-<span id="cb559-9"><a href="statystyka.html#cb559-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>),<span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="fl">0.3</span>))),</span>
-<span id="cb559-10"><a href="statystyka.html#cb559-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">dwa  =</span>  <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;grupa1&quot;</span>,<span class="st">&quot;grupa2&quot;</span>),<span class="at">each =</span> <span class="dv">100</span>))</span>
-<span id="cb559-11"><a href="statystyka.html#cb559-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb559-12"><a href="statystyka.html#cb559-12" aria-hidden="true" tabindex="-1"></a>(tabela_x <span class="ot">&lt;-</span> <span class="fu">table</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="statystyka.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wygenerujemy przykładowe dane - takie same</span></span>
+<span id="cb620-2"><a href="statystyka.html#cb620-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-3"><a href="statystyka.html#cb620-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">jeden  =</span>  <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>),<span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb620-4"><a href="statystyka.html#cb620-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">dwa  =</span>  <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;grupa1&quot;</span>,<span class="st">&quot;grupa2&quot;</span>),<span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb620-5"><a href="statystyka.html#cb620-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-6"><a href="statystyka.html#cb620-6" aria-hidden="true" tabindex="-1"></a><span class="co"># różne</span></span>
+<span id="cb620-7"><a href="statystyka.html#cb620-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-8"><a href="statystyka.html#cb620-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">jeden  =</span>  <span class="fu">c</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>),<span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.6</span>)),</span>
+<span id="cb620-9"><a href="statystyka.html#cb620-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>),<span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="fl">0.3</span>))),</span>
+<span id="cb620-10"><a href="statystyka.html#cb620-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">dwa  =</span>  <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;grupa1&quot;</span>,<span class="st">&quot;grupa2&quot;</span>),<span class="at">each =</span> <span class="dv">100</span>))</span>
+<span id="cb620-11"><a href="statystyka.html#cb620-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-12"><a href="statystyka.html#cb620-12" aria-hidden="true" tabindex="-1"></a>(tabela_x <span class="ot">&lt;-</span> <span class="fu">table</span>(x))</span></code></pre></div>
 <pre><code>##      dwa
 ## jeden grupa1 grupa2
 ##     A     45     50
 ##     B     52     53</code></pre>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="statystyka.html#cb561-1" aria-hidden="true" tabindex="-1"></a>(tabela_y <span class="ot">&lt;-</span> <span class="fu">table</span>(y))</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="statystyka.html#cb622-1" aria-hidden="true" tabindex="-1"></a>(tabela_y <span class="ot">&lt;-</span> <span class="fu">table</span>(y))</span></code></pre></div>
 <pre><code>##      dwa
 ## jeden grupa1 grupa2
 ##     A     40     77
 ##     B     60     23</code></pre>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="statystyka.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tabela_x)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="statystyka.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tabela_x)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  tabela_x
 ## X-squared = 0.02654, df = 1, p-value = 0.8706</code></pre>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="statystyka.html#cb565-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tabela_y)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="statystyka.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(tabela_y)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  tabela_y
 ## X-squared = 26.691, df = 1, p-value = 2.387e-07</code></pre>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="statystyka.html#cb567-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tabela_x)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="statystyka.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tabela_x)</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
@@ -878,7 +887,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## odds ratio 
 ##  0.9177044</code></pre>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="statystyka.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tabela_y)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="statystyka.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tabela_y)</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
@@ -891,9 +900,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## odds ratio 
 ##  0.2009083</code></pre>
 <p>Jeżeli chcemy tylko sprawdzić prawdopodobieństwo możemy użyć testu propocji - <code>prop.test</code></p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="statystyka.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowo czy 785 sukcesów na 1500 prób jest istotnie różne od p=0.5</span></span>
-<span id="cb571-2"><a href="statystyka.html#cb571-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb571-3"><a href="statystyka.html#cb571-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">785</span>, <span class="dv">1500</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="statystyka.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowo czy 785 sukcesów na 1500 prób jest istotnie różne od p=0.5</span></span>
+<span id="cb632-2"><a href="statystyka.html#cb632-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb632-3"><a href="statystyka.html#cb632-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">785</span>, <span class="dv">1500</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
@@ -905,12 +914,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##         p 
 ## 0.5233333</code></pre>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="statystyka.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="co"># można też wykonać test proporcji dla większej ilości danych - pairwise.prop.test</span></span>
-<span id="cb573-2"><a href="statystyka.html#cb573-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb573-3"><a href="statystyka.html#cb573-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">190</span>,<span class="dv">475</span>,<span class="dv">350</span>,<span class="dv">65</span>)</span>
-<span id="cb573-4"><a href="statystyka.html#cb573-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">800</span>,<span class="dv">250</span>)</span>
-<span id="cb573-5"><a href="statystyka.html#cb573-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb573-6"><a href="statystyka.html#cb573-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.prop.test</span>(x, n, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="statystyka.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="co"># można też wykonać test proporcji dla większej ilości danych - pairwise.prop.test</span></span>
+<span id="cb634-2"><a href="statystyka.html#cb634-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-3"><a href="statystyka.html#cb634-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">190</span>,<span class="dv">475</span>,<span class="dv">350</span>,<span class="dv">65</span>)</span>
+<span id="cb634-4"><a href="statystyka.html#cb634-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">800</span>,<span class="dv">250</span>)</span>
+<span id="cb634-5"><a href="statystyka.html#cb634-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-6"><a href="statystyka.html#cb634-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.prop.test</span>(x, n, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using Pairwise comparison of proportions 
 ## 
@@ -930,30 +939,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="regresja-liniowa" class="section level3" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> Regresja liniowa</h3>
 <p>Najbardziej popularną funkcją w R do wyznaczania modeli liniowych jest <code>lm</code>. Wymaga jedynie podania formuły opisującej modelowaną przez nas zależność i ramki danych.</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="statystyka.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jako przykład wykorzystamy zbiór danych R dotyczący wzrostu drzewek pomarańczowych</span></span>
-<span id="cb575-2"><a href="statystyka.html#cb575-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb575-3"><a href="statystyka.html#cb575-3" aria-hidden="true" tabindex="-1"></a>orange <span class="ot">&lt;-</span> Orange</span>
-<span id="cb575-4"><a href="statystyka.html#cb575-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb575-5"><a href="statystyka.html#cb575-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(orange, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="statystyka.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jako przykład wykorzystamy zbiór danych R dotyczący wzrostu drzewek pomarańczowych</span></span>
+<span id="cb636-2"><a href="statystyka.html#cb636-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb636-3"><a href="statystyka.html#cb636-3" aria-hidden="true" tabindex="-1"></a>orange <span class="ot">&lt;-</span> Orange</span>
+<span id="cb636-4"><a href="statystyka.html#cb636-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb636-5"><a href="statystyka.html#cb636-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(orange, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Grouped Data: circumference ~ age | Tree
 ##   Tree age circumference
 ## 1    1 118            30
 ## 2    1 484            58
 ## 3    1 664            87</code></pre>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="statystyka.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wykres obwodu drzewa od wieku</span></span>
-<span id="cb577-2"><a href="statystyka.html#cb577-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb577-3"><a href="statystyka.html#cb577-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(orange<span class="sc">$</span>age, orange<span class="sc">$</span>circumference)</span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="statystyka.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wykres obwodu drzewa od wieku</span></span>
+<span id="cb638-2"><a href="statystyka.html#cb638-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb638-3"><a href="statystyka.html#cb638-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(orange<span class="sc">$</span>age, orange<span class="sc">$</span>circumference)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <p>Formuły zapisujemy korzystając z ~ , np.:
 * zależność y od x: y~x,
 * zależność y od x i z: y ~ x + z,
 * zależność y od x, z i interakcji pomiędzy x i z: y ~ x + z + x:z albo y ~ x * z</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="statystyka.html#cb578-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(circumference<span class="sc">~</span>age, <span class="at">data =</span> orange)</span>
-<span id="cb578-2"><a href="statystyka.html#cb578-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb578-3"><a href="statystyka.html#cb578-3" aria-hidden="true" tabindex="-1"></a>fit<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="statystyka.html#cb639-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(circumference<span class="sc">~</span>age, <span class="at">data =</span> orange)</span>
+<span id="cb639-2"><a href="statystyka.html#cb639-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb639-3"><a href="statystyka.html#cb639-3" aria-hidden="true" tabindex="-1"></a>fit<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>## (Intercept)         age 
 ##  17.3996502   0.1067703</code></pre>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="statystyka.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="statystyka.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = circumference ~ age, data = orange)
@@ -972,8 +981,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 23.74 on 33 degrees of freedom
 ## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 ## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="statystyka.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(orange<span class="sc">$</span>age, orange<span class="sc">$</span>circumference)</span>
-<span id="cb582-2"><a href="statystyka.html#cb582-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">col =</span> <span class="st">&quot;green3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="statystyka.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(orange<span class="sc">$</span>age, orange<span class="sc">$</span>circumference)</span>
+<span id="cb643-2"><a href="statystyka.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit, <span class="at">col =</span> <span class="st">&quot;green3&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p>Jeżeli chcemy jedynie wyznaczyć równanie funkcji liniowej - y = ax + b, wystarczy sprawdzić współczynniki dopasowanego modelu - coefficients. Intercept oznacza miejsce przecięcia z osią Y - współczynnik b, a age to wartość przez którą należy pomnożyć wiek drzewa żeby uzyskać jego obwód.</p>
 <p>Można powiedzić że według naszego modelu każdego roku obwód drzewa zwiększa się o wartość 0.107 mm.</p>
@@ -986,11 +995,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="zmienne-jakościowe-w-modelu" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> Zmienne jakościowe w modelu</h3>
 <p>W modelu możemy uwzględniać również zmienne jakościowe, muszą one jednak zostać zakodowane - zmienione w dane liczbowe. Funkcja <code>lm</code> domyślnie uznaje pierwszy poziom zmiennej za referencyjny, kolejne poziomy bedą się do niego odnosić.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="statystyka.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zbiór danych dotyczący wzrostu kurzcaków w zależności od rodzaju karmy</span></span>
-<span id="cb583-2"><a href="statystyka.html#cb583-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb583-3"><a href="statystyka.html#cb583-3" aria-hidden="true" tabindex="-1"></a>chick <span class="ot">&lt;-</span> ChickWeight</span>
-<span id="cb583-4"><a href="statystyka.html#cb583-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb583-5"><a href="statystyka.html#cb583-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(weight <span class="sc">~</span> Time <span class="sc">+</span> Diet, <span class="at">data =</span> chick))</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="statystyka.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zbiór danych dotyczący wzrostu kurzcaków w zależności od rodzaju karmy</span></span>
+<span id="cb644-2"><a href="statystyka.html#cb644-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb644-3"><a href="statystyka.html#cb644-3" aria-hidden="true" tabindex="-1"></a>chick <span class="ot">&lt;-</span> ChickWeight</span>
+<span id="cb644-4"><a href="statystyka.html#cb644-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb644-5"><a href="statystyka.html#cb644-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(weight <span class="sc">~</span> Time <span class="sc">+</span> Diet, <span class="at">data =</span> chick))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ Time + Diet, data = chick)
@@ -1012,9 +1021,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 35.99 on 573 degrees of freedom
 ## Multiple R-squared:  0.7453, Adjusted R-squared:  0.7435 
 ## F-statistic: 419.2 on 4 and 573 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="statystyka.html#cb585-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chick, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight))</span>
-<span id="cb585-2"><a href="statystyka.html#cb585-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb585-3"><a href="statystyka.html#cb585-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> Diet), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="statystyka.html#cb646-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chick, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight))</span>
+<span id="cb646-2"><a href="statystyka.html#cb646-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb646-3"><a href="statystyka.html#cb646-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">color =</span> Diet), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>Wartości przy przy kolejnych typach karmy - Diet2, Diet3, Diet4, pokazują o ile średnio różnią się wartości wyznaczone dla nich od poziomu referencyjnego czyli Diet1. To znaczy, że kurczaki karmione karmą nr 2 są o 16.17 g cięższe od kurczaków karmionych karmą nr 1.</p>
@@ -1046,7 +1055,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Wykres razem z dopasowaniem można uzyskać dzięki standardowej funkcji <code>plot</code>. Można również porównać kilka modeli podając wektor ze zmienną dzielącą dane na poziomy.</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="statystyka.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(drc)</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="statystyka.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(drc)</span></code></pre></div>
 <pre><code>## 
 ## &#39;drc&#39; has been loaded.</code></pre>
 <pre><code>## Please cite R and &#39;drc&#39; if used for a publication,</code></pre>
@@ -1056,16 +1065,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
 ## 
 ##     gaussian, getInitial</code></pre>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="statystyka.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowe dane</span></span>
-<span id="cb593-2"><a href="statystyka.html#cb593-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb593-3"><a href="statystyka.html#cb593-3" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">stezenie  =</span> <span class="fu">c</span>( <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">1.5</span>), </span>
-<span id="cb593-4"><a href="statystyka.html#cb593-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">predkosc =</span> <span class="fu">c</span>( <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="dv">1</span>, <span class="fl">1.02</span>, <span class="fl">1.09</span>, <span class="fl">1.15</span>, <span class="fl">1.23</span>))</span>
-<span id="cb593-5"><a href="statystyka.html#cb593-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb593-6"><a href="statystyka.html#cb593-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">drm</span>(predkosc<span class="sc">~</span>stezenie, <span class="at">data =</span> dane, <span class="at">fct =</span> <span class="fu">MM.2</span>())</span>
-<span id="cb593-7"><a href="statystyka.html#cb593-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb593-8"><a href="statystyka.html#cb593-8" aria-hidden="true" tabindex="-1"></a><span class="co"># d to prędkośc maksymalna, e to Km</span></span>
-<span id="cb593-9"><a href="statystyka.html#cb593-9" aria-hidden="true" tabindex="-1"></a><span class="co"># w podsumowaniu dostajemy błąd standardowy i wartość p</span></span>
-<span id="cb593-10"><a href="statystyka.html#cb593-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="statystyka.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowe dane</span></span>
+<span id="cb654-2"><a href="statystyka.html#cb654-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-3"><a href="statystyka.html#cb654-3" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">stezenie  =</span> <span class="fu">c</span>( <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">1.5</span>), </span>
+<span id="cb654-4"><a href="statystyka.html#cb654-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">predkosc =</span> <span class="fu">c</span>( <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="dv">1</span>, <span class="fl">1.02</span>, <span class="fl">1.09</span>, <span class="fl">1.15</span>, <span class="fl">1.23</span>))</span>
+<span id="cb654-5"><a href="statystyka.html#cb654-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-6"><a href="statystyka.html#cb654-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">drm</span>(predkosc<span class="sc">~</span>stezenie, <span class="at">data =</span> dane, <span class="at">fct =</span> <span class="fu">MM.2</span>())</span>
+<span id="cb654-7"><a href="statystyka.html#cb654-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-8"><a href="statystyka.html#cb654-8" aria-hidden="true" tabindex="-1"></a><span class="co"># d to prędkośc maksymalna, e to Km</span></span>
+<span id="cb654-9"><a href="statystyka.html#cb654-9" aria-hidden="true" tabindex="-1"></a><span class="co"># w podsumowaniu dostajemy błąd standardowy i wartość p</span></span>
+<span id="cb654-10"><a href="statystyka.html#cb654-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Model fitted: Michaelis-Menten (2 parms)
 ## 
@@ -1080,18 +1089,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error:
 ## 
 ##  0.05833157 (7 degrees of freedom)</code></pre>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="statystyka.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">log=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="statystyka.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">log=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="statystyka.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowe dane do porównania np. dwóch enzymów</span></span>
-<span id="cb596-2"><a href="statystyka.html#cb596-2" aria-hidden="true" tabindex="-1"></a>dane1 <span class="ot">&lt;-</span> dane</span>
-<span id="cb596-3"><a href="statystyka.html#cb596-3" aria-hidden="true" tabindex="-1"></a>dane1<span class="sc">$</span>predkosc <span class="ot">&lt;-</span> dane1<span class="sc">$</span>predkosc<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb596-4"><a href="statystyka.html#cb596-4" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dane, dane1)</span>
-<span id="cb596-5"><a href="statystyka.html#cb596-5" aria-hidden="true" tabindex="-1"></a>dane<span class="sc">$</span>poziom <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">each =</span> <span class="dv">9</span>)</span>
-<span id="cb596-6"><a href="statystyka.html#cb596-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb596-7"><a href="statystyka.html#cb596-7" aria-hidden="true" tabindex="-1"></a><span class="co"># model z dodanym podziałem na poziomy, możemy też nazwać oznaczane parametry</span></span>
-<span id="cb596-8"><a href="statystyka.html#cb596-8" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">drm</span>(predkosc<span class="sc">~</span>stezenie, poziom, <span class="at">data =</span> dane, <span class="at">fct =</span> <span class="fu">MM.2</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="at">d =</span> <span class="st">&quot;Vmax&quot;</span>, <span class="at">e =</span> <span class="st">&quot;Km&quot;</span>)))</span>
-<span id="cb596-9"><a href="statystyka.html#cb596-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb596-10"><a href="statystyka.html#cb596-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="statystyka.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowe dane do porównania np. dwóch enzymów</span></span>
+<span id="cb657-2"><a href="statystyka.html#cb657-2" aria-hidden="true" tabindex="-1"></a>dane1 <span class="ot">&lt;-</span> dane</span>
+<span id="cb657-3"><a href="statystyka.html#cb657-3" aria-hidden="true" tabindex="-1"></a>dane1<span class="sc">$</span>predkosc <span class="ot">&lt;-</span> dane1<span class="sc">$</span>predkosc<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb657-4"><a href="statystyka.html#cb657-4" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dane, dane1)</span>
+<span id="cb657-5"><a href="statystyka.html#cb657-5" aria-hidden="true" tabindex="-1"></a>dane<span class="sc">$</span>poziom <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">each =</span> <span class="dv">9</span>)</span>
+<span id="cb657-6"><a href="statystyka.html#cb657-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb657-7"><a href="statystyka.html#cb657-7" aria-hidden="true" tabindex="-1"></a><span class="co"># model z dodanym podziałem na poziomy, możemy też nazwać oznaczane parametry</span></span>
+<span id="cb657-8"><a href="statystyka.html#cb657-8" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">drm</span>(predkosc<span class="sc">~</span>stezenie, poziom, <span class="at">data =</span> dane, <span class="at">fct =</span> <span class="fu">MM.2</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="at">d =</span> <span class="st">&quot;Vmax&quot;</span>, <span class="at">e =</span> <span class="st">&quot;Km&quot;</span>)))</span>
+<span id="cb657-9"><a href="statystyka.html#cb657-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb657-10"><a href="statystyka.html#cb657-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Model fitted: Michaelis-Menten (2 parms)
 ## 
@@ -1108,14 +1117,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error:
 ## 
 ##  0.04611515 (14 degrees of freedom)</code></pre>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="statystyka.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">log=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="statystyka.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">log=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-104-2.png" width="672" /></p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="statystyka.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podobnie wygląda dopasowywanie funkcji logistycznej</span></span>
-<span id="cb599-2"><a href="statystyka.html#cb599-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Korzystamy z przykładowych danych z pakietu drc dla wpływu herbicydów na tylakoidy</span></span>
-<span id="cb599-3"><a href="statystyka.html#cb599-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb599-4"><a href="statystyka.html#cb599-4" aria-hidden="true" tabindex="-1"></a>spinach.m1 <span class="ot">&lt;-</span> <span class="fu">drm</span>(SLOPE<span class="sc">~</span>DOSE, CURVE, <span class="at">data =</span> spinach, <span class="at">fct =</span> <span class="fu">LL.4</span>())</span>
-<span id="cb599-5"><a href="statystyka.html#cb599-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb599-6"><a href="statystyka.html#cb599-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spinach.m1)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="statystyka.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podobnie wygląda dopasowywanie funkcji logistycznej</span></span>
+<span id="cb660-2"><a href="statystyka.html#cb660-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Korzystamy z przykładowych danych z pakietu drc dla wpływu herbicydów na tylakoidy</span></span>
+<span id="cb660-3"><a href="statystyka.html#cb660-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb660-4"><a href="statystyka.html#cb660-4" aria-hidden="true" tabindex="-1"></a>spinach.m1 <span class="ot">&lt;-</span> <span class="fu">drm</span>(SLOPE<span class="sc">~</span>DOSE, CURVE, <span class="at">data =</span> spinach, <span class="at">fct =</span> <span class="fu">LL.4</span>())</span>
+<span id="cb660-5"><a href="statystyka.html#cb660-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb660-6"><a href="statystyka.html#cb660-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spinach.m1)</span></code></pre></div>
 <pre><code>## 
 ## Model fitted: Log-logistic (ED50 as parameter) (4 parms)
 ## 
@@ -1148,7 +1157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error:
 ## 
 ##  0.0735284 (85 degrees of freedom)</code></pre>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="statystyka.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spinach.m1)</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="statystyka.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spinach.m1)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-104-3.png" width="672" /></p>
 <p>Możliwości tego pakietu sa dużo większe niż przedstawione powyżej. Autorzy przygotowali bardzo dobrą instrukcję użytkowania swojego pakietu razem ze szczegółowymi przykładami użycia wszystkich funkcji. Można ją znaleźć na stronie <a href="http://www.bioassay.dk/">Biossay</a>.</p>
 </div>
@@ -1160,24 +1169,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Analizę wariancji można podzielić na jedno- i wieloczynnikową. Dane powinny zawierać wektor wartości (ilościowy), które można pogrupować wobec jednej lub więcej zmiennych jakościowych.</p>
 <p>ANOVA w R można przeprowadzić na kilka sposobów, do popularnych należą funkcje <code>anova</code> i <code>aov</code>, które różnią się sposobem wywołania i prezentacji wyników.</p>
 <p>Aby stwierdzić które średnie w naszym zbiorze danych różnią się można przeprowadzić tzw. testy post hoc np. test HSD Tukeya - <code>TukeyHSD</code>, <code>HSD.test</code> (pakiet agricolae).</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="statystyka.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowe dane z rozkładu normalnego, różniące się średnią</span></span>
-<span id="cb602-2"><a href="statystyka.html#cb602-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb602-3"><a href="statystyka.html#cb602-3" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>,<span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">200</span>,<span class="fl">1.3</span>), <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">1</span>)), </span>
-<span id="cb602-4"><a href="statystyka.html#cb602-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>), <span class="at">each =</span> <span class="dv">200</span>))</span>
-<span id="cb602-5"><a href="statystyka.html#cb602-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb602-6"><a href="statystyka.html#cb602-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA przy pomocy funkcji aov, konieczne użycie summary dla wyświetlenia wyniku</span></span>
-<span id="cb602-7"><a href="statystyka.html#cb602-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb602-8"><a href="statystyka.html#cb602-8" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(x<span class="sc">~</span>y, <span class="at">data =</span> dane)</span>
-<span id="cb602-9"><a href="statystyka.html#cb602-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="statystyka.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="co"># przykładowe dane z rozkładu normalnego, różniące się średnią</span></span>
+<span id="cb663-2"><a href="statystyka.html#cb663-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb663-3"><a href="statystyka.html#cb663-3" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>,<span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">200</span>,<span class="fl">1.3</span>), <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="dv">1</span>)), </span>
+<span id="cb663-4"><a href="statystyka.html#cb663-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>), <span class="at">each =</span> <span class="dv">200</span>))</span>
+<span id="cb663-5"><a href="statystyka.html#cb663-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb663-6"><a href="statystyka.html#cb663-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA przy pomocy funkcji aov, konieczne użycie summary dla wyświetlenia wyniku</span></span>
+<span id="cb663-7"><a href="statystyka.html#cb663-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb663-8"><a href="statystyka.html#cb663-8" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(x<span class="sc">~</span>y, <span class="at">data =</span> dane)</span>
+<span id="cb663-9"><a href="statystyka.html#cb663-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## y             2   21.4  10.721   10.47 3.38e-05 ***
 ## Residuals   597  611.0   1.023                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="statystyka.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test Tukeya</span></span>
-<span id="cb604-2"><a href="statystyka.html#cb604-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Otrzymujemy wartość p dla każdej pary czynników i różnicę z przedziałem ufności</span></span>
-<span id="cb604-3"><a href="statystyka.html#cb604-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb604-4"><a href="statystyka.html#cb604-4" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="statystyka.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test Tukeya</span></span>
+<span id="cb665-2"><a href="statystyka.html#cb665-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Otrzymujemy wartość p dla każdej pary czynników i różnicę z przedziałem ufności</span></span>
+<span id="cb665-3"><a href="statystyka.html#cb665-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb665-4"><a href="statystyka.html#cb665-4" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model2)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1188,23 +1197,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## B-A  0.3082657  0.07056901  0.54596248 0.0068072
 ## C-A -0.1451069 -0.38280364  0.09258983 0.3238938
 ## C-B -0.4533726 -0.69106938 -0.21567591 0.0000264</code></pre>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="statystyka.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wynik testu Tukeya można pokazać na wykresie</span></span>
-<span id="cb606-2"><a href="statystyka.html#cb606-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb606-3"><a href="statystyka.html#cb606-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">TukeyHSD</span>(model2))</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="statystyka.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wynik testu Tukeya można pokazać na wykresie</span></span>
+<span id="cb667-2"><a href="statystyka.html#cb667-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb667-3"><a href="statystyka.html#cb667-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">TukeyHSD</span>(model2))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="statystyka.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analiza dwuczynnikowa</span></span>
-<span id="cb607-2"><a href="statystyka.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Dodajemy nową kolumnę do danych zawierającą losowy czynnik z - nie powinien wpływać na średnią</span></span>
-<span id="cb607-3"><a href="statystyka.html#cb607-3" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dane, <span class="at">z =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;f&quot;</span>), <span class="dv">600</span>, <span class="at">replace =</span> T))</span>
-<span id="cb607-4"><a href="statystyka.html#cb607-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb607-5"><a href="statystyka.html#cb607-5" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">lm</span>(x<span class="sc">~</span>y <span class="sc">+</span> z, <span class="at">data =</span> dane))</span>
-<span id="cb607-6"><a href="statystyka.html#cb607-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="statystyka.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analiza dwuczynnikowa</span></span>
+<span id="cb668-2"><a href="statystyka.html#cb668-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Dodajemy nową kolumnę do danych zawierającą losowy czynnik z - nie powinien wpływać na średnią</span></span>
+<span id="cb668-3"><a href="statystyka.html#cb668-3" aria-hidden="true" tabindex="-1"></a>dane <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dane, <span class="at">z =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;f&quot;</span>), <span class="dv">600</span>, <span class="at">replace =</span> T))</span>
+<span id="cb668-4"><a href="statystyka.html#cb668-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb668-5"><a href="statystyka.html#cb668-5" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">lm</span>(x<span class="sc">~</span>y <span class="sc">+</span> z, <span class="at">data =</span> dane))</span>
+<span id="cb668-6"><a href="statystyka.html#cb668-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## y             2   21.4  10.721  10.472 3.39e-05 ***
 ## z             2    1.9   0.939   0.917      0.4    
 ## Residuals   595  609.1   1.024                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="statystyka.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model3)</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="statystyka.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model3)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1221,10 +1230,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## e-d -0.13293759 -0.3733960 0.1075208 0.3962997
 ## f-d -0.02981066 -0.2634909 0.2038696 0.9516867
 ## f-e  0.10312693 -0.1367823 0.3430362 0.5708251</code></pre>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="statystyka.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z analizą interakcji między y i z</span></span>
-<span id="cb611-2"><a href="statystyka.html#cb611-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb611-3"><a href="statystyka.html#cb611-3" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">lm</span>(x<span class="sc">~</span>y <span class="sc">+</span> z <span class="sc">+</span> y<span class="sc">:</span>z, <span class="at">data =</span> dane))</span>
-<span id="cb611-4"><a href="statystyka.html#cb611-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="statystyka.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="co"># z analizą interakcji między y i z</span></span>
+<span id="cb672-2"><a href="statystyka.html#cb672-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb672-3"><a href="statystyka.html#cb672-3" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">lm</span>(x<span class="sc">~</span>y <span class="sc">+</span> z <span class="sc">+</span> y<span class="sc">:</span>z, <span class="at">data =</span> dane))</span>
+<span id="cb672-4"><a href="statystyka.html#cb672-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## y             2   21.4  10.721  10.416 3.58e-05 ***
 ## z             2    1.9   0.939   0.912    0.402    
@@ -1232,7 +1241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residuals   591  608.3   1.029                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="statystyka.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model4)</span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="statystyka.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model4)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1288,18 +1297,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## B:f-A:f  0.36597430 -0.18368169  0.915630292 0.4929824
 ## C:f-A:f -0.09418081 -0.61532523  0.426963619 0.9997563
 ## C:f-B:f -0.46015511 -1.00474580  0.084435582 0.1761651</code></pre>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="statystyka.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test nieparametryczny Kruskala-Wallisa z pakietu podstawowego</span></span>
-<span id="cb615-2"><a href="statystyka.html#cb615-2" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(dane<span class="sc">$</span>x,dane<span class="sc">$</span>y)</span>
-<span id="cb615-3"><a href="statystyka.html#cb615-3" aria-hidden="true" tabindex="-1"></a>wynik</span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="statystyka.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test nieparametryczny Kruskala-Wallisa z pakietu podstawowego</span></span>
+<span id="cb676-2"><a href="statystyka.html#cb676-2" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(dane<span class="sc">$</span>x,dane<span class="sc">$</span>y)</span>
+<span id="cb676-3"><a href="statystyka.html#cb676-3" aria-hidden="true" tabindex="-1"></a>wynik</span></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  dane$x and dane$y
 ## Kruskal-Wallis chi-squared = 18.758, df = 2, p-value = 8.448e-05</code></pre>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="statystyka.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="co"># albo z pakietu agricolae - pokazuje nie tylko czy coś się różni, ale również które grupy</span></span>
-<span id="cb617-2"><a href="statystyka.html#cb617-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb617-3"><a href="statystyka.html#cb617-3" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">&lt;-</span> agricolae<span class="sc">::</span><span class="fu">kruskal</span>(dane<span class="sc">$</span>x,dane<span class="sc">$</span>y)</span>
-<span id="cb617-4"><a href="statystyka.html#cb617-4" aria-hidden="true" tabindex="-1"></a>wynik</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="statystyka.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="co"># albo z pakietu agricolae - pokazuje nie tylko czy coś się różni, ale również które grupy</span></span>
+<span id="cb678-2"><a href="statystyka.html#cb678-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-3"><a href="statystyka.html#cb678-3" aria-hidden="true" tabindex="-1"></a>wynik <span class="ot">&lt;-</span> agricolae<span class="sc">::</span><span class="fu">kruskal</span>(dane<span class="sc">$</span>x,dane<span class="sc">$</span>y)</span>
+<span id="cb678-4"><a href="statystyka.html#cb678-4" aria-hidden="true" tabindex="-1"></a>wynik</span></code></pre></div>
 <pre><code>## $statistics
 ##      Chisq Df      p.chisq  t.value      MSD
 ##   18.75789  2 8.448412e-05 1.963946 33.56365

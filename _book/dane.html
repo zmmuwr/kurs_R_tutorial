@@ -172,8 +172,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#pipes-potoki"><i class="fa fa-check"></i><b>4.2</b> Pipes (potoki)</a></li>
 <li class="chapter" data-level="4.3" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#sortowanie"><i class="fa fa-check"></i><b>4.3</b> Sortowanie</a></li>
 <li class="chapter" data-level="4.4" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#filtrowanie"><i class="fa fa-check"></i><b>4.4</b> Filtrowanie</a></li>
-<li class="chapter" data-level="4.5" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#grupowanie-i-obliczanie-nowych-zmiennych"><i class="fa fa-check"></i><b>4.5</b> Grupowanie i obliczanie nowych zmiennych</a></li>
-<li class="chapter" data-level="4.6" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#łączenie-tabel"><i class="fa fa-check"></i><b>4.6</b> Łączenie tabel</a></li>
+<li class="chapter" data-level="4.5" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#grupowanie-i-obliczanie-nowych-zmiennych"><i class="fa fa-check"></i><b>4.5</b> Grupowanie i obliczanie nowych zmiennych</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#mutate"><i class="fa fa-check"></i><b>4.5.1</b> <code>mutate</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#summarise"><i class="fa fa-check"></i><b>4.5.2</b> <code>summarise</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#inne"><i class="fa fa-check"></i><b>4.5.3</b> inne</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#łączenie-tabel"><i class="fa fa-check"></i><b>4.6</b> Łączenie tabel</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#bind_"><i class="fa fa-check"></i><b>4.6.1</b> <code>bind_*</code></a></li>
+<li class="chapter" data-level="4.6.2" data-path="analiza-i-transformacja-danych.html"><a href="analiza-i-transformacja-danych.html#join"><i class="fa fa-check"></i><b>4.6.2</b> <code>*_join</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="wykresy---pakiet-ggplot2.html"><a href="wykresy---pakiet-ggplot2.html"><i class="fa fa-check"></i><b>5</b> Wykresy - pakiet ggplot2</a>
 <ul>
@@ -515,17 +524,17 @@ Argumenty: file określa nam plik, który wczytujemy, header - nagłówki, sep -
 <span id="cb53-4"><a href="dane.html#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-5"><a href="dane.html#cb53-5" aria-hidden="true" tabindex="-1"></a>lista</span></code></pre></div>
 <pre><code>## $ramka
-##             a    b
-## 1  -0.2788174 test
-## 2   1.3454683 test
-## 3  -0.4889195 test
-## 4  -0.6606924 test
-## 5   0.4108502 test
-## 6  -0.2118519 test
-## 7   1.5087994 test
-## 8   1.3749137 test
-## 9   0.5045419 test
-## 10  0.2638737 test
+##              a    b
+## 1   0.82931306 test
+## 2   0.25675675 test
+## 3  -1.13055288 test
+## 4   2.34081356 test
+## 5  -0.50899126 test
+## 6  -0.12908579 test
+## 7  -0.06227958 test
+## 8   0.19200295 test
+## 9  -1.07840475 test
+## 10  0.07727314 test
 ## 
 ## $wektor
 ## [1]  1  4  7 10 13 16
@@ -535,7 +544,7 @@ Argumenty: file określa nam plik, który wczytujemy, header - nagłówki, sep -
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="dane.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(lista)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ ramka :&#39;data.frame&#39;:  10 obs. of  2 variables:
-##   ..$ a: num [1:10] -0.279 1.345 -0.489 -0.661 0.411 ...
+##   ..$ a: num [1:10] 0.829 0.257 -1.131 2.341 -0.509 ...
 ##   ..$ b: chr [1:10] &quot;test&quot; &quot;test&quot; &quot;test&quot; &quot;test&quot; ...
 ##  $ wektor: num [1:6] 1 4 7 10 13 16
 ##  $ tekst : chr &quot;To jest lista&quot;</code></pre>

@@ -23,7 +23,12 @@ pipes-potoki
 sortowanie
 filtrowanie
 grupowanie-i-obliczanie-nowych-zmiennych
+mutate
+summarise
+inne
 łączenie-tabel
+bind_
+join
 wykresy---pakiet-ggplot2
 używane-dane
 histogram-boxplot-i-inne
